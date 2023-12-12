@@ -14,7 +14,7 @@ namespace Entities.Concrete
         public string CatalogLevel { get; set; }
         public string CatalogSubject { get; set; }
         public string SoftwareLanguage { get; set; }
-        public string instructor { get; set; }
+        public string Instructor { get; set; }
         public string EducationStatus { get; set; }
 
 

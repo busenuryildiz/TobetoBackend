@@ -8,7 +8,7 @@ namespace Entities.Concrete
 {
     public class Catalog
     {
-        public int CatalogId { get; set; }
+        
         public string CatalogName { get; set; }
         public string CatalogEducation { get; set; }
         public string CatalogLevel { get; set; }

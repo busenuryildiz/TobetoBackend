@@ -8,5 +8,6 @@ namespace Entities.Concrete
 {
     public class Certificate
     {
+        public string ImagePath { get; set; }   
     }
 }

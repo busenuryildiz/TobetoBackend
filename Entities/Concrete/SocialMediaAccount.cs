@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Application
+    public class SocialMediaAccount
     {
-        public Guid UserId { get; set; } 
-        public string Name { get; set; }    
+       public string SocialMedia {  get; set; } 
+       public string SocialMediaAddress { get; set; }   
+
     }
 }

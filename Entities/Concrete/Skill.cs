@@ -8,6 +8,6 @@ namespace Entities.Concrete
 {
     public class Skill
     {
-        public string Skill { get; set; }
+        public string Name { get; set; }
     }
 }

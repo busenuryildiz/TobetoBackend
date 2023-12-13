@@ -20,8 +20,8 @@ namespace Business.Concrete
 
         public async Task<IPaginate<Course>> GetListAsync()
         {
-            var result = _courseDal.GetListAsync();
-            return await result;
+            var result = await _courseDal.GetListAsync();
+            return result;
         }
     }
 }

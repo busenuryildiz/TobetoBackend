@@ -11,6 +11,6 @@ namespace Business.Abstract
     public interface ICourseService
     {
         Task<IPaginate<Course>> GetListAsync();
-        //Task<CreatedCourseResponse> Add(CreateProductRequest createProductRequest);
+        
     }
 }

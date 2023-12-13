@@ -18,5 +18,6 @@ namespace Entities.Concrete
         public int NationalId { get; set; }
         public DateTime BirthDate { get; set; }
         public string PhoneNumber { get; set; }
+        public Course Course { get; set; }
     }
 }

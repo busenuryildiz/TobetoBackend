@@ -16,5 +16,8 @@ namespace Entities.Concrete
         public float Point { get; set; }
         public int Like { get; set; }
         public bool Saveds { get; set; }
+        
+        
+
     }
 }

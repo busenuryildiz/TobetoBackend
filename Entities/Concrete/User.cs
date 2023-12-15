@@ -17,6 +17,7 @@ namespace Entities.Concrete
         public int NationalIdentity { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
+        public bool IsInstructor { get; set; }   
     }
 
 }

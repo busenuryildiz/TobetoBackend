@@ -9,7 +9,6 @@ namespace Entities.Concrete
 {
     public class Course:Entity<Guid>
     {
-
         public string Name { get; set; }
         public int DateId { get; set; }
         public string ImagePath { get; set; }

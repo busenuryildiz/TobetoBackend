@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Context.EntityConfigurations
 {
-    public class CatalogConfiguration: IEntityTypeConfiguration<Catalog>
+    public class CatalogConfiguration: IEntityTypeConfiguration<SoftwareLanguage>
     {
-        public void Configure(EntityTypeBuilder<Catalog> builder)
+        public void Configure(EntityTypeBuilder<SoftwareLanguage> builder)
         {
             builder.ToTable("Catalogs").HasKey(b => b.Id);
             builder.Property(b => b.Id).HasColumnName("CatalogId").IsRequired();

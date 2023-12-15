@@ -30,7 +30,7 @@ namespace Business.Concrete
 
         public async Task<CreatedCatalogResponse> Add(CreateCatalogRequest createCatalogRequest)
         {
-            var mappedRequest = _mapper.Map<Catalog>(createCatalogRequest);
+            var mappedRequest = _mapper.Map<SoftwareLanguage>(createCatalogRequest);
             var createdRequest = await _catalogDal.AddAsync(mappedRequest);
             var createdResponse = _mapper.Map<CreatedCatalogResponse>(createdRequest);
             return createdResponse;
@@ -38,7 +38,7 @@ namespace Business.Concrete
 
         public async Task<DeletedCatalogResponse> Delete(DeleteCatalogRequest deleteCatalogRequest)
         {
-            var mappedRequest = _mapper.Map<Catalog>(deleteCatalogRequest);
+            var mappedRequest = _mapper.Map<SoftwareLanguage>(deleteCatalogRequest);
             var createdRequest = await _catalogDal.DeleteAsync(mappedRequest);
             var createdResponse = _mapper.Map<DeletedCatalogResponse>(createdRequest);
             return createdResponse;
@@ -47,7 +47,7 @@ namespace Business.Concrete
         public async Task<CreatedCatalogResponse> GetById(Guid id)
         {
             var result = await _catalogDal.GetAsync(c => c.Id == id);
-            var mappedResult = _mapper.Map<Catalog>(result);
+            var mappedResult = _mapper.Map<SoftwareLanguage>(result);
             var createdResponse = _mapper.Map<CreatedCatalogResponse>(mappedResult);
 
             return createdResponse;
@@ -63,7 +63,7 @@ namespace Business.Concrete
 
         public async Task<UpdatedCatalogResponse> Update(UpdateCatalogRequest updateCatalogRequest)
         {
-            var mappedRequest = _mapper.Map<Catalog>(updateCatalogRequest);
+            var mappedRequest = _mapper.Map<SoftwareLanguage>(updateCatalogRequest);
             var updatedRequest = await _catalogDal.UpdateAsync(mappedRequest);
             var updatedResponse = _mapper.Map<UpdatedCatalogResponse>(updatedRequest);
 

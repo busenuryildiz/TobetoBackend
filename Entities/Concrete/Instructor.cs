@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Instructor:Entity<Guid>
+    public class Instructor:Entity<int>
     {
-     
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int CourseId { get; set; }
+        public DateTime? HireDate { get; set; }
+        public User User { get; set; }
+
     }
 }

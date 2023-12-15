@@ -7,7 +7,7 @@ using Entities.Concrete;
 
 namespace Business.DTOs.Request
 {
-    public class DeleteCatalogRequest:Catalog
+    public class DeleteCatalogRequest:SoftwareLanguage
     {
     }
 }

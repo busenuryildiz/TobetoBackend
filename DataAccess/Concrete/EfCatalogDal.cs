@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class EfCatalogDal : EfRepositoryBase<Catalog, Guid, TobetoContext>, ICatalogDal
+    public class EfCatalogDal : EfRepositoryBase<SoftwareLanguage, Guid, TobetoContext>, ICatalogDal
     {
         public EfCatalogDal(TobetoContext context) : base(context)
         {

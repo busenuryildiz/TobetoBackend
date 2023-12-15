@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface ICatalogDal : IRepository<Catalog, Guid>, IAsyncRepository<Catalog, Guid>
+    public interface ICatalogDal : IRepository<SoftwareLanguage, Guid>, IAsyncRepository<SoftwareLanguage, Guid>
     {
     }
 }

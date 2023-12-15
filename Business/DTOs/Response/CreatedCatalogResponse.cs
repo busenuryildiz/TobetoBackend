@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Response
 {
-    public class CreatedCatalogResponse : Catalog
+    public class CreatedCatalogResponse : SoftwareLanguage
     {
     }
 }

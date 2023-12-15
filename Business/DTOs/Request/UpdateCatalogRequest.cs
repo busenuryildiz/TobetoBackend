@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Request
 {
-    public class UpdateCatalogRequest: Catalog
+    public class UpdateCatalogRequest: SoftwareLanguage
     {
     }
 }

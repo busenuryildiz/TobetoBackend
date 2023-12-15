@@ -15,17 +15,17 @@ namespace Business.Profiles
     {
         public CatalogMappingProfile()
         {
-            CreateMap<CreateCatalogRequest, Catalog>().ReverseMap();
-            CreateMap<Catalog, CreatedCatalogResponse>().ReverseMap();
+            CreateMap<CreateCatalogRequest, SoftwareLanguage>().ReverseMap();
+            CreateMap<SoftwareLanguage, CreatedCatalogResponse>().ReverseMap();
 
-            CreateMap<DeleteCatalogRequest, Catalog>().ReverseMap();
-            CreateMap<Catalog, DeletedCatalogResponse>().ReverseMap();
+            CreateMap<DeleteCatalogRequest, SoftwareLanguage>().ReverseMap();
+            CreateMap<SoftwareLanguage, DeletedCatalogResponse>().ReverseMap();
 
-            CreateMap<UpdateCatalogRequest, Catalog>().ReverseMap();
-            CreateMap<Catalog, UpdatedCatalogResponse>().ReverseMap();
+            CreateMap<UpdateCatalogRequest, SoftwareLanguage>().ReverseMap();
+            CreateMap<SoftwareLanguage, UpdatedCatalogResponse>().ReverseMap();
 
-            CreateMap<Catalog, GetListCatalogResponse>().ReverseMap();
-            CreateMap<IPaginate<Catalog>, IPaginate<GetListCatalogResponse>>().ReverseMap();
+            CreateMap<SoftwareLanguage, GetListCatalogResponse>().ReverseMap();
+            CreateMap<IPaginate<SoftwareLanguage>, IPaginate<GetListCatalogResponse>>().ReverseMap();
         }
     }
 }

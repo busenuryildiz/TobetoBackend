@@ -1,14 +1,13 @@
-﻿using Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Entities;
 
 namespace Entities.Concrete
 {
-    public class User : Entity<Guid>
+    public class Student:Entity<int>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -17,6 +16,7 @@ namespace Entities.Concrete
         public int NationalIdentity { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
+        public int StudentNumber { get; set; }
+        public int  CourseId { get; set; }
     }
-
 }

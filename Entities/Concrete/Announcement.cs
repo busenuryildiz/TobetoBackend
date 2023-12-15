@@ -9,7 +9,6 @@ namespace Entities.Concrete
 {
     public class Announcement : Entity<int>
     {
-
         public string Name { get; set; }
         public string Description { get; set; }
     }

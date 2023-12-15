@@ -7,15 +7,22 @@ using Core.Entities;
 
 namespace Entities.Concrete
 {
-    public class Catalog:Entity<Guid>
+    public class Catalog : Entity<int>
     {
-        public Guid UserId { get; set; }
-        public string CatalogName { get; set; }
-        public string? CatalogEducation { get; set; }
+       
+       
         public string? CatalogLevel { get; set; }
         public string? CatalogSubject { get; set; }
         public string? SoftwareLanguage { get; set; }
-        public string? Instructor { get; set; }
+        
         public string? EducationStatus { get; set; }
+    }
+    public class UserCatalog : Entity<int>
+    {
+        public Guid UserId { get; set; }
+    }
+    public class  Category : Entity<int>
+    {
+        
     }
 }

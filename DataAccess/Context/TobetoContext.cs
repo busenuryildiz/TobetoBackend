@@ -15,6 +15,9 @@ namespace DataAccess.Context
         protected IConfiguration Configuration { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<User> Users{ get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<New> News { get; set; }
+        public DbSet<Catalog> Catalog { get; set; }
 
 
         public TobetoContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(

@@ -7,13 +7,13 @@ using Core.Entities;
 
 namespace Entities.Concrete
 {
-    public class Exam:Entity<Guid>
+    public class New:Entity<Guid>
     {
-        public Guid? UserId { get; set; }
         public string Title { get; set; }
         public string? Description { get; set; }
-        public  DateTime? ExamDuration { get; set; }
-        public List<Question>? Questions { get; set; }
-        public int? Point { get; set; }
+        public string? Content { get; set; }
+        public string? ImagePath { get; set; }
+        public DateTime? Date { get; set; }
+
     }
 }

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Entities;
 
-namespace Entities.Concrete
+namespace Business.DTOs.Request
 {
-    public class Catalog:Entity<Guid>
+    public class CreateCatalogRequest
     {
         public Guid UserId { get; set; }
         public string CatalogName { get; set; }

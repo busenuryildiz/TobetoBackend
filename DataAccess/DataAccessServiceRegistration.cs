@@ -1,6 +1,7 @@
 ﻿using DataAccess.Abstract;
 using DataAccess.Concrete;
 using DataAccess.Context;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,9 +21,10 @@ namespace DataAccess
             services.AddDbContext<TobetoContext>(options => options.UseSqlServer(configuration.GetConnectionString("Tobeto")));
 
             services.AddScoped<ICourseDal, EfCourseDal>();
-
             services.AddScoped<IUserDal,EfUserDal>();
-
+            services.AddScoped<IExamDal, EfExamDal>();
+            services.AddScoped<INewDal, EfNewDal>();
+            services.AddScoped<ICatalogDal, EfCatalogDal>();
 
             return services;
         }

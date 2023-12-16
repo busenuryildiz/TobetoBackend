@@ -10,7 +10,7 @@ namespace Entities.Concrete
     public class CourseLevel:Entity<int> 
     {
         public string Name { get; set; }
-        public int CourseId { get; set; }   
+        public List<Course> Courses { get;}
 
     }
 }

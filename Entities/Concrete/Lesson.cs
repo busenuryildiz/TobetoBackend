@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class CourseLesson:Entity<int>
+    public class Lesson : Entity<int>
     {
-       
         public int CourseId { get; set; }
-        public string Name { get; set; }    
+        public string Name { get; set; }
         public string Content { get; set; }
-        public string VideoUrl { get; set; }   
+        public string VideoUrl { get; set; }
 
-       //ilgili alanlar,details clasına bakılacak.
+        //ilgili alanlar,details clasına bakılacak.
 
     }
 }

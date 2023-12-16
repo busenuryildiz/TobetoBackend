@@ -11,8 +11,8 @@ namespace Entities.Concrete
     {
         //tamamlanan devam eden eğitimler
         public string Name { get; set; }
-        public int CourseId { get; set; }  
-        
+        public List<Course> Courses { get; }
+
 
     }
 }

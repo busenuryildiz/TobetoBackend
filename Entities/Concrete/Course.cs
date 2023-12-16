@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Course:Entity<Guid>
+    public class Course : Entity<int>
     {
+        public int CourseLevelId { get; set; }
         public int CategoryId { get; set; }
-        public int ExamId { get; set; }
-        public int DateId { get; set; }
         public string Name { get; set; }
         public string ImagePath { get; set; }
-        public int Progress { get; set; }
-        public float Point { get; set; }
-        public int Like { get; set; }
-        public bool Saveds { get; set; }
-        public DateTime CoursesDate { get; set; }
+        public Category Category { get; set; }
+        public List<Assignment> Assignments { get; set; }
+        public List<Exam> Exams { get; set; }
+        public CourseLevel CourseLevel { get; set; }
+        public CourseStatus CourseStatus{ get; set; }
+        public CourseSubject CourseSubject{ get; set; }
+        
     }
 }

@@ -4,11 +4,12 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Entities.Concrete
 {
-    public class UsersExperience
+    public class UsersExperience:Entity<int>
     {
         public string EstablishmentName { get; set; }
         public string Position { get; set; }

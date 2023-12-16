@@ -5,9 +5,7 @@ namespace Entities.Concrete
     public class  Category : Entity<int>  
     {
         public string Name { get; set; }
-        public double UnitPrice { get; set; }   
-
-
+        public List<Course> Courses { get; set;}
         
     }
 

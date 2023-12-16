@@ -10,6 +10,7 @@ namespace Entities.Concrete
     public class Application : Entity<int>
     {
         public Guid UserId { get; set; } 
-        public string Name { get; set; }    
+        public string Name { get; set; } 
+        public bool IsActive { get; set; }
     }
 }

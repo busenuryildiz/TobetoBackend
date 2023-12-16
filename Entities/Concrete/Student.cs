@@ -18,5 +18,7 @@ namespace Entities.Concrete
         public string PhoneNumber { get; set; }
         public int StudentNumber { get; set; }
         public int  CourseId { get; set; }
+        List<Certificate> Certificates { get; set; }
+        public User user { get; set; }
     }
 }

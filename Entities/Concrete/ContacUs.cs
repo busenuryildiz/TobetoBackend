@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class ContacUs:Entity<Guid>
+    public class ContacUs:Entity<int>
     {
-        public string NameSurname { get; set; }
+        public string FullName { get; set; }
         public string Email { get; set; }
         public string Message { get; set; }
 

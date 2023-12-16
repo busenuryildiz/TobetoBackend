@@ -1,5 +1,5 @@
 ﻿using Core.DataAccess.Repositories;
-using Entities.Concrete;
+using Entities.Concrete.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;

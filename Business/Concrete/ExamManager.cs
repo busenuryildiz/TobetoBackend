@@ -10,7 +10,7 @@ using Business.DTOs.Response;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
-using Entities.Concrete;
+using Entities.Concrete.Course;
 
 namespace Business.Concrete
 {

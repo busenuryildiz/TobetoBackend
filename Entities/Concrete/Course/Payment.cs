@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Entities;
 
-namespace Entities.Concrete
+namespace Entities.Concrete.Course
 {
     public class Payment : Entity<int>
     {
-        public int StudentID { get; set; }
+        public int StudentCourseId { get; set; }
         public decimal Amount { get; set; }
         public DateTime PaymentDate { get; set; }
-        public string Status { get; set; }
-        public Student Student { get; set; }
+        public bool? Status { get; set; }
+        public StudentCourse StudentCourses { get; set; }
     }
 }

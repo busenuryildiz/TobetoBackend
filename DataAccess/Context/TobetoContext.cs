@@ -1,4 +1,6 @@
 ﻿using Entities.Concrete;
+using Entities.Concrete.Client;
+using Entities.Concrete.Course;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -17,7 +19,6 @@ namespace DataAccess.Context
         public DbSet<User> Users{ get; set; }
         public DbSet<Exam> Exams { get; set; }
         public DbSet<New> News { get; set; }
-        public DbSet<Catalog> Catalog { get; set; }
 
 
         public TobetoContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(

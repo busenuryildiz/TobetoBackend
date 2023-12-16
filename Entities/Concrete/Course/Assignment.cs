@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace Entities.Concrete
+namespace Entities.Concrete.Course.Course
 {
-    public class Assignment:Entity<int>
+    public class Assignment : Entity<int>
     {
         public int CourseId { get; set; }
         public string Name { get; set; }

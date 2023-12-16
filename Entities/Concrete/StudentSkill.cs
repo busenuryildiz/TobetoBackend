@@ -7,9 +7,9 @@ using Core.Entities;
 
 namespace Entities.Concrete
 {
-    public class InstructorCourse:Entity<int>
+    public class StudentSkill:Entity<int>
     {
-        public int InstructorId { get; set; }
-        public int CourseId { get; set; }
+        public int StudentId { get; set; }
+        public int SkillId { get; set; }
     }
 }

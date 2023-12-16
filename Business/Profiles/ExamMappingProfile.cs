@@ -2,7 +2,7 @@
 using Business.DTOs.Request;
 using Business.DTOs.Response;
 using Core.DataAccess.Paging;
-using Entities.Concrete;
+using Entities.Concrete.Course;
 using System;
 using System.Collections.Generic;
 using System.Linq;

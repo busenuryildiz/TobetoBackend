@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete
+namespace Entities.Concrete.Course
 {
     public class Lesson : Entity<int>
     {

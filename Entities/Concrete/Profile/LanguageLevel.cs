@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Entities;
 
-namespace Entities.Concrete
+namespace Entities.Concrete.Profile
 {
-    public class Language
+    public class LanguageLevel : Entity<int>
     {
-        public int  Id { get; set; }
         public string Name { get; set; }
-        public string Level { get; set; }
     }
 }
-//-----------//

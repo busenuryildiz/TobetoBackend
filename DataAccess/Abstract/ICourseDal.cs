@@ -1,5 +1,5 @@
 ﻿using Core.DataAccess.Repositories;
-using Entities.Concrete;
+using Entities.Concrete.Course;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface ICourseDal : IRepository<Course, Guid>, IAsyncRepository<Course, Guid>
+    public interface ICourseDal : IRepository<Course, int>, IAsyncRepository<Course, int>
     {
     }
 }

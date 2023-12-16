@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete
+namespace Entities.Concrete.Client
 {
-    public class Instructor:Entity<int>
+    public class Instructor : Entity<int>
     {
         public DateTime? HireDate { get; set; }
         public User User { get; set; }

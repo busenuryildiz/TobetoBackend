@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete
+namespace Entities.Concrete.Course
 {
-    public class CourseLevel:Entity<int> 
+    public class CourseLevel : Entity<int>
     {
         public string Name { get; set; }
-        public List<Course> Courses { get;}
+        public List<Course> Courses { get; }
 
     }
 }

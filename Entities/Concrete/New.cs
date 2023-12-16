@@ -7,7 +7,7 @@ using Core.Entities;
 
 namespace Entities.Concrete
 {
-    public class New:Entity<Guid>
+    public class New:Entity<int>
     {
         public string Title { get; set; }
         public string? Description { get; set; }

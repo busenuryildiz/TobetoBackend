@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Entities;
 
-namespace Entities.Concrete
+namespace Entities.Concrete.Course
 {
     public class StudentCourse : Entity<int>
     {
@@ -16,6 +16,7 @@ namespace Entities.Concrete
         public float Point { get; set; }
         public int Liked { get; set; }
         public int Saved { get; set; }
+        public bool? IsPaid { get; set; }
         public TimeSpan SpentTime { get; set; }
         public TimeSpan EstimatedTime { get; set; }
 

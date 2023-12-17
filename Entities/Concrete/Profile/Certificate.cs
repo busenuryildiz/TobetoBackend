@@ -10,7 +10,7 @@ namespace Entities.Concrete.Profile
 {
     public class Certificate : Entity<int>
     {
-        public int UserId { get; set; }// Kullanıcıya ait sertifika
+        public Guid UserId { get; set; }// Kullanıcıya ait sertifika
         public string Name { get; set; }
         public string ImagePath { get; set; }
         public User User { get; set; } // Sertifikayı kullanıcıyla ilişkilendirmek için referans

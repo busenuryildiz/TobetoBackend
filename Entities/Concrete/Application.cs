@@ -14,3 +14,4 @@ namespace Entities.Concrete
         public bool IsActive { get; set; }
     }
 }
+   

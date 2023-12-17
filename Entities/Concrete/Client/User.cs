@@ -25,6 +25,7 @@ namespace Entities.Concrete.Client
         public List<SocialMediaAccount> SocialMediaAccounts { get; set; }
         public List<UserExperience> UserExperiences { get; set; }
         public List<UserLanguage> UserLanguage { get; set; }
+
     }
 
 }

@@ -23,6 +23,8 @@ namespace DataAccess
             services.AddScoped<ICourseDal, EfCourseDal>();
             services.AddScoped<IUserDal,EfUserDal>();
             services.AddScoped<IExamDal, EfExamDal>();
+            services.AddScoped<IStudentDal, EfStudentDal>();
+            
 
             return services;
         }

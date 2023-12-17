@@ -1,7 +1,6 @@
 ﻿using Core.DataAccess.Repositories;
 using DataAccess.Context;
 using Entities.Concrete.Client;
-using Entities.Concrete.Course;
 using System;
 using System.Collections.Generic;
 using System.Linq;

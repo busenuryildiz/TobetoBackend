@@ -13,27 +13,22 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Student> builder)
         {
-            // Tablo adı
-            builder.ToTable("Students");
+            builder.ToTable("Students").HasKey(b => b.Id);
+            builder.Property(b => b.Id).HasColumnName("StudentId").IsRequired();
+            builder.Property(b => b.UserId).HasColumnName("UserId");
+            builder.Property(b => b.StudentNumber).HasColumnName("StudentNumber").IsRequired();
 
-            // Anahtar (Primary Key)
-            builder.HasKey(s => s.Id);
+            builder.HasOne(b => b.User);
+            builder.HasMany(b => b.Surveys);
 
-            // Özellikler
-            builder.Property(s => s.UserId).IsRequired();
-            builder.Property(s => s.StudentNumber).IsRequired();
-            builder.Property(s => s.CourseId).IsRequired();
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 
-            // İlişkiler
-            builder.HasOne(s => s.User)
-                .WithOne(u => u.Student)
-                .HasForeignKey(s => s.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+        //public int CourseId { get; set; }
 
-            builder.HasMany(s => s.Surveys)
-                .WithOne(survey => survey.Student)
-                .HasForeignKey(survey => survey.StudentId)
-                .OnDelete(DeleteBehavior.Cascade);
-        }
+        //public User User { get; set; }
+
+        //public List<Survey> Surveys { get; set; }
+
+    }
     }
 }

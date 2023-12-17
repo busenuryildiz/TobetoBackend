@@ -11,8 +11,7 @@ namespace Entities.Concrete.Client
     {
         public Guid UserId { get; set; }
         public int StudentNumber { get; set; }
-        public int CourseId { get; set; }
-        public User user { get; set; }
+        public User User { get; set; }
         public List<Survey> Surveys { get; set; }
     }
 }

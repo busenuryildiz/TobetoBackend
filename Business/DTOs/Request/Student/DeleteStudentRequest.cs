@@ -8,5 +8,8 @@ namespace Business.DTOs.Request.Student
 {
     public class DeleteStudentRequest
     {
+        public Guid Id { get; set; }
+        public int StudentNumber { get; set; }
+        public int CourseId { get; set; }
     }
 }

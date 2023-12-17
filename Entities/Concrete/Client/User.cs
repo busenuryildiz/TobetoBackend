@@ -17,7 +17,7 @@ namespace Entities.Concrete.Client
         public string Address { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int NationalIdentity { get; set; }
+        public string NationalIdentity { get; set; }
         public DateOnly DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
         public string ImagePath { get; set; }
@@ -28,7 +28,6 @@ namespace Entities.Concrete.Client
         public List<UserLanguage> UserLanguage { get; set; }
         public Student Student { get; set; }
         public Instructor Instructor { get; set; }
-
     }
 
 }

@@ -13,5 +13,11 @@ namespace Entities.Concrete.Client
         public int StudentNumber { get; set; }
         public User User { get; set; }
         public List<Survey> Surveys { get; set; }
+
+        public void GenerateStudentNumber()
+        {
+            // Öğrenci numarası oluşturma işlemleri
+            StudentNumber = new Random().Next(1000, 9999);
+        }
     }
 }

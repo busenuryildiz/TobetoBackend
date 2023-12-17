@@ -7,7 +7,7 @@ using Entities.Concrete;
 
 namespace Business.DTOs.Request.New
 {
-    public class UpdateNewRequest : New
+    public class UpdateNewRequest 
     {
 
     }

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.Concrete;
+using Core.Business.Rules;
 
-namespace Business.DTOs.Response.New
+namespace Business.Rules
 {
-    public class DeletedNewResponse 
+    public class StudentBusinessRules:BaseBusinessRules
     {
     }
 }

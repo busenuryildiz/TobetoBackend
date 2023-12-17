@@ -18,17 +18,18 @@ namespace DataAccess.Context.EntityConfigurations
             builder.Property(b => b.UserId).HasColumnName("UserId");
             builder.Property(b => b.StudentNumber).HasColumnName("StudentNumber").IsRequired();
 
-            builder.HasOne(b => b.User);
-            builder.HasMany(b => b.Surveys);
+            // User ilişkisi
+            builder.HasOne(b => b.User)
+                .WithOne()
+                .HasForeignKey<Student>(b => b.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Surveys ilişkisi
+            builder.HasMany(b => b.Surveys)
+                .WithOne(s => s.Student)
+                .HasForeignKey(s => s.StudentId);
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
-
-        //public int CourseId { get; set; }
-
-        //public User User { get; set; }
-
-        //public List<Survey> Surveys { get; set; }
-
-    }
+        }
     }
 }

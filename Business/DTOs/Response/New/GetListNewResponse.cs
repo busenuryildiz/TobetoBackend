@@ -7,7 +7,7 @@ using Entities.Concrete;
 
 namespace Business.DTOs.Response.New
 {
-    public class GetListNewResponse : New
+    public class GetListNewResponse 
     {
     }
 }

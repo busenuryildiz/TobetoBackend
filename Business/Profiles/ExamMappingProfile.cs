@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using Business.DTOs.Request;
-using Business.DTOs.Response;
 using Core.DataAccess.Paging;
 using System;
 using System.Collections.Generic;
@@ -8,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities.Concrete.CourseFolder;
+using Business.DTOs.Request.Exam;
+using Business.DTOs.Response.Exam;
 
 namespace Business.Profiles
 {

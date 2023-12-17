@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.DTOs.Request;
-using Business.DTOs.Response;
 using Core.DataAccess.Paging;
 using System;
 using System.Collections.Generic;
@@ -11,6 +9,8 @@ using System.Threading.Tasks;
 using Business.Rules;
 using DataAccess.Abstract;
 using Entities.Concrete.Client;
+using Business.DTOs.Request.User;
+using Business.DTOs.Response.User;
 
 namespace Business.Concrete
 {

@@ -20,6 +20,7 @@ namespace Entities.Concrete.Client
         public int NationalIdentity { get; set; }
         public DateOnly DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
+        public string ImagePath { get; set; }
         public List<EducationInformation> EducationInformations { get; set; }
         public List<Certificate> Certificates { get; set; }
         public List<SocialMediaAccount> SocialMediaAccounts { get; set; }

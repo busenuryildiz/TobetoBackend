@@ -1,5 +1,5 @@
-﻿using Business.DTOs.Request;
-using Business.DTOs.Response;
+﻿using Business.DTOs.Request.Exam;
+using Business.DTOs.Response.Exam;
 using Core.DataAccess.Paging;
 using System;
 using System.Collections.Generic;

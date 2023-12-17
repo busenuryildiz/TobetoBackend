@@ -10,10 +10,10 @@ namespace Business.Rules
 {
     public class NewBusinessRules : BaseBusinessRules
     {
-        INewDal _newDal;
-        public NewBusinessRules(INewDal newDal)
-        {
-            _newDal = newDal;
-        }
+        //INewDal _newDal;
+        //public NewBusinessRules(INewDal newDal)
+        //{
+        //    _newDal = newDal;
+        //}
     }
 }

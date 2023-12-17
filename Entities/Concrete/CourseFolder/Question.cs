@@ -1,7 +1,7 @@
 ﻿using System.Security.AccessControl;
 using Core.Entities;
 
-namespace Entities.Concrete.Course
+namespace Entities.Concrete.CourseFolder
 {
     public class Question : Entity<int>
     {

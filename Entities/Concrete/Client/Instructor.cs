@@ -9,6 +9,7 @@ namespace Entities.Concrete.Client
 {
     public class Instructor : Entity<int>
     {
+        public Guid UserId { get; set; }
         public DateTime? HireDate { get; set; }
         public User User { get; set; }
 

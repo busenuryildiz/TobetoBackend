@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete.Course
+namespace Entities.Concrete.CourseFolder
 {
     public class CourseStatus : Entity<int>
     {

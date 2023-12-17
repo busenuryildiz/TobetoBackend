@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Entities;
 
-namespace Entities.Concrete.Course
+namespace Entities.Concrete.CourseFolder
 {
     public class Exam : Entity<int>
     {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace Entities.Concrete.Course.Course
+namespace Entities.Concrete.CourseFolder
 {
     public class Assignment : Entity<int>
     {

@@ -1,9 +1,11 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
+using Core.Business.Rules;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,10 +17,26 @@ namespace Business
         {
             services.AddScoped<ICourseService, CourseManager>();
             services.AddScoped<IUserService, UserManager>();
-            services.AddScoped<IExamService, ExamManager>();
-            services.AddScoped<INewService, NewManager>();
-            services.AddScoped<ICatalogService, CatalogManager>();
 
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
+            return services;
+        }
+        public static IServiceCollection AddSubClassesOfType(
+            this IServiceCollection services,
+            Assembly assembly,
+            Type type,
+            Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle = null
+        )
+        {
+            var types = assembly.GetTypes().Where(t => t.IsSubclassOf(type) && type != t).ToList();
+            foreach (var item in types)
+                if (addWithLifeCycle == null)
+                    services.AddScoped(item);
+
+                else
+                    addWithLifeCycle(services, type);
             return services;
         }
     }

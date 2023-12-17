@@ -14,7 +14,6 @@ namespace DataAccess.Concrete
     //tobetocontext bunları kullanabilecek.ctor kullanıldı.
     public class EfUserDal: EfRepositoryBase<User, Guid, TobetoContext>, IUserDal
     {
-        
         public EfUserDal(TobetoContext context) : base(context)
         {
 

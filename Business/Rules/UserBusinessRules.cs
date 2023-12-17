@@ -15,5 +15,7 @@ namespace Business.Rules
         {
             _userDal = userDal;      
         }
+
+
     }
 }

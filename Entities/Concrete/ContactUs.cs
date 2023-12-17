@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class ContacUs:Entity<int>
+    public class ContactUs:Entity<int>
     {
         public string FullName { get; set; }
         public string Email { get; set; }

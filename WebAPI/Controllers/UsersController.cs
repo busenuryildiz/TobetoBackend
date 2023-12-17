@@ -40,6 +40,12 @@ namespace WebAPI.Controllers
             var result = await _userService.GetListAsync(pageRequest);
             return Ok(result);
         }
+        [HttpGet("GetById")]
+        public async Task<IActionResult> GetById([FromQuery] Guid id)
+        {
+            var result = await _userService.GetById(id);
+            return Ok(result);
+        }
 
     }
 }

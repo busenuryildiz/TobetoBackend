@@ -17,7 +17,10 @@ namespace Business
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IExamService, ExamManager>();
             services.AddScoped<INewService, NewManager>();
-            services.AddScoped<ICatalogService, CatalogManager>();
+            services.AddScoped<IStudentService, StudentManager>();
+           
+           
+
 
             return services;
         }

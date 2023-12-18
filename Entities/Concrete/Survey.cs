@@ -10,7 +10,7 @@ namespace Entities.Concrete
 {
     public class Survey : Entity<int>
     {
-        public int StudentId { get; set; }
+        public Guid StudentId { get; set; }
         public string Name { get; set; }
         public string SurveyUrl { get; set; }
         public Student Student { get; set; }

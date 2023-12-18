@@ -14,14 +14,13 @@ namespace Entities.Concrete.Client
         public int StudentNumber { get; set; }
         public User User { get; set; }
         public List<Survey> Surveys { get; set; }
-
         public List<StudentCourse> StudentCourses { get; set; } // Eklenen alan
         public List<StudentSkill> StudentSkills { get; set; }
 
         public void GenerateStudentNumber()
         {
             // Öğrenci numarası oluşturma işlemleri
-            StudentNumber = new Random().Next(1000, 9999);
+            StudentNumber = new Random().Next(1000, 99999);
         }
     }
 }

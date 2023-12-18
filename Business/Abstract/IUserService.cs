@@ -1,5 +1,5 @@
-﻿using Business.DTOs.Request.User;
-using Business.DTOs.Response.User;
+﻿using Business.DTOs.Request.user;
+using Business.DTOs.Response.user;
 using Core.DataAccess.Paging;
 using Entities.Concrete;
 using System;
@@ -12,11 +12,11 @@ namespace Business.Abstract
 {
     public interface IUserService
     {
-        Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest);
+        //Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest);
         Task<CreatedUserResponse> Add(CreateUserRequest createUserRequest);
-        Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest);
-        Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest);
-        Task<CreatedUserResponse> GetById(Guid id);
+        //Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest);
+        //Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest);
+        //Task<CreatedUserResponse> GetById(Guid id);
 
     }
 }

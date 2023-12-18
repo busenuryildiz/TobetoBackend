@@ -12,7 +12,7 @@ namespace Entities.Concrete.Profile
     {
         public Guid UserId { get; set; }
         public int LanguageId { get; set; }
-        public string LanguageLevelId { get; set; }
+        public int LanguageLevelId { get; set; }
         public User User { get; set; }
         public Language Language { get; set; }
         public LanguageLevel LanguageLevel { get; set; }

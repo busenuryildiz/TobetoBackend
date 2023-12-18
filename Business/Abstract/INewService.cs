@@ -1,6 +1,4 @@
-﻿using Business.DTOs.Request.New;
-using Business.DTOs.Response.New;
-using Core.DataAccess.Paging;
+﻿using Core.DataAccess.Paging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +9,10 @@ namespace Business.Abstract
 {
     public interface INewService
     {
-        Task<IPaginate<GetListNewResponse>> GetListAsync(PageRequest pageRequest);
-        Task<CreatedNewResponse> Add(CreateNewRequest createNewRequest);
-        Task<UpdatedNewResponse> Update(UpdateNewRequest updateNewRequest);
-        Task<DeletedNewResponse> Delete(DeleteNewRequest deleteNewRequest);
-        Task<CreatedNewResponse> GetById(Guid id);
+        //Task<IPaginate<GetListNewResponse>> GetListAsync(PageRequest pageRequest);
+        //Task<CreatedNewResponse> Add(CreateNewRequest createNewRequest);
+        //Task<UpdatedNewResponse> Update(UpdateNewRequest updateNewRequest);
+        //Task<DeletedNewResponse> Delete(DeleteNewRequest deleteNewRequest);
+        //Task<CreatedNewResponse> GetById(Guid id);
     }
 }

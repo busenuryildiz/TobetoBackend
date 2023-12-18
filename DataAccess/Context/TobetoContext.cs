@@ -65,5 +65,6 @@ namespace DataAccess.Context
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             //Konfigirasyon dosyalarını bul ve onu uygula demek
         }
+
     }
 }

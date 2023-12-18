@@ -12,15 +12,15 @@ namespace Entities.Concrete.Client
 {
     public class User : Entity<Guid>
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string NationalIdentity { get; set; }
-        public DateOnly DateOfBirth { get; set; }
-        public string PhoneNumber { get; set; }
-        public string ImagePath { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? Address { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
+        public string? NationalIdentity { get; set; }
+        public DateOnly? DateOfBirth { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? ImagePath { get; set; }
         public List<EducationInformation> EducationInformations { get; set; }
         public List<Certificate> Certificates { get; set; }
         public List<SocialMediaAccount> SocialMediaAccounts { get; set; }

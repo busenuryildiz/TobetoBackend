@@ -10,7 +10,7 @@ namespace Entities.Concrete
 {
     public class SocialMediaAccount : Entity<int>
     {
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public string SocialMedia { get; set; }
         public string SocialMediaUrl { get; set; }
         public User User { get; set; }

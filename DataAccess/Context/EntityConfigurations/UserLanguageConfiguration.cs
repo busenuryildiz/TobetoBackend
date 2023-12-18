@@ -30,19 +30,22 @@ namespace DataAccess.Context.EntityConfigurations
             builder.HasOne(ul => ul.User)
                 .WithMany(u => u.UserLanguages)
                 .HasForeignKey(ul => ul.UserId)
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade); // Silme işlemini CASCADE olarak ayarlayın veya gerektiğine göre değiştirin
 
             // UserLanguage ve Language arasındaki ilişki
             builder.HasOne(ul => ul.Language)
-                .WithMany()
+                .WithMany(l => l.UserLanguages)
                 .HasForeignKey(ul => ul.LanguageId)
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict); // Silme işlemini sınırlayın veya gerektiğine göre değiştirin
 
             // UserLanguage ve LanguageLevel arasındaki ilişki
             builder.HasOne(ul => ul.LanguageLevel)
                 .WithMany()
                 .HasForeignKey(ul => ul.LanguageLevelId)
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict); // Silme işlemini sınırlayın veya gerektiğine göre değiştirin
         }
     }
 

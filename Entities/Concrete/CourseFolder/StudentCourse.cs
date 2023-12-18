@@ -10,7 +10,7 @@ namespace Entities.Concrete.CourseFolder
 {
     public class StudentCourse : Entity<int>
     {
-        public int StudentId { get; set; }
+        public Guid StudentId { get; set; }
         public int CourseId { get; set; }
         public int Progress { get; set; }
         public string? CertificatePath { get; set; }

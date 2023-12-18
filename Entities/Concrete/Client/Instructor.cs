@@ -12,6 +12,5 @@ namespace Entities.Concrete.Client
         public Guid UserId { get; set; }
         public DateTime? HireDate { get; set; }
         public User User { get; set; }
-
     }
 }

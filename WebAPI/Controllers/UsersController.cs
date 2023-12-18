@@ -1,6 +1,6 @@
 ﻿using Azure.Core;
 using Business.Abstracts;
-using Business.DTOs.Request.user;
+using Business.DTOs.Request.User;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Mvc;
 
@@ -69,31 +69,31 @@ namespace WebAPI.Controllers
         //return Ok(result);
 
 
-        //[HttpPost("Delete")]
-        //public async Task<IActionResult> Delete([FromBody] DeleteUserRequest deleteUserRequest)
-        //{
-        //    var result = await _userService.Delete(deleteUserRequest);
-        //    return Ok(result);
-        //}
-        //[HttpPost("Update")]
-        //public async Task<IActionResult> Update([FromBody] UpdateUserRequest updateUserRequest)
-        //{
-        //    var result = await _userService.Update(updateUserRequest);
-        //    return Ok(result);
-        //}
+        [HttpPost("Delete")]
+        public async Task<IActionResult> Delete([FromBody] DeleteUserRequest deleteUserRequest)
+        {
+            var result = await _userService.Delete(deleteUserRequest);
+            return Ok(result);
+        }
+        [HttpPost("Update")]
+        public async Task<IActionResult> Update([FromBody] UpdateUserRequest updateUserRequest)
+        {
+            var result = await _userService.Update(updateUserRequest);
+            return Ok(result);
+        }
 
-        //[HttpGet("GetList")]
-        //public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
-        //{
-        //    var result = await _userService.GetListAsync(pageRequest);
-        //    return Ok(result);
-        //}
-        //[HttpGet("GetById")]
-        //public async Task<IActionResult> GetById([FromQuery] Guid id)
-        //{
-        //    var result = await _userService.GetById(id);
-        //    return Ok(result);
-        //}
+        [HttpGet("GetList")]
+        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+        {
+            var result = await _userService.GetListAsync(pageRequest);
+            return Ok(result);
+        }
+        [HttpGet("GetById")]
+        public async Task<IActionResult> GetById([FromQuery] Guid id)
+        {
+            var result = await _userService.GetById(id);
+            return Ok(result);
+        }
 
     }
 }

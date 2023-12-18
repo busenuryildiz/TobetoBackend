@@ -22,7 +22,7 @@ namespace DataAccess.Context.EntityConfigurations
             builder.Property(u => u.Email).IsRequired().HasMaxLength(255);
             builder.Property(u => u.Password).IsRequired();
             builder.Property(u => u.NationalIdentity).IsRequired();
-            builder.Property(u => u.DateOfBirth).IsRequired().HasColumnType("date");
+            builder.Property(u => u.BirthDate).IsRequired().HasColumnType("date");
             builder.Property(u => u.PhoneNumber).HasMaxLength(20);
 
             builder.HasMany(u => u.EducationInformations)

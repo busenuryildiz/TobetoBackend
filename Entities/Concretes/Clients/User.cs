@@ -18,7 +18,7 @@ namespace Entities.Concretes.Clients
         public string? Email { get; set; }
         public string? Password { get; set; }
         public string? NationalIdentity { get; set; }
-        public DateOnly? DateOfBirth { get; set; }
+        public DateTime? BirthDate { get; set; }
         public string? PhoneNumber { get; set; }
         public string? ImagePath { get; set; }
         public List<EducationInformation> EducationInformations { get; set; }

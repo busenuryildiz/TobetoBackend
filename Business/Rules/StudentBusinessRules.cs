@@ -7,7 +7,7 @@ using Core.Business.Rules;
 
 namespace Business.Rules
 {
-    public class StudentBusinessRules:BaseBusinessRules
+    public class StudentBusinessRules : BaseBusinessRules
     {
     }
 }

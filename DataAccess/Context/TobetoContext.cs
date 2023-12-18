@@ -1,5 +1,5 @@
-﻿using Entities.Concrete;
-using Entities.Concrete.Client;
+﻿using Entities.Concretes;
+using Entities.Concretes.Clients;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -8,8 +8,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.Concrete.CourseFolder;
-using Entities.Concrete.Profile;
+using Entities.Concretes.Courses;
+using Entities.Concretes.Profiles;
 
 namespace DataAccess.Context
 {

@@ -1,5 +1,5 @@
-﻿using Business.Abstract;
-using Business.Concrete;
+﻿using Business.Abstracts;
+using Business.Concretes;
 using Core.Business.Rules;
 using Microsoft.Extensions.DependencyInjection;
 using System;

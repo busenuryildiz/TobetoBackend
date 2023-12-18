@@ -2,7 +2,7 @@
 using Business.DTOs.Request.user;
 using Business.DTOs.Response.user;
 using Core.DataAccess.Paging;
-using Entities.Concrete.Client;
+using Entities.Concretes.Clients;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Business.Profiles
 { 
-    public class UserMappingProfile : Profile
+    public class UserMappingProfiles : Profile
     {
-        public UserMappingProfile()
+        public UserMappingProfiles()
         {
             CreateMap<CreateUserRequest, User>().ReverseMap();
             CreateMap<User, CreatedUserResponse>().ReverseMap();

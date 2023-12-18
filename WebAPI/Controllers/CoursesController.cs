@@ -1,6 +1,6 @@
-﻿//using Business.Abstract;
+﻿//using Business.Abstracts;
 //using Core.DataAccess.Paging;
-//using Entities.Concrete;
+//using Entities.Concretes;
 //using Microsoft.AspNetCore.Http;
 //using Microsoft.AspNetCore.Mvc;
 

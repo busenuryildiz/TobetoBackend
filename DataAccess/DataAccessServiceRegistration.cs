@@ -1,7 +1,7 @@
-﻿using DataAccess.Abstract;
-using DataAccess.Concrete;
+﻿using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using DataAccess.Context;
-using Entities.Concrete;
+using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

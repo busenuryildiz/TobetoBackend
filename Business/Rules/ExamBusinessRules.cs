@@ -1,5 +1,5 @@
 ﻿using Core.Business.Rules;
-using DataAccess.Abstract;
+using DataAccess.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

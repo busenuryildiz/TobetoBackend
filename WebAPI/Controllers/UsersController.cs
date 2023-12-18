@@ -1,8 +1,7 @@
 ﻿using Azure.Core;
-using Business.Abstract;
+using Business.Abstracts;
 using Business.DTOs.Request.user;
 using Core.DataAccess.Paging;
-using Entities.Concrete.Client;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -30,13 +29,6 @@ namespace WebAPI.Controllers
         //[HttpPost("Add")]
         //public async Task<IActionResult> Add([FromBody] CreateUserRequest createUserRequest)
         //{
-
-
-
-
-
-
-
 
 
         //if (createUserRequest == null)

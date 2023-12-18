@@ -1,4 +1,4 @@
-﻿//using Business.Abstract;
+﻿//using Business.Abstracts;
 //using Business.DTOs.Request.Student;
 //using Core.DataAccess.Paging;
 //using Microsoft.AspNetCore.Http;

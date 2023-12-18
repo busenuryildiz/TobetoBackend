@@ -1,4 +1,4 @@
-﻿using Entities.Concrete;
+﻿using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

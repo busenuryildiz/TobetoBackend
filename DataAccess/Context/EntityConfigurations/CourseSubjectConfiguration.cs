@@ -1,4 +1,4 @@
-﻿using Entities.Concrete.CourseFolder;
+﻿using Entities.Concretes.Courses;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using System;

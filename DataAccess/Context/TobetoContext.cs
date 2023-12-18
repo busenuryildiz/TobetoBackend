@@ -37,7 +37,7 @@ namespace DataAccess.Context
         public DbSet<Student> Students { get; set; }
         public DbSet<Exam> Exams { get; set; }
         public DbSet<Question> Questions { get; set; }
-        public DbSet<New> News { get; set; }
+        public DbSet<MediaPost> MediaPosts { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Survey> Surveys { get; set; }

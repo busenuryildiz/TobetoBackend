@@ -25,11 +25,10 @@ namespace Entities.Concretes.Clients
         public List<Certificate> Certificates { get; set; }
         public List<SocialMediaAccount> SocialMediaAccounts { get; set; }
         public List<UserExperience> UserExperiences { get; set; }
-        public List<UserLanguage> UserLanguage { get; set; }
+        public List<UserLanguage> UserLanguages { get; set; }
         public Student Student { get; set; }
         public Instructor Instructor { get; set; }
         public List<UserRole> UserRoles { get; set; }
-        public List<UserLanguage> UserLanguages { get; set; }
         public List<Application> Applications { get; set; }
 
 

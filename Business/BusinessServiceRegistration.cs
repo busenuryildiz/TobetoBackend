@@ -18,8 +18,9 @@ namespace Business
         {
             services.AddScoped<ICourseService, CourseManager>();
             services.AddScoped<IUserService, UserManager>();
-            //services.AddScoped<IStudentService, StudentManager>();
-            //services.AddScoped<IInstructorService, InstructorManager>();
+            services.AddScoped<IStudentService, StudentManager>();
+            services.AddScoped<IInstructorService, InstructorManager>();
+            services.AddScoped<IMediaPostService, MediaPostManager>();
 
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Business.Abstracts;
+using Core.Entities;
 
-namespace Business.Concretes
+namespace Entities.Concretes.Clients
 {
-    public class InstructorManager:IInstructorService
+    public class Manager:Entity<int>
     {
     }
 }

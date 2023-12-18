@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Business.Rules
 {
-    public class NewBusinessRules : BaseBusinessRules
+    public class MediaPostBusinessRules : BaseBusinessRules
     {
-        //INewDal _newDal;
-        //public NewBusinessRules(INewDal newDal)
+        //IMediaPostDal _newDal;
+        //public MediaPostBusinessRules(IMediaPostDal newDal)
         //{
         //    _newDal = newDal;
         //}

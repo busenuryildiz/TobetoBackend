@@ -1,5 +1,5 @@
 ﻿//using Business.Abstracts;
-//using Business.DTOs.Request.New;
+//using Business.DTOs.Request.MediaPost;
 //using Core.DataAccess.Paging;
 //using Microsoft.AspNetCore.Http;
 //using Microsoft.AspNetCore.Mvc;
@@ -8,34 +8,34 @@
 //{
 //    [Route("api/[controller]")]
 //    [ApiController]
-//    public class NewsController : ControllerBase
+//    public class MediaPostsController : ControllerBase
 //    {
-//        INewService _newService;
-//        public NewsController(INewService newService)
+//        IMediaPostService _newService;
+//        public MediaPostsController(IMediaPostService newService)
 //        {
 //            _newService = newService;
 //        }
-//        [HttpPost("AddNew")]
-//        public async Task<IActionResult> Add([FromBody] CreateNewRequest createNewRequest)
+//        [HttpPost("AddMediaPost")]
+//        public async Task<IActionResult> Add([FromBody] CreateMediaPostRequest createMediaPostRequest)
 //        {
-//            var result = await _newService.Add(createNewRequest);
+//            var result = await _newService.Add(createMediaPostRequest);
 //            return Ok(result);
 //        }
 
-//        [HttpPost("DeleteNew")]
-//        public async Task<IActionResult> Delete([FromBody] DeleteNewRequest deleteNewRequest)
+//        [HttpPost("DeleteMediaPost")]
+//        public async Task<IActionResult> Delete([FromBody] DeleteMediaPostRequest deleteMediaPostRequest)
 //        {
-//            var result = await _newService.Delete(deleteNewRequest);
+//            var result = await _newService.Delete(deleteMediaPostRequest);
 //            return Ok(result);
 //        }
-//        [HttpPost("UpdateNew")]
-//        public async Task<IActionResult> Update([FromBody] UpdateNewRequest updateNewRequest)
+//        [HttpPost("UpdateMediaPost")]
+//        public async Task<IActionResult> Update([FromBody] UpdateMediaPostRequest updateMediaPostRequest)
 //        {
-//            var result = await _newService.Update(updateNewRequest);
+//            var result = await _newService.Update(updateMediaPostRequest);
 //            return Ok(result);
 //        }
 
-//        [HttpGet("GetListNew")]
+//        [HttpGet("GetListMediaPost")]
 //        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
 //        {
 //            var result = await _newService.GetListAsync(pageRequest);

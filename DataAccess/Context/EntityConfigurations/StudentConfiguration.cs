@@ -20,7 +20,7 @@ namespace DataAccess.Context.EntityConfigurations
 
             // User ilişkisi
             builder.HasOne(b => b.User)
-                .WithOne()
+                .WithOne(u => u.Student)
                 .HasForeignKey<Student>(b => b.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 

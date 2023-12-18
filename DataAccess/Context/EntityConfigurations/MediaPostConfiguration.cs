@@ -9,12 +9,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccess.Context.EntityConfigurations
 {
-    public class NewConfiguration: IEntityTypeConfiguration<New>
+    public class MediaPostConfiguration: IEntityTypeConfiguration<MediaPost>
     {
-        public void Configure(EntityTypeBuilder<New> builder)
+        public void Configure(EntityTypeBuilder<MediaPost> builder)
         {
-            builder.ToTable("News").HasKey(b => b.Id);
-            builder.Property(b => b.Id).HasColumnName("NewId").IsRequired();
+            builder.ToTable("MediaPosts").HasKey(b => b.Id);
+            builder.Property(b => b.Id).HasColumnName("MediaPostId").IsRequired();
             builder.Property(b => b.Title).HasColumnName("Title").IsRequired();
             builder.Property(b => b.Description).HasColumnName("Description");
             builder.Property(b => b.Content).HasColumnName("Content");

@@ -11,6 +11,7 @@ using Business.DTOs.Response.User;
 using Business.Rules;
 using DataAccess.Abstracts;
 using Entities.Concretes.Clients;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Business.Concretes
@@ -56,15 +57,28 @@ namespace Business.Concretes
             return createdUserResponse;
         }
 
+
         public async Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest)
         {
             var data = await _userDal.GetListAsync(
+                include: u => u
+                    .Include(u => u.Student)
+                    .Include(u => u.Instructor)
+                    .Include(u => u.EducationInformations)
+                    .Include(u => u.Certificates)
+                    .Include(u => u.SocialMediaAccounts)
+                    .Include(u => u.UserExperiences)
+                    .Include(u => u.UserLanguages)
+                    .Include(u => u.UserRoles)
+                    .Include(u => u.Applications),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize
             );
+
             var result = _mapper.Map<Paginate<GetListUserResponse>>(data);
             return result;
         }
+
 
         public async Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest)
         {

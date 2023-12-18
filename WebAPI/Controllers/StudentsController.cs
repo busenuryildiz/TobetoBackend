@@ -22,7 +22,7 @@ namespace YourNamespace.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("add")]
+        [HttpPost("Add")]
         public async Task<IActionResult> AddStudent([FromBody] CreateStudentRequest createStudentRequest)
         {
             var result = await _studentService.Add(createStudentRequest);
@@ -33,7 +33,7 @@ namespace YourNamespace.Controllers
             return BadRequest("Failed to create student.");
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetById")]
         public async Task<IActionResult> GetStudentById(Guid id)
         {
             var result = await _studentService.GetById(id);
@@ -44,7 +44,7 @@ namespace YourNamespace.Controllers
             return NotFound($"Student with ID {id} not found.");
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete")]
         public async Task<IActionResult> DeleteStudent(Guid id)
         {
             var deleteRequest = new DeleteStudentRequest { Id = id };
@@ -56,14 +56,14 @@ namespace YourNamespace.Controllers
             return NotFound($"Student with ID {id} not found.");
         }
 
-        [HttpGet("list")]
+        [HttpGet("GetList")]
         public async Task<IActionResult> GetStudentList([FromQuery] PageRequest pageRequest)
         {
             var result = await _studentService.GetListAsync(pageRequest);
             return Ok(result);
         }
 
-        [HttpPut("update")]
+        [HttpPut("Update")]
         public async Task<IActionResult> UpdateStudent([FromBody] UpdateStudentRequest updateStudentRequest)
         {
             var result = await _studentService.Update(updateStudentRequest);

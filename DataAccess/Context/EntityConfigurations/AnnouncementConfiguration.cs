@@ -18,3 +18,4 @@ namespace DataAccess.Context.EntityConfigurations
             builder.Property(a => a.Description);
         }
     }
+}

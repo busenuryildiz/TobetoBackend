@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Entities;
+using Entities.Concrete.CourseFolder;
 
 namespace Entities.Concrete.Client
 {
@@ -13,6 +14,9 @@ namespace Entities.Concrete.Client
         public int StudentNumber { get; set; }
         public User User { get; set; }
         public List<Survey> Surveys { get; set; }
+
+        public List<StudentCourse> StudentCourses { get; set; } // Eklenen alan
+        public List<StudentSkill> StudentSkills { get; set; }
 
         public void GenerateStudentNumber()
         {

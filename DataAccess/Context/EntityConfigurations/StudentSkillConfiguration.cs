@@ -13,17 +13,23 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<StudentSkill> builder)
         {
+            builder.ToTable("StudentSkills");
+
             builder.HasKey(ss => ss.Id);
+
             builder.Property(ss => ss.StudentId).IsRequired();
             builder.Property(ss => ss.SkillId).IsRequired();
 
             builder.HasOne(ss => ss.Student)
-                .WithMany()
-                .HasForeignKey(ss => ss.StudentId);
+                .WithMany(s => s.StudentSkills)
+                .HasForeignKey(ss => ss.StudentId)
+                .IsRequired();
 
             builder.HasOne(ss => ss.Skill)
                 .WithMany()
-                .HasForeignKey(ss => ss.SkillId);
+                .HasForeignKey(ss => ss.SkillId)
+                .IsRequired();
         }
     }
+
 }

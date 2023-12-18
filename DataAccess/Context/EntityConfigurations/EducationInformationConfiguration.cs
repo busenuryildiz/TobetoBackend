@@ -18,8 +18,8 @@ namespace DataAccess.Context.EntityConfigurations
             builder.Property(ei => ei.Status).IsRequired().HasMaxLength(255);
             builder.Property(ei => ei.University).HasMaxLength(255);
             builder.Property(ei => ei.Faculty).HasMaxLength(255);
-            builder.Property(ei => ei.BeginningYear).HasColumnType("date").IsRequired();
-            builder.Property(ei => ei.GraduationYear).HasColumnType("date");
+            builder.Property(ei => ei.BeginningYear).IsRequired().HasColumnType("datetime");
+            builder.Property(ei => ei.GraduationYear).HasColumnType("datetime");
             builder.Property(ei => ei.IsContinue).IsRequired();
 
             builder.HasOne(ei => ei.User)
@@ -27,4 +27,6 @@ namespace DataAccess.Context.EntityConfigurations
                 .HasForeignKey(ei => ei.UserId);
         }
     }
+
+
 }

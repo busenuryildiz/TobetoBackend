@@ -13,15 +13,18 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Application> builder)
         {
+            builder.ToTable("Applications");
+
             builder.HasKey(app => app.Id);
+
             builder.Property(app => app.UserId).IsRequired();
-            builder.Property(app => app.Name).IsRequired().HasMaxLength(255);
-            builder.Property(app => app.IsActive).IsRequired();
 
             builder.HasOne(app => app.User)
-                .WithMany()
-                .HasForeignKey(app => app.UserId);
+                .WithMany(u => u.Applications)
+                .HasForeignKey(app => app.UserId)
+                .IsRequired();
         }
     }
-   
+
+
 }

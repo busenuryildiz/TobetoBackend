@@ -13,17 +13,26 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<UserRole> builder)
         {
+            builder.ToTable("UserRoles");
+
             builder.HasKey(ur => ur.Id);
-            builder.Property(ur => ur.UserId).IsRequired();
-            builder.Property(ur => ur.RoleId).IsRequired();
 
+            // Diğer konfigürasyonları ekleyin
+
+            // UserRole ve User arasındaki ilişki
             builder.HasOne(ur => ur.User)
-                .WithMany()
-                .HasForeignKey(ur => ur.UserId);
+                .WithMany(u => u.UserRoles)
+                .HasForeignKey(ur => ur.UserId)
+                .IsRequired();
 
+            // UserRole ve Role arasındaki ilişki
             builder.HasOne(ur => ur.Role)
-                .WithMany()
-                .HasForeignKey(ur => ur.RoleId);
+                .WithMany() // .WithMany() içerisine koleksiyon belirtilmez
+                .HasForeignKey(ur => ur.RoleId)
+                .IsRequired();
         }
     }
+
+
+
 }

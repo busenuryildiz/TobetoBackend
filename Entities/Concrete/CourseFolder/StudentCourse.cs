@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Entities;
+using Entities.Concrete.Client;
 
 namespace Entities.Concrete.CourseFolder
 {
@@ -19,6 +20,11 @@ namespace Entities.Concrete.CourseFolder
         public bool? IsPaid { get; set; }
         public TimeSpan SpentTime { get; set; }
         public TimeSpan EstimatedTime { get; set; }
+        public Student Student { get; set; } // Eklenen alan
+        public Course Course { get; set; } // Eklenen alan
+
+        public List<Payment> Payments { get; set; } // Eklenen alan
+
 
     }
 }

@@ -16,11 +16,11 @@ namespace DataAccess.Context.EntityConfigurations
             builder.HasKey(ue => ue.Id);
             builder.Property(ue => ue.UserId).IsRequired();
             builder.Property(ue => ue.EstablishmentName).IsRequired().HasMaxLength(255);
-            builder.Property(ue => ue.Position).HasMaxLength(255);
-            builder.Property(ue => ue.Sector).HasMaxLength(255);
-            builder.Property(ue => ue.City).HasMaxLength(255);
-            builder.Property(ue => ue.WorkBeginDate).HasColumnType("date").IsRequired();
-            builder.Property(ue => ue.WorkEndDate).HasColumnType("date").IsRequired();
+            builder.Property(ue => ue.Position).IsRequired().HasMaxLength(255);
+            builder.Property(ue => ue.Sector).IsRequired().HasMaxLength(255);
+            builder.Property(ue => ue.City).IsRequired().HasMaxLength(255);
+            builder.Property(ue => ue.WorkBeginDate).IsRequired().HasColumnType("datetime");
+            builder.Property(ue => ue.WorkEndDate).IsRequired().HasColumnType("datetime");
             builder.Property(ue => ue.Description);
 
             builder.HasOne(ue => ue.User)
@@ -28,4 +28,5 @@ namespace DataAccess.Context.EntityConfigurations
                 .HasForeignKey(ue => ue.UserId);
         }
     }
+
 }

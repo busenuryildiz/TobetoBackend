@@ -10,6 +10,7 @@ namespace Entities.Concrete.Profile
     public class Skill : Entity<int>
     {
         public string Name { get; set; }
+        public List<StudentSkill> StudentSkills { get; set; }
 
     }
 }

@@ -15,6 +15,12 @@ namespace DataAccess.Context.EntityConfigurations
         {
             builder.HasKey(s => s.Id);
             builder.Property(s => s.Name).IsRequired().HasMaxLength(255);
+
+            builder.HasMany(s => s.StudentSkills)
+                .WithOne(ss => ss.Skill)
+                .HasForeignKey(ss => ss.SkillId);
         }
     }
+
+
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Entities;
+using Entities.Concrete.Client;
 
 namespace Entities.Concrete.Profile
 {
@@ -12,6 +13,9 @@ namespace Entities.Concrete.Profile
         public Guid UserId { get; set; }
         public int LanguageId { get; set; }
         public string LanguageLevelId { get; set; }
+        public User User { get; set; }
+        public Language Language { get; set; }
+        public LanguageLevel LanguageLevel { get; set; }
 
     }
 }

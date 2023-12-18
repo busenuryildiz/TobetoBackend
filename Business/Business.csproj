@@ -17,4 +17,10 @@
     <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\Request\" />
+    <Folder Include="DTOs\Response\" />
+    <Folder Include="Profiles\" />
+  </ItemGroup>
+
 </Project>

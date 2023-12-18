@@ -21,4 +21,5 @@ namespace DataAccess.Context.EntityConfigurations
                 .HasForeignKey(c => c.CategoryId);
         }
     }
+
 }

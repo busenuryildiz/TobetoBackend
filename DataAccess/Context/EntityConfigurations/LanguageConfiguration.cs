@@ -13,13 +13,18 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Language> builder)
         {
-            builder.HasKey(l => l.Id);
-            builder.Property(l => l.Name).IsRequired().HasMaxLength(255);
-            builder.Property(l => l.LanguageLevelId).IsRequired();
+            builder.ToTable("Languages");
 
-            builder.HasOne(l => l.LanguageLevel)
-                .WithMany()
-                .HasForeignKey(l => l.LanguageLevelId);
+            builder.HasKey(l => l.Id);
+
+            builder.Property(l => l.Name)
+                .IsRequired();
+
+            builder.HasMany(l => l.UserLanguages)
+                .WithOne(ul => ul.Language)
+                .HasForeignKey(ul => ul.LanguageId)
+                .IsRequired();
         }
     }
+
 }

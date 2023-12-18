@@ -28,6 +28,11 @@ namespace Entities.Concrete.Client
         public List<UserLanguage> UserLanguage { get; set; }
         public Student Student { get; set; }
         public Instructor Instructor { get; set; }
+        public List<UserRole> UserRoles { get; set; }
+        public List<UserLanguage> UserLanguages { get; set; }
+        public List<Application> Applications { get; set; }
+
+
     }
 
 }

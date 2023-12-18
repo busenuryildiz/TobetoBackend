@@ -11,4 +11,4 @@ namespace DataAccess.Abstract
     public interface IUserDal : IRepository<User, Guid>, IAsyncRepository<User, Guid>
     {
     }
-    }
+}

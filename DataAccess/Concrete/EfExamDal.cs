@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities.Concrete.CourseFolder;
+using Entities.Concrete.Client;
 
 namespace DataAccess.Concrete
 {
@@ -19,4 +20,5 @@ namespace DataAccess.Concrete
         }
 
     }
+
 }

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Business.Abstracts;
 using Business.DTOs.Request.User;
 using Business.DTOs.Response.User;
+using DataAccess.Concretes;
 
 namespace Business.Concretes
 {
@@ -22,12 +23,15 @@ namespace Business.Concretes
         IMapper _mapper;
         StudentBusinessRules _businessRules;
         IUserService _userManager;
-        public StudentManager(StudentBusinessRules businessRules, IStudentDal studentDal, IMapper mapper, IUserService userManager)
+        IUserDal _userDal;
+        public StudentManager(StudentBusinessRules businessRules, IStudentDal studentDal, IMapper mapper, IUserService userManager, IUserDal userDal)
         {
             _businessRules = businessRules;
             _studentDal = studentDal;
+            _userDal = userDal;
             _mapper = mapper;
             _userManager = userManager;
+            _userDal = userDal;
         }
 
         public async Task<CreatedStudentResponse> Add(CreateStudentRequest createStudentRequest)
@@ -61,17 +65,70 @@ namespace Business.Concretes
             return null;
         }
 
+        //public async Task<DeletedStudentResponse> Delete(DeleteStudentRequest deleteStudentRequest)
+        //{
+        //    var data = await _studentDal.GetAsync(i => i.Id == deleteStudentRequest.Id);
+        //    _mapper.Map(deleteStudentRequest, data);
+        //    data.DeletedDate = DateTime.Now;
+        //    var result = await _studentDal.DeleteAsync(data, true);
+        //    var result2 = _mapper.Map<DeletedStudentResponse>(result);
+        //    return result2;
+        //}
+
         public async Task<DeletedStudentResponse> Delete(DeleteStudentRequest deleteStudentRequest)
         {
-            var data = await _studentDal.GetAsync(i => i.Id == deleteStudentRequest.Id);
-        _mapper.Map(deleteStudentRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _studentDal.DeleteAsync(data, true);
-        var result2 = _mapper.Map<DeletedStudentResponse>(result);
-            return result2;
+            var student = await _studentDal.GetAsync(i => i.Id == deleteStudentRequest.Id);
+
+            if (student != null)
+            {
+                // Öğrenciye ait kullanıcıyı bul
+                var user = await _userDal.GetAsync(u => u.Id == student.UserId);
+
+                if (user != null)
+                {
+                    try
+                    {
+                        // Öğrenciyi ve kullanıcıyı sil
+                        await _userDal.DeleteAsync(user, true);
+                        await _studentDal.DeleteAsync(student, true);
+
+                        // Her ikisi de başarıyla silindi, silinen öğrenci bilgilerini dön
+                        var deletedStudentResponse = _mapper.Map<DeletedStudentResponse>(student);
+                        return deletedStudentResponse;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Silme işlemi başarısız oldu, hata durumu ele alınmalı
+                        // Örneğin:
+                        // Loglama veya throw new Exception(ex.Message); gibi bir işlem yapılabilir.
+                        return null;
+                    }
+                }
+                else
+                {
+                    // Öğrenciye ait kullanıcı bulunamadı, hata durumu ele alınmalı
+                    // Örneğin:
+                    // throw new Exception("Öğrenciye ait kullanıcı bulunamadı.");
+                    return null;
+                }
+            }
+            else
+            {
+                // Öğrenci bulunamadı, hata durumu ele alınmalı
+                // Örneğin:
+                // throw new Exception("Öğrenci bulunamadı.");
+                return null;
+            }
         }
 
-    public async Task<CreatedStudentResponse> GetById(Guid id)
+
+
+
+
+
+
+
+        public async Task<CreatedStudentResponse> GetById(Guid id)
     {
         var result = await _studentDal.GetAsync(c => c.Id == id);
         Student mappedStudent = _mapper.Map<Student>(result);

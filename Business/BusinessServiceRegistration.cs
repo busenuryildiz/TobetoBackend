@@ -22,7 +22,7 @@ namespace Business
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IUserService, UserManager>();
 
-            //services.AddScoped<ICourseService, CourseManager>();
+            services.AddScoped<ICourseService, CourseManager>();
             services.AddScoped<IStudentService, StudentManager>();
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<IMediaPostService, MediaPostManager>();
@@ -31,6 +31,7 @@ namespace Business
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<StudentBusinessRules>();
             services.AddScoped<MediaPostBusinessRules>();
+            services.AddScoped<CourseBusinessRules>();
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
             return services;

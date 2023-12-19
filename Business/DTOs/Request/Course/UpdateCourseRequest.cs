@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Request.Course
 {
-    public class CreateCourseRequest
+    public class UpdateCourseRequest
     {
+        public Guid Id { get; set; }
         public int CourseLevelId { get; set; }
         public int SoftwareLanguageId { get; set; }
         public int CategoryId { get; set; }

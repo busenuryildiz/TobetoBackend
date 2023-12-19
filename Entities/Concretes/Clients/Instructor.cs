@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes.Clients
 {
-    public class Instructor : Entity<int>
+    public class Instructor : Entity<Guid>
     {
         public Guid UserId { get; set; }
         public DateTime? HireDate { get; set; }

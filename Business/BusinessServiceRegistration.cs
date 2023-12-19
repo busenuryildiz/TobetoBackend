@@ -26,11 +26,14 @@ namespace Business
             services.AddScoped<IStudentService, StudentManager>();
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<IMediaPostService, MediaPostManager>();
+            services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<UserBusinessRules>();
+            services.AddScoped<BlogBusinessRules>();
             services.AddScoped<InstructorBusinessRules>();
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<StudentBusinessRules>();
             services.AddScoped<MediaPostBusinessRules>();
+            
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
             return services;

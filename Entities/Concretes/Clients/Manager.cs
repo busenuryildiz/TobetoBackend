@@ -12,6 +12,6 @@ namespace Entities.Concretes.Clients
         public Guid ManagerId { get; set; }
         public int ManagerCode { get; set; }
         public bool IsActive { get; set; }
-        public Manager Manager { get; set; }
+        public User User { get; set; }
     }
 }

@@ -18,5 +18,6 @@ namespace Business.DTOs.Request.Instructor
         public DateTime BirthDate { get; set; }
         public string PhoneNumber { get; set; }
         public string ImagePath { get; set; }
+        public DateTime? HireDate { get; set; }
     }
 }

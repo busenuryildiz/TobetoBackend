@@ -8,5 +8,8 @@ namespace Business.DTOs.Response.Instructor
 {
     public class UpdatedInstructorResponse
     {
+        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
+        public int CourseId { get; set; }
     }
 }

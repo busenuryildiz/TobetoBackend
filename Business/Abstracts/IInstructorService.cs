@@ -1,4 +1,6 @@
-﻿using Business.DTOs.Request.Student;
+﻿using Business.DTOs.Request.Instructor;
+using Business.DTOs.Request.Student;
+using Business.DTOs.Response.Instructor;
 using Business.DTOs.Response.Student;
 using Core.DataAccess.Paging;
 using System;
@@ -11,10 +13,10 @@ namespace Business.Abstracts
 {
     public interface IInstructorService
     {
-        //Task<IPaginate<GetListStudentResponse>> GetListAsync(PageRequest pageRequest);
-        //Task<CreatedStudentResponse> Add(CreateStudentRequest createStudentRequest);
-        //Task<UpdatedStudentResponse> Update(UpdateStudentRequest updateStudentRequest);
-        //Task<DeletedStudentResponse> Delete(DeleteStudentRequest deleteStudentRequest);
-        //Task<CreatedStudentResponse> GetById(Guid id);
+        Task<IPaginate<GetListInstructorResponse>> GetListAsync(PageRequest pageRequest);
+        Task<CreatedInstructorResponse> Add(CreateInstructorRequest createInstructorRequest);
+        Task<UpdatedInstructorResponse> Update(UpdateInstructorRequest updateInstructorRequest);
+        Task<DeletedInstructorResponse> Delete(DeleteInstructorRequest deleteInstructorRequest);
+        Task<CreatedInstructorResponse> GetById(Guid id);
     }
 }

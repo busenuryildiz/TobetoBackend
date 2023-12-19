@@ -76,50 +76,50 @@ namespace Business.Concretes
         //}
 
         public async Task<DeletedStudentResponse> Delete(DeleteStudentRequest deleteStudentRequest)
+{
+    var student = await _studentDal.GetAsync(i => i.Id == deleteStudentRequest.Id);
+
+    if (student != null)
+    {
+        // Öğrenciye ait kullanıcıyı bul
+        var user = await _userDal.GetAsync(u => u.Id == student.UserId);
+
+        if (user != null)
         {
-            var student = await _studentDal.GetAsync(i => i.Id == deleteStudentRequest.Id);
-
-            if (student != null)
+            try
             {
-                // Öğrenciye ait kullanıcıyı bul
-                var user = await _userDal.GetAsync(u => u.Id == student.UserId);
+                // Öğrenciyi ve kullanıcıyı sil
+                await _userDal.DeleteAsync(user, true);
+                await _studentDal.DeleteAsync(student, true);
 
-                if (user != null)
-                {
-                    try
-                    {
-                        // Öğrenciyi ve kullanıcıyı sil
-                        await _userDal.DeleteAsync(user, true);
-                        await _studentDal.DeleteAsync(student, true);
-
-                        // Her ikisi de başarıyla silindi, silinen öğrenci bilgilerini dön
-                        var deletedStudentResponse = _mapper.Map<DeletedStudentResponse>(student);
-                        return deletedStudentResponse;
-                    }
-                    catch (Exception ex)
-                    {
-                        // Silme işlemi başarısız oldu, hata durumu ele alınmalı
-                        // Örneğin:
-                        // Loglama veya throw new Exception(ex.Message); gibi bir işlem yapılabilir.
-                        return null;
-                    }
-                }
-                else
-                {
-                    // Öğrenciye ait kullanıcı bulunamadı, hata durumu ele alınmalı
-                    // Örneğin:
-                    // throw new Exception("Öğrenciye ait kullanıcı bulunamadı.");
-                    return null;
-                }
+                // Her ikisi de başarıyla silindi, silinen öğrenci bilgilerini dön
+                var deletedStudentResponse = _mapper.Map<DeletedStudentResponse>(student);
+                return deletedStudentResponse;
             }
-            else
+            catch (Exception ex)
             {
-                // Öğrenci bulunamadı, hata durumu ele alınmalı
+                // Silme işlemi başarısız oldu, hata durumu ele alınmalı
                 // Örneğin:
-                // throw new Exception("Öğrenci bulunamadı.");
+                // Loglama veya throw new Exception(ex.Message); gibi bir işlem yapılabilir.
                 return null;
             }
         }
+        else
+        {
+            // Öğrenciye ait kullanıcı bulunamadı, hata durumu ele alınmalı
+            // Örneğin:
+            // throw new Exception("Öğrenciye ait kullanıcı bulunamadı.");
+            return null;
+        }
+    }
+    else
+    {
+        // Öğrenci bulunamadı, hata durumu ele alınmalı
+        // Örneğin:
+        // throw new Exception("Öğrenci bulunamadı.");
+        return null;
+    }
+}
 
 
 

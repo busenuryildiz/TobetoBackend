@@ -69,13 +69,13 @@ namespace WebAPI.Controllers
         //return Ok(result);
 
 
-        [HttpPost("Delete")]
+        [HttpDelete("Delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteUserRequest deleteUserRequest)
         {
             var result = await _userService.Delete(deleteUserRequest);
             return Ok(result);
         }
-        [HttpPost("Update")]
+        [HttpPut("Update")]
         public async Task<IActionResult> Update([FromBody] UpdateUserRequest updateUserRequest)
         {
             var result = await _userService.Update(updateUserRequest);

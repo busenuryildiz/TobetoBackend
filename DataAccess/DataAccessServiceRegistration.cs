@@ -27,6 +27,7 @@ namespace DataAccess
             services.AddScoped<IInstructorDal, EfInstructorDal>();
             services.AddScoped<IMediaPostDal, EfMediaPostDal>();
             services.AddScoped<IBlogDal, EfBlogDal>();
+            services.AddScoped<ISurveyDal, EfSurveyDal>();
 
 
 

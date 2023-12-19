@@ -9,7 +9,7 @@ using Entities.Concretes.Clients;
 
 namespace DataAccess.Abstracts
 {
-    public interface IManagerDal : IRepository<Manager, int>, IAsyncRepository<Manager, int>
+    public interface IManagerDal : IRepository<Manager, Guid>, IAsyncRepository<Manager, Guid>
     {
     }
 }

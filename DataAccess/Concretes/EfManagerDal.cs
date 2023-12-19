@@ -11,7 +11,7 @@ using Entities.Concretes.Clients;
 
 namespace DataAccess.Concretes
 {
-    public class EfManagerDal : EfRepositoryBase<Manager, int, TobetoContext>, IManagerDal
+    public class EfManagerDal : EfRepositoryBase<Manager, Guid, TobetoContext>, IManagerDal
     {
         public EfManagerDal(TobetoContext context) : base(context)
         {

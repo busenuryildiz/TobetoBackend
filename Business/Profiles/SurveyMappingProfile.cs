@@ -10,14 +10,26 @@ using System.Threading.Tasks;
 
 namespace Business.Profiles
 {
-    public class SurveyProfile : Profile
+    using AutoMapper;
+    using Core.DataAccess.Paging;
+
+    public class SurveyMappingProfile : Profile
     {
-        public SurveyProfile()
+        public SurveyMappingProfile()
         {
             CreateMap<CreateSurveyRequest, Survey>().ReverseMap();
+            CreateMap<Survey, CreatedSurveyResponse>().ReverseMap();
+
+            CreateMap<DeleteSurveyRequest, Survey>().ReverseMap();
+            CreateMap<Survey, DeletedSurveyResponse>().ReverseMap();
+
             CreateMap<UpdateSurveyRequest, Survey>().ReverseMap();
-            CreateMap<Survey, SurveyResponse>().ReverseMap();
+            CreateMap<Survey, UpdatedSurveyResponse>().ReverseMap();
+
+            CreateMap<Survey, GetListSurveyResponse>().ReverseMap();
+            CreateMap<Paginate<Survey>, Paginate<GetListSurveyResponse>>().ReverseMap();
         }
     }
+
 
 }

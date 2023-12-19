@@ -28,6 +28,7 @@ namespace Business
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<IMediaPostService, MediaPostManager>();
             services.AddScoped<IBlogService, BlogManager>();
+            services.AddScoped<ISubjectService, SubjectManager>();
 
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<BlogBusinessRules>();

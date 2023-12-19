@@ -9,7 +9,7 @@ namespace Business.DTOs.Response.Course
 {
     public class UpdatedCourseResponse : BasePageableModel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public int CourseLevelId { get; set; }
         public int SoftwareLanguageId { get; set; }
         public int CategoryId { get; set; }

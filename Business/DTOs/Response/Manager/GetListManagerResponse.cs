@@ -1,9 +1,11 @@
-﻿namespace Business.DTOs.Response.Manager;
+﻿using Core.DataAccess.Paging;
 
-public class GetListManagerResponse
+namespace Business.DTOs.Response.Manager;
+
+public class GetListManagerResponse : BasePageableModel
 {
-    public int Id { get; set; }
-    public Guid ManagerId { get; set; }
+    public Guid UserId { get; set; }
+    public Guid Id { get; set; }
     public int ManagerCode { get; set; }
     public bool IsActive { get; set; }
 }

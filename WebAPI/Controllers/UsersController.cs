@@ -24,51 +24,6 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-
-
-        //[HttpPost("Add")]
-        //public async Task<IActionResult> Add([FromBody] CreateUserRequest createUserRequest)
-        //{
-
-
-        //if (createUserRequest == null)
-        //{
-        //    return BadRequest("Geçersiz istek");
-        //}
-
-        //var newUser = new User
-        //{
-        //    FirstName = createUserRequest.FirstName,
-        //    LastName = createUserRequest.LastName,
-        //    Email = createUserRequest.Email,
-        //};
-
-        //if (createUserRequest.IsStudent)
-        //{
-        //    // Öğrenci ile ilgili işlemleri gerçekleştirin
-        //    var newStudent = new Student();
-        //    newStudent.GenerateStudentNumber();
-        //    newUser.Student = newStudent;
-        //    // Diğer öğrenci özellikleri buraya ekleyin
-        //}
-
-        //if (createUserRequest.IsInstructor)
-        //{
-        //    // Öğretmen ile ilgili işlemleri gerçekleştirin
-        //    newUser.Instructor = new Instructor
-        //    {
-        //        // Diğer öğretmen özellikleri buraya ekleyin
-        //    };
-        //}
-
-        //    _userService.Add(createUserRequest);
-
-        //    return Ok("Kullanıcı başarıyla oluşturuldu.");
-        //}
-        //var result = await _userService.Add(createUserRequest);
-        //return Ok(result);
-
-
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteUserRequest deleteUserRequest)
         {

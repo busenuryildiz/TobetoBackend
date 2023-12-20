@@ -30,11 +30,13 @@ namespace Business
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<ISubjectService, SubjectManager>();
             services.AddScoped<IStudentCourseService,StudentCourseManager>();
+            services.AddScoped<ICategoryService,CategoryManager>();
 
             services.AddScoped<IPaymentService, PaymentManager>();
             services.AddScoped<IManagerService, ManagerManager>();
             services.AddScoped<ICertificateService, CertificateManager>();
             services.AddScoped<ILanguageService, LanguageManager>();
+            services.AddScoped<IExamService, ExamManager>();
 
 
             services.AddScoped<UserBusinessRules>();

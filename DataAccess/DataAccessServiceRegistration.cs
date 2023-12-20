@@ -29,6 +29,8 @@ namespace DataAccess
             services.AddScoped<IBlogDal, EfBlogDal>();
             services.AddScoped<ISurveyDal, EfSurveyDal>();
             services.AddScoped<ISubjectDal, EfSubjectDal>();
+            services.AddScoped<IExamDal, EfExamDal>();
+            services.AddScoped<ICategoryDal, EfCategoryDal>();
 
             services.AddScoped<IStudentCourseDal, EfStudentCourseDal>();
             services.AddScoped<IPaymentDal, EfPaymentDal>();

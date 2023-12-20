@@ -8,15 +8,9 @@ using Entities.Concretes.Courses;
 
 namespace Business.DTOs.Response.Exam
 {
-    public class CreatedExamResponse:BasePageableModel
+    public class CreatedExamResponse
     {
-        public int  Id { get; set; }
-        public int CourseId { get; set; }
-        public Guid UserId { get; set; }
-        public string Title { get; set; }
-        public string? Description { get; set; }
-        public int Point { get; set; }
-        public TimeSpan ExamDuration { get; set; }
-        public List<Question> Questions { get; set; }
+        public int Id { get; set; }
+        // Include any additional fields you want to return in the response
     }
 }

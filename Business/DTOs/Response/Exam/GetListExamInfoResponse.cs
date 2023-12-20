@@ -1,13 +1,14 @@
-﻿using Entities.Concretes.Courses;
+﻿using Core.DataAccess.Paging;
+using Entities.Concretes.Courses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Request.Exam
+namespace Business.DTOs.Response.Exam
 {
-    public class UpdateExamRequest
+    public class GetListExamInfoResponse : BasePageableModel
     {
         public int Id { get; set; }
         public int? CourseId { get; set; }
@@ -16,5 +17,6 @@ namespace Business.DTOs.Request.Exam
         public int Point { get; set; }
         public TimeSpan ExamDuration { get; set; }
         public List<Question>? Questions { get; set; }
+        // Include any additional fields you want to return in the response
     }
 }

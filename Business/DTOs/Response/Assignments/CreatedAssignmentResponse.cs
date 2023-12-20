@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.DataAccess.Paging;
 using Entities.Concretes.Courses;
 
 namespace Business.DTOs.Response.Assignments
 {
-    public class CreatedAssignmentResponse
+    public class CreatedAssignmentResponse : BasePageableModel
     {
         public int? Id { get; set; }
         public string? Name { get; set; }

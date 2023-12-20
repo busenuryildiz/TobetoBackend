@@ -1,4 +1,5 @@
-﻿using Entities.Concretes.Courses;
+﻿using Core.DataAccess.Paging;
+using Entities.Concretes.Courses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Response.Assignments
 {
-    public class UpdatedAssignmentResponse
+    public class UpdatedAssignmentResponse : BasePageableModel
     {
         public int? Id { get; set; }
         public string? Name { get; set; }

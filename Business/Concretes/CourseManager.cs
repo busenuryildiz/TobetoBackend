@@ -70,7 +70,7 @@ namespace Business.Concretes
                     .Include(u => u.Assignments)
                     .Include(u => u.Exams)
                     .Include(u => u.CourseLevel)
-                    .Include(u => u.LessonCourse)
+                    .Include(u => u.LessonCourses)
                     .Include(u => u.CourseStatus)
                     .Include(u => u.CourseSubject)
                     .Include(u => u.SoftwareLanguage)

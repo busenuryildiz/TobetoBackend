@@ -20,7 +20,8 @@ namespace Entities.Concretes.Courses
         public List<Assignment>? Assignments { get; set; }
         public List<Exam>? Exams { get; set; }
         public CourseLevel? CourseLevel { get; set; }
-        public LessonCourse? LessonCourse { get; set; }
+        public List<LessonCourse> LessonCourses { get; set; }
+
         public CourseStatus? CourseStatus { get; set; }
         public CourseSubject? CourseSubject { get; set; }
         public SoftwareLanguage? SoftwareLanguage { get; set; }

@@ -28,7 +28,8 @@ namespace Business
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<IMediaPostService, MediaPostManager>();
             services.AddScoped<IBlogService, BlogManager>();
-            services.AddScoped<ISubjectService, SubjectManager>(); services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<ISubjectService, SubjectManager>(); 
+            services.AddScoped<ICategoryService, CategoryManager>();
 
 
             services.AddScoped<IApplicationService, ApplicationManager>();
@@ -37,7 +38,6 @@ namespace Business
             services.AddScoped<ICategoryService, CategoryManager>();   
             services.AddScoped<IExamService, ExamManager>();
 
-            services.AddScoped<IExamService, ExamManager>();
 
             services.AddScoped<IPaymentService, PaymentManager>();
             services.AddScoped<IManagerService, ManagerManager>();

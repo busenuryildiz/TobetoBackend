@@ -34,8 +34,11 @@ namespace Business
             services.AddScoped<IPaymentService, PaymentManager>();
             services.AddScoped<IManagerService, ManagerManager>();
             services.AddScoped<ICertificateService, CertificateManager>();
+            services.AddScoped<ILanguageService, LanguageManager>();
+
 
             services.AddScoped<UserBusinessRules>();
+            services.AddScoped<LanguageBusinessRules>();
             services.AddScoped<BlogBusinessRules>();
             services.AddScoped<InstructorBusinessRules>();
             services.AddScoped<UserBusinessRules>();

@@ -9,10 +9,10 @@ namespace Entities.Concretes.Courses
 {
     public class Payment : Entity<int>
     {
-        public int StudentCourseId { get; set; }
-        public decimal Amount { get; set; }
-        public DateTime PaymentDate { get; set; }
+        public int? StudentCourseId { get; set; }
+        public decimal? Amount { get; set; }
+        public DateTime? PaymentDate { get; set; }
         public bool? Status { get; set; }
-        public StudentCourse StudentCourses { get; set; }
+        public StudentCourse? StudentCourse { get; set; }
     }
 }

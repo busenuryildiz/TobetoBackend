@@ -65,7 +65,7 @@ namespace Business.Concretes
         {
             var data = await _paymentDal.GetListAsync(
                 include: u => u
-                    .Include(u => u.StudentCourses),
+                    .Include(u => u.StudentCourse),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize
             );

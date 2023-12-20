@@ -19,11 +19,9 @@ namespace DataAccess.Context.EntityConfigurations
             builder.Property(p => p.PaymentDate).IsRequired();
             builder.Property(p => p.Status);
 
-            builder.HasOne(p => p.StudentCourses)
+            builder.HasOne(p => p.StudentCourse)
                 .WithMany(sc => sc.Payments)
                 .HasForeignKey(p => p.StudentCourseId);
         }
     }
-
-
 }

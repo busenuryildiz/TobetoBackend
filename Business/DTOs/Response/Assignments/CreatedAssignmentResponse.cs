@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Entities.Concretes.Courses;
 
-namespace Entities.Concretes.Courses
+namespace Business.DTOs.Response.Assignments
 {
-    public class Assignment : Entity<int>
+    public class CreatedAssignmentResponse
     {
-        public int? CourseId { get; set; }
+        public int? Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? FilePath { get; set; }
         public DateTime? DeadLine { get; set; }
         public bool? IsSend { get; set; }
-        public Course? Course { get; set; }
     }
 }

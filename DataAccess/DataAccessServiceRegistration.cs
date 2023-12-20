@@ -40,6 +40,8 @@ namespace DataAccess
             services.AddScoped<IApplicationDal, EfApplicationDal>();
             services.AddScoped<IRoleDal, EfRoleDal>();
             services.AddScoped<ILanguageLevelDal, EfLanguageLevelDal>();
+            services.AddScoped<IAssignmentDal, EfAssignmentDal>();
+            services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
 
 
 

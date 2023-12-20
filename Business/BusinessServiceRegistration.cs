@@ -28,26 +28,23 @@ namespace Business
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<IMediaPostService, MediaPostManager>();
             services.AddScoped<IBlogService, BlogManager>();
-            services.AddScoped<ISubjectService, SubjectManager>(); services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<ISubjectService, SubjectManager>(); 
+            services.AddScoped<ICategoryService, CategoryManager>();
 
 
             services.AddScoped<IApplicationService, ApplicationManager>();
             services.AddScoped<IRoleService, RoleManager>();
             services.AddScoped<ILanguageLevelService, LanguageLevelManager>(); 
-            services.AddScoped<ICategoryService, CategoryManager>();   
-            services.AddScoped<IExamService, ExamManager>();
-
             services.AddScoped<IExamService, ExamManager>();
 
             services.AddScoped<IPaymentService, PaymentManager>();
             services.AddScoped<IManagerService, ManagerManager>();
             services.AddScoped<ICertificateService, CertificateManager>();
             services.AddScoped<ILanguageService, LanguageManager>(); 
-            services.AddScoped<IExamService, ExamManager>(); 
             services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
-            services.AddScoped<IApplicationService, ApplicationManager>();
-            services.AddScoped<IRoleService, RoleManager>();
-            services.AddScoped<ILanguageLevelService, LanguageLevelManager>();
+            services.AddScoped<IAnnouncementService, AnnouncementManager>();
+            services.AddScoped<IAssignmentService, AssignmentManager>();
+
 
 
 
@@ -66,6 +63,8 @@ namespace Business
             services.AddScoped<SocialMediaAccountBusinessRules>();
             services.AddScoped<RoleBusinessRules>();
             services.AddScoped<ApplicationBusinessRules>();
+            services.AddScoped<AnnouncementBusinessRules>();
+            services.AddScoped<AssignmentBusinessRules>();
 
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));

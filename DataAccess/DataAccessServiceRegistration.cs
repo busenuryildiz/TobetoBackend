@@ -32,6 +32,7 @@ namespace DataAccess
             services.AddScoped<IPaymentDal, EfPaymentDal>();
             services.AddScoped<IManagerDal, EfManagerDal>();
             services.AddScoped<ICertificateDal, EfCertificateDal>();
+            services.AddScoped<ILanguageDal, EfLanguageDal>();
 
 
 

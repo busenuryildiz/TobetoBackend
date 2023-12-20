@@ -33,6 +33,10 @@ namespace Business
             services.AddScoped<IManagerService, ManagerManager>();
             services.AddScoped<ICertificateService, CertificateManager>();
             services.AddScoped<ILanguageService, LanguageManager>();
+            services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
+            services.AddScoped<IApplicationService, ApplicationManager>();
+            services.AddScoped<IRoleService, RoleManager>();
+            services.AddScoped<ILanguageLevelService, LanguageLevelManager>();
 
 
             services.AddScoped<UserBusinessRules>();
@@ -48,6 +52,8 @@ namespace Business
             services.AddScoped<ManagerBusinessRules>();
             services.AddScoped<CertificateBusinessRules>();
             services.AddScoped<SocialMediaAccountBusinessRules>();
+            services.AddScoped<RoleBusinessRules>();
+            services.AddScoped<ApplicationBusinessRules>();
 
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));

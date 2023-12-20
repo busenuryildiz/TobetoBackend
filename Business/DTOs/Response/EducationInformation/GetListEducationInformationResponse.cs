@@ -1,15 +1,14 @@
-﻿using Core.Entities;
-using Entities.Concretes.Clients;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concretes.Profiles
+namespace Business.DTOs.Response.EducationInformation
 {
-    public class EducationInformation : Entity<int>
+    public class GetListEducationInformationResponse
     {
+        public int Id { get; set; }
         public Guid UserId { get; set; }
         public string? Status { get; set; }
         public string? University { get; set; }
@@ -17,7 +16,5 @@ namespace Entities.Concretes.Profiles
         public DateTime? BeginningYear { get; set; }
         public DateTime? GraduationYear { get; set; }
         public bool? IsContinue { get; set; }
-        public User User { get; set; }
-
     }
 }

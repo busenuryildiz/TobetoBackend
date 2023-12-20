@@ -42,6 +42,8 @@ namespace Business
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
             services.AddScoped<IAssignmentService, AssignmentManager>();
             services.AddScoped<IStudentSkillService, StudentSkillManager>();
+            services.AddScoped<IUserRoleService, UserRoleManager>();
+            services.AddScoped<ICourseSubjectService, CourseSubjectManager>();
 
 
 
@@ -69,7 +71,8 @@ namespace Business
             services.AddScoped<AnnouncementBusinessRules>();
             services.AddScoped<AssignmentBusinessRules>();
             services.AddScoped<StudentSkillBusinessRules>();
-
+            services.AddScoped<UserRoleBusinessRules>();
+            services.AddScoped<CourseSubjectBusinessRules>();
 
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));

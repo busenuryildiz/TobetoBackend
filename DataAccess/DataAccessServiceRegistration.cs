@@ -29,7 +29,18 @@ namespace DataAccess
             services.AddScoped<IBlogDal, EfBlogDal>();
             services.AddScoped<ISurveyDal, EfSurveyDal>();
             services.AddScoped<ISubjectDal, EfSubjectDal>();
+<<<<<<< HEAD
             services.AddScoped<IStudentCourseDal, EfStudentCourseDal>();
+=======
+            services.AddScoped<IPaymentDal, EfPaymentDal>();
+            services.AddScoped<IManagerDal, EfManagerDal>();
+            services.AddScoped<ICertificateDal, EfCertificateDal>();
+            services.AddScoped<ILanguageDal, EfLanguageDal>();
+            services.AddScoped<ISocialMediaAccountDal, EfSocialMediaAccountDal>();
+            services.AddScoped<IApplicationDal, EfApplicationDal>();
+            services.AddScoped<IRoleDal, EfRoleDal>();
+            services.AddScoped<ILanguageLevelDal, EfLanguageLevelDal>();
+>>>>>>> 7296c6bac14b707b49e75f154ed2db44ccf6b778
 
 
 

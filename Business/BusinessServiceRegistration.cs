@@ -22,21 +22,42 @@ namespace Business
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IUserService, UserManager>();
 
-            //services.AddScoped<ICourseService, CourseManager>();
+            services.AddScoped<ICourseService, CourseManager>();
             services.AddScoped<IStudentService, StudentManager>();
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<IMediaPostService, MediaPostManager>();
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<ISubjectService, SubjectManager>();
+<<<<<<< HEAD
             services.AddScoped<IStudentCourseService,StudentCourseManager>();
+=======
+            services.AddScoped<IPaymentService, PaymentManager>();
+            services.AddScoped<IManagerService, ManagerManager>();
+            services.AddScoped<ICertificateService, CertificateManager>();
+            services.AddScoped<ILanguageService, LanguageManager>();
+            services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
+            services.AddScoped<IApplicationService, ApplicationManager>();
+            services.AddScoped<IRoleService, RoleManager>();
+            services.AddScoped<ILanguageLevelService, LanguageLevelManager>();
+
+>>>>>>> 7296c6bac14b707b49e75f154ed2db44ccf6b778
 
             services.AddScoped<UserBusinessRules>();
+            services.AddScoped<LanguageBusinessRules>();
+            services.AddScoped<LanguageLevelBusinessRules>();
             services.AddScoped<BlogBusinessRules>();
             services.AddScoped<InstructorBusinessRules>();
-            services.AddScoped<UserBusinessRules>();
+            services.AddScoped<RoleBusinessRules>();
             services.AddScoped<StudentBusinessRules>();
             services.AddScoped<MediaPostBusinessRules>();
+            services.AddScoped<CourseBusinessRules>();
+            services.AddScoped<PaymentBusinessRules>();
+            services.AddScoped<ManagerBusinessRules>();
+            services.AddScoped<CertificateBusinessRules>();
+            services.AddScoped<SocialMediaAccountBusinessRules>();
+            services.AddScoped<RoleBusinessRules>();
+            services.AddScoped<ApplicationBusinessRules>();
 
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));

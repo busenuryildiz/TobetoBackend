@@ -11,10 +11,10 @@ namespace Business.Abstracts
 {
     public interface ICourseLevelService
     {
-        Task<IPaginate<GetListCourseLevelResponse>> GetListAsync(PageRequest pageRequest);
         Task<CreatedCourseLevelResponse> Add(CreateCourseLevelRequest createCourseLevelRequest);
-        Task<UpdatedCourseLevelResponse> Update(UpdateCourseLevelRequest updateCourseLevelRequest);
         Task<DeletedCourseLevelResponse> Delete(DeleteCourseLevelRequest deleteCourseLevelRequest);
+        Task<bool> Update(UpdateCourseLevelRequest updateCourseLevelRequest);
         Task<CreatedCourseLevelResponse> GetById(int id);
+        Task<IPaginate<GetListCourseLevelResponse>> GetListAsync(PageRequest pageRequest);
     }
 }

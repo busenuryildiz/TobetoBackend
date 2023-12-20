@@ -8,8 +8,7 @@ namespace Business.DTOs.Request.CourseLevel
 {
     public class CreateCourseLevelRequest
     {
-        public Guid UserId { get; set; }
         public string Name { get; set; }
-        public string ImagePath { get; set; }
+        // Diğer gerekli özellikleri ekleyin
     }
 }

@@ -68,14 +68,14 @@ namespace Business.Concretes
         }
 
 
-        public async Task<UpdatedCourseLevelResponse> Update(UpdateCourseLevelRequest updateCourseLevelRequest)
+        public async Task<bool> Update(UpdateCourseLevelRequest updateCourseLevelRequest)
         {
             var data = await _courseLevelDal.GetAsync(i => i.Id == updateCourseLevelRequest.Id);
             _mapper.Map(updateCourseLevelRequest, data);
             data.UpdatedDate = DateTime.Now;
             await _courseLevelDal.UpdateAsync(data);
-            var result = _mapper.Map<UpdatedCourseLevelResponse>(data);
-            return result;
+            return true; // Başarı durumunu döndürün.
         }
+
     }
 }

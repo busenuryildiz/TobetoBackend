@@ -31,6 +31,7 @@ namespace Business
             services.AddScoped<ISubjectService, SubjectManager>();
             services.AddScoped<IPaymentService, PaymentManager>();
             services.AddScoped<IManagerService, ManagerManager>();
+            services.AddScoped<ICertificateService, CertificateManager>();
 
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<BlogBusinessRules>();
@@ -41,6 +42,7 @@ namespace Business
             services.AddScoped<CourseBusinessRules>();
             services.AddScoped<PaymentBusinessRules>();
             services.AddScoped<ManagerBusinessRules>();
+            services.AddScoped<CertificateBusinessRules>();
 
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));

@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Response.CourseLevel
 {
-    internal class DeletedCourseLevelResponse : BasePageableModel
+    public class DeletedCourseLevelResponse
     {
-        public int Id { get; set; }
-        public Guid UserId { get; set; }
-        public string Name { get; set; }
-        public string ImagePath { get; set; }
+        public bool IsDeleted { get; set; }
+        // Diğer özellikleri ekleyin
     }
 }

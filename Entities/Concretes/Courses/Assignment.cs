@@ -10,6 +10,7 @@ namespace Entities.Concretes.Courses
 {
     public class Assignment : Entity<int>
     {
+<<<<<<< HEAD
         public int? CourseId { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -17,5 +18,16 @@ namespace Entities.Concretes.Courses
         public DateTime? DeadLine { get; set; }
         public bool? IsSend { get; set; }
         public Course? Course { get; set; }
+=======
+        public int CourseId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string FilePath { get; set; }
+        public DateTime DeadLine { get; set; }
+        public bool IsSend { get; set; }
+        public Course Course { get; set; }
+        public int LessonId { get; set; }
+        public Lesson Lesson { get; set; } // Bu satır eklenmiştir.
+>>>>>>> kerem
     }
 }

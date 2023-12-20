@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes.Courses
 {
+    // Lesson sınıfına ekleyin
     public class Lesson : Entity<int>
     {
         public string Name { get; set; }
         public string Content { get; set; }
         public string VideoUrl { get; set; }
         public List<LessonCourse> LessonCourses { get; set; }
+        public List<Assignment> Assignments { get; set; } // Bu satır eklenmiştir.
 
-        //ilgili alanlar,details clasına bakılacak.
-
+        // İlgili alanlar, details clasına bakılacak.
     }
+
 }

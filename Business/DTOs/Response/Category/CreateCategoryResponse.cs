@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.DataAccess.Paging;
-using Entities.Concretes.Courses;
 
-namespace Business.DTOs.Response.Exam
+namespace Business.DTOs.Response.Category
 {
-    public class UpdatedExamResponse
+    public class CreatedCategoryResponse
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         // Include any additional fields you want to return in the response
     }
 }

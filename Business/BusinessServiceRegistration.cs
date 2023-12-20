@@ -21,27 +21,32 @@ namespace Business
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IUserService, UserManager>();
-
+            services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICourseService, CourseManager>();
             services.AddScoped<IStudentService, StudentManager>();
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<IMediaPostService, MediaPostManager>();
             services.AddScoped<IBlogService, BlogManager>();
-            services.AddScoped<ISubjectService, SubjectManager>();
-<<<<<<< HEAD
-            services.AddScoped<IStudentCourseService,StudentCourseManager>();
-=======
+            services.AddScoped<ISubjectService, SubjectManager>(); services.AddScoped<ICategoryService, CategoryManager>();
+
+
+            services.AddScoped< IStudentCservices.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
+            services.AddScoped<IApplicationService, ApplicationManager>();
+            services.AddScoped<IRoleService, RoleManager>();
+            services.AddScoped<ILanguageLevelService, LanguageLevelManager>(); ourseService,StudentCourseManager>(); services.AddScoped<ICategoryService, CategoryManager>();   services.AddScoped<IExamService, ExamManager>();
+
+            services.AddScoped<IExamService, ExamManager>();
+
             services.AddScoped<IPaymentService, PaymentManager>();
             services.AddScoped<IManagerService, ManagerManager>();
             services.AddScoped<ICertificateService, CertificateManager>();
-            services.AddScoped<ILanguageService, LanguageManager>();
-            services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
+            services.AddScoped<ILanguageService, LanguageManager>(); services.AddScoped<IExamService, ExamManager>(); services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
             services.AddScoped<IApplicationService, ApplicationManager>();
             services.AddScoped<IRoleService, RoleManager>();
             services.AddScoped<ILanguageLevelService, LanguageLevelManager>();
 
->>>>>>> 7296c6bac14b707b49e75f154ed2db44ccf6b778
+>>>>>>>>> Temporary merge branch 2
 
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<LanguageBusinessRules>();

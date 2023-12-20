@@ -25,6 +25,12 @@ namespace DataAccess.Context.EntityConfigurations
                 .WithMany(cat => cat.Courses)
                 .HasForeignKey(c => c.CategoryId);
 
+            builder.HasOne(c => c.LessonCourse)
+                .WithOne(cs => cs.Course)
+                .HasForeignKey<CourseSubject>(cs => cs.CourseId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
             builder.HasMany(c => c.Assignments)
                 .WithOne(a => a.Course)
                 .HasForeignKey(a => a.CourseId);

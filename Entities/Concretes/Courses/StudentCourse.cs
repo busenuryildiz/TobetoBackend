@@ -22,7 +22,7 @@ namespace Entities.Concretes.Courses
         public TimeSpan? EstimatedTime { get; set; }
         public Student Student { get; set; } // Eklenen alan
         public Course Course { get; set; } // Eklenen alan
-
+        public CourseStatus CourseStatus { get; set; }
         public List<Payment> Payments { get; set; } // Eklenen alan
 
 

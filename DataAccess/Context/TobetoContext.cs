@@ -21,6 +21,7 @@ namespace DataAccess.Context
         public DbSet<StudentSkill> StudentSkills { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Application> Applications { get; set; }
         public DbSet<ContactUs> ContactUses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CourseLevel> CourseLevels { get; set; }

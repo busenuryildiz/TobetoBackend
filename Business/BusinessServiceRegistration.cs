@@ -33,13 +33,16 @@ namespace Business
             services.AddScoped<IManagerService, ManagerManager>();
             services.AddScoped<ICertificateService, CertificateManager>();
             services.AddScoped<ILanguageService, LanguageManager>();
+            services.AddScoped<IRoleService, RoleManager>();
+            services.AddScoped<ILanguageLevelService, LanguageLevelManager>();
 
 
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<LanguageBusinessRules>();
+            services.AddScoped<LanguageLevelBusinessRules>();
             services.AddScoped<BlogBusinessRules>();
             services.AddScoped<InstructorBusinessRules>();
-            services.AddScoped<UserBusinessRules>();
+            services.AddScoped<RoleBusinessRules>();
             services.AddScoped<StudentBusinessRules>();
             services.AddScoped<MediaPostBusinessRules>();
             services.AddScoped<CourseBusinessRules>();

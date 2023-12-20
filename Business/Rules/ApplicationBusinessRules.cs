@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.Rules
 {
-    public class CertificateBusinessRules : BaseBusinessRules
+    public class ApplicationBusinessRules : BaseBusinessRules
     {
     }
 }

@@ -8,12 +8,12 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SurveyController : ControllerBase
+    public class SurveysController : ControllerBase
     {
         private readonly ISurveyService _surveyService;
         private readonly IMapper _mapper;
 
-        public SurveyController(ISurveyService surveyService, IMapper mapper)
+        public SurveysController(ISurveyService surveyService, IMapper mapper)
         {
             _surveyService = surveyService;
             _mapper = mapper;

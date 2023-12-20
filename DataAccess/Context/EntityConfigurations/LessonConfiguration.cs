@@ -16,12 +16,16 @@ namespace DataAccess.Context.EntityConfigurations
             builder.ToTable("Lessons");
 
             builder.HasKey(l => l.Id);
-            builder.Property(l => l.CourseId).IsRequired();
             builder.Property(l => l.Name).IsRequired().HasMaxLength(255);
             builder.Property(l => l.Content).IsRequired();
             builder.Property(l => l.VideoUrl).HasMaxLength(255);
 
-         
+            builder.HasMany(b => b.LessonCourses)
+                .WithOne(s => s.Lesson)
+                .HasForeignKey(s => s.LessonId);
+
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
+
         }
     }
 

@@ -10,36 +10,17 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SubjectController : ControllerBase
+    public class SubjectsController : ControllerBase
     {
         private readonly ISubjectService _subjectService;
         private readonly IMapper _mapper;
 
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
-        {
-            try
-            {
-                var subjects = await _subjectService.GetAllSubjectsAsync(pageRequest);
-
-                // IPaginate<SubjectResponse> türündeki veriyi uygun şekilde dönüştürün veya kullanın.
-
-                return Ok(subjects);
-            }
-            catch (Exception ex)
-            {
-                // Hata durumunda uygun şekilde işleyin.
-                return StatusCode(500, "Internal Server Error");
-            }
-        }
-
-        public SubjectController(ISubjectService subjectService, IMapper mapper)
+        public SubjectsController(ISubjectService subjectService, IMapper mapper)
         {
             _subjectService = subjectService;
             _mapper = mapper;
         }
-        [HttpGet("getAll")]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAllSubjects([FromQuery] PageRequest pageRequest)
         {
             try
@@ -54,7 +35,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetById")]
         public async Task<IActionResult> GetSubjectById(int id)
         {
             var subject = await _subjectService.GetSubjectByIdAsync(id);
@@ -68,7 +49,7 @@ namespace WebAPI.Controllers
             return Ok(subjectResponse);
         }
 
-        [HttpPost]
+        [HttpPost("Add")]
         public async Task<IActionResult> AddSubject([FromBody] CreateSubjectRequest request)
         {
             var addedSubject = await _subjectService.AddSubjectAsync(request);
@@ -77,7 +58,7 @@ namespace WebAPI.Controllers
             return CreatedAtAction(nameof(GetSubjectById), new { id = subjectResponse.Id }, subjectResponse);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("Update")]
         public async Task<IActionResult> UpdateSubject(int id, [FromBody] UpdateSubjectRequest request)
         {
             var existingSubject = await _subjectService.GetSubjectByIdAsync(id);
@@ -93,7 +74,7 @@ namespace WebAPI.Controllers
             return Ok(subjectResponse);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete")]
         public async Task<IActionResult> DeleteSubject(int id)
         {
             var success = await _subjectService.DeleteSubjectAsync(id);

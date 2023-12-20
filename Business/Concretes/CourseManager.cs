@@ -15,6 +15,7 @@ using Entities.Concretes;
 using Business.DTOs.Response.User;
 using DataAccess.Concretes;
 using Entities.Concretes.Clients;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes
 {
@@ -64,13 +65,24 @@ namespace Business.Concretes
         public async Task<IPaginate<GetListCourseResponse>> GetListAsync(PageRequest pageRequest)
         {
             var data = await _courseDal.GetListAsync(
+                include: u => u
+                    .Include(u => u.Category)
+                    .Include(u => u.Assignments)
+                    .Include(u => u.Exams)
+                    .Include(u => u.CourseLevel)
+                    .Include(u => u.LessonCourse)
+                    .Include(u => u.CourseStatus)
+                    .Include(u => u.CourseSubject)
+                    .Include(u => u.SoftwareLanguage)
+                    .Include(u => u.StudentCourses),
+
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize
             );
             var result = _mapper.Map<Paginate<GetListCourseResponse>>(data);
             return result;
         }
-
+        
         public async Task<UpdatedCourseResponse> Update(UpdateCourseRequest updateCourseRequest)
         {
             var data = await _courseDal.GetAsync(i => i.Id == updateCourseRequest.Id);

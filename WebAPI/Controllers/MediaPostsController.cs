@@ -1,4 +1,5 @@
-﻿using Business.Abstracts;
+﻿using AutoMapper;
+using Business.Abstracts;
 using Business.DTOs.Request.MediaPost;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
@@ -11,9 +12,12 @@ namespace WebAPI.Controllers
     public class MediaPostsController : ControllerBase
     {
         IMediaPostService _mediapostService;
-        public MediaPostsController(IMediaPostService mediapostService)
+        private IMapper _mapper;
+
+        public MediaPostsController(IMediaPostService mediapostService, IMapper mapper)
         {
             _mediapostService = mediapostService;
+            _mapper = mapper;
         }
         [HttpPost("Add")]
         public async Task<IActionResult> Add([FromBody] CreateMediaPostRequest createMediaPostRequest)

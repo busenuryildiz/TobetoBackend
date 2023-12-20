@@ -29,6 +29,8 @@ namespace Business
             services.AddScoped<IMediaPostService, MediaPostManager>();
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<ISubjectService, SubjectManager>();
+            services.AddScoped<IPaymentService, PaymentManager>();
+            services.AddScoped<IManagerService, ManagerManager>();
 
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<BlogBusinessRules>();
@@ -37,6 +39,8 @@ namespace Business
             services.AddScoped<StudentBusinessRules>();
             services.AddScoped<MediaPostBusinessRules>();
             services.AddScoped<CourseBusinessRules>();
+            services.AddScoped<PaymentBusinessRules>();
+            services.AddScoped<ManagerBusinessRules>();
 
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));

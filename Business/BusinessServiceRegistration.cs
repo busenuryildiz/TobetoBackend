@@ -21,23 +21,19 @@ namespace Business
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IUserService, UserManager>();
-
             services.AddScoped<ICourseService, CourseManager>();
             services.AddScoped<IStudentService, StudentManager>();
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<IMediaPostService, MediaPostManager>();
             services.AddScoped<IBlogService, BlogManager>();
-<<<<<<< HEAD
             services.AddScoped<ISubjectService, SubjectManager>();
-=======
             services.AddScoped<ISubjectService, SubjectManager>(); 
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IApplicationService, ApplicationManager>();
             services.AddScoped<IRoleService, RoleManager>();
             services.AddScoped<ILanguageLevelService, LanguageLevelManager>(); 
             services.AddScoped<IExamService, ExamManager>();
->>>>>>> kerem
             services.AddScoped<IPaymentService, PaymentManager>();
             services.AddScoped<IManagerService, ManagerManager>();
             services.AddScoped<ICertificateService, CertificateManager>();

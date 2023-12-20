@@ -30,6 +30,7 @@ namespace Business
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<ISubjectService, SubjectManager>(); 
             services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<ICourseSubjectService, CourseSubjectManager>();
 
 
             services.AddScoped<IApplicationService, ApplicationManager>();
@@ -57,6 +58,7 @@ namespace Business
             services.AddScoped<StudentBusinessRules>();
             services.AddScoped<MediaPostBusinessRules>();
             services.AddScoped<CourseBusinessRules>();
+            services.AddScoped<CourseSubjectBusinessRules>();
             services.AddScoped<PaymentBusinessRules>();
             services.AddScoped<ManagerBusinessRules>();
             services.AddScoped<CertificateBusinessRules>();

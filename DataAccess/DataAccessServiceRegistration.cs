@@ -42,7 +42,7 @@ namespace DataAccess
             services.AddScoped<ILanguageLevelDal, EfLanguageLevelDal>();
             services.AddScoped<IAssignmentDal, EfAssignmentDal>();
             services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
-
+            services.AddScoped<IStudentSkillDal, EfStudentSkillDal>();
 
 
 

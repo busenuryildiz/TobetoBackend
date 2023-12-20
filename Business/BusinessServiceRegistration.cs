@@ -27,29 +27,23 @@ namespace Business
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<IMediaPostService, MediaPostManager>();
             services.AddScoped<IBlogService, BlogManager>();
-<<<<<<< HEAD
             services.AddScoped<ISubjectService, SubjectManager>();
-=======
-            services.AddScoped<ISubjectService, SubjectManager>(); 
+            services.AddScoped<ISubjectService, SubjectManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IApplicationService, ApplicationManager>();
             services.AddScoped<IRoleService, RoleManager>();
-            services.AddScoped<ILanguageLevelService, LanguageLevelManager>(); 
+            services.AddScoped<ILanguageLevelService, LanguageLevelManager>();
             services.AddScoped<IExamService, ExamManager>();
->>>>>>> kerem
             services.AddScoped<IPaymentService, PaymentManager>();
             services.AddScoped<IManagerService, ManagerManager>();
             services.AddScoped<ICertificateService, CertificateManager>();
-            services.AddScoped<ILanguageService, LanguageManager>(); 
+            services.AddScoped<ILanguageService, LanguageManager>();
             services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
             services.AddScoped<IAssignmentService, AssignmentManager>();
             services.AddScoped<IStudentSkillService, StudentSkillManager>();
             services.AddScoped<IUserRoleService, UserRoleManager>();
             services.AddScoped<ICourseSubjectService, CourseSubjectManager>();
-
-
-
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<LanguageBusinessRules>();
             services.AddScoped<LanguageLevelBusinessRules>();

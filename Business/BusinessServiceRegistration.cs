@@ -29,6 +29,7 @@ namespace Business
             services.AddScoped<IMediaPostService, MediaPostManager>();
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<ISubjectService, SubjectManager>();
+            services.AddScoped<IStudentCourseService,StudentCourseManager>();
 
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<BlogBusinessRules>();

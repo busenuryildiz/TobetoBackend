@@ -2,10 +2,13 @@
 using Business.Abstracts;
 using Business.DTOs.Request.Instructor;
 using Core.DataAccess.Paging;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class InstructorsController : ControllerBase
     {
         private readonly IInstructorService _instructorService;
@@ -70,3 +73,4 @@ namespace WebAPI.Controllers
         }
     }
 }
+

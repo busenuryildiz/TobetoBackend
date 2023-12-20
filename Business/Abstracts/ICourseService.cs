@@ -12,11 +12,11 @@ namespace Business.Abstracts
 {
     public interface ICourseService
     {
-        //Task<IPaginate<GetListCourseResponse>> GetListAsync(PageRequest pageRequest);
-        //Task<CreatedCourseResponse> Add(CreateCourseRequest createCourseRequest);
-        //Task<UpdatedCourseResponse> Update(UpdateCourseRequest updateCourseRequest);
-        //Task<DeletedCourseResponse> Delete(DeleteCourseRequest deleteCourseRequest);
-        //Task<CreatedCourseResponse> GetById(Guid id);
+        Task<IPaginate<GetListCourseResponse>> GetListAsync(PageRequest pageRequest);
+        Task<CreatedCourseResponse> Add(CreateCourseRequest createCourseRequest);
+        Task<UpdatedCourseResponse> Update(UpdateCourseRequest updateCourseRequest);
+        Task<DeletedCourseResponse> Delete(DeleteCourseRequest deleteCourseRequest);
+        Task<CreatedCourseResponse> GetById(int id);
 
     }
 }

@@ -2,7 +2,11 @@
 {
     public class GetListSurveyResponse
     {
-        public List<SurveyResponse> Surveys { get; set; }
+        public int Id { get; set; }
+        public Guid StudentId { get; set; }
+        public string Name { get; set; }
+        public string SurveyUrl { get; set; }
     }
+
 
 }

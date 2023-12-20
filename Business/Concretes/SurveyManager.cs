@@ -1,73 +1,69 @@
 ﻿using AutoMapper;
-using Business.Abstracts;
 using Business.DTOs.Request.Survey;
 using Business.DTOs.Response.Survey;
+using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Concretes
+public class SurveyManager : ISurveyService
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    private readonly ISurveyDal _surveyDal;
+    private readonly IMapper _mapper;
 
-    public class SurveyManager : ISurveyService
+    public SurveyManager(ISurveyDal surveyDal, IMapper mapper)
     {
-        private readonly ISurveyDal _surveyDal;
-        private readonly IMapper _mapper;
-
-        public SurveyManager(ISurveyDal surveyDal, IMapper mapper)
-        {
-            _surveyDal = surveyDal ?? throw new ArgumentNullException(nameof(surveyDal));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        }
-
-        public async Task<List<SurveyResponse>> GetSurveysAsync()
-        {
-            var surveys = await _surveyDal.GetListAsync();
-            return _mapper.Map<List<SurveyResponse>>(surveys);
-        }
-
-        public async Task<SurveyResponse> GetSurveyByIdAsync(int id)
-        {
-            var survey = await _surveyDal.GetAsync(s => s.Id == id);
-            return _mapper.Map<SurveyResponse>(survey);
-        }
-
-        public async Task<SurveyResponse> CreateSurveyAsync(CreateSurveyRequest request)
-        {
-            var survey = _mapper.Map<Survey>(request);
-            survey = await _surveyDal.AddAsync(survey);
-            return _mapper.Map<SurveyResponse>(survey);
-        }
-
-        public async Task<SurveyResponse> UpdateSurveyAsync(UpdateSurveyRequest request)
-        {
-            var existingSurvey = await _surveyDal.GetAsync(s => s.Id == request.Id);
-            if (existingSurvey == null)
-            {
-                // Handle not found scenario
-                return null;
-            }
-
-            _mapper.Map(request, existingSurvey);
-            existingSurvey = await _surveyDal.UpdateAsync(existingSurvey);
-            return _mapper.Map<SurveyResponse>(existingSurvey);
-        }
-
-        public async Task DeleteSurveyAsync(DeleteSurveyRequest request)
-        {
-            var existingSurvey = await _surveyDal.GetAsync(s => s.Id == request.Id);
-            if (existingSurvey != null)
-            {
-                await _surveyDal.DeleteAsync(existingSurvey);
-            }
-        }
+        _surveyDal = surveyDal;
+        _mapper = mapper;
     }
 
+    public async Task<CreatedSurveyResponse> Add(CreateSurveyRequest createSurveyRequest)
+    {
+        Survey survey = _mapper.Map<Survey>(createSurveyRequest);
+        Survey createdSurvey = await _surveyDal.AddAsync(survey);
+        CreatedSurveyResponse createdSurveyResponse = _mapper.Map<CreatedSurveyResponse>(createdSurvey);
+        return createdSurveyResponse;
+    }
+
+    public async Task<DeletedSurveyResponse> Delete(DeleteSurveyRequest deleteSurveyRequest)
+    {
+        var data = await _surveyDal.GetAsync(i => i.Id == deleteSurveyRequest.Id);
+        _mapper.Map(deleteSurveyRequest, data);
+        data.DeletedDate = DateTime.Now;
+        var result = await _surveyDal.DeleteAsync(data, true);
+        var result2 = _mapper.Map<DeletedSurveyResponse>(result);
+        return result2;
+    }
+
+    public async Task<CreatedSurveyResponse> GetById(int id)
+    {
+        var result = await _surveyDal.GetAsync(c => c.Id == id);
+        Survey mappedSurvey = _mapper.Map<Survey>(result);
+
+        CreatedSurveyResponse createdSurveyResponse = _mapper.Map<CreatedSurveyResponse>(mappedSurvey);
+
+        return createdSurveyResponse;
+    }
+
+    public async Task<IPaginate<GetListSurveyResponse>> GetListAsync(PageRequest pageRequest)
+    {
+        var data = await _surveyDal.GetListAsync(
+            index: pageRequest.PageIndex,
+            size: pageRequest.PageSize
+        );
+        var result = _mapper.Map<Paginate<GetListSurveyResponse>>(data);
+        return result;
+    }
+
+    public async Task<UpdatedSurveyResponse> Update(UpdateSurveyRequest updateSurveyRequest)
+    {
+        var data = await _surveyDal.GetAsync(i => i.Id == updateSurveyRequest.Id);
+        _mapper.Map(updateSurveyRequest, data);
+        data.UpdatedDate = DateTime.Now;
+        await _surveyDal.UpdateAsync(data);
+        var result = _mapper.Map<UpdatedSurveyResponse>(data);
+        return result;
+    }
 }

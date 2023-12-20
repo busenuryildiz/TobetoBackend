@@ -1,21 +1,12 @@
 ﻿using Business.DTOs.Request.Survey;
 using Business.DTOs.Response.Survey;
-using Entities.Concretes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core.DataAccess.Paging;
 
-namespace Business.Abstracts
+public interface ISurveyService
 {
-    public interface ISurveyService
-    {
-        Task<List<SurveyResponse>> GetSurveysAsync();
-        Task<SurveyResponse> GetSurveyByIdAsync(int id);
-        Task<SurveyResponse> CreateSurveyAsync(CreateSurveyRequest request);
-        Task<SurveyResponse> UpdateSurveyAsync(UpdateSurveyRequest request);
-        Task DeleteSurveyAsync(DeleteSurveyRequest request);
-    }
-
+    Task<IPaginate<GetListSurveyResponse>> GetListAsync(PageRequest pageRequest);
+    Task<CreatedSurveyResponse> Add(CreateSurveyRequest createSurveyRequest);
+    Task<UpdatedSurveyResponse> Update(UpdateSurveyRequest updateSurveyRequest);
+    Task<DeletedSurveyResponse> Delete(DeleteSurveyRequest deleteSurveyRequest);
+    Task<CreatedSurveyResponse> GetById(int id);
 }

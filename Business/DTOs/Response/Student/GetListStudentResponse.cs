@@ -1,4 +1,5 @@
-﻿using Entities.Concretes;
+﻿using Core.DataAccess.Paging;
+using Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Response.Student
 {
-    public class GetListStudentResponse
+    public class GetListStudentResponse : BasePageableModel
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }

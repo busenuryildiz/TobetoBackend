@@ -8,10 +8,11 @@ namespace Business.DTOs.Request.Survey
 {
     public class CreateSurveyRequest
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        // Diğer özellikler eklenebilir
+        public Guid StudentId { get; set; }
+        public string Name { get; set; }
+        public string SurveyUrl { get; set; }
     }
+
 
 
 }

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Business.Abstracts;
 using Business.DTOs.Request.Survey;
-using Business.DTOs.Response.Survey;
+using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,90 +11,47 @@ namespace WebAPI.Controllers
     public class SurveyController : ControllerBase
     {
         private readonly ISurveyService _surveyService;
+        private readonly IMapper _mapper;
 
-        public SurveyController(ISurveyService surveyService)
+        public SurveyController(ISurveyService surveyService, IMapper mapper)
         {
-            _surveyService = surveyService ?? throw new ArgumentNullException(nameof(surveyService));
+            _surveyService = surveyService;
+            _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetSurveys()
+        [HttpPost("add")]
+        public async Task<IActionResult> Add([FromBody] CreateSurveyRequest createSurveyRequest)
         {
-            try
-            {
-                var surveys = await _surveyService.GetSurveysAsync();
-                return Ok(surveys);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal Server Error: {ex.Message}");
-            }
+            var result = await _surveyService.Add(createSurveyRequest);
+            return Ok(result);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetSurveyById(int id)
+        [HttpPut("update")]
+        public async Task<IActionResult> Update([FromBody] UpdateSurveyRequest updateSurveyRequest)
         {
-            try
-            {
-                var survey = await _surveyService.GetSurveyByIdAsync(id);
-                if (survey == null)
-                {
-                    return NotFound(); // 404 Not Found
-                }
-
-                return Ok(survey);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal Server Error: {ex.Message}");
-            }
+            var result = await _surveyService.Update(updateSurveyRequest);
+            return Ok(result);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateSurvey([FromBody] CreateSurveyRequest request)
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete([FromBody] DeleteSurveyRequest deleteSurveyRequest)
         {
-            try
-            {
-                var createdSurvey = await _surveyService.CreateSurveyAsync(request);
-                return CreatedAtAction(nameof(GetSurveyById), new { id = createdSurvey.Id }, createdSurvey);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal Server Error: {ex.Message}");
-            }
+            var result = await _surveyService.Delete(deleteSurveyRequest);
+            return Ok(result);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateSurvey(Guid id, [FromBody] UpdateSurveyRequest request)
+        [HttpGet("get/{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            try
-            {
-                var updatedSurvey = await _surveyService.UpdateSurveyAsync(request);
-                if (updatedSurvey == null)
-                {
-                    return NotFound(); // 404 Not Found
-                }
-
-                return Ok(updatedSurvey);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal Server Error: {ex.Message}");
-            }
+            var result = await _surveyService.GetById(id);
+            return Ok(result);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSurvey(int id)
+        [HttpGet("list")]
+        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
-            try
-            {
-                await _surveyService.DeleteSurveyAsync(new DeleteSurveyRequest { Id = id });
-                return NoContent(); // 204 No Content
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal Server Error: {ex.Message}");
-            }
+            var result = await _surveyService.GetListAsync(pageRequest);
+            return Ok(result);
         }
     }
 }

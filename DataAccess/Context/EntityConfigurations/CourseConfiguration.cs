@@ -19,6 +19,8 @@ namespace DataAccess.Context.EntityConfigurations
             builder.Property(c => c.CategoryId).IsRequired();
             builder.Property(c => c.Name).IsRequired().HasMaxLength(255);
             builder.Property(c => c.ImagePath);
+            builder.Property(c => c.CertificateURL);
+            builder.Property(c => c.Progress);
             builder.Property(c => c.Price).IsRequired();
 
             builder.HasOne(c => c.Category)

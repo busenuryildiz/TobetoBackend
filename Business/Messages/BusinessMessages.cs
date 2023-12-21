@@ -17,8 +17,19 @@ namespace Business.Messages
         //-------------------STUDENT---------------
         public static string StudentNumberShouldBeUnique = "Unable to generate a unique student number.";
 
+<<<<<<< Updated upstream
 <<<<<<< .merge_file_VV4W9f
         
+=======
+        //-------------------COURSE---------------
+
+        public static string CertificateCanNotBeGivenDueToProgress = "Certificate is not ready, keep working!";
+
+        public static string CourseOrExamNotFound = "Course or Exam can not be found!";
+
+
+
+>>>>>>> Stashed changes
         //-------------------EXAM---------------
         public static string ValidateExamPoint = "Exam point should be between 0 and 100.";
 =======

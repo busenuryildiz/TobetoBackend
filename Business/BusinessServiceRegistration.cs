@@ -58,6 +58,7 @@ namespace Business
             services.AddScoped<ISkillService, SkillManager>();
             services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
             services.AddScoped<IUserLanguageService, UserLanguageManager>();
+            services.AddScoped<IUserExperienceService, UserExperienceManager>();
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
             services.AddScoped<IApplicationService, ApplicationManager>();
             services.AddScoped<IBlogService, BlogManager>();
@@ -90,6 +91,7 @@ namespace Business
             services.AddScoped<SkillBusinessRules>();
             services.AddScoped<SocialMediaAccountBusinessRules>();
             services.AddScoped<UserLanguageBusinessRules>();
+            services.AddScoped<UserExperienceBusinessRules>();
             services.AddScoped<AnnouncementBusinessRules>();
             services.AddScoped<ApplicationBusinessRules>();
             services.AddScoped<BlogBusinessRules>();

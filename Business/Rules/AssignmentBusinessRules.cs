@@ -13,11 +13,11 @@ namespace Business.Rules
 {
     public class AssignmentBusinessRules: BaseBusinessRules
     {
-        private readonly IAssignmentDal _assignmnetDal;
+        private readonly IAssignmentDal _assignmentDal;
 
-        public AssignmentBusinessRules(IAssignmentDal assignmnetDal)
+        public AssignmentBusinessRules(IAssignmentDal assignmentDal)
         {
-            _assignmnetDal = assignmnetDal;
+            _assignmentDal = assignmentDal;
         }
 
 

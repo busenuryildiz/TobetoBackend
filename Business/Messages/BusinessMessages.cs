@@ -17,10 +17,6 @@ namespace Business.Messages
         //-------------------STUDENT---------------
         public static string StudentNumberShouldBeUnique = "Unable to generate a unique student number.";
 
-<<<<<<< Updated upstream
-<<<<<<< .merge_file_VV4W9f
-        
-=======
         //-------------------COURSE---------------
 
         public static string CertificateCanNotBeGivenDueToProgress = "Certificate is not ready, keep working!";
@@ -29,21 +25,23 @@ namespace Business.Messages
 
 
 
->>>>>>> Stashed changes
+
         //-------------------EXAM---------------
         public static string ValidateExamPoint = "Exam point should be between 0 and 100.";
-=======
+
 
         //------------------ASSIGNMENT----------------
         
         public static string DoNotSendItAfterTheAssignmentPeriodIsOver = "You cannot submit this assignment because it is overdue.";
-        public static string DoNotSendItAfterTheAssignmentPeriodIsOver2 = "The assignment has been added successfully.";
 
 
         //------------------EDUCATIONINFORMATION-------------
 
         public static string TheBeginnerYearCannotBeGreaterThanTheGraduationYear = "The beginner year cannot be greater than the graduation year.";
 
->>>>>>> .merge_file_Ks7lfQ
+        //-------------------USEREXPERİENCE---------------------------------
+        public static string WorkBeginDateCannotBeGreatherThanWorkEndDate = "Job Start Date cannot be greater than Job End Date";
+
+
     }
 }

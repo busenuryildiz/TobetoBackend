@@ -40,22 +40,6 @@ namespace Business.Rules
             }
         }
 
-
-
-
-        //public async Task NationalIdNumberCannotBeTheSame(string nationalIdentity)
-        //{
-        //    var usersWithSameNationalId = await _userDal.GetListAsync(
-        //        predicate: p => p.NationalIdentity == nationalIdentity
-        //    );
-
-        //    // LINQ sorgusu içinde doğrudan koşul kullanarak kontrol edebiliriz
-        //    if (usersWithSameNationalId.Count > 0)
-        //    {
-        //        throw new BusinessException(BusinessMessages.NationalIdNumberCannotBeTheSame);
-        //    }
-        //}
-
         public async Task NationalIdNumberCannotBeTheSame(string nationalIdentity)
         {
             if (nationalIdentity.Length != 11)

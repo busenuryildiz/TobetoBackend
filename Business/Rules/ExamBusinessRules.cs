@@ -18,12 +18,12 @@ namespace Business.Rules
             _examDal = examDal;
         }
 
-        //public async Task ValidateExamPoint(int examPoint)
-        //{
-        //    if (examPoint < 0 || examPoint > 100)
-        //    {
-        //        throw new BusinessException(BusinessMessages.ValidateExamPoint);
-        //    }
-        //}
+        public async Task ValidateExamPoint(int examPoint)
+        {
+            if (examPoint < 0 || examPoint > 100)
+            {
+                throw new BusinessException(BusinessMessages.ValidateExamPoint);
+            }
+        }
     }
 }

@@ -14,6 +14,7 @@ using Business.Abstracts;
 using Business.DTOs.Request.User;
 using Business.DTOs.Response.User;
 using DataAccess.Concretes;
+using Entities.Concretes.Courses;
 
 namespace Business.Concretes
 {
@@ -22,94 +23,39 @@ namespace Business.Concretes
         IStudentDal _studentDal;
         IMapper _mapper;
         StudentBusinessRules _businessRules;
-        IUserService _userManager;
-        IUserDal _userDal;
-        public StudentManager(StudentBusinessRules businessRules, IStudentDal studentDal, IMapper mapper, IUserService userManager, IUserDal userDal)
+        public StudentManager(IStudentDal studentDal, IMapper mapper, StudentBusinessRules businessRules)
         {
-            _businessRules = businessRules;
             _studentDal = studentDal;
-            _userDal = userDal;
             _mapper = mapper;
-            _userManager = userManager;
-            _userDal = userDal;
+            _businessRules = businessRules;
         }
 
         public async Task<CreatedStudentResponse> Add(CreateStudentRequest createStudentRequest)
         {
-            // Student için gerekli alanları doldur
             Student student = _mapper.Map<Student>(createStudentRequest);
-            student.GenerateStudentNumber(); // Öğrenci numarasını oluştur
-
-            // Kullanıcı oluşturmak için CreateUserRequest nesnesini oluştur
-            CreateUserRequest createUserRequest = _mapper.Map<CreateUserRequest>(createStudentRequest);
-
-            // Kullanıcı eklemek için IUserService kullan
-            CreatedUserResponse createdUserResponse = await _userManager.Add(createUserRequest);
-
-            // Eğer kullanıcı başarıyla eklendiyse devam et
-            if (createdUserResponse != null)
-            {
-                student.UserId = createdUserResponse.Id; // Oluşturulan kullanıcının Id'sini student'ın UserId özelliğine ata
-
-                // Student'ı veritabanına ekle
-                Student createdStudent = await _studentDal.AddAsync(student);
-
-                // Oluşturulan Student'ı CreatedStudentResponse nesnesine dönüştür
-                CreatedStudentResponse createdStudentResponse = _mapper.Map<CreatedStudentResponse>(createdStudent);
-
-                // Oluşturulan öğrenciyi ve kullanıcıyı içeren sonuç nesnesini döndür
-                return createdStudentResponse;
-            }
-
-            // Kullanıcı eklenemediyse null döndür veya hata durumunu ele al
-            return null;
+            Student createdStudent = await _studentDal.AddAsync(student);
+            CreatedStudentResponse createdStudentResponse = _mapper.Map<CreatedStudentResponse>(createdStudent);
+            return createdStudentResponse;
         }
 
         public async Task<DeletedStudentResponse> Delete(DeleteStudentRequest deleteStudentRequest)
         {
-            var student = await _studentDal.GetAsync(i => i.Id == deleteStudentRequest.Id);
+            Student student = await _studentDal.GetAsync(i => i.Id == deleteStudentRequest.Id);
+            student.DeletedDate = DateTime.Now;
+            var deletedStudent = await _studentDal.DeleteAsync(student);
+            DeletedStudentResponse deletedStudentResponse = _mapper.Map<DeletedStudentResponse>(deletedStudent);
 
-            if (student != null)
-            {
-                // Öğrenciye ait kullanıcıyı bul
-                var user = await _userDal.GetAsync(u => u.Id == student.UserId);
+            return deletedStudentResponse;
 
-                if (user != null)
-                {
-                    try
-                    {
-                        // Öğrenciyi ve kullanıcıyı sil
-                        await _userDal.DeleteAsync(user, true);
-                        await _studentDal.DeleteAsync(student, true);
 
-                        // Her ikisi de başarıyla silindi, silinen öğrenci bilgilerini dön
-                        var deletedStudentResponse = _mapper.Map<DeletedStudentResponse>(student);
-                        return deletedStudentResponse;
-                    }
-                    catch (Exception ex)
-                    {
-                        // Silme işlemi başarısız oldu, hata durumu ele alınmalı
-                        // Örneğin:
-                        // Loglama veya throw new Exception(ex.Message); gibi bir işlem yapılabilir.
-                        return null;
-                    }
-                }
-                else
-                {
-                    // Öğrenciye ait kullanıcı bulunamadı, hata durumu ele alınmalı
-                    // Örneğin:
-                    // throw new Exception("Öğrenciye ait kullanıcı bulunamadı.");
-                    return null;
-                }
-            }
-            else
-            {
-                // Öğrenci bulunamadı, hata durumu ele alınmalı
-                // Örneğin:
-                // throw new Exception("Öğrenci bulunamadı.");
-                return null;
-            }
+            //var data = await _studentDal.GetAsync(i => i.Id == deleteStudentRequest.Id);
+            //_mapper.Map(deleteStudentRequest, data);
+            //data.DeletedDate = DateTime.Now;
+            //var result = await _studentDal.DeleteAsync(data);
+            //var result2 = _mapper.Map<DeletedStudentResponse>(result);
+            //return result2;
         }
+
         public async Task<CreatedStudentResponse> GetById(Guid id)
         {
             var result = await _studentDal.GetAsync(c => c.Id == id);
@@ -119,6 +65,7 @@ namespace Business.Concretes
 
             return createdStudentResponse;
         }
+
 
         public async Task<IPaginate<GetListStudentResponse>> GetListAsync(PageRequest pageRequest)
         {
@@ -130,14 +77,24 @@ namespace Business.Concretes
             return result;
         }
 
+
         public async Task<UpdatedStudentResponse> Update(UpdateStudentRequest updateStudentRequest)
         {
-            var data = await _studentDal.GetAsync(i => i.Id == updateStudentRequest.Id);
-            _mapper.Map(updateStudentRequest, data);
-            data.UpdatedDate = DateTime.Now;
-            await _studentDal.UpdateAsync(data);
-            var result = _mapper.Map<UpdatedStudentResponse>(data);
-            return result;
+            Student student = await _studentDal.GetAsync(i => i.Id == updateStudentRequest.Id);
+            student.UpdatedDate = DateTime.Now;
+            var updatedStudent = await _studentDal.UpdateAsync(student);
+            UpdatedStudentResponse updatedStudentResponse =
+                _mapper.Map<UpdatedStudentResponse>(updatedStudent);
+
+            return updatedStudentResponse;
+
+
+            //var data = await _studentDal.GetAsync(i => i.Id == updateStudentRequest.Id);
+            //_mapper.Map(updateStudentRequest, data);
+            //data.UpdatedDate = DateTime.Now;
+            //await _studentDal.UpdateAsync(data);
+            //var result = _mapper.Map<UpdatedStudentResponse>(data);
+            //return result;
         }
     }
 }

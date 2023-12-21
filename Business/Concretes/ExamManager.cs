@@ -21,12 +21,13 @@ namespace Business.Concretes
     {
         private readonly IExamDal _examDal;
         private readonly IMapper _mapper;
-        ExamBusinessRules _examDalBusinessRules;
+        ExamBusinessRules _examBusinessRules;
 
-        public ExamManager(IExamDal examDal, IMapper mapper)
+        public ExamManager(IExamDal examDal, IMapper mapper, ExamBusinessRules examBusinessRules)
         {
             _examDal = examDal;
             _mapper = mapper;
+            _examBusinessRules = examBusinessRules;
         }
 
         public async Task<IPaginate<GetListExamResponse>> GetListAsync(PageRequest pageRequest)
@@ -38,7 +39,7 @@ namespace Business.Concretes
 
         public async Task<CreatedExamResponse> Add(CreateExamRequest createExamRequest)
         {
-            //await _examDalBusinessRules.ValidateExamPoint(createExamRequest.Point);
+            await _examBusinessRules.ValidateExamPoint(createExamRequest.Point);
             var examDal = _mapper.Map<Exam>(createExamRequest);
             var createdExam = await _examDal.AddAsync(examDal);
             var result = _mapper.Map<CreatedExamResponse>(createdExam);

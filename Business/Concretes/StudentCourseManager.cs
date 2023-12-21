@@ -10,6 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Business.Rules;
+using DataAccess.Concretes;
+using Entities.Concretes.Clients;
 
 namespace Business.Concretes
 {
@@ -17,11 +20,13 @@ namespace Business.Concretes
     {
         private readonly IStudentCourseDal _studentCourseDal;
         private readonly IMapper _mapper;
+        StudentCourseBusinessRules _businessRules;
 
-        public StudentCourseManager(IStudentCourseDal studentCourseDal, IMapper mapper)
+        public StudentCourseManager(IStudentCourseDal studentCourseDal, IMapper mapper, StudentCourseBusinessRules businessRules, EfStudentCourseDal efStudentCourseDal)
         {
             _studentCourseDal = studentCourseDal;
             _mapper = mapper;
+            _businessRules = businessRules;
         }
 
         public async Task<CreatedStudentCourseResponse> Add(CreateStudentCourseRequest createStudentCourseRequest)

@@ -17,9 +17,18 @@ namespace DataAccess.Context.EntityConfigurations
             builder.Property(cs => cs.SubjectId).IsRequired();
             builder.Property(cs => cs.CourseId).IsRequired();
 
+            // Course ilişkisi
             builder.HasOne(cs => cs.Course)
-                .WithOne(c => c.CourseSubject)
-                .HasForeignKey<CourseSubject>(cs => cs.CourseId);
+                .WithMany(c => c.CourseSubject)
+                .HasForeignKey(cs => cs.CourseId)
+                .OnDelete(DeleteBehavior.Cascade); 
+
+            // Subject ilişkisi
+            builder.HasOne(cs => cs.Subject)
+                .WithMany(s => s.CourseSubject)
+                .HasForeignKey(cs => cs.SubjectId)
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 

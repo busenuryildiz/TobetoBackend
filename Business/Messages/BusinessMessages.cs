@@ -16,5 +16,9 @@ namespace Business.Messages
 
         //-------------------STUDENT---------------
         public static string StudentNumberShouldBeUnique = "Unable to generate a unique student number.";
+
+        
+        //-------------------EXAM---------------
+        public static string ValidateExamPoint = "Exam point should be between 0 and 100.";
     }
 }

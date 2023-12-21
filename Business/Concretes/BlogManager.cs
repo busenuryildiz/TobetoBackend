@@ -52,9 +52,7 @@ namespace Business.Concretes
         {
             var result = await _blogDal.GetAsync(c => c.Id == id);
             Blog mappedBlog = _mapper.Map<Blog>(result);
-
             CreatedBlogResponse createdBlogResponse = _mapper.Map<CreatedBlogResponse>(mappedBlog);
-
             return createdBlogResponse;
         }
 

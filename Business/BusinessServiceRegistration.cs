@@ -29,7 +29,6 @@ namespace Business
             services.AddScoped<IMediaPostService, MediaPostManager>();
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<ISubjectService, SubjectManager>();
-            services.AddScoped<ISubjectService, SubjectManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IApplicationService, ApplicationManager>();
             services.AddScoped<IRoleService, RoleManager>();
@@ -41,29 +40,17 @@ namespace Business
             services.AddScoped<ILanguageService, LanguageManager>();
             services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
-
-            services.AddScoped<IManagerService, ManagerManager>();
-            services.AddScoped<IInstructorService, InstructorManager>();
-
             services.AddScoped<IAssignmentService, AssignmentManager>();
             services.AddScoped<ICourseService, CourseManager>();
             services.AddScoped<ICourseLevelService, CourseLevelManager>();
             services.AddScoped<ICourseStatusService, CourseStatusManager>();
             services.AddScoped<ICourseSubjectService, CourseSubjectManager>();
-
             services.AddScoped<IQuestionService, QuestionManager>();
             services.AddScoped<IOptionService, OptionManager>();
-            services.AddScoped<ICategoryService, CategoryManager>();
-            services.AddScoped<IApplicationService, ApplicationManager>();
-            services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
-            services.AddScoped<IExamService, ExamManager>();
             services.AddScoped<IInstructorCourseService, InstructorCourseManager>();
-
             services.AddScoped<ILessonCourseService, LessonCourseManager>();
-            //services.AddScoped<IOptionService, OptionManager>();
             services.AddScoped<IPaymentService, PaymentManager>();
             services.AddScoped<IStudentCourseService, StudentCourseManager>();
-
             services.AddScoped<ICertificateService, CertificateManager>();
             services.AddScoped<IEducationInformationService, EducationInformationManager>();
             services.AddScoped<ILanguageService, LanguageManager>();
@@ -71,12 +58,10 @@ namespace Business
             services.AddScoped<ISkillService, SkillManager>();
             services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
             services.AddScoped<IUserLanguageService, UserLanguageManager>();
-
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
             services.AddScoped<IApplicationService, ApplicationManager>();
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
-            //services.AddScoped<IContactUsService, ContactUsManager>();
             services.AddScoped<IMediaPostService, MediaPostManager>();
             services.AddScoped<IRoleService, RoleManager>();
             services.AddScoped<IStudentSkillService, StudentSkillManager>();
@@ -96,14 +81,8 @@ namespace Business
             services.AddScoped<CourseSubjectBusinessRules>();
             services.AddScoped<ExamBusinessRules>();
             services.AddScoped<InstructorCourseBusinessRules>();
-            //services.AddScoped<LessonBusinessRules>();
             services.AddScoped<LessonCourseBusinessRules>();
-            //services.AddScoped<OptionBusinessRules>();
             services.AddScoped<PaymentBusinessRules>();
-            //services.AddScoped<QuestionBusinessRules>();
-            //services.AddScoped<SoftwareLanguageBusinessRules>();
-            //services.AddScoped<StudentCourseBusinessRules>();
-
             services.AddScoped<CertificateBusinessRules>();
             services.AddScoped<EducationInformationBusinessRules>();
             services.AddScoped<LanguageBusinessRules>();
@@ -114,13 +93,9 @@ namespace Business
             services.AddScoped<AnnouncementBusinessRules>();
             services.AddScoped<ApplicationBusinessRules>();
             services.AddScoped<BlogBusinessRules>();
-            //services.AddScoped<CategoryBusinessRules>();
-            //services.AddScoped<ContactUsBusinessRules>();
             services.AddScoped<MediaPostBusinessRules>();
             services.AddScoped<RoleBusinessRules>();
             services.AddScoped<StudentSkillBusinessRules>();
-            //services.AddScoped<SubjectBusinessRules>();
-            //services.AddScoped<SurveyBusinessRules>();
             services.AddScoped<UserRoleBusinessRules>();
 
 

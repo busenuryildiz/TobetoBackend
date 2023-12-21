@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities.Concretes.Courses;
 
 namespace Entities.Concretes
 {
      public class Subject:Entity<int>
      {
         public string Name { get; set; }
+        public List<CourseSubject> CourseSubject { get; set; }
        
      }
 }

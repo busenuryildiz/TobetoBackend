@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Entities;
 
-namespace Entities.Concretes.Courses
+namespace Business.DTOs.Response.LessonCourse
 {
-    public class LessonCourse: Entity<int>
+    public class GetListLessonCourseResponse
     {
+        public int Id { get; set; }
         public int LessonId { get; set; }
         public int CourseId { get; set; }
-        public Course Course { get; set; }
-        public Lesson Lesson { get; set; }
     }
 }

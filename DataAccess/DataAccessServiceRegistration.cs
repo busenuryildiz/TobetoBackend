@@ -34,7 +34,7 @@ namespace DataAccess
             services.AddScoped<IExamDal, EfExamDal>();
             services.AddScoped<IInstructorCourseDal, EfInstructorCourseDal>();
             services.AddScoped<ILessonDal, EfLessonDal>();
-            //services.AddScoped<ILessonCourseDal, EfLessonCourseDal>();
+            services.AddScoped<ILessonCourseDal, EfLessonCourseDal>();
             services.AddScoped<IOptionDal, EfOptionDal>();
             services.AddScoped<IPaymentDal, EfPaymentDal>();
             services.AddScoped<IQuestionDal, EfQuestionDal>();

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.Rules
 {
-    public class SocialMediaAccountBusinessRules : BaseBusinessRules
+    public class LessonCourseBusinessRules : BaseBusinessRules
     {
     }
 }

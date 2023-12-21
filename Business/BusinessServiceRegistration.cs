@@ -34,7 +34,7 @@ namespace Business
             services.AddScoped<IExamService, ExamManager>();
             services.AddScoped<IInstructorCourseService, InstructorCourseManager>();
             //services.AddScoped<ILessonService, LessonManager>();
-            //services.AddScoped<ILessonCourseService, LessonCourseManager>();
+            services.AddScoped<ILessonCourseService, LessonCourseManager>();
             //services.AddScoped<IOptionService, OptionManager>();
             services.AddScoped<IPaymentService, PaymentManager>();
             //services.AddScoped<IQuestionService, QuestionManager>();
@@ -75,7 +75,7 @@ namespace Business
             services.AddScoped<ExamBusinessRules>();
             services.AddScoped<InstructorCourseBusinessRules>();
             //services.AddScoped<LessonBusinessRules>();
-            //services.AddScoped<LessonCourseBusinessRules>();
+            services.AddScoped<LessonCourseBusinessRules>();
             //services.AddScoped<OptionBusinessRules>();
             services.AddScoped<PaymentBusinessRules>();
             //services.AddScoped<QuestionBusinessRules>();
@@ -92,13 +92,13 @@ namespace Business
             services.AddScoped<AnnouncementBusinessRules>();
             services.AddScoped<ApplicationBusinessRules>();
             services.AddScoped<BlogBusinessRules>();
-            services.AddScoped<CategoryBusinessRules>();
-            services.AddScoped<ContactUsBusinessRules>();
+            //services.AddScoped<CategoryBusinessRules>();
+            //services.AddScoped<ContactUsBusinessRules>();
             services.AddScoped<MediaPostBusinessRules>();
             services.AddScoped<RoleBusinessRules>();
             services.AddScoped<StudentSkillBusinessRules>();
-            services.AddScoped<SubjectBusinessRules>();
-            services.AddScoped<SurveyBusinessRules>();
+            //services.AddScoped<SubjectBusinessRules>();
+            //services.AddScoped<SurveyBusinessRules>();
             services.AddScoped<UserRoleBusinessRules>();
 
 

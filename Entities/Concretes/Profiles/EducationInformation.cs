@@ -14,7 +14,7 @@ namespace Entities.Concretes.Profiles
         public string? Status { get; set; }
         public string? University { get; set; }
         public string? Faculty { get; set; }
-        public DateTime? BeginningYear { get; set; }
+        public DateTime? BeginningYear { get; set; } // okula başlama yılı graduation yeardan büyük olamaz.
         public DateTime? GraduationYear { get; set; }
         public bool? IsContinue { get; set; }
         public User User { get; set; }

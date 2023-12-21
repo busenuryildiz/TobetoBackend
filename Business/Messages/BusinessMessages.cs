@@ -16,5 +16,17 @@ namespace Business.Messages
 
         //-------------------STUDENT---------------
         public static string StudentNumberShouldBeUnique = "Unable to generate a unique student number.";
+
+
+        //------------------ASSIGNMENT----------------
+        
+        public static string DoNotSendItAfterTheAssignmentPeriodIsOver = "You cannot submit this assignment because it is overdue.";
+        public static string DoNotSendItAfterTheAssignmentPeriodIsOver2 = "The assignment has been added successfully.";
+
+
+        //------------------EDUCATIONINFORMATION-------------
+
+        public static string TheBeginnerYearCannotBeGreaterThanTheGraduationYear = "The beginner year cannot be greater than the graduation year.";
+
     }
 }

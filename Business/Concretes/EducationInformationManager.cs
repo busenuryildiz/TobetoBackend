@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Business.Abstracts;
+using Business.DTOs.Request.Assignments;
 using Business.DTOs.Request.EducationInformation;
 using Business.DTOs.Response.EducationInformation;
 using Business.Rules;
@@ -20,16 +21,21 @@ namespace Business.Concretes
 
         IEducationInformationDal _educationInformationDal;
         IMapper _mapper;
-        EducationInformationBusinessRules _businessRules;
-        public EducationInformationManager(IEducationInformationDal educationInformationDal, IMapper mapper, EducationInformationBusinessRules businessRules)
+        EducationInformationBusinessRules _educationInformationBusinessRules;
+        public EducationInformationManager(IEducationInformationDal educationInformationDal, IMapper mapper, EducationInformationBusinessRules educationInformationBusinessRules)
         {
             _educationInformationDal = educationInformationDal;
             _mapper = mapper;
-            _businessRules = businessRules;
+            _educationInformationBusinessRules = educationInformationBusinessRules;
         }
 
         public async Task<CreatedEducationInformationResponse> Add(CreateEducationInformationRequest createEducationInformationRequest)
         {
+            DateTime BeginningYear = createEducationInformationRequest.BeginningYear;
+            DateTime graduationYear = createEducationInformationRequest.GraduationYear;
+
+            await _educationInformationBusinessRules.TheBeginnerYearCannotBeGreaterThanTheGraduationYear(BeginningYear, graduationYear);
+
             EducationInformation educationInformation = _mapper.Map<EducationInformation>(createEducationInformationRequest);
             EducationInformation createdEducationInformation = await _educationInformationDal.AddAsync(educationInformation);
             CreatedEducationInformationResponse createdEducationInformationResponse = _mapper.Map<CreatedEducationInformationResponse>(createdEducationInformation);

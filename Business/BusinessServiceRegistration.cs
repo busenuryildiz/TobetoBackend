@@ -44,6 +44,14 @@ namespace Business
             services.AddScoped<IStudentSkillService, StudentSkillManager>();
             services.AddScoped<IUserRoleService, UserRoleManager>();
             services.AddScoped<ICourseSubjectService, CourseSubjectManager>();
+            services.AddScoped<IQuestionService, QuestionManager>();
+            services.AddScoped<IOptionService, OptionManager>();
+            services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<IApplicationService, ApplicationManager>();
+            services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
+
+
+
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<LanguageBusinessRules>();
             services.AddScoped<LanguageLevelBusinessRules>();

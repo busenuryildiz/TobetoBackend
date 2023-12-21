@@ -40,6 +40,11 @@ namespace DataAccess
             services.AddScoped<IStudentSkillDal, EfStudentSkillDal>();
             services.AddScoped<IUserRoleDal, EfUserRoleDal>();
             services.AddScoped<ICourseSubjectDal, EfCourseSubjectDal>();
+            services.AddScoped<IQuestionDal, EfQuestionDal>();
+            services.AddScoped<IOptionDal, EfOptionDal>();
+            services.AddScoped<ICategoryDal, EfCategoryDal>();
+            services.AddScoped<ISocialMediaAccountDal, EfSocialMediaAccountDal>();
+            services.AddScoped<IApplicationDal, EfApplicationDal>();
 
 
             return services;

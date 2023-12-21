@@ -15,60 +15,59 @@ namespace Business.Concretes
 {
     public class ExamManager : IExamService
     {
-        private readonly IExamDal _examDal;
+        private readonly IExamDal _repository;
         private readonly IMapper _mapper;
 
-        public ExamManager(IExamDal examDal, IMapper mapper)
+        public ExamManager(IExamDal repository, IMapper mapper)
         {
-            _examDal = examDal;
+            _repository = repository;
             _mapper = mapper;
+        }
+
+        public async Task<IPaginate<GetListExamResponse>> GetListAsync(PageRequest pageRequest)
+        {
+            var data = await _repository.GetListAsync(index: pageRequest.PageIndex, size: pageRequest.PageSize);
+            var result = _mapper.Map<Paginate<GetListExamResponse>>(data);
+            return result;
         }
 
         public async Task<CreatedExamResponse> Add(CreateExamRequest createExamRequest)
         {
-            Exam exam = _mapper.Map<Exam>(createExamRequest);
-            Exam createdExam = await _examDal.AddAsync(exam);
-            CreatedExamResponse createdExamResponse = _mapper.Map<CreatedExamResponse>(createdExam);
-            return createdExamResponse;
-        }
-
-        public async Task<DeletedExamResponse> Delete(DeleteExamRequest deleteExamRequest)
-        {
-            var data = await _examDal.GetAsync(i => i.Id == deleteExamRequest.Id);
-            _mapper.Map(deleteExamRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _examDal.DeleteAsync(data, true);
-            var result2 = _mapper.Map<DeletedExamResponse>(result);
-            return result2;
+            var exam = _mapper.Map<Exam>(createExamRequest);
+            var createdExam = await _repository.AddAsync(exam);
+            var result = _mapper.Map<CreatedExamResponse>(createdExam);
+            return result;
         }
 
         public async Task<UpdatedExamResponse> Update(UpdateExamRequest updateExamRequest)
         {
-            var data = await _examDal.GetAsync(i => i.Id == updateExamRequest.Id);
-            _mapper.Map(updateExamRequest, data);
-            data.UpdatedDate = DateTime.Now;
-            await _examDal.UpdateAsync(data);
-            var result = _mapper.Map<UpdatedExamResponse>(data);
+            var exam = await _repository.GetAsync(e => e.Id == updateExamRequest.Id);
+            _mapper.Map(updateExamRequest, exam);
+            await _repository.UpdateAsync(exam);
+            var result = _mapper.Map<UpdatedExamResponse>(exam);
             return result;
         }
 
-        public async Task<GetByIdExamResponse> GetById(int id)
+        public async Task<DeletedExamResponse> Delete(DeleteExamRequest deleteExamRequest)
         {
-            var result = await _examDal.GetAsync(c => c.Id == id);
-            Exam mappedExam = _mapper.Map<Exam>(result);
-
-            GetByIdExamResponse getByIdExamResponse = _mapper.Map<GetByIdExamResponse>(mappedExam);
-
-            return getByIdExamResponse;
+            var exam = await _repository.GetAsync(e => e.Id == deleteExamRequest.Id);
+            var deletedExam = await _repository.DeleteAsync(exam);
+            var result = _mapper.Map<DeletedExamResponse>(deletedExam);
+            return result;
         }
 
-        public async Task<IPaginate<GetListExamInfoResponse>> GetListAsync(PageRequest pageRequest)
+        public async Task<GetListExamInfoResponse> GetInfoById(int id)
         {
-            var data = await _examDal.GetListAsync(
-                index: pageRequest.PageIndex,
-                size: pageRequest.PageSize
-            );
-            var result = _mapper.Map<Paginate<GetListExamInfoResponse>>(data);
+            var exam = await _repository.GetAsync(e => e.Id == id);
+            var result = _mapper.Map<GetListExamInfoResponse>(exam);
+            return result;
+        }
+
+
+        public async Task<List<GetListExamResponse>> GetExamsByCourseId(int courseId)
+        {
+            var exams = await _repository.GetListAsync(e => e.CourseId == courseId);
+            var result = _mapper.Map<List<GetListExamResponse>>(exams);
             return result;
         }
     }

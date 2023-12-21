@@ -11,10 +11,11 @@ namespace Business.Abstracts
 {
     public interface IExamService
     {
+        Task<IPaginate<GetListExamResponse>> GetListAsync(PageRequest pageRequest);
         Task<CreatedExamResponse> Add(CreateExamRequest createExamRequest);
-        Task<DeletedExamResponse> Delete(DeleteExamRequest deleteExamRequest);
         Task<UpdatedExamResponse> Update(UpdateExamRequest updateExamRequest);
-        Task<GetByIdExamResponse> GetById(int id);
-        Task<IPaginate<GetListExamInfoResponse>> GetListAsync(PageRequest pageRequest);
+        Task<DeletedExamResponse> Delete(DeleteExamRequest deleteExamRequest);
+        Task<GetListExamInfoResponse> GetInfoById(int id);
+        Task<List<GetListExamResponse>> GetExamsByCourseId(int courseId);
     }
 }

@@ -20,6 +20,7 @@ namespace Business
         {
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IStudentService, StudentManager>();
             services.AddScoped<IManagerService, ManagerManager>();
@@ -61,8 +62,6 @@ namespace Business
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<IUserRoleService, UserRoleManager>();
 
-
-
             services.AddScoped<InstructorBusinessRules>();
             services.AddScoped<ManagerBusinessRules>();
             services.AddScoped<StudentBusinessRules>();
@@ -89,18 +88,17 @@ namespace Business
             services.AddScoped<LanguageLevelBusinessRules>();
             services.AddScoped<SkillBusinessRules>();
             services.AddScoped<SocialMediaAccountBusinessRules>();
-            //services.AddScoped<UserExperienceBusinessRules>();
             services.AddScoped<UserLanguageBusinessRules>();
             services.AddScoped<AnnouncementBusinessRules>();
             services.AddScoped<ApplicationBusinessRules>();
             services.AddScoped<BlogBusinessRules>();
-            //services.AddScoped<CategoryBusinessRules>();
-            //services.AddScoped<ContactUsBusinessRules>();
+            services.AddScoped<CategoryBusinessRules>();
+            services.AddScoped<ContactUsBusinessRules>();
             services.AddScoped<MediaPostBusinessRules>();
             services.AddScoped<RoleBusinessRules>();
             services.AddScoped<StudentSkillBusinessRules>();
-            //services.AddScoped<SubjectBusinessRules>();
-            //services.AddScoped<SurveyBusinessRules>();
+            services.AddScoped<SubjectBusinessRules>();
+            services.AddScoped<SurveyBusinessRules>();
             services.AddScoped<UserRoleBusinessRules>();
 
 

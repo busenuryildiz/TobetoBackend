@@ -1,4 +1,8 @@
-﻿using Core.Business.Rules;
+﻿using Business.Messages;
+using Core.Business.Rules;
+using Core.CrossCuttingConcerns.Exceptions.Types;
+using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +13,27 @@ namespace Business.Rules
 {
     public class AssignmentBusinessRules: BaseBusinessRules
     {
+        private readonly IAssignmentDal _assignmnetDal;
+
+        public AssignmentBusinessRules(IAssignmentDal assignmnetDal)
+        {
+            _assignmnetDal = assignmnetDal;
+        }
+
+
+        public async Task DoNotSendItAfterTheAssignmentPeriodIsOver(DateTime deadLine)
+        {
+            if (DateTime.Now > deadLine)
+            {
+                throw new BusinessException(BusinessMessages.DoNotSendItAfterTheAssignmentPeriodIsOver);
+            }
+
+            // Gönderim işlemini burada gerçekleştir
+            // await SendAssignment();
+        }
+
+
+
+
     }
 }

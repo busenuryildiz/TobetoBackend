@@ -7,6 +7,7 @@ using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.Announcement;
 using Business.DTOs.Request.Assignments;
+using Business.DTOs.Request.User;
 using Business.DTOs.Response.Announcement;
 using Business.DTOs.Response.Assignments;
 using Business.Rules;
@@ -22,16 +23,17 @@ namespace Business.Concretes
     {
         IAssignmentDal _assignmentDal;
         IMapper _mapper;
-        AssignmentBusinessRules _businessRules;
-        public AssignmentManager(IAssignmentDal assignmentDal, IMapper mapper, AssignmentBusinessRules businessRules)
+        AssignmentBusinessRules _assignmentBusinessRules;
+        public AssignmentManager(IAssignmentDal assignmentDal, IMapper mapper, AssignmentBusinessRules assignmentBusinessRules)
         {
             _assignmentDal = assignmentDal;
             _mapper = mapper;
-            _businessRules = businessRules;
+            _assignmentBusinessRules = assignmentBusinessRules;
         }
 
         public async Task<CreatedAssignmentResponse> Add(CreateAssignmentRequest createAssignmentRequest)
         {
+            await _assignmentBusinessRules.DoNotSendItAfterTheAssignmentPeriodIsOver(createAssignmentRequest.DeadLine);
             Assignment assignment = _mapper.Map<Assignment>(createAssignmentRequest);
             Assignment createdAssignment = await _assignmentDal.AddAsync(assignment);
             CreatedAssignmentResponse createdAssignmentResponse = _mapper.Map<CreatedAssignmentResponse>(createdAssignment);

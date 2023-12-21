@@ -15,7 +15,7 @@ namespace Entities.Concretes.Courses
         public string Name { get; set; }
         public string Description { get; set; }
         public string FilePath { get; set; }
-        public DateTime DeadLine { get; set; }
+        public DateTime DeadLine { get; set; } // ödev süresinde gönderilsin.
         public bool IsSend { get; set; }
         public Course Course { get; set; }
         public int LessonId { get; set; }

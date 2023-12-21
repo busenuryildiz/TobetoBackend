@@ -31,6 +31,7 @@ namespace Business.Concretes
 
         public async Task<CreatedUserResponse> Add(CreateUserRequest createUserRequest)
         {
+            await _businessRules.EmailShouldBeUnique(createUserRequest.Email);
             await _userBusinessRules.NationalIdNumberCannotBeTheSame(createUserRequest.NationalIdentity);
             User user = _mapper.Map<User>(createUserRequest);
             User createdUser = await _userDal.AddAsync(user);

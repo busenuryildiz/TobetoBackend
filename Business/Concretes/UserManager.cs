@@ -20,17 +20,18 @@ namespace Business.Concretes
     {
         IUserDal _userDal;
         IMapper _mapper;
-        UserBusinessRules _businessRules;
+        UserBusinessRules _userBusinessRules;
 
-        public UserManager(UserBusinessRules businessRules, IUserDal userDal, IMapper mapper)
+        public UserManager(UserBusinessRules userBusinessRules, IUserDal userDal, IMapper mapper)
         {
-            _businessRules = businessRules;
+            _userBusinessRules = userBusinessRules;
             _userDal = userDal;
             _mapper = mapper;
         }
 
         public async Task<CreatedUserResponse> Add(CreateUserRequest createUserRequest)
         {
+            await _userBusinessRules.NationalIdNumberCannotBeTheSame(createUserRequest.NationalIdentity);
             User user = _mapper.Map<User>(createUserRequest);
             User createdUser = await _userDal.AddAsync(user);
             CreatedUserResponse createdUserResponse = _mapper.Map<CreatedUserResponse>(createdUser);

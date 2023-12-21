@@ -14,6 +14,7 @@ namespace Business.DTOs.Request.Student
         public string Address { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string StudenNumber { get; set; }
         public string NationalIdentity { get; set; }
         public DateTime BirthDate { get; set; }
         public string PhoneNumber { get; set; }

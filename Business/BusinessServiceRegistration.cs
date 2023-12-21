@@ -28,7 +28,6 @@ namespace Business
             services.AddScoped<IMediaPostService, MediaPostManager>();
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<ISubjectService, SubjectManager>();
-            services.AddScoped<ISubjectService, SubjectManager>(); 
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IApplicationService, ApplicationManager>();
             services.AddScoped<IRoleService, RoleManager>();
@@ -44,6 +43,9 @@ namespace Business
             services.AddScoped<IStudentSkillService, StudentSkillManager>();
             services.AddScoped<IUserRoleService, UserRoleManager>();
             services.AddScoped<ICourseSubjectService, CourseSubjectManager>();
+            services.AddScoped<ISkillService, SkillManager>();
+            services.AddScoped<IInstructorCourseService, InstructorCourseManager>();
+            services.AddScoped<ICourseStatusService, CourseStatusManager>();
 
 
 
@@ -67,6 +69,10 @@ namespace Business
             services.AddScoped<StudentSkillBusinessRules>();
             services.AddScoped<UserRoleBusinessRules>();
             services.AddScoped<CourseSubjectBusinessRules>();
+            services.AddScoped<SkillBusinessRules>();
+            services.AddScoped<CourseStatusBusinessRules>();
+            services.AddScoped<InstructorCourseBusinessRules>();
+
 
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));

@@ -76,5 +76,17 @@ namespace Business.Concretes
             var result = _mapper.Map<Paginate<GetListStudentCourseInfoResponse>>(data);
             return result;
         }
+
+        public async Task<CreatedStudentCourseResponse> GetCertificateByExamAndStudentCourseId(int examId, int studentCourseId)
+        {
+            await _businessRules.CertificateCanNotBeGivenDueToProgress(examId, studentCourseId);
+            var result = await _studentCourseDal.GetAsync(c => c.Id == studentCourseId);
+            StudentCourse mappedStudentCourse = _mapper.Map<StudentCourse>(result);
+
+            CreatedStudentCourseResponse createdStudentCourseResponse = _mapper.Map<CreatedStudentCourseResponse>(mappedStudentCourse);
+
+            return createdStudentCourseResponse;
+        }
+
     }
 }

@@ -6,6 +6,7 @@ using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
+using Entities.Concretes.Courses;
 using Entities.Concretes.Profiles;
 using System;
 using System.Collections.Generic;

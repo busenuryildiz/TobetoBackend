@@ -30,23 +30,7 @@ namespace Business.Rules
                 throw new BusinessException(BusinessMessages.ValidateExamPoint);
             }
         }
-        public async Task CertificateCanNotBeGivenDueToProgress(int courseId, int examId)
-        {
-            var course = await _courseDal.GetAsync(c => c.Id == courseId);
-            var exam = await _examService.GetById(examId);
-
-
-            if (course != null && exam != null)
-            {
-                if (course.Progress != 100 || exam.Point < 60)
-                {
-                    throw new BusinessException(BusinessMessages.CertificateCanNotBeGivenDueToProgress);
-                }
-            }
-                throw new BusinessException(BusinessMessages.CourseOrExamNotFound);
-            
-
-        }
+    
 
     }
 }

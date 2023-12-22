@@ -51,5 +51,6 @@ namespace WebAPI.Controllers
             var result = await _studentCourseService.GetListAsync(pageRequest);
             return Ok(result);
         }
+
     }
 }

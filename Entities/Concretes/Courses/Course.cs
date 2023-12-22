@@ -25,7 +25,6 @@ namespace Entities.Concretes.Courses
         public CourseStatus? CourseStatus { get; set; }
         public CourseSubject? CourseSubject { get; set; }
         public SoftwareLanguage? SoftwareLanguage { get; set; }
-        public int? CourseSubjectId { get; set; } // Eklenen alan
         public List<StudentCourse>? StudentCourses { get; set; } // Eklenen alan
 
 

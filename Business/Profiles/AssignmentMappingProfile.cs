@@ -28,7 +28,7 @@ namespace Business.Profiles
             CreateMap<Assignment, UpdatedAssignmentResponse>().ReverseMap();
 
             CreateMap<Assignment, GetListAssignmentResponse>().ReverseMap();
-            CreateMap<IPaginate<Assignment>, IPaginate<GetListAssignmentResponse>>().ReverseMap();
+            CreateMap<Paginate<Assignment>, Paginate<GetListAssignmentResponse>>().ReverseMap();
         }
     }
 }

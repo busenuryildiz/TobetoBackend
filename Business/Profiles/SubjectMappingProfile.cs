@@ -1,6 +1,11 @@
 ﻿using AutoMapper;
 using Business.DTOs.Request.Subject;
+using Business.DTOs.Request.Subject;
+using Business.DTOs.Request.User;
 using Business.DTOs.Response.Subject;
+using Business.DTOs.Response.Subject;
+using Business.DTOs.Response.User;
+using Core.DataAccess.Paging;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -14,14 +19,31 @@ namespace Business.Profiles
     {
         public SubjectMappingProfile()
         {
-            CreateMap<CreateSubjectRequest, Subject>();
-            CreateMap<UpdateSubjectRequest, Subject>();
-            CreateMap<Subject, SubjectResponse>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-                .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => src.CreatedDate))
-                .ForMember(dest => dest.UpdatedDate, opt => opt.MapFrom(src => src.UpdatedDate))
-                .ForMember(dest => dest.DeletedDate, opt => opt.MapFrom(src => src.DeletedDate));
+            //--------------------Created---------------------------------------
+
+            CreateMap<CreateSubjectRequest, Subject>().ReverseMap();
+            CreateMap<CreateSubjectRequest, CreateUserRequest>().ReverseMap();
+            CreateMap<Subject, CreatedSubjectResponse>().ReverseMap();
+            CreateMap<CreateUserRequest, CreatedUserResponse>().ReverseMap();
+
+
+            //-------------------Deleted----------------------------------------------
+
+            CreateMap<DeleteSubjectRequest, Subject>().ReverseMap();
+            CreateMap<DeleteSubjectRequest, DeleteUserRequest>().ReverseMap();
+            CreateMap<Subject, DeletedSubjectResponse>().ReverseMap();
+            CreateMap<DeleteUserRequest, DeletedUserResponse>().ReverseMap();
+
+            //-------------------Updated---------------------------------------------
+            CreateMap<UpdateSubjectRequest, Subject>().ReverseMap();
+            CreateMap<UpdateSubjectRequest, UpdateUserRequest>().ReverseMap();
+            CreateMap<Subject, UpdatedSubjectResponse>().ReverseMap();
+            CreateMap<UpdateUserRequest, UpdatedUserResponse>().ReverseMap();
+
+            //--------------------Listeleme-----------------------------------
+
+            CreateMap<Subject, GetListSubjectResponse>().ReverseMap();
+            CreateMap<Paginate<Subject>, Paginate<GetListSubjectResponse>>().ReverseMap();
         }
     }
 }

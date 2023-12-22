@@ -52,6 +52,5 @@ namespace Business.Rules
 
         }
 
-        // Diğer metotlar burada...
     }
 }

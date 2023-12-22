@@ -13,13 +13,21 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<SoftwareLanguage> builder)
         {
-            builder.HasKey(sl => sl.Id);
-            builder.Property(sl => sl.Name).IsRequired().HasMaxLength(255);
+            builder.ToTable("SoftwareLanguages").HasKey(sl => sl.Id);
+
+            builder.Property(sl => sl.Name)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("Name"); 
 
             builder.HasMany(sl => sl.Courses)
                 .WithOne(c => c.SoftwareLanguage)
                 .HasForeignKey(c => c.SoftwareLanguageId);
+
+            builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
+
         }
     }
+
 
 }

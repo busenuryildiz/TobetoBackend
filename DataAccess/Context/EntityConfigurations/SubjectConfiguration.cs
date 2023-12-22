@@ -9,12 +9,19 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Context.EntityConfigurations
 {
-   public class SubjectConfiguration : IEntityTypeConfiguration<Subject>
-{
-    public void Configure(EntityTypeBuilder<Subject> builder)
+    public class SubjectConfiguration : IEntityTypeConfiguration<Subject>
     {
-        builder.HasKey(sub => sub.Id);
-        builder.Property(sub => sub.Name).IsRequired().HasMaxLength(255);
-    }
-}
+        public void Configure(EntityTypeBuilder<Subject> builder)
+        {
+            builder.ToTable("Subjects").HasKey(sub => sub.Id); 
+
+            builder.Property(sub => sub.Name)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("Name");
+
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
+        }
+    }
+
 }

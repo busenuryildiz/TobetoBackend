@@ -13,14 +13,21 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Skill> builder)
         {
-            builder.HasKey(s => s.Id);
-            builder.Property(s => s.Name).IsRequired().HasMaxLength(255);
+            builder.ToTable("Skills").HasKey(s => s.Id);
+
+            builder.Property(s => s.Name)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("Name"); 
 
             builder.HasMany(s => s.StudentSkills)
                 .WithOne(ss => ss.Skill)
                 .HasForeignKey(ss => ss.SkillId);
+
+            builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
         }
     }
+
 
 
 }

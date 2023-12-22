@@ -13,15 +13,28 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Option> builder)
         {
-            builder.HasKey(o => o.Id);
-            builder.Property(o => o.Answer).IsRequired();
-            builder.Property(o => o.QuestionId).IsRequired();
-            builder.Property(o => o.IsCorrect).IsRequired();
+            builder.ToTable("Options").HasKey(o => o.Id);
+
+
+            builder.Property(o => o.Answer)
+                .IsRequired()
+                .HasColumnName("Answer"); 
+
+            builder.Property(o => o.QuestionId)
+                .IsRequired()
+                .HasColumnName("QuestionId");
+
+            builder.Property(o => o.IsCorrect)
+                .IsRequired()
+                .HasColumnName("IsCorrect"); 
 
             builder.HasOne(o => o.Question)
                 .WithMany(q => q.Options)
-                .HasForeignKey(o => o.QuestionId);
+                .HasForeignKey(o => o.QuestionId); 
+
+            builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
         }
     }
+
 
 }

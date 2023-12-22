@@ -13,8 +13,16 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Role> builder)
         {
-            builder.HasKey(r => r.Id);
-            builder.Property(r => r.Name).IsRequired().HasMaxLength(255);
+            builder.ToTable("Roles").HasKey(r => r.Id); 
+
+            builder.Property(r => r.Name)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("Name");
+
+            builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
+
         }
     }
+
 }

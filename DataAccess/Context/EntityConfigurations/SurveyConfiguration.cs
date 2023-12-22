@@ -13,14 +13,27 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Survey> builder)
         {
-            builder.HasKey(s => s.Id);
-            builder.Property(s => s.StudentId).IsRequired();
-            builder.Property(s => s.Name).IsRequired().HasMaxLength(255);
-            builder.Property(s => s.SurveyUrl);
+            builder.ToTable("Surveys").HasKey(s => s.Id);
+
+            builder.Property(s => s.StudentId)
+                .IsRequired()
+                .HasColumnName("StudentId");
+
+            builder.Property(s => s.Name)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("Name");
+
+            builder.Property(s => s.SurveyUrl)
+                .HasColumnName("SurveyUrl");
 
             builder.HasOne(s => s.Student)
                 .WithMany(st => st.Surveys)
-                .HasForeignKey(s => s.StudentId);
+                .HasForeignKey(s => s.StudentId)
+                .IsRequired();
+
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
+
     }
 }

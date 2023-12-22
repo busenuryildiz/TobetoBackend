@@ -13,13 +13,19 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<CourseStatus> builder)
         {
-            builder.HasKey(cs => cs.Id);
-            builder.Property(cs => cs.Name).IsRequired().HasMaxLength(255);
+            builder.ToTable("CourseStatuses").HasKey(cs => cs.Id);
+
+            builder.Property(cs => cs.Name).HasColumnName("Name").HasMaxLength(255).IsRequired();
+
+
 
             builder.HasMany(cs => cs.Courses)
                 .WithOne(c => c.CourseStatus)
                 .HasForeignKey(c => c.CourseStatusId);
+
+            builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
         }
     }
+
 
 }

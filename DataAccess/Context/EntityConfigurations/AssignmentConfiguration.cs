@@ -13,18 +13,28 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Assignment> builder)
         {
-            builder.HasKey(a => a.Id);
-            builder.Property(a => a.CourseId).IsRequired();
-            builder.Property(a => a.Name).IsRequired().HasMaxLength(255);
-            builder.Property(a => a.Description);
-            builder.Property(a => a.FilePath);
-            builder.Property(a => a.DeadLine).IsRequired();
-            builder.Property(a => a.IsSend).IsRequired();
+            builder.ToTable("Assignments").HasKey(a => a.Id);
+
+
+            builder.Property(a => a.CourseId).IsRequired().HasColumnName("CourseId"); // Örnek bir sütun adı ekledim, istediğiniz adı verebilirsiniz
+
+            builder.Property(a => a.Name).IsRequired().HasMaxLength(255).HasColumnName("Name");
+
+            builder.Property(a => a.Description).HasColumnName("Description");
+
+            builder.Property(a => a.FilePath).HasColumnName("FilePath");
+
+            builder.Property(a => a.DeadLine).IsRequired().HasColumnName("DeadLine");
+
+            builder.Property(a => a.IsSend).IsRequired().HasColumnName("IsSend");
 
             builder.HasOne(a => a.Course)
                 .WithMany(c => c.Assignments)
-                .HasForeignKey(a => a.CourseId);
+                .HasForeignKey(a => a.CourseId)
+                .IsRequired();
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }
+
 
 }

@@ -13,15 +13,28 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<SocialMediaAccount> builder)
         {
-            builder.HasKey(sma => sma.Id);
-            builder.Property(sma => sma.UserId).IsRequired();
-            builder.Property(sma => sma.SocialMedia).IsRequired().HasMaxLength(255);
-            builder.Property(sma => sma.SocialMediaUrl).IsRequired();
+            builder.ToTable("SocialMediaAccounts").HasKey(sma => sma.Id); 
+
+            builder.Property(sma => sma.UserId)
+                .IsRequired()
+                .HasColumnName("UserId"); 
+
+            builder.Property(sma => sma.SocialMedia)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("SocialMedia"); 
+
+            builder.Property(sma => sma.SocialMediaUrl)
+                .IsRequired()
+                .HasColumnName("SocialMediaUrl");
 
             builder.HasOne(sma => sma.User)
                 .WithMany(u => u.SocialMediaAccounts)
                 .HasForeignKey(sma => sma.UserId);
+
+            builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
         }
     }
+
 
 }

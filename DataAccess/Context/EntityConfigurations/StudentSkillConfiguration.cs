@@ -13,12 +13,15 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<StudentSkill> builder)
         {
-            builder.ToTable("StudentSkills");
+            builder.ToTable("StudentSkills").HasKey(ss => ss.Id);
 
-            builder.HasKey(ss => ss.Id);
+            builder.Property(ss => ss.StudentId)
+                .IsRequired()
+                .HasColumnName("StudentId");
 
-            builder.Property(ss => ss.StudentId).IsRequired();
-            builder.Property(ss => ss.SkillId).IsRequired();
+            builder.Property(ss => ss.SkillId)
+                .IsRequired()
+                .HasColumnName("SkillId");
 
             builder.HasOne(ss => ss.Student)
                 .WithMany(s => s.StudentSkills)
@@ -29,7 +32,10 @@ namespace DataAccess.Context.EntityConfigurations
                 .WithMany()
                 .HasForeignKey(ss => ss.SkillId)
                 .IsRequired();
-        }
-    }
 
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
+        }
+
+
+    }
 }

@@ -13,39 +13,42 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<UserLanguage> builder)
         {
-            builder.ToTable("UserLanguages");
-
-            builder.HasKey(ul => ul.Id);
+            builder.ToTable("UserLanguages").HasKey(ul => ul.Id);
 
             builder.Property(ul => ul.UserId)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("UserId"); 
 
             builder.Property(ul => ul.LanguageId)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("LanguageId"); 
 
             builder.Property(ul => ul.LanguageLevelId)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("LanguageLevelId");
 
-            // UserLanguage ve User arasındaki ilişki
+            
             builder.HasOne(ul => ul.User)
                 .WithMany(u => u.UserLanguages)
                 .HasForeignKey(ul => ul.UserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade); // Silme işlemini CASCADE olarak ayarlayın veya gerektiğine göre değiştirin
+                .OnDelete(DeleteBehavior.Cascade); 
 
-            // UserLanguage ve Language arasındaki ilişki
+         
             builder.HasOne(ul => ul.Language)
                 .WithMany(l => l.UserLanguages)
                 .HasForeignKey(ul => ul.LanguageId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict); // Silme işlemini sınırlayın veya gerektiğine göre değiştirin
+                .OnDelete(DeleteBehavior.Restrict); 
 
-            // UserLanguage ve LanguageLevel arasındaki ilişki
+            
             builder.HasOne(ul => ul.LanguageLevel)
                 .WithMany()
                 .HasForeignKey(ul => ul.LanguageLevelId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict); // Silme işlemini sınırlayın veya gerektiğine göre değiştirin
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }
 

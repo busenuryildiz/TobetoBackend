@@ -13,9 +13,14 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Announcement> builder)
         {
-            builder.HasKey(a => a.Id);
-            builder.Property(a => a.Name).IsRequired().HasMaxLength(255);
-            builder.Property(a => a.Description);
+            builder.ToTable("Announcements").HasKey(a => a.Id);
+            builder.Property(a => a.Id).HasColumnName("AnnouncementId").IsRequired();
+            builder.Property(a => a.Name).HasColumnName("Name").IsRequired().HasMaxLength(255);
+            builder.Property(a => a.Description).HasColumnName("Description");
+
+            // Örnek bir query filter eklenmiş, DeletedDate'i null olmayanları filtreler
+            builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
         }
     }
+
 }

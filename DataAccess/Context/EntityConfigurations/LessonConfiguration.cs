@@ -13,24 +13,32 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Lesson> builder)
         {
-            builder.HasKey(l => l.Id);
-            builder.Property(l => l.Name).IsRequired().HasMaxLength(255);
-            builder.Property(l => l.Content).IsRequired();
-            builder.Property(l => l.VideoUrl).IsRequired();
+            builder.ToTable("Lessons").HasKey(l => l.Id); // Primary key'i belirtiyoruz
 
-            // LessonCourse ilişkisi
+            builder.Property(l => l.Name)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("Name"); 
+
+            builder.Property(l => l.Content)
+                .IsRequired()
+                .HasColumnName("Content"); 
+
+            builder.Property(l => l.VideoUrl)
+                .IsRequired()
+                .HasColumnName("VideoUrl"); 
+
             builder.HasMany(l => l.LessonCourses)
                 .WithOne(lc => lc.Lesson)
-                .HasForeignKey(lc => lc.LessonId);
+                .HasForeignKey(lc => lc.LessonId); 
 
-            // Assignments ilişkisi
             builder.HasMany(l => l.Assignments)
                 .WithOne(a => a.Lesson)
-                .HasForeignKey(a => a.LessonId);
+                .HasForeignKey(a => a.LessonId); 
 
-            // Diğer ilişkileri ve konfigürasyonları ekleyebilirsiniz.
+            builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
 
-            // Örneğin: Lesson ve diğer ilişkileri ekleyebilirsiniz.
         }
     }
+
 }

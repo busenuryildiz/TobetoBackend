@@ -13,11 +13,19 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Blog> builder)
         {
-            builder.HasKey(b => b.Id);
-            builder.Property(b => b.Title).IsRequired().HasMaxLength(255);
-            builder.Property(b => b.Description);
-            builder.Property(b => b.Content);
-            builder.Property(b => b.ImagePath);
+            builder.ToTable("Blogs").HasKey(b => b.Id);
+
+
+            builder.Property(b => b.Title).IsRequired().HasMaxLength(255).HasColumnName("Title");
+
+            builder.Property(b => b.Description).HasColumnName("Description");
+
+            builder.Property(b => b.Content).HasColumnName("Content");
+
+            builder.Property(b => b.ImagePath).HasColumnName("ImagePath");
+
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }
+
 }

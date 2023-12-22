@@ -28,10 +28,11 @@ namespace Business.Messages
 
         //-------------------EXAM---------------
         public static string ValidateExamPoint = "Exam point should be between 0 and 100.";
+        public static string CantGetRandomQuestionsByExamId = "Exam questions can not be found!";
 
 
         //------------------ASSIGNMENT----------------
-        
+
         public static string DoNotSendItAfterTheAssignmentPeriodIsOver = "You cannot submit this assignment because it is overdue.";
 
 
@@ -41,7 +42,5 @@ namespace Business.Messages
 
         //-------------------USEREXPERİENCE---------------------------------
         public static string WorkBeginDateCannotBeGreatherThanWorkEndDate = "Job Start Date cannot be greater than Job End Date";
-
-
     }
 }

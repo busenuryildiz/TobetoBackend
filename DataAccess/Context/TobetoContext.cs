@@ -52,6 +52,7 @@ namespace DataAccess.Context
         public DbSet<UserLanguage> UserLanguages { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Manager> Managers { get; set; }
+        public DbSet<City> Cities { get; set; } 
 
 
 

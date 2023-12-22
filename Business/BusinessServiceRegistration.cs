@@ -75,6 +75,8 @@ namespace Business
             services.AddScoped<ISubjectService, SubjectManager>();
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<IUserRoleService, UserRoleManager>();
+            services.AddScoped<ICityService, CityManager>();
+
 
             services.AddScoped<InstructorBusinessRules>();
             services.AddScoped<ManagerBusinessRules>();
@@ -107,7 +109,7 @@ namespace Business
             services.AddScoped<StudentSkillBusinessRules>();
             services.AddScoped<StudentCourseBusinessRules>();
             services.AddScoped<UserRoleBusinessRules>();
-
+            services.AddScoped<CityBusinessRules>();
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
             return services;

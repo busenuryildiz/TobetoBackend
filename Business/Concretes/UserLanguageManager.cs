@@ -38,20 +38,20 @@ namespace Business.Concretes
 
         public async Task<DeletedUserLanguageResponse> Delete(DeleteUserLanguageRequest deleteUserLanguageRequest)
         {
-            UserLanguage userLanguage = await _userLanguageDal.GetAsync(i => i.Id == deleteUserLanguageRequest.Id);
-            userLanguage.DeletedDate = DateTime.Now;
-            var deletedUserLanguage = await _userLanguageDal.DeleteAsync(userLanguage);
-            DeletedUserLanguageResponse deletedUserLanguageResponse = _mapper.Map<DeletedUserLanguageResponse>(deletedUserLanguage);
+            //UserLanguage userLanguage = await _userLanguageDal.GetAsync(i => i.Id == deleteUserLanguageRequest.Id);
+            //userLanguage.DeletedDate = DateTime.Now;
+            //var deletedUserLanguage = await _userLanguageDal.DeleteAsync(userLanguage);
+            //DeletedUserLanguageResponse deletedUserLanguageResponse = _mapper.Map<DeletedUserLanguageResponse>(deletedUserLanguage);
 
-            return deletedUserLanguageResponse;
+            //return deletedUserLanguageResponse;
 
 
-            //var data = await _userLanguageDal.GetAsync(i => i.Id == deleteUserLanguageRequest.Id);
-            //_mapper.Map(deleteUserLanguageRequest, data);
-            //data.DeletedDate = DateTime.Now;
-            //var result = await _userLanguageDal.DeleteAsync(data);
-            //var result2 = _mapper.Map<DeletedUserLanguageResponse>(result);
-            //return result2;
+            var data = await _userLanguageDal.GetAsync(i => i.Id == deleteUserLanguageRequest.Id);
+            _mapper.Map(deleteUserLanguageRequest, data);
+            data.DeletedDate = DateTime.Now;
+            var result = await _userLanguageDal.DeleteAsync(data);
+            var result2 = _mapper.Map<DeletedUserLanguageResponse>(result);
+            return result2;
         }
 
         public async Task<CreatedUserLanguageResponse> GetById(int id)

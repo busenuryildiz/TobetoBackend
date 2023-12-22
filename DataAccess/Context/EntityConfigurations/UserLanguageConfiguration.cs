@@ -21,7 +21,8 @@ namespace DataAccess.Context.EntityConfigurations
 
             builder.Property(ul => ul.LanguageId)
                 .IsRequired()
-                .HasColumnName("LanguageId"); 
+                .HasColumnName("LanguageId");
+
 
             builder.Property(ul => ul.LanguageLevelId)
                 .IsRequired()
@@ -48,7 +49,7 @@ namespace DataAccess.Context.EntityConfigurations
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
+            builder.HasQueryFilter(ul => !ul.DeletedDate.HasValue);
         }
     }
 

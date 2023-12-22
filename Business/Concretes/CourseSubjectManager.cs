@@ -42,7 +42,7 @@ namespace Business.Concretes
             var data = await _courseSubjectDal.GetAsync(i => i.Id == deleteCourseSubjectRequest.Id);
             _mapper.Map(deleteCourseSubjectRequest, data);
             data.DeletedDate = DateTime.Now;
-            var result = await _courseSubjectDal.DeleteAsync(data, true);
+            var result = await _courseSubjectDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedCourseSubjectResponse>(result);
             return result2;
         }

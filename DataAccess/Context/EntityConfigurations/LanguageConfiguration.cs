@@ -20,7 +20,8 @@ namespace DataAccess.Context.EntityConfigurations
             builder.HasMany(l => l.UserLanguages)
                 .WithOne(ul => ul.Language)
                 .HasForeignKey(ul => ul.LanguageId)
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
         }

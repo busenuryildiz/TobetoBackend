@@ -1,4 +1,5 @@
 ﻿using Business.Abstracts;
+using Business.DTOs.Request.Blog;
 using Business.DTOs.Request.StudentCourse;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
@@ -10,7 +11,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class StudentCoursesController : ControllerBase
     {
-        private readonly IStudentCourseService _studentCourseService;
+        IStudentCourseService _studentCourseService;
 
         public StudentCoursesController(IStudentCourseService studentCourseService)
         {
@@ -21,7 +22,7 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Add([FromBody] CreateStudentCourseRequest createStudentCourseRequest)
         {
             var result = await _studentCourseService.Add(createStudentCourseRequest);
-            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+            return Ok(result);
         }
 
         [HttpDelete("delete")]

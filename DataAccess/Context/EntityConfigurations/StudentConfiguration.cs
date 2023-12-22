@@ -29,6 +29,17 @@ namespace DataAccess.Context.EntityConfigurations
                 .WithOne(s => s.Student)
                 .HasForeignKey(s => s.StudentId);
 
+
+            builder.HasMany(u => u.StudentAssignments)
+                .WithOne(ei => ei.Student)
+                .HasForeignKey(ei => ei.StudentId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(u => u.ApplicationStudents)
+                .WithOne(ei => ei.Student)
+                .HasForeignKey(ei => ei.StudentId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }

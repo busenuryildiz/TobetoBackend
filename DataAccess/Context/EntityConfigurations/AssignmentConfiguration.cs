@@ -24,6 +24,18 @@ namespace DataAccess.Context.EntityConfigurations
             builder.HasOne(a => a.Course)
                 .WithMany(c => c.Assignments)
                 .HasForeignKey(a => a.CourseId);
+
+
+
+
+
+
+
+
+            // Application ile ApplicationStudent arasındaki ilişki
+            builder.HasMany(a => a.StudentAssignments)
+                .WithOne(a => a.Assignment)
+                .HasForeignKey(a => a.AssignmentId);
         }
     }
 

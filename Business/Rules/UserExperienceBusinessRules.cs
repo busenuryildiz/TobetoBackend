@@ -18,11 +18,11 @@ namespace Business.Rules
             _userExperienceDal = userExperienceDal;
         }
 
-        public async Task WorkBeginDateCannotBeGreatherThanWorkEndDate(DateTime workBeginDate, DateTime workEndDate)
+        public async Task WorkBeginDateCannotBeGreaterThanWorkEndDate(DateTime workBeginDate, DateTime workEndDate)
         {
             if (workBeginDate > workEndDate)
             {
-                throw new BusinessException(BusinessMessages.WorkBeginDateCannotBeGreatherThanWorkEndDate);
+                throw new BusinessException(BusinessMessages.WorkBeginDateCannotBeGreaterThanWorkEndDate);
             }
         }
     }

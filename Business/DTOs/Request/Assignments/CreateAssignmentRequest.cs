@@ -10,8 +10,8 @@ namespace Business.DTOs.Request.Assignments
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
+        public int? CourseId { get; set; }
         public string? FilePath { get; set; }
-        public int LessonId { get; set; }
         public DateTime DeadLine { get; set; }
         public bool? IsSend { get; set; }
     }

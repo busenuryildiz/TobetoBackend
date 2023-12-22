@@ -2,6 +2,7 @@
 using DataAccess.Concretes;
 using DataAccess.Context;
 using Entities.Concretes;
+using Entities.Concretes.Courses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,6 +41,8 @@ namespace DataAccess
             services.AddScoped<IQuestionDal, EfQuestionDal>();
             services.AddScoped<ISoftwareLanguageDal, EfSoftwareLanguageDal>();
             services.AddScoped<IStudentCourseDal, EfStudentCourseDal>();
+            services.AddScoped<IApplicationStudentDal, EfApplicationStudentDal>();
+            services.AddScoped<IStudentAssignmentDal, EfStudentAssignmentDal>();
 
             services.AddScoped<ICertificateDal, EfCertificateDal>();
             services.AddScoped<IEducationInformationDal, EfEducationInformationDal>();

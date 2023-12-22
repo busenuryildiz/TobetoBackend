@@ -13,51 +13,43 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Course> builder)
         {
-            builder.HasKey(c => c.Id);
-            builder.Property(c => c.CourseLevelId).IsRequired();
-            builder.Property(c => c.SoftwareLanguageId).IsRequired();
-            builder.Property(c => c.CategoryId).IsRequired();
-            builder.Property(c => c.Name).IsRequired().HasMaxLength(255);
-            builder.Property(c => c.ImagePath);
-            builder.Property(c => c.CertificateURL);
-            builder.Property(c => c.Progress);
-            builder.Property(c => c.Price).IsRequired();
+            builder.ToTable("Courses").HasKey(c => c.Id);
+            builder.Property(c => c.Id).HasColumnName("Id").IsRequired();
+            builder.Property(c => c.CourseLevelId).HasColumnName("CourseLevelId");
+            builder.Property(c => c.CourseStatusId).HasColumnName("CourseStatusId");
+            builder.Property(c => c.SoftwareLanguageId).HasColumnName("SoftwareLanguageId");
+            builder.Property(c => c.CategoryId).HasColumnName("CategoryId");
+            builder.Property(c => c.Name).HasColumnName("Name").HasMaxLength(255);
+            builder.Property(c => c.ImagePath).HasColumnName("ImagePath");
+            builder.Property(c => c.Price).HasColumnName("Price");
 
+            // Course ile Category arasındaki ilişki
             builder.HasOne(c => c.Category)
-                .WithMany(cat => cat.Courses)
+                .WithMany()
                 .HasForeignKey(c => c.CategoryId);
 
-            builder.HasMany(c => c.LessonCourses)  // HasMany kullanılmalı
-                .WithOne(lc => lc.Course)           // WithOne ve HasForeignKey LessonCourse sınıfının Course özelliği için kullanılmalı
-                .HasForeignKey(lc => lc.CourseId)  // LessonCourse sınıfının CourseId özelliğiyle eşleşmeli
-                .OnDelete(DeleteBehavior.Restrict);
-
-
-            builder.HasMany(c => c.Assignments)
-                .WithOne(a => a.Course)
-                .HasForeignKey(a => a.CourseId);
-
-            builder.HasMany(c => c.Exams)
-                .WithOne(e => e.Course)
-                .HasForeignKey(e => e.CourseId);
-
+            // Course ile CourseLevel arasındaki ilişki
             builder.HasOne(c => c.CourseLevel)
-                .WithMany(cl => cl.Courses)
+                .WithMany()
                 .HasForeignKey(c => c.CourseLevelId);
 
+            // Course ile CourseStatus arasındaki ilişki
             builder.HasOne(c => c.CourseStatus)
-                .WithMany(cs => cs.Courses)
-                .HasForeignKey(c => c.CourseStatusId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .WithMany()
+                .HasForeignKey(c => c.CourseStatusId);
 
-            builder.HasMany(c => c.CourseSubject)  // HasMany kullanılmalı
-                .WithOne(lc => lc.Course)           // WithOne ve HasForeignKey LessonCourse sınıfının Course özelliği için kullanılmalı
-                .HasForeignKey(lc => lc.CourseId)  // LessonCourse sınıfının CourseId özelliğiyle eşleşmeli
-                .OnDelete(DeleteBehavior.Restrict);
-
+            // Course ile SoftwareLanguage arasındaki ilişki
             builder.HasOne(c => c.SoftwareLanguage)
-                .WithMany(sl => sl.Courses)
+                .WithMany()
                 .HasForeignKey(c => c.SoftwareLanguageId);
+
+            // Course ile StudentCourse arasındaki ilişki
+            builder.HasMany(c => c.StudentCourses)
+                .WithOne(sc => sc.Course)
+                .HasForeignKey(sc => sc.CourseId);
+
+            // Course tablosu üzerinde silinmiş kayıtları filtreleme
+            builder.HasQueryFilter(c => !c.DeletedDate.HasValue);
         }
     }
 

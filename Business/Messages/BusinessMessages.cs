@@ -41,6 +41,6 @@ namespace Business.Messages
         public static string TheBeginnerYearCannotBeGreaterThanTheGraduationYear = "The beginner year cannot be greater than the graduation year.";
 
         //-------------------USEREXPERİENCE---------------------------------
-        public static string WorkBeginDateCannotBeGreatherThanWorkEndDate = "Job Start Date cannot be greater than Job End Date";
+        public static string WorkBeginDateCannotBeGreaterThanWorkEndDate = "Job Start Date cannot be greater than Job End Date";
     }
 }

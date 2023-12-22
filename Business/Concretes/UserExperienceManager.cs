@@ -41,7 +41,7 @@ namespace Business.Concretes
             DateTime workBeginDate = createUserExperienceRequest.WorkBeginDate;
             DateTime workEndDate = createUserExperienceRequest.WorkEndDate;
 
-            await _userExperienceBusinessRules.WorkBeginDateCannotBeGreatherThanWorkEndDate(workBeginDate, workEndDate);
+            await _userExperienceBusinessRules.WorkBeginDateCannotBeGreaterThanWorkEndDate(workBeginDate, workEndDate);
             var userExperience = _mapper.Map<UserExperience>(createUserExperienceRequest);
             var createdUserExperience = await _repository.AddAsync(userExperience);
             var result = _mapper.Map<CreatedUserExperienceResponse>(createdUserExperience);

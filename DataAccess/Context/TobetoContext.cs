@@ -22,6 +22,7 @@ namespace DataAccess.Context
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Application> Applications { get; set; }
+        public DbSet<ApplicationStudent> ApplicationStudents { get; set; }
         public DbSet<ContactUs> ContactUses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CourseLevel> CourseLevels { get; set; }
@@ -36,6 +37,7 @@ namespace DataAccess.Context
         public DbSet<Instructor> Instructors{ get; set; }
         public DbSet<InstructorCourse> InstructorCourses { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<StudentAssignment> StudentAssignments { get; set; }
         public DbSet<Exam> Exams { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<MediaPost> MediaPosts { get; set; }

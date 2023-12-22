@@ -22,15 +22,6 @@ namespace DataAccess.Context.EntityConfigurations
             builder.HasMany(l => l.LessonCourses)
                 .WithOne(lc => lc.Lesson)
                 .HasForeignKey(lc => lc.LessonId);
-
-            // Assignments ilişkisi
-            builder.HasMany(l => l.Assignments)
-                .WithOne(a => a.Lesson)
-                .HasForeignKey(a => a.LessonId);
-
-            // Diğer ilişkileri ve konfigürasyonları ekleyebilirsiniz.
-
-            // Örneğin: Lesson ve diğer ilişkileri ekleyebilirsiniz.
         }
     }
 }

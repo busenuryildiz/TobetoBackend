@@ -1,4 +1,6 @@
 ﻿using Business.DTOs.Request.Subject;
+using Business.DTOs.Request.Subject;
+using Business.DTOs.Response.Subject;
 using Business.DTOs.Response.Subject;
 using Core.DataAccess.Paging;
 using System;
@@ -11,10 +13,10 @@ namespace Business.Abstracts
 {
     public interface ISubjectService
     {
-        Task<IPaginate<SubjectResponse>> GetAllSubjectsAsync(PageRequest pageRequest);
-        Task<SubjectResponse> AddSubjectAsync(CreateSubjectRequest request);
-        Task<SubjectResponse> GetSubjectByIdAsync(int id);
-        Task<SubjectResponse> UpdateSubjectAsync(UpdateSubjectRequest request);
-        Task<bool> DeleteSubjectAsync(int id);
+        Task<IPaginate<GetListSubjectResponse>> GetListAsync(PageRequest pageRequest);
+        Task<CreatedSubjectResponse> Add(CreateSubjectRequest createSubjectRequest);
+        Task<UpdatedSubjectResponse> Update(UpdateSubjectRequest updateSubjectRequest);
+        Task<DeletedSubjectResponse> Delete(DeleteSubjectRequest deleteSubjectRequest);
+        Task<CreatedSubjectResponse> GetById(int id);
     }
 }

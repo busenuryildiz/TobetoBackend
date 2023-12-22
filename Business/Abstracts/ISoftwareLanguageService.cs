@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Business.Abstracts
 {
-    public class ISoftwareLanguage
+    public interface ISoftwareLanguageService
     {
         Task<IPaginate<GetListSoftwareLanguageResponse>> GetListAsync(PageRequest pageRequest);
         Task<CreatedSoftwareLanguageResponse> Add(CreateSoftwareLanguageRequest createSoftwareLanguageRequest);

@@ -79,8 +79,6 @@ namespace Business.Concretes
         }
     }
 
-    public interface ISoftwareLanguageService
-    {
-    }
+
 }
 

@@ -18,14 +18,14 @@ namespace WebAPI.Controllers
             _examService = examService;
         }
 
-        [HttpGet]
+        [HttpGet("GetList")]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             var exams = await _examService.GetListAsync(pageRequest);
             return Ok(exams);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetById")]
         public async Task<IActionResult> GetById(int id)
         {
             var exam = await _examService.GetById(id);
@@ -36,14 +36,14 @@ namespace WebAPI.Controllers
             return Ok(exam);
         }
 
-        [HttpPost]
+        [HttpPost("Add")]
         public async Task<IActionResult> Add([FromBody] CreateExamRequest createExamRequest)
         {
             var createdExam = await _examService.Add(createExamRequest);
             return CreatedAtAction(nameof(GetById), new { id = createdExam.Id }, createdExam);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("Update")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateExamRequest updateExamRequest)
         {
             // Ensure the request ID matches the route parameter
@@ -61,7 +61,7 @@ namespace WebAPI.Controllers
             return Ok(updatedExam);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(int id)
         {
             var deletedExam = await _examService.Delete(new DeleteExamRequest { Id = id });
@@ -73,14 +73,14 @@ namespace WebAPI.Controllers
             return Ok(deletedExam);
         }
 
-        [HttpGet("course/{courseId}")]
+        [HttpGet("GetExamsByCourseId")]
         public async Task<IActionResult> GetExamsByCourseId(int courseId)
         {
             var exams = await _examService.GetExamsByCourseId(courseId);
             return Ok(exams);
         }
 
-        [HttpGet("{examId}/questions")]
+        [HttpGet("GetRandomQuestionsByExamId")]
         public async Task<IActionResult> GetRandomQuestionsByExamId(int examId)
         {
             var questions = await _examService.GetRandomQuestionsByExamId(examId);

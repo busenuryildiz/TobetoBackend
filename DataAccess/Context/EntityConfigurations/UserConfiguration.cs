@@ -15,6 +15,7 @@ namespace DataAccess.Context.EntityConfigurations
         {
             builder.ToTable("Users").HasKey(u => u.Id); 
 
+<<<<<<< Updated upstream
             builder.Property(u => u.FirstName)
                 .IsRequired()
                 .HasMaxLength(255)
@@ -50,11 +51,25 @@ namespace DataAccess.Context.EntityConfigurations
             builder.Property(u => u.PhoneNumber)
                 .HasMaxLength(20)
                 .HasColumnName("PhoneNumber");
+=======
+            builder.HasKey(u => u.Id);
+            builder.Property(u => u.FirstName).IsRequired().HasMaxLength(255);
+            builder.Property(u => u.LastName).IsRequired().HasMaxLength(255);
+            builder.Property(u => u.Email).IsRequired().HasMaxLength(255);
+            builder.Property(u => u.Password).IsRequired();
+            builder.Property(u => u.NationalIdentity).IsRequired();
+            builder.Property(u => u.BirthDate).IsRequired().HasColumnType("date");
+            builder.Property(u => u.PhoneNumber).HasMaxLength(20);
+>>>>>>> Stashed changes
 
             builder.HasMany(u => u.EducationInformations)
                 .WithOne(ei => ei.User)
                 .HasForeignKey(ei => ei.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(u => u.Addresses)
+                .WithOne(ei => ei.User)
+                .HasForeignKey(ei => ei.UserId);
 
             builder.HasMany(u => u.Certificates)
                 .WithOne(c => c.User)

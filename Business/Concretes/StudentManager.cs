@@ -29,15 +29,15 @@ namespace Business.Concretes
             _mapper = mapper;
             _businessRules = businessRules;
         }
-
         public async Task<CreatedStudentResponse> Add(CreateStudentRequest createStudentRequest)
         {
             Student student = _mapper.Map<Student>(createStudentRequest);
+            student.GenerateStudentNumber();
+            await _businessRules.StudentNumberShouldBeUnique(student.StudentNumber);
             Student createdStudent = await _studentDal.AddAsync(student);
             CreatedStudentResponse createdStudentResponse = _mapper.Map<CreatedStudentResponse>(createdStudent);
             return createdStudentResponse;
         }
-
         public async Task<DeletedStudentResponse> Delete(DeleteStudentRequest deleteStudentRequest)
         {
             Student student = await _studentDal.GetAsync(i => i.Id == deleteStudentRequest.Id);
@@ -46,14 +46,6 @@ namespace Business.Concretes
             DeletedStudentResponse deletedStudentResponse = _mapper.Map<DeletedStudentResponse>(deletedStudent);
 
             return deletedStudentResponse;
-
-
-            //var data = await _studentDal.GetAsync(i => i.Id == deleteStudentRequest.Id);
-            //_mapper.Map(deleteStudentRequest, data);
-            //data.DeletedDate = DateTime.Now;
-            //var result = await _studentDal.DeleteAsync(data);
-            //var result2 = _mapper.Map<DeletedStudentResponse>(result);
-            //return result2;
         }
 
         public async Task<CreatedStudentResponse> GetById(Guid id)
@@ -87,14 +79,6 @@ namespace Business.Concretes
                 _mapper.Map<UpdatedStudentResponse>(updatedStudent);
 
             return updatedStudentResponse;
-
-
-            //var data = await _studentDal.GetAsync(i => i.Id == updateStudentRequest.Id);
-            //_mapper.Map(updateStudentRequest, data);
-            //data.UpdatedDate = DateTime.Now;
-            //await _studentDal.UpdateAsync(data);
-            //var result = _mapper.Map<UpdatedStudentResponse>(data);
-            //return result;
         }
     }
 }

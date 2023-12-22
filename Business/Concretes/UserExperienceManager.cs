@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Azure;
 using Business.Abstracts;
+using Business.DTOs.Request.EducationInformation;
 using Business.DTOs.Request.UserExperience;
 using Business.DTOs.Response.UserExperience;
+using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.Profiles;
@@ -16,13 +18,15 @@ namespace Business.Concretes
 {
     public class UserExperienceManager : IUserExperienceService
     {
-        private readonly IUserExperienceDal _repository;
-        private readonly IMapper _mapper;
+         IUserExperienceDal _repository;
+         IMapper _mapper;
+         UserExperienceBusinessRules _userExperienceBusinessRules;
 
-        public UserExperienceManager(IUserExperienceDal repository, IMapper mapper)
+        public UserExperienceManager(IUserExperienceDal repository, IMapper mapper, UserExperienceBusinessRules userExperienceBusinessRules)
         {
             _repository = repository;
             _mapper = mapper;
+            _userExperienceBusinessRules = userExperienceBusinessRules;
         }
 
         public async Task<IPaginate<GetListUserExperienceResponse>> GetListAsync(PageRequest pageRequest)
@@ -34,6 +38,10 @@ namespace Business.Concretes
 
         public async Task<CreatedUserExperienceResponse> Add(CreateUserExperienceRequest createUserExperienceRequest)
         {
+            DateTime workBeginDate = createUserExperienceRequest.WorkBeginDate;
+            DateTime workEndDate = createUserExperienceRequest.WorkEndDate;
+
+            await _userExperienceBusinessRules.WorkBeginDateCannotBeGreatherThanWorkEndDate(workBeginDate, workEndDate);
             var userExperience = _mapper.Map<UserExperience>(createUserExperienceRequest);
             var createdUserExperience = await _repository.AddAsync(userExperience);
             var result = _mapper.Map<CreatedUserExperienceResponse>(createdUserExperience);

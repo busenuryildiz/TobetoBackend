@@ -19,6 +19,8 @@ namespace DataAccess.Context.EntityConfigurations
             builder.Property(c => c.CategoryId).IsRequired();
             builder.Property(c => c.Name).IsRequired().HasMaxLength(255);
             builder.Property(c => c.ImagePath);
+            builder.Property(c => c.CertificateURL);
+            builder.Property(c => c.Progress);
             builder.Property(c => c.Price).IsRequired();
 
             builder.HasOne(c => c.Category)
@@ -48,9 +50,9 @@ namespace DataAccess.Context.EntityConfigurations
                 .HasForeignKey(c => c.CourseStatusId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(c => c.CourseSubject)
-                .WithOne(cs => cs.Course)
-                .HasForeignKey<CourseSubject>(cs => cs.CourseId)
+            builder.HasMany(c => c.CourseSubject)  // HasMany kullanılmalı
+                .WithOne(lc => lc.Course)           // WithOne ve HasForeignKey LessonCourse sınıfının Course özelliği için kullanılmalı
+                .HasForeignKey(lc => lc.CourseId)  // LessonCourse sınıfının CourseId özelliğiyle eşleşmeli
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(c => c.SoftwareLanguage)

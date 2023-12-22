@@ -15,15 +15,16 @@ namespace Entities.Concretes.Courses
         public int? CategoryId { get; set; }
         public string? Name { get; set; }
         public string? ImagePath { get; set; }
+        public string? CertificateURL { get; set; }
+        public int? Progress { get; set; }
         public double? Price { get; set; }
         public Category? Category { get; set; }
         public List<Assignment>? Assignments { get; set; }
         public List<Exam>? Exams { get; set; }
         public CourseLevel? CourseLevel { get; set; }
         public List<LessonCourse> LessonCourses { get; set; }
-
         public CourseStatus? CourseStatus { get; set; }
-        public CourseSubject? CourseSubject { get; set; }
+        public List<CourseSubject>? CourseSubject { get; set; }
         public SoftwareLanguage? SoftwareLanguage { get; set; }
         public List<StudentCourse>? StudentCourses { get; set; } // Eklenen alan
 

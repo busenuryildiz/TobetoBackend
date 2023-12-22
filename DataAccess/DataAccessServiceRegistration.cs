@@ -48,6 +48,7 @@ namespace DataAccess
             services.AddScoped<ISkillDal, EfSkillDal>();
             services.AddScoped<ISocialMediaAccountDal, EfSocialMediaAccountDal>();
             services.AddScoped<IUserExperienceDal, EfUserExperienceDal>();
+            services.AddScoped<ISoftwareLanguageDal, EfSoftwareLanguageDal>();
             services.AddScoped<IUserLanguageDal, EfUserLanguageDal>();
 
             services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();

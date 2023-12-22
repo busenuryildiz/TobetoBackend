@@ -1,6 +1,12 @@
 ﻿using AutoMapper;
 using Business.DTOs.Request.Exam;
+using Business.DTOs.Request.Exam;
+using Business.DTOs.Request.Exam;
 using Business.DTOs.Response.Exam;
+using Business.DTOs.Response.Exam;
+using Business.DTOs.Response.Exam;
+using Core.DataAccess.Paging;
+using Entities.Concretes.Clients;
 using Entities.Concretes.Courses;
 using System;
 using System.Collections.Generic;
@@ -14,16 +20,31 @@ namespace Business.Profiles
     {
         public ExamMappingProfile()
         {
-            // Request DTO to Entity
-            CreateMap<CreateExamRequest, Exam>();
-            CreateMap<UpdateExamRequest, Exam>();
+            //--------------------Created---------------------------------------
 
-            // Entity to Response DTO
-            CreateMap<Exam, CreatedExamResponse>();
-            CreateMap<Exam, DeletedExamResponse>();
-            CreateMap<Exam, UpdatedExamResponse>();
-            CreateMap<Exam, GetByIdExamResponse>();
-            CreateMap<Exam, GetListExamInfoResponse>();
+            CreateMap<CreateExamRequest, Exam>().ReverseMap();
+            CreateMap<CreateExamRequest, CreateExamRequest>().ReverseMap();
+            CreateMap<Exam, CreatedExamResponse>().ReverseMap();
+            CreateMap<CreateExamRequest, CreatedExamResponse>().ReverseMap();
+
+
+            //-------------------Deleted----------------------------------------------
+
+            CreateMap<DeleteExamRequest, Exam>().ReverseMap();
+            CreateMap<DeleteExamRequest, DeleteExamRequest>().ReverseMap();
+            CreateMap<Exam, DeletedExamResponse>().ReverseMap();
+            CreateMap<DeleteExamRequest, DeletedExamResponse>().ReverseMap();
+
+            //-------------------Updated---------------------------------------------
+            CreateMap<UpdateExamRequest, Exam>().ReverseMap();
+            CreateMap<UpdateExamRequest, UpdateExamRequest>().ReverseMap();
+            CreateMap<Exam, UpdatedExamResponse>().ReverseMap();
+            CreateMap<UpdateExamRequest, UpdatedExamResponse>().ReverseMap();
+
+            //--------------------Listeleme-----------------------------------
+
+            CreateMap<Exam, GetListExamResponse>().ReverseMap();
+            CreateMap<Paginate<Exam>, Paginate<GetListExamResponse>>().ReverseMap();
         }
     }
 }

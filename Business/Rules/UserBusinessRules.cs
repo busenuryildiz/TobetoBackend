@@ -34,7 +34,7 @@ namespace Business.Rules
         {
             var existingUsers = await _userDal.GetListAsync(predicate: p => p.PhoneNumber == phone);
 
-            if (existingUsers != null)
+            if (existingUsers != null && existingUsers.Count > 0)
             {
                 throw new BusinessException(BusinessMessages.PhoneShouldBeUnique);
             }
@@ -44,7 +44,7 @@ namespace Business.Rules
         {
             if (nationalIdentity.Length != 11)
             {
-                throw new BusinessException(BusinessMessages.NationalIdNumberCannotBeTheSame);
+                throw new BusinessException(BusinessMessages.NationalIdMust11Count);
             }
 
             var usersWithSameNationalId = await _userDal.GetListAsync(

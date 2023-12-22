@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.Exam;
+using Business.DTOs.Request.Exam;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,47 +15,61 @@ namespace WebAPI.Controllers
 
         public ExamController(IExamService examService)
         {
-            _examService = examService ?? throw new ArgumentNullException(nameof(examService));
+            _examService = examService;
         }
 
-        [HttpGet("list")]
-        public async Task<IActionResult> GetExams([FromQuery] PageRequest pageRequest)
+        [HttpGet]
+        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             var exams = await _examService.GetListAsync(pageRequest);
             return Ok(exams);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetExamById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var exam = await _examService.GetInfoById(id);
+            var exam = await _examService.GetById(id);
             if (exam == null)
             {
                 return NotFound();
             }
-
             return Ok(exam);
         }
 
-        [HttpPost("add")]
-        public async Task<IActionResult> AddExam([FromBody] CreateExamRequest createExamRequest)
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] CreateExamRequest createExamRequest)
         {
             var createdExam = await _examService.Add(createExamRequest);
-            return CreatedAtAction(nameof(GetExamById), new { id = createdExam.Id }, createdExam);
+            return CreatedAtAction(nameof(GetById), new { id = createdExam.Id }, createdExam);
         }
 
-        [HttpPut("update")]
-        public async Task<IActionResult> UpdateExam([FromBody] UpdateExamRequest updateExamRequest)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateExamRequest updateExamRequest)
         {
+            // Ensure the request ID matches the route parameter
+            if (id != updateExamRequest.Id)
+            {
+                return BadRequest();
+            }
+
             var updatedExam = await _examService.Update(updateExamRequest);
+            if (updatedExam == null)
+            {
+                return NotFound();
+            }
+
             return Ok(updatedExam);
         }
 
-        [HttpDelete("delete/{id}")]
-        public async Task<IActionResult> DeleteExam(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
-            var deleteExamRequest = new DeleteExamRequest { Id = id };
-            var deletedExam = await _examService.Delete(deleteExamRequest);
+            var deletedExam = await _examService.Delete(new DeleteExamRequest { Id = id });
+            if (deletedExam == null)
+            {
+                return NotFound();
+            }
+
             return Ok(deletedExam);
         }
 
@@ -63,6 +78,13 @@ namespace WebAPI.Controllers
         {
             var exams = await _examService.GetExamsByCourseId(courseId);
             return Ok(exams);
+        }
+
+        [HttpGet("{examId}/questions")]
+        public async Task<IActionResult> GetRandomQuestionsByExamId(int examId)
+        {
+            var questions = await _examService.GetRandomQuestionsByExamId(examId);
+            return Ok(questions);
         }
     }
 }

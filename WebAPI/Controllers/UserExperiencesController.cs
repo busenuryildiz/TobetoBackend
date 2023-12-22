@@ -8,55 +8,47 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserExperienceController : ControllerBase
+    public class UserExperiencesController : ControllerBase
     {
-        private readonly IUserExperienceService _userExperienceService;
-
-        public UserExperienceController(IUserExperienceService userExperienceService)
+        IUserExperienceService _userExperienceService;
+        public UserExperiencesController(IUserExperienceService userExperienceService)
         {
             _userExperienceService = userExperienceService;
         }
 
-        [HttpGet("list")]
-        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
-        {
-            var result = await _userExperienceService.GetListAsync(pageRequest);
-            return Ok(result);
-        }
 
-        [HttpPost("add")]
+        [HttpPost("Add")]
         public async Task<IActionResult> Add([FromBody] CreateUserExperienceRequest createUserExperienceRequest)
         {
             var result = await _userExperienceService.Add(createUserExperienceRequest);
             return Ok(result);
         }
 
-        [HttpPut("update")]
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete([FromBody] DeleteUserExperienceRequest deleteUserExperienceRequest)
+        {
+            var result = await _userExperienceService.Delete(deleteUserExperienceRequest);
+            return Ok(result);
+        }
+        [HttpPut("Update")]
         public async Task<IActionResult> Update([FromBody] UpdateUserExperienceRequest updateUserExperienceRequest)
         {
             var result = await _userExperienceService.Update(updateUserExperienceRequest);
             return Ok(result);
         }
 
-        [HttpDelete("delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteUserExperienceRequest deleteUserExperienceRequest)
+        [HttpGet("GetList")]
+        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
-            var result = await _userExperienceService.Delete(deleteUserExperienceRequest);
+            var result = await _userExperienceService.GetListAsync(pageRequest);
             return Ok(result);
         }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("GetById")]
+        public async Task<IActionResult> GetById([FromQuery] int id)
         {
             var result = await _userExperienceService.GetById(id);
             return Ok(result);
         }
 
-        [HttpGet("byUserId/{userId}")]
-        public async Task<IActionResult> GetUserExperiencesByUserId(Guid userId)
-        {
-            var result = await _userExperienceService.GetUserExperiencesByUserId(userId);
-            return Ok(result);
-        }
     }
 }

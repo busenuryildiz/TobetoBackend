@@ -8,11 +8,39 @@ namespace Business.Messages
 {
     public class BusinessMessages
     {
-        public static string NationalIdNumberCannotBeTheSame = "National Identity'niz başka bir kullanıcı ile aynı olamaz veya National identity number must be 11 digits. ";
-        public static string NationalIdNumberCannotBeTheSame2 = "National identity number must be 11 digits.";
-        public static string CustomerLimitInCity = "Bir şehirde max 10 müşteri olabilir";
-        public static string ContactNameCantRepeat = "ContactName aynı olamaz";
-        public static string EmailShouldBeUnique = "Girdiğiniz e-posta adresi ile kayıtlı üyelik bulunmaktadır";
-        public static string PhoneShouldBeUnique = "Girdiğiniz telefon numarası ile kayıtlı üyelik bulunmaktadır";
+        //-------------------USER---------------
+        public static string NationalIdNumberCannotBeTheSame = "Your National Identity cannot be the same as another user";
+        public static string EmailShouldBeUnique = "There is a registered membership with the e-mail address you entered.";
+        public static string PhoneShouldBeUnique = "There is a registered membership with the phone number you entered.";
+        public static string NationalIdMust11Count = "National identity number must be 11 digits. ";
+
+        //-------------------STUDENT---------------
+        public static string StudentNumberShouldBeUnique = "Unable to generate a unique student number.";
+
+        //-------------------COURSE---------------
+
+        public static string CertificateCanNotBeGivenDueToProgress = "Certificate is not ready, keep working!";
+
+        public static string CourseOrExamNotFound = "Course or Exam can not be found!";
+
+
+
+
+        //-------------------EXAM---------------
+        public static string ValidateExamPoint = "Exam point should be between 0 and 100.";
+        public static string CantGetRandomQuestionsByExamId = "Exam questions can not be found!";
+
+
+        //------------------ASSIGNMENT----------------
+
+        public static string DoNotSendItAfterTheAssignmentPeriodIsOver = "You cannot submit this assignment because it is overdue.";
+
+
+        //------------------EDUCATIONINFORMATION-------------
+
+        public static string TheBeginnerYearCannotBeGreaterThanTheGraduationYear = "The beginner year cannot be greater than the graduation year.";
+
+        //-------------------USEREXPERİENCE---------------------------------
+        public static string WorkBeginDateCannotBeGreatherThanWorkEndDate = "Job Start Date cannot be greater than Job End Date";
     }
 }

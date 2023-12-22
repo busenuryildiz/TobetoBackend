@@ -10,64 +10,78 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Business.Rules;
+using Business.DTOs.Response.Question;
+using DataAccess.Concretes;
+using Entities.Concretes;
 
 namespace Business.Concretes
 {
     public class ExamManager : IExamService
     {
-        private readonly IExamDal _repository;
+        private readonly IExamDal _examDal;
         private readonly IMapper _mapper;
+        ExamBusinessRules _examBusinessRules;
 
-        public ExamManager(IExamDal repository, IMapper mapper)
+        public ExamManager(IExamDal examDal, IMapper mapper, ExamBusinessRules examBusinessRules)
         {
-            _repository = repository;
+            _examDal = examDal;
             _mapper = mapper;
+            _examBusinessRules = examBusinessRules;
         }
 
         public async Task<IPaginate<GetListExamResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _repository.GetListAsync(index: pageRequest.PageIndex, size: pageRequest.PageSize);
+            var data = await _examDal.GetListAsync(index: pageRequest.PageIndex, size: pageRequest.PageSize);
             var result = _mapper.Map<Paginate<GetListExamResponse>>(data);
             return result;
         }
 
         public async Task<CreatedExamResponse> Add(CreateExamRequest createExamRequest)
         {
-            var exam = _mapper.Map<Exam>(createExamRequest);
-            var createdExam = await _repository.AddAsync(exam);
+            await _examBusinessRules.ValidateExamPoint(createExamRequest.Point);
+            var examDal = _mapper.Map<Exam>(createExamRequest);
+            var createdExam = await _examDal.AddAsync(examDal);
             var result = _mapper.Map<CreatedExamResponse>(createdExam);
             return result;
         }
 
         public async Task<UpdatedExamResponse> Update(UpdateExamRequest updateExamRequest)
         {
-            var exam = await _repository.GetAsync(e => e.Id == updateExamRequest.Id);
-            _mapper.Map(updateExamRequest, exam);
-            await _repository.UpdateAsync(exam);
-            var result = _mapper.Map<UpdatedExamResponse>(exam);
+            var examDal = await _examDal.GetAsync(e => e.Id == updateExamRequest.Id);
+            _mapper.Map(updateExamRequest, examDal);
+            await _examDal.UpdateAsync(examDal);
+            var result = _mapper.Map<UpdatedExamResponse>(examDal);
             return result;
         }
 
         public async Task<DeletedExamResponse> Delete(DeleteExamRequest deleteExamRequest)
         {
-            var exam = await _repository.GetAsync(e => e.Id == deleteExamRequest.Id);
-            var deletedExam = await _repository.DeleteAsync(exam);
+            var examDal = await _examDal.GetAsync(e => e.Id == deleteExamRequest.Id);
+            var deletedExam = await _examDal.DeleteAsync(examDal);
             var result = _mapper.Map<DeletedExamResponse>(deletedExam);
             return result;
         }
 
-        public async Task<GetListExamInfoResponse> GetInfoById(int id)
+        public async Task<CreatedExamResponse> GetById(int id)
         {
-            var exam = await _repository.GetAsync(e => e.Id == id);
-            var result = _mapper.Map<GetListExamInfoResponse>(exam);
-            return result;
+            var result = await _examDal.GetAsync(c => c.Id == id);
+            Exam mappedExam = _mapper.Map<Exam>(result);
+            CreatedExamResponse createdExamResponse = _mapper.Map<CreatedExamResponse>(mappedExam);
+            return createdExamResponse;
         }
 
 
         public async Task<List<GetListExamResponse>> GetExamsByCourseId(int courseId)
         {
-            var exams = await _repository.GetListAsync(e => e.CourseId == courseId);
-            var result = _mapper.Map<List<GetListExamResponse>>(exams);
+            var examDals = await _examDal.GetListAsync(e => e.CourseId == courseId);
+            var result = _mapper.Map<List<GetListExamResponse>>(examDals);
+            return result;
+        }
+
+        public async Task<List<GetListQuestionResponse>> GetRandomQuestionsByExamId(int examId)
+        {
+            var result = await _examBusinessRules.GetRandomQuestionsByExamId(examId);
             return result;
         }
     }

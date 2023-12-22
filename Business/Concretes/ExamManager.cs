@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.Rules;
 using Business.DTOs.Response.Exam;
+using Business.DTOs.Response.Question;
 using DataAccess.Concretes;
 using Entities.Concretes;
 
@@ -76,6 +77,12 @@ namespace Business.Concretes
         {
             var examDals = await _examDal.GetListAsync(e => e.CourseId == courseId);
             var result = _mapper.Map<List<GetListExamResponse>>(examDals);
+            return result;
+        }
+
+        public async Task<List<GetListQuestionResponse>> GetRandomQuestionsByExamId(int examId)
+        {
+            var result = await _examBusinessRules.GetRandomQuestionsByExamId(examId);
             return result;
         }
     }

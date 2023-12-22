@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.DTOs.Request.Exam;
 using Business.DTOs.Response.Exam;
+using Business.DTOs.Response.Question;
 
 namespace Business.Abstracts
 {
@@ -17,5 +18,6 @@ namespace Business.Abstracts
         Task<DeletedExamResponse> Delete(DeleteExamRequest deleteExamRequest);
         Task<CreatedExamResponse> GetById(int id);
         Task<List<GetListExamResponse>> GetExamsByCourseId(int courseId);
+        Task<List<GetListQuestionResponse>> GetRandomQuestionsByExamId(int examId);
     }
 }

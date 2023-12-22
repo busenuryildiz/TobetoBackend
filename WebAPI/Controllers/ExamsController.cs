@@ -43,6 +43,13 @@ namespace WebAPI.Controllers
             var result = await _examService.GetListAsync(pageRequest);
             return Ok(result);
         }
+        [HttpGet("GetList")]
+        public async Task<IActionResult> GetListRandomQuestions([FromQuery] int examId)
+        {
+            var result = await _examService.GetRandomQuestionsByExamId(examId);
+            return Ok(result);
+        }
+
         [HttpGet("GetById")]
         public async Task<IActionResult> GetById([FromQuery] int id)
         {

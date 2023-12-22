@@ -23,6 +23,13 @@ namespace Business.Rules
             _examService = examService;
         }
 
+        public async Task ValidateExamPoint(int examPoint)
+        {
+            if (examPoint < 0 || examPoint > 100)
+            {
+                throw new BusinessException(BusinessMessages.ValidateExamPoint);
+            }
+        }
         public async Task CertificateCanNotBeGivenDueToProgress(int courseId, int examId)
         {
             var course = await _courseDal.GetAsync(c => c.Id == courseId);

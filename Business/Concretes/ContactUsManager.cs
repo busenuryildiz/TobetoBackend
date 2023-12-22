@@ -6,6 +6,7 @@ using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,71 +15,86 @@ using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
-   
-        public class ContactUsManager : IContactUsService
+
+    public class ContactUsController : ControllerBase
+    {
+        private readonly IContactUsService _contactUsManager;
+
+        public ContactUsController(IContactUsService contactUsManager)
         {
-            IContactUsDal _ContactUsDal;
-            IMapper _mapper;
-            ContactUsBusinessRules _businessRules;
+            _contactUsManager = contactUsManager;
+        }
 
-            public ContactUsManager(ContactUsBusinessRules businessRules, IContactUsDal ContactUsDal, IMapper mapper)
+        [HttpPost]
+        public async Task<IActionResult> AddContactUs([FromBody] CreateContactUsRequest createContactUsRequest)
+        {
+            try
             {
-                _businessRules = businessRules;
-                _ContactUsDal = ContactUsDal;
-                _mapper = mapper;
+                var result = await _contactUsManager.Add(createContactUsRequest);
+                return CreatedAtAction(nameof(GetContactUsById), new { id = result.Id }, result);
             }
-
-            public async Task<CreatedContactUsResponse> Add(CreateContactUsRequest createContactUsRequest)
+            catch (Exception ex)
             {
-                ContactUs ContactUs = _mapper.Map<ContactUs>(createContactUsRequest);
-                ContactUs createdContactUs = await _ContactUsDal.AddAsync(ContactUs);
-                CreatedContactUsResponse createdContactUsResponse = _mapper.Map<CreatedContactUsResponse>(createdContactUs);
-                return createdContactUsResponse;
+                return BadRequest($"Error adding contact message: {ex.Message}");
             }
+        }
 
-            public async Task<DeletedContactUsResponse> Delete(DeleteContactUsRequest deleteContactUsRequest)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteContactUs(int id)
+        {
+            try
             {
-                var data = await _ContactUsDal.GetAsync(i => i.Id == deleteContactUsRequest.Id);
-                _mapper.Map(deleteContactUsRequest, data);
-                data.DeletedDate = DateTime.Now;
-                var result = await _ContactUsDal.DeleteAsync(data, true);
-                var result2 = _mapper.Map<DeletedContactUsResponse>(result);
-                return result2;
+                var deleteRequest = new DeleteContactUsRequest { Id = id };
+                var result = await _contactUsManager.Delete(deleteRequest);
+                return Ok(result);
             }
-
-            public async Task<CreatedContactUsResponse> GetById(int id)
+            catch (Exception ex)
             {
-                var result = await _ContactUsDal.GetAsync(c => c.Id == id);
-                ContactUs mappedContactUs = _mapper.Map<ContactUs>(result);
-
-                CreatedContactUsResponse createdContactUsResponse = _mapper.Map<CreatedContactUsResponse>(mappedContactUs);
-
-                return createdContactUsResponse;
+                return BadRequest($"Error deleting contact message: {ex.Message}");
             }
+        }
 
-
-            public async Task<IPaginate<GetListContactUsResponse>> GetListAsync(PageRequest pageRequest)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetContactUsById(int id)
+        {
+            try
             {
-                var data = await _ContactUsDal.GetListAsync(
-                    index: pageRequest.PageIndex,
-                    size: pageRequest.PageSize
-                );
-                var result = _mapper.Map<Paginate<GetListContactUsResponse>>(data);
-                return result;
+                var result = await _contactUsManager.GetById(id);
+                return Ok(result);
             }
-
-
-            public async Task<UpdatedContactUsResponse> Update(UpdateContactUsRequest updateContactUsRequest)
+            catch (Exception ex)
             {
-                var data = await _ContactUsDal.GetAsync(i => i.Id == updateContactUsRequest.Id);
-                _mapper.Map(updateContactUsRequest, data);
-                data.UpdatedDate = DateTime.Now;
-                await _ContactUsDal.UpdateAsync(data);
-                var result = _mapper.Map<UpdatedContactUsResponse>(data);
-                return result;
+                return BadRequest($"Error getting contact message by id: {ex.Message}");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetContactUsList([FromQuery] PageRequest pageRequest)
+        {
+            try
+            {
+                var result = await _contactUsManager.GetListAsync(pageRequest);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error getting contact message list: {ex.Message}");
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateContactUs([FromBody] UpdateContactUsRequest updateContactUsRequest)
+        {
+            try
+            {
+                var result = await _contactUsManager.Update(updateContactUsRequest);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error updating contact message: {ex.Message}");
             }
         }
     }
 
-
-
+}

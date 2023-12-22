@@ -72,8 +72,7 @@ namespace Business.Concretes
                     .Include(u => u.SocialMediaAccounts)
                     .Include(u => u.UserExperiences)
                     .Include(u => u.UserLanguages)
-                    .Include(u => u.UserRoles)
-                    .Include(u => u.Applications),
+                    .Include(u => u.UserRoles),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize
             );

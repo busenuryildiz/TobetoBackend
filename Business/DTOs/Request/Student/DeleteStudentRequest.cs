@@ -10,6 +10,5 @@ namespace Business.DTOs.Request.Student
     {
         public Guid Id { get; set; }
         public int StudentNumber { get; set; }
-        public int CourseId { get; set; }
     }
 }

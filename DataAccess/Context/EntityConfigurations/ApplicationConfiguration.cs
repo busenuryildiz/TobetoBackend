@@ -14,21 +14,19 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Application> builder)
         {
-            builder.ToTable("Applications").HasKey(app => app.Id);
+            builder.ToTable("Applications").HasKey(a => a.Id);
+            builder.Property(a => a.Id).HasColumnName("Id").IsRequired();
+            builder.Property(a => a.Name).HasColumnName("Name").IsRequired().HasMaxLength(255);
+            builder.Property(a => a.Description).HasColumnName("Description").IsRequired();
+            builder.Property(a => a.IsActive).HasColumnName("IsActive").IsRequired();
 
+            // Application ile ApplicationStudent arasındaki ilişki
+            builder.HasMany(a => a.ApplicationStudents)
+                .WithOne(a => a.Application)
+                .HasForeignKey(a => a.ApplicationId);
 
-            builder.Property(app => app.UserId).HasColumnName("UserId").IsRequired(); // Örnek sütun ismi ekledim, istediğiniz ismi verebilirsiniz
-
-            builder.Property(app => app.Name).HasMaxLength(255).HasColumnName("Name").IsRequired();
-
-            builder.Property(app => app.IsActive).HasColumnName("IsActive").IsRequired();
-
-            builder.HasOne(app => app.User)
-                .WithMany(u => u.Applications)
-                .HasForeignKey(app => app.UserId)
-                .IsRequired();
-
-            builder.HasQueryFilter(app => !app.DeletedDate.HasValue); // Örnek bir query filter eklendi, silinmemiş kayıtları filtreler
+            // Application tablosu üzerinde silinmiş kayıtları filtreleme
+            builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
         }
     }
 

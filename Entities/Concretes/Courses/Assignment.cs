@@ -18,8 +18,7 @@ namespace Entities.Concretes.Courses
         public DateTime DeadLine { get; set; } // ödev süresinde gönderilsin.
         public bool IsSend { get; set; }
         public Course Course { get; set; }
-        public int LessonId { get; set; }
-        public Lesson Lesson { get; set; } // Bu satır eklenmiştir.
+        public List<StudentAssignment> StudentAssignments { get; set; }
 
     }
 }

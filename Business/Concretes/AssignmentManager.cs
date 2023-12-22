@@ -33,7 +33,7 @@ namespace Business.Concretes
 
         public async Task<CreatedAssignmentResponse> Add(CreateAssignmentRequest createAssignmentRequest)
         {
-            await _assignmentBusinessRules.DoNotSendItAfterTheAssignmentPeriodIsOver(createAssignmentRequest.DeadLine);
+            //await _assignmentBusinessRules.DoNotSendItAfterTheAssignmentPeriodIsOver(createAssignmentRequest.DeadLine);
             Assignment assignment = _mapper.Map<Assignment>(createAssignmentRequest);
             Assignment createdAssignment = await _assignmentDal.AddAsync(assignment);
             CreatedAssignmentResponse createdAssignmentResponse = _mapper.Map<CreatedAssignmentResponse>(createdAssignment);

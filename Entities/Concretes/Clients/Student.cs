@@ -16,6 +16,9 @@ namespace Entities.Concretes.Clients
         public List<Survey>? Surveys { get; set; }
         public List<StudentCourse>? StudentCourses { get; set; } // Eklenen alan
         public List<StudentSkill>? StudentSkills { get; set; }
+        public List<ApplicationStudent>? ApplicationStudents { get; set; }
+        public List<StudentAssignment>? StudentAssignments { get; set; }
+        
 
         public void GenerateStudentNumber()
         {

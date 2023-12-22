@@ -21,19 +21,13 @@ namespace Business.Rules
         }
 
 
-        public async Task DoNotSendItAfterTheAssignmentPeriodIsOver(DateTime deadLine)
-        {
-            if (DateTime.Now > deadLine)
-            {
-                throw new BusinessException(BusinessMessages.DoNotSendItAfterTheAssignmentPeriodIsOver);
-            }
-
-            // Gönderim işlemini burada gerçekleştir
-            // await SendAssignment();
-        }
-
-
-
+        //public async Task DoNotSendItAfterTheAssignmentPeriodIsOver(DateTime deadLine)
+        //{
+        //    if (DateTime.Now > deadLine)
+        //    {
+        //        throw new BusinessException(BusinessMessages.DoNotSendItAfterTheAssignmentPeriodIsOver);
+        //    }
+        //}
 
     }
 }

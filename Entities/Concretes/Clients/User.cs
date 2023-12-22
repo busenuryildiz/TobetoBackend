@@ -29,7 +29,6 @@ namespace Entities.Concretes.Clients
         public Student Student { get; set; }
         public Instructor Instructor { get; set; }
         public List<UserRole> UserRoles { get; set; }
-        public List<Application> Applications { get; set; }
 
 
     }

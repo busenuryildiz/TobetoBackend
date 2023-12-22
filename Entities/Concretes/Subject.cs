@@ -11,7 +11,7 @@ namespace Entities.Concretes
      public class Subject:Entity<int>
      {
         public string Name { get; set; }
-        public List<CourseSubject> CourseSubject { get; set; }
+        public List<CourseSubject> CourseSubjects { get; set; }
        
      }
 }

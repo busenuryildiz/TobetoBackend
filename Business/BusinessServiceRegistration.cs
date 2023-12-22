@@ -40,6 +40,8 @@ namespace Business
             services.AddScoped<ILanguageService, LanguageManager>();
             services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
+            services.AddScoped<IApplicationStudentService, ApplicationStudentManager>();
+            services.AddScoped<IStudentAssignmentService, StudentAssignmentManager>();
 
             services.AddScoped<ISoftwareLanguageService ,SoftwareLanguageManager>();
 

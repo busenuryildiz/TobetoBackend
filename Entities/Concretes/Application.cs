@@ -10,10 +10,10 @@ namespace Entities.Concretes
 {
     public class Application : Entity<int>
     {
-        public Guid UserId { get; set; } 
-        public string Name { get; set; } 
+        public string Name { get; set; }
+        public string Description { get; set; }
         public bool IsActive { get; set; }
-        public User User { get; set; }
+        public List<ApplicationStudent> ApplicationStudents { get; set; }
 
     }
 }

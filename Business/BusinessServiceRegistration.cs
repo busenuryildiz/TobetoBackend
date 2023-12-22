@@ -40,6 +40,14 @@ namespace Business
             services.AddScoped<ILanguageService, LanguageManager>();
             services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
+<<<<<<< HEAD
+=======
+            services.AddScoped<ISoftwareLanguageService ,SoftwareLanguageManager>();
+
+            services.AddScoped<IManagerService, ManagerManager>();
+            services.AddScoped<IInstructorService, InstructorManager>();
+
+>>>>>>> SahraSinem
             services.AddScoped<IAssignmentService, AssignmentManager>();
             services.AddScoped<ICourseService, CourseManager>();
             services.AddScoped<ICourseLevelService, CourseLevelManager>();
@@ -74,6 +82,7 @@ namespace Business
             services.AddScoped<ManagerBusinessRules>();
             services.AddScoped<StudentBusinessRules>();
             services.AddScoped<UserBusinessRules>();
+            services.AddScoped<SoftwareLanguageBusinessRules>();
 
             services.AddScoped<AssignmentBusinessRules>();
             services.AddScoped<CourseBusinessRules>();

@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Response.Subject
 {
-    public class SubjectResponse : BasePageableModel
+    public class CreatedSubjectResponse : BasePageableModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
-        public DateTime? DeletedDate { get; set; }
     }
 }

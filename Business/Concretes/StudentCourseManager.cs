@@ -22,7 +22,7 @@ namespace Business.Concretes
         private readonly IMapper _mapper;
         StudentCourseBusinessRules _businessRules;
 
-        public StudentCourseManager(IStudentCourseDal studentCourseDal, IMapper mapper, StudentCourseBusinessRules businessRules, EfStudentCourseDal efStudentCourseDal)
+        public StudentCourseManager(IStudentCourseDal studentCourseDal, IMapper mapper, StudentCourseBusinessRules businessRules)
         {
             _studentCourseDal = studentCourseDal;
             _mapper = mapper;

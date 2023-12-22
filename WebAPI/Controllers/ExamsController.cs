@@ -9,52 +9,82 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExamsController : ControllerBase
+    public class ExamController : ControllerBase
     {
-        IExamService _examService;
-        public ExamsController(IExamService examService)
+        private readonly IExamService _examService;
+
+        public ExamController(IExamService examService)
         {
             _examService = examService;
         }
 
-
-        [HttpPost("Add")]
-        public async Task<IActionResult> Add([FromBody] CreateExamRequest createExamRequest)
-        {
-            var result = await _examService.Add(createExamRequest);
-            return Ok(result);
-        }
-        [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteExamRequest deleteExamRequest)
-        {
-            var result = await _examService.Delete(deleteExamRequest);
-            return Ok(result);
-        }
-        [HttpPut("Update")]
-        public async Task<IActionResult> Update([FromBody] UpdateExamRequest updateExamRequest)
-        {
-            var result = await _examService.Update(updateExamRequest);
-            return Ok(result);
-        }
-
-        [HttpGet("GetList")]
+        [HttpGet]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
-            var result = await _examService.GetListAsync(pageRequest);
-            return Ok(result);
-        }
-        [HttpGet("GetList")]
-        public async Task<IActionResult> GetListRandomQuestions([FromQuery] int examId)
-        {
-            var result = await _examService.GetRandomQuestionsByExamId(examId);
-            return Ok(result);
+            var exams = await _examService.GetListAsync(pageRequest);
+            return Ok(exams);
         }
 
-        [HttpGet("GetById")]
-        public async Task<IActionResult> GetById([FromQuery] int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            var result = await _examService.GetById(id);
-            return Ok(result);
+            var exam = await _examService.GetById(id);
+            if (exam == null)
+            {
+                return NotFound();
+            }
+            return Ok(exam);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] CreateExamRequest createExamRequest)
+        {
+            var createdExam = await _examService.Add(createExamRequest);
+            return CreatedAtAction(nameof(GetById), new { id = createdExam.Id }, createdExam);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateExamRequest updateExamRequest)
+        {
+            // Ensure the request ID matches the route parameter
+            if (id != updateExamRequest.Id)
+            {
+                return BadRequest();
+            }
+
+            var updatedExam = await _examService.Update(updateExamRequest);
+            if (updatedExam == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(updatedExam);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deletedExam = await _examService.Delete(new DeleteExamRequest { Id = id });
+            if (deletedExam == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(deletedExam);
+        }
+
+        [HttpGet("course/{courseId}")]
+        public async Task<IActionResult> GetExamsByCourseId(int courseId)
+        {
+            var exams = await _examService.GetExamsByCourseId(courseId);
+            return Ok(exams);
+        }
+
+        [HttpGet("{examId}/questions")]
+        public async Task<IActionResult> GetRandomQuestionsByExamId(int examId)
+        {
+            var questions = await _examService.GetRandomQuestionsByExamId(examId);
+            return Ok(questions);
         }
     }
 }

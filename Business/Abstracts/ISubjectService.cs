@@ -13,10 +13,10 @@ namespace Business.Abstracts
 {
     public interface ISubjectService
     {
-        Task<IPaginate<GetListSubjectResponse>> GetListAsync(PageRequest pageRequest);
         Task<CreatedSubjectResponse> Add(CreateSubjectRequest createSubjectRequest);
-        Task<UpdatedSubjectResponse> Update(UpdateSubjectRequest updateSubjectRequest);
         Task<DeletedSubjectResponse> Delete(DeleteSubjectRequest deleteSubjectRequest);
-        Task<CreatedSubjectResponse> GetById(int id);
+        Task<UpdatedSubjectResponse> Update(UpdateSubjectRequest updateSubjectRequest);
+        Task<GetByIdSubjectResponse> GetById(int id);
+        Task<IPaginate<GetListSubjectInfoResponse>> GetListAsync(PageRequest pageRequest);
     }
 }

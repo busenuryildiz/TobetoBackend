@@ -10,5 +10,6 @@ namespace Business.DTOs.Request.Subject
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        // Diğer gerekli özellikleri ekleyin
     }
 }

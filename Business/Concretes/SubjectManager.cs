@@ -11,62 +11,46 @@ using Entities.Concretes;
 
 public class SubjectManager : ISubjectService
 {
-    ISubjectDal _blogDal;
-    IMapper _mapper;
-    SubjectBusinessRules _businessRules;
+    private readonly ISubjectDal _repository;
+    private readonly IMapper _mapper;
 
-    public SubjectManager(SubjectBusinessRules businessRules, ISubjectDal blogDal, IMapper mapper)
+    public SubjectManager(ISubjectDal repository, IMapper mapper)
     {
-        _businessRules = businessRules;
-        _blogDal = blogDal;
+        _repository = repository;
         _mapper = mapper;
     }
 
     public async Task<CreatedSubjectResponse> Add(CreateSubjectRequest createSubjectRequest)
     {
-        Subject blog = _mapper.Map<Subject>(createSubjectRequest);
-        Subject createdSubject = await _blogDal.AddAsync(blog);
-        CreatedSubjectResponse createdSubjectResponse = _mapper.Map<CreatedSubjectResponse>(createdSubject);
-        return createdSubjectResponse;
+        var subject = _mapper.Map<Subject>(createSubjectRequest);
+        var createdSubject = await _repository.AddAsync(subject);
+        return _mapper.Map<CreatedSubjectResponse>(createdSubject);
     }
 
     public async Task<DeletedSubjectResponse> Delete(DeleteSubjectRequest deleteSubjectRequest)
     {
-        var data = await _blogDal.GetAsync(i => i.Id == deleteSubjectRequest.Id);
-        _mapper.Map(deleteSubjectRequest, data);
-        data.DeletedDate = DateTime.Now;
-        var result = await _blogDal.DeleteAsync(data, true);
-        var result2 = _mapper.Map<DeletedSubjectResponse>(result);
-        return result2;
+        var subject = await _repository.GetAsync(s => s.Id == deleteSubjectRequest.Id);
+        var deletedSubject = await _repository.DeleteAsync(subject);
+        return _mapper.Map<DeletedSubjectResponse>(deletedSubject);
     }
-
-    public async Task<CreatedSubjectResponse> GetById(int id)
-    {
-        var result = await _blogDal.GetAsync(c => c.Id == id);
-        Subject mappedSubject = _mapper.Map<Subject>(result);
-        CreatedSubjectResponse createdSubjectResponse = _mapper.Map<CreatedSubjectResponse>(mappedSubject);
-        return createdSubjectResponse;
-    }
-
-
-    public async Task<IPaginate<GetListSubjectResponse>> GetListAsync(PageRequest pageRequest)
-    {
-        var data = await _blogDal.GetListAsync(
-            index: pageRequest.PageIndex,
-            size: pageRequest.PageSize
-        );
-        var result = _mapper.Map<Paginate<GetListSubjectResponse>>(data);
-        return result;
-    }
-
 
     public async Task<UpdatedSubjectResponse> Update(UpdateSubjectRequest updateSubjectRequest)
     {
-        var data = await _blogDal.GetAsync(i => i.Id == updateSubjectRequest.Id);
-        _mapper.Map(updateSubjectRequest, data);
-        data.UpdatedDate = DateTime.Now;
-        await _blogDal.UpdateAsync(data);
-        var result = _mapper.Map<UpdatedSubjectResponse>(data);
-        return result;
+        var subject = await _repository.GetAsync(s => s.Id == updateSubjectRequest.Id);
+        _mapper.Map(updateSubjectRequest, subject);
+        await _repository.UpdateAsync(subject);
+        return _mapper.Map<UpdatedSubjectResponse>(subject);
+    }
+
+    public async Task<GetByIdSubjectResponse> GetById(int id)
+    {
+        var subject = await _repository.GetAsync(s => s.Id == id);
+        return _mapper.Map<GetByIdSubjectResponse>(subject);
+    }
+
+    public async Task<IPaginate<GetListSubjectInfoResponse>> GetListAsync(PageRequest pageRequest)
+    {
+        var data = await _repository.GetListAsync(index: pageRequest.PageIndex, size: pageRequest.PageSize);
+        return _mapper.Map<Paginate<GetListSubjectInfoResponse>>(data);
     }
 }

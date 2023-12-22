@@ -10,81 +10,48 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SubjectsController : ControllerBase
+    public class SubjectController : ControllerBase
     {
         private readonly ISubjectService _subjectService;
-        private readonly IMapper _mapper;
 
-        public SubjectsController(ISubjectService subjectService, IMapper mapper)
+        public SubjectController(ISubjectService subjectService)
         {
             _subjectService = subjectService;
-            _mapper = mapper;
-        }
-        [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAllSubjects([FromQuery] PageRequest pageRequest)
-        {
-            try
-            {
-                var result = await _subjectService.GetAllSubjectsAsync(pageRequest);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                // Hata durumunda uygun bir şekilde işleyin veya loglayın.
-                return StatusCode(500, "Internal Server Error");
-            }
         }
 
-        [HttpGet("GetById")]
-        public async Task<IActionResult> GetSubjectById(int id)
+        [HttpPost("add")]
+        public async Task<ActionResult<CreatedSubjectResponse>> Add([FromBody] CreateSubjectRequest createSubjectRequest)
         {
-            var subject = await _subjectService.GetSubjectByIdAsync(id);
-
-            if (subject == null)
-            {
-                return NotFound();
-            }
-
-            var subjectResponse = _mapper.Map<SubjectResponse>(subject);
-            return Ok(subjectResponse);
+            var result = await _subjectService.Add(createSubjectRequest);
+            return Ok(result);
         }
 
-        [HttpPost("Add")]
-        public async Task<IActionResult> AddSubject([FromBody] CreateSubjectRequest request)
+        [HttpDelete("delete/{id}")]
+        public async Task<ActionResult<DeletedSubjectResponse>> Delete(int id)
         {
-            var addedSubject = await _subjectService.AddSubjectAsync(request);
-            var subjectResponse = _mapper.Map<SubjectResponse>(addedSubject);
-
-            return CreatedAtAction(nameof(GetSubjectById), new { id = subjectResponse.Id }, subjectResponse);
+            var result = await _subjectService.Delete(new DeleteSubjectRequest { Id = id });
+            return Ok(result);
         }
 
-        [HttpPut("Update")]
-        public async Task<IActionResult> UpdateSubject(int id, [FromBody] UpdateSubjectRequest request)
+        [HttpPut("update")]
+        public async Task<ActionResult<UpdatedSubjectResponse>> Update([FromBody] UpdateSubjectRequest updateSubjectRequest)
         {
-            var existingSubject = await _subjectService.GetSubjectByIdAsync(id);
-
-            if (existingSubject == null)
-            {
-                return NotFound();
-            }
-
-            var updatedSubject = await _subjectService.UpdateSubjectAsync(request);
-            var subjectResponse = _mapper.Map<SubjectResponse>(updatedSubject);
-
-            return Ok(subjectResponse);
+            var result = await _subjectService.Update(updateSubjectRequest);
+            return Ok(result);
         }
 
-        [HttpDelete("Delete")]
-        public async Task<IActionResult> DeleteSubject(int id)
+        [HttpGet("get/{id}")]
+        public async Task<ActionResult<GetByIdSubjectResponse>> GetById(int id)
         {
-            var success = await _subjectService.DeleteSubjectAsync(id);
+            var result = await _subjectService.GetById(id);
+            return Ok(result);
+        }
 
-            if (!success)
-            {
-                return NotFound();
-            }
-
-            return NoContent();
+        [HttpGet("get-list")]
+        public async Task<ActionResult<IPaginate<GetListSubjectInfoResponse>>> GetList([FromQuery] PageRequest pageRequest)
+        {
+            var result = await _subjectService.GetListAsync(pageRequest);
+            return Ok(result);
         }
     }
 }

@@ -2,8 +2,9 @@
 
 namespace Business.DTOs.Response.Subject;
 
-public class UpdatedSubjectResponse : BasePageableModel
+public class UpdatedSubjectResponse
 {
     public int Id { get; set; }
     public string Name { get; set; }
+    // Diğer gerekli özellikleri ekleyin
 }

@@ -8,10 +8,10 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CitysController : ControllerBase
+    public class CitiesController : ControllerBase
     {
         ICityService _CityService;
-        public CitysController(ICityService CityService)
+        public CitiesController(ICityService CityService)
         {
             _CityService = CityService;
         }

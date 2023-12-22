@@ -32,10 +32,6 @@ namespace DataAccess.Context.EntityConfigurations
                 .WithOne(lc => lc.Lesson)
                 .HasForeignKey(lc => lc.LessonId); 
 
-            builder.HasMany(l => l.Assignments)
-                .WithOne(a => a.Lesson)
-                .HasForeignKey(a => a.LessonId); 
-
             builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
 
         }

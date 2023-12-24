@@ -22,23 +22,23 @@ namespace Business.Rules
                 _examService = examService;
                 _studentCourseDal = studentCourseDal;
             }
-            //public async Task CertificateCanNotBeGivenDueToProgress(int examId, int studentCourseId)
-            //{
-            //    var studentCourse = await _studentCourseDal.GetAsync(s=>s.Id == studentCourseId);
-            //    var exam = await _examService.GetById(examId);
+        public async Task CertificateCanNotBeGivenDueToProgress(int examId, int studentCourseId)
+        {
+            var studentCourse = await _studentCourseDal.GetAsync(s => s.Id == studentCourseId);
+            var exam = await _examService.GetById(examId);
 
 
-            //    if (studentCourse != null && exam != null)
-            //    {
-            //        if (studentCourse.Progress != 100 || exam.Point < 60)
-            //        {
-            //            throw new BusinessException(BusinessMessages.CertificateCanNotBeGivenDueToProgress);
-            //        }
-            //    }
-            //    throw new BusinessException(BusinessMessages.CourseOrExamNotFound);
+            if (studentCourse != null && exam != null)
+            {
+                if (studentCourse.Progress != 100 || exam.Point < 60)
+                {
+                    throw new BusinessException(BusinessMessages.CertificateCanNotBeGivenDueToProgress);
+                }
+            }
+            throw new BusinessException(BusinessMessages.CourseOrExamNotFound);
 
-
-            //}
 
         }
+
+    }
 }

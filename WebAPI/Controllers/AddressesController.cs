@@ -8,10 +8,10 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AddresssController : ControllerBase
+    public class AddressesController : ControllerBase
     {
         IAddressService _addressService;
-        public AddresssController(IAddressService addressService)
+        public AddressesController(IAddressService addressService)
         {
             _addressService = addressService;
         }

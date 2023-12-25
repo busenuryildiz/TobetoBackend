@@ -23,31 +23,21 @@ namespace DataAccess.Context.EntityConfigurations
                 .IsRequired()
                 .HasColumnName("LanguageId");
 
-
             builder.Property(ul => ul.LanguageLevelId)
                 .IsRequired()
                 .HasColumnName("LanguageLevelId");
 
-            
+
             builder.HasOne(ul => ul.User)
                 .WithMany(u => u.UserLanguages)
-                .HasForeignKey(ul => ul.UserId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade); 
+                .HasForeignKey(ul => ul.UserId);
 
-         
             builder.HasOne(ul => ul.Language)
                 .WithMany(l => l.UserLanguages)
-                .HasForeignKey(ul => ul.LanguageId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict); 
+                .HasForeignKey(ul => ul.LanguageId);
 
-            
-            builder.HasOne(ul => ul.LanguageLevel)
-                .WithMany()
-                .HasForeignKey(ul => ul.LanguageLevelId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(ul => ul.LanguageLevel);
 
             builder.HasQueryFilter(ul => !ul.DeletedDate.HasValue);
         }

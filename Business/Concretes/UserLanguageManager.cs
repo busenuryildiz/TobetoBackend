@@ -46,9 +46,8 @@ namespace Business.Concretes
             //return deletedUserLanguageResponse;
 
 
-            var data = await _userLanguageDal.GetAsync(i => i.Id == deleteUserLanguageRequest.Id);
+            var data = await _userLanguageDal.GetAsync(predicate:i => i.Id == deleteUserLanguageRequest.Id);
             _mapper.Map(deleteUserLanguageRequest, data);
-            data.DeletedDate = DateTime.Now;
             var result = await _userLanguageDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedUserLanguageResponse>(result);
             return result2;

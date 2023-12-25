@@ -8,6 +8,6 @@ namespace Business.DTOs.Request.LanguageLevel
 {
     public class CreateLanguageLevelRequest
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace Business.DTOs.Request.UserLanguage
 {
     public class CreateUserLanguageRequest
     {
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
         public int? LanguageId { get; set; }
         public int? LanguageLevelId { get; set; }
 

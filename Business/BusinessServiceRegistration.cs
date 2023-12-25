@@ -51,7 +51,6 @@ namespace Business
             services.AddScoped<IAssignmentService, AssignmentManager>();
             services.AddScoped<ICourseService, CourseManager>();
             services.AddScoped<ICourseLevelService, CourseLevelManager>();
-            services.AddScoped<ICourseStatusService, CourseStatusManager>();
             services.AddScoped<ICourseSubjectService, CourseSubjectManager>();
             services.AddScoped<IQuestionService, QuestionManager>();
             services.AddScoped<IOptionService, OptionManager>();
@@ -89,7 +88,6 @@ namespace Business
             services.AddScoped<AssignmentBusinessRules>();
             services.AddScoped<CourseBusinessRules>();
             services.AddScoped<CourseLevelBusinessRules>();
-            services.AddScoped<CourseStatusBusinessRules>();
             services.AddScoped<CourseSubjectBusinessRules>();
             services.AddScoped<ExamBusinessRules>();
             services.AddScoped<InstructorCourseBusinessRules>();

@@ -8,6 +8,6 @@ namespace Business.DTOs.Request.UserLanguage
 {
     public class DeleteUserLanguageRequest
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
     }
 }

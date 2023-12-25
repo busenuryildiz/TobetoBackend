@@ -20,6 +20,8 @@ namespace DataAccess.Context.EntityConfigurations
                 .HasMaxLength(255)
                 .HasColumnName("Name");
 
+            builder.HasMany(s => s.CourseSubjects);
+
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }

@@ -38,9 +38,8 @@ namespace Business.Concretes
 
         public async Task<DeletedLanguageResponse> Delete(DeleteLanguageRequest deleteLanguageRequest)
         {
-            var data = await _languageDal.GetAsync(i => i.Id == deleteLanguageRequest.Id);
+            var data = await _languageDal.GetAsync(predicate: i => i.Id == deleteLanguageRequest.Id);
             _mapper.Map(deleteLanguageRequest, data);
-            data.DeletedDate = DateTime.Now;
             var result = await _languageDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedLanguageResponse>(result);
             return result2;

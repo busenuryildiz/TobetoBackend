@@ -42,10 +42,10 @@ namespace Business.Concretes
 
         public async Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest)
         {
-            var data = await _userDal.GetAsync(i => i.Id == deleteUserRequest.Id);
+            var data = await _userDal.GetAsync(predicate:i => i.Id == deleteUserRequest.Id);
             _mapper.Map(deleteUserRequest, data);
             data.DeletedDate = DateTime.Now;
-            var result = await _userDal.DeleteAsync(data, true);
+            var result = await _userDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedUserResponse>(result);
             return result2;
         }

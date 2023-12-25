@@ -67,6 +67,7 @@ namespace DataAccess
             services.AddScoped<IUserRoleDal, EfUserRoleDal>();
             services.AddScoped<ICourseSubjectDal, EfCourseSubjectDal>();
             services.AddScoped<ICityDal, EfCityDal>();
+            services.AddScoped<ICountryDal, EfCountryDal>();
 
 
 

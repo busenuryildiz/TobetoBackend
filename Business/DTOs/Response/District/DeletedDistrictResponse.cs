@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Request.CourseStatus
+namespace Business.DTOs.Response.District
 {
-    public class CreateCourseStatusRequest
+    public class DeletedDistrictResponse
     {
-        public Guid UserId { get; set; }
+        public int Id { get; set; }
+        public int CityId { get; set; }
         public string Name { get; set; }
-        public string ImagePath { get; set; }
     }
 }

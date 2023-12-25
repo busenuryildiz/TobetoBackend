@@ -20,7 +20,7 @@ namespace Business.Rules
         {
             _studentDal = studentDal;
         }
-        public async Task StudentNumberShouldBeUnique(int studentNumber)
+        public async Task StudentNumberShouldBeUnique(int? studentNumber)
         {
             var existingStudents = await _studentDal.GetListAsync(predicate: p => p.StudentNumber == studentNumber);
 

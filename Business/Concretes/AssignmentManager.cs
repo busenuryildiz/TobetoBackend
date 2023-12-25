@@ -43,7 +43,6 @@ namespace Business.Concretes
         public async Task<DeletedAssignmentResponse> Delete(DeleteAssignmentRequest deleteAssignmentRequest)
         {
             Assignment assignment = await _assignmentDal.GetAsync(i => i.Id == deleteAssignmentRequest.Id);
-            assignment.DeletedDate = DateTime.Now;
             var deletedAssignment = await _assignmentDal.DeleteAsync(assignment);
             DeletedAssignmentResponse deletedAssignmentResponse = _mapper.Map<DeletedAssignmentResponse>(deletedAssignment);
 

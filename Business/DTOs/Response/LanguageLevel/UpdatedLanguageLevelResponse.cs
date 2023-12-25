@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Response.LanguageLevel
 {
-    public class UpdatedLanguageLevelResponse : BasePageableModel
+    public class UpdatedLanguageLevelResponse 
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int? Id { get; set; }
+        public string? Name { get; set; }
     }
 }

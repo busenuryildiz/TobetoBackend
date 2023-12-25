@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstracts
 {
-    public interface ICountyDal : IRepository<County, int>, IAsyncRepository<County, int>
+    public interface IDistrictDal : IRepository<District, int>, IAsyncRepository<District, int>
     {
 
     }

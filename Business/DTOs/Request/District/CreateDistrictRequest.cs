@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Response.County
+namespace Business.DTOs.Request.District
 {
-    public class DeletedCountyResponse
+    public class CreateDistrictRequest
     {
-        public int Id { get; set; }
         public int CityId { get; set; }
         public string Name { get; set; }
     }

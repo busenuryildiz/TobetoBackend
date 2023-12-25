@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Request.CourseStatus
+namespace Business.DTOs.Request.District
 {
-    public class DeleteCourseStatusRequest
+    public class UpdateDistrictRequest
     {
         public int Id { get; set; }
-        public Guid UserId { get; set; }
+        public int CityId { get; set; }
         public string Name { get; set; }
-        public string ImagePath { get; set; }
     }
 }

@@ -10,9 +10,9 @@ namespace Entities.Concretes.Clients
 {
     public class Student : Entity<Guid>
     {
-        public Guid UserId { get; set; }
-        public int StudentNumber { get; set; }
-        public User User { get; set; }
+        public Guid? UserId { get; set; }
+        public int? StudentNumber { get; set; }
+        public User? User { get; set; }
         public List<Survey>? Surveys { get; set; }
         public List<StudentCourse>? StudentCourses { get; set; } // Eklenen alan
         public List<StudentSkill>? StudentSkills { get; set; }

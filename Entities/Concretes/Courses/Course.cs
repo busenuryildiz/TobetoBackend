@@ -10,7 +10,6 @@ namespace Entities.Concretes.Courses
     public class Course : Entity<int>
     {
         public int? CourseLevelId { get; set; }
-        public int? CourseStatusId { get; set; }
         public int? SoftwareLanguageId { get; set; }
         public int? CategoryId { get; set; }
         public string? Name { get; set; }
@@ -21,7 +20,6 @@ namespace Entities.Concretes.Courses
         public List<Exam>? Exams { get; set; }
         public CourseLevel? CourseLevel { get; set; }
         public List<LessonCourse> LessonCourses { get; set; }
-        public CourseStatus? CourseStatus { get; set; }
         public List<CourseSubject>? CourseSubjects { get; set; }
         public SoftwareLanguage? SoftwareLanguage { get; set; }
         public List<StudentCourse>? StudentCourses { get; set; } // Eklenen alan

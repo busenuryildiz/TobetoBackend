@@ -23,7 +23,7 @@ namespace DataAccess.Context.EntityConfigurations
                 .HasForeignKey(ei => ei.UserId);
 
 
-            builder.HasOne(ei => ei.County)
+            builder.HasOne(ei => ei.District)
                 .WithMany(u => u.Addresses)
                 .HasForeignKey(ei => ei.CountyId);
 

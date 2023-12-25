@@ -10,7 +10,7 @@ using Core.Entities;
 
 namespace Entities.Concretes.Profiles
 {
-    public class County: Entity<int>
+    public class District: Entity<int>
     {
         public int CityId { get; set; }
         public string Name { get; set; }

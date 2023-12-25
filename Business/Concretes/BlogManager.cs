@@ -43,7 +43,7 @@ namespace Business.Concretes
             var data = await _blogDal.GetAsync(i => i.Id == deleteBlogRequest.Id);
             _mapper.Map(deleteBlogRequest, data);
             data.DeletedDate = DateTime.Now;
-            var result = await _blogDal.DeleteAsync(data, true);
+            var result = await _blogDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedBlogResponse>(result);
             return result2;
         }

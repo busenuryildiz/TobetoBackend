@@ -20,14 +20,13 @@ namespace DataAccess.Context.EntityConfigurations
             // Course ilişkisi
             builder.HasOne(cs => cs.Course)
                 .WithMany(c => c.CourseSubjects)
-                .HasForeignKey(cs => cs.CourseId)
-                .OnDelete(DeleteBehavior.Cascade); 
+                .HasForeignKey(cs => cs.CourseId);
 
             // Subject ilişkisi
             builder.HasOne(cs => cs.Subject)
                 .WithMany(s => s.CourseSubjects)
-                .HasForeignKey(cs => cs.SubjectId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(cs => cs.SubjectId);
+
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 
 

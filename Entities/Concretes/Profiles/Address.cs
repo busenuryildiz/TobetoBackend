@@ -12,10 +12,10 @@ namespace Entities.Concretes.Profiles
     public class Address: Entity<int>
     {
         public Guid UserId { get; set; }
-        public int CountyId { get; set; }
+        public int DistrictId { get; set; }
         public string Name { get; set; }
         public string AboutMe { get; set; }
-        public County County { get; set; }
+        public District District { get; set; }
         public User User { get; set; }
 
     }

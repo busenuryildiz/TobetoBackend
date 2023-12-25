@@ -14,7 +14,6 @@ namespace DataAccess.Context.EntityConfigurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.ToTable("Users").HasKey(u => u.Id); 
-            builder.HasKey(u => u.Id);
             builder.Property(u => u.FirstName).IsRequired().HasMaxLength(255);
             builder.Property(u => u.LastName).IsRequired().HasMaxLength(255);
             builder.Property(u => u.Email).IsRequired().HasMaxLength(255);
@@ -31,7 +30,9 @@ namespace DataAccess.Context.EntityConfigurations
 
             builder.HasMany(u => u.Addresses)
                 .WithOne(ei => ei.User)
-                .HasForeignKey(ei => ei.UserId);
+                .HasForeignKey(ei => ei.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
 
             builder.HasMany(u => u.Certificates)
                 .WithOne(c => c.User)
@@ -49,11 +50,12 @@ namespace DataAccess.Context.EntityConfigurations
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(u => u.UserLanguages)
-                .WithOne(ul => ul.User)
-                .HasForeignKey(ul => ul.UserId)
+                .WithOne(ue => ue.User)
+                .HasForeignKey(ue => ue.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+                
 
-            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
+            builder.HasQueryFilter(u => !u.DeletedDate.HasValue);
         }
     }
 

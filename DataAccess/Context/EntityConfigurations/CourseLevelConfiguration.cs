@@ -22,7 +22,7 @@ namespace DataAccess.Context.EntityConfigurations
                 .WithOne(c => c.CourseLevel)
                 .HasForeignKey(c => c.CourseLevelId);
 
-            builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
+            builder.HasQueryFilter(cl => !cl.DeletedDate.HasValue);
         }
     }
 

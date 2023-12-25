@@ -10,7 +10,7 @@ namespace Entities.Concretes.Profiles
     public class LanguageLevel : Entity<int>
     {
         public string Name { get; set; }
-        public List<Language> Languages { get; set; }
+        public List<UserLanguage> UserLanguages { get; set; }
     }
 
 }

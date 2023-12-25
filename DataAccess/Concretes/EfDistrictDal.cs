@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concretes
 {
-    public class EfCountyDal : EfRepositoryBase<County, int, TobetoContext>, ICountyDal
+    public class EfDistrictDal : EfRepositoryBase<District, int, TobetoContext>, IDistrictDal
     {
-        public EfCountyDal(TobetoContext context) : base(context)
+        public EfDistrictDal(TobetoContext context) : base(context)
         {
         }
     }

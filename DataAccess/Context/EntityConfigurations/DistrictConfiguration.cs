@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Context.EntityConfigurations
 {
-    public class CountyConfiguration : IEntityTypeConfiguration<County>
+    public class DistrictConfiguration : IEntityTypeConfiguration<District>
     {
-        public void Configure(EntityTypeBuilder<County> builder)
+        public void Configure(EntityTypeBuilder<District> builder)
         {
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Name).IsRequired().HasMaxLength(255);
 
             builder.HasOne(ct => ct.City)
-                .WithMany(a => a.Counties)
+                .WithMany(a => a.Districts)
                 .HasForeignKey(ei => ei.CityId);
 
             builder.HasMany(a => a.Addresses)
-                .WithOne(ct => ct.County)
-                .HasForeignKey(ct => ct.CountyId);
+                .WithOne(ct => ct.District)
+                .HasForeignKey(ct => ct.DistrictId);
 
             
         }

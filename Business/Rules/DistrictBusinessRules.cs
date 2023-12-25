@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.Rules
 {
-    public class CountyBusinessRules: BaseBusinessRules
+    public class DistrictBusinessRules: BaseBusinessRules
     {
     }
 }

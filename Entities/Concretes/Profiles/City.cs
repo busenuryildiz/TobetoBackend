@@ -11,7 +11,7 @@ namespace Entities.Concretes.Profiles
     {
         public int CountryId { get; set; }
         public string Name { get; set; }
-        public List<County> Counties { get; set; }
+        public List<District> Districts { get; set; }
         public Country Country { get; set; }
     }
 }

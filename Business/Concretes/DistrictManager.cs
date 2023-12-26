@@ -17,37 +17,37 @@ namespace Business.Concretes
 {
     public class DistrictManager : IDistrictService
     {
-        IDistrictDal _countyDal;
+        IDistrictDal _districtDal;
         IMapper _mapper;
         DistrictBusinessRules _businessRules;
 
-        public DistrictManager(DistrictBusinessRules businessRules, IDistrictDal countyDal, IMapper mapper)
+        public DistrictManager(DistrictBusinessRules businessRules, IDistrictDal districtDal, IMapper mapper)
         {
             _businessRules = businessRules;
-            _countyDal = countyDal;
+            _districtDal = districtDal;
             _mapper = mapper;
         }
 
         public async Task<CreatedDistrictResponse> Add(CreateDistrictRequest createDistrictRequest)
         {
             District district = _mapper.Map<District>(createDistrictRequest);
-            District createdDistrict = await _countyDal.AddAsync(district);
+            District createdDistrict = await _districtDal.AddAsync(district);
             CreatedDistrictResponse createdDistrictResponse = _mapper.Map<CreatedDistrictResponse>(createdDistrict);
             return createdDistrictResponse;
         }
 
         public async Task<DeletedDistrictResponse> Delete(DeleteDistrictRequest deleteDistrictRequest)
         {
-            var data = await _countyDal.GetAsync(predicate:i => i.Id == deleteDistrictRequest.Id);
+            var data = await _districtDal.GetAsync(predicate:i => i.Id == deleteDistrictRequest.Id);
             _mapper.Map(deleteDistrictRequest, data);
-            var result = await _countyDal.DeleteAsync(data);
+            var result = await _districtDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedDistrictResponse>(result);
             return result2;
         }
 
         public async Task<CreatedDistrictResponse> GetById(int id)
         {
-            var result = await _countyDal.GetAsync(c => c.Id == id);
+            var result = await _districtDal.GetAsync(c => c.Id == id);
             District mappedDistrict = _mapper.Map<District>(result);
             CreatedDistrictResponse createdDistrictResponse = _mapper.Map<CreatedDistrictResponse>(mappedDistrict);
             return createdDistrictResponse;
@@ -56,7 +56,7 @@ namespace Business.Concretes
 
         public async Task<IPaginate<GetListDistrictResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _countyDal.GetListAsync(
+            var data = await _districtDal.GetListAsync(
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize
             );
@@ -67,9 +67,9 @@ namespace Business.Concretes
 
         public async Task<UpdatedDistrictResponse> Update(UpdateDistrictRequest updateDistrictRequest)
         {
-            var data = await _countyDal.GetAsync(i => i.Id == updateDistrictRequest.Id);
+            var data = await _districtDal.GetAsync(i => i.Id == updateDistrictRequest.Id);
             _mapper.Map(updateDistrictRequest, data);
-            await _countyDal.UpdateAsync(data);
+            await _districtDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedDistrictResponse>(data);
             return result;
         }

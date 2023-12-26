@@ -21,7 +21,7 @@ namespace DataAccess.Context.EntityConfigurations
                    .HasMaxLength(255);
 
             // City sınıfının District koleksiyonu ile ilişkisi
-            builder.HasMany(c => c.Counties)
+            builder.HasMany(c => c.Districts)
                    .WithOne()
                    .HasForeignKey(c => c.CityId)
                    .OnDelete(DeleteBehavior.Cascade);

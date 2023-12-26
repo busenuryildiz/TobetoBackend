@@ -8,9 +8,7 @@ namespace Business.DTOs.Request.City
 {
     public class CreateCityRequest
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string Content { get; set; }
-        public string ImagePath { get; set; }
+        public int CountryId { get; set; }
+        public string Name { get; set; }
     }
 }

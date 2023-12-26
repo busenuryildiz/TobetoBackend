@@ -25,7 +25,7 @@ namespace DataAccess.Context.EntityConfigurations
 
             builder.HasOne(ei => ei.District)
                 .WithMany(u => u.Addresses)
-                .HasForeignKey(ei => ei.CountyId);
+                .HasForeignKey(ei => ei.DistrictId);
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 

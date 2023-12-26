@@ -67,13 +67,13 @@ namespace Business.Concretes
             return createdStudentCourseResponse;
         }
 
-        public async Task<IPaginate<GetListStudentCourseInfoResponse>> GetListAsync(PageRequest pageRequest)
+        public async Task<IPaginate<GetListStudentCourseResponse>> GetListAsync(PageRequest pageRequest)
         {
             var data = await _studentCourseDal.GetListAsync(
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize
             );
-            var result = _mapper.Map<Paginate<GetListStudentCourseInfoResponse>>(data);
+            var result = _mapper.Map<Paginate<GetListStudentCourseResponse>>(data);
             return result;
         }
 

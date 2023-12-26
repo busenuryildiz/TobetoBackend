@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using Business.Rules;
 using DataAccess.Concretes;
 using Entities.Concretes.Clients;
+using Business.DTOs.Request.Blog;
+using Business.DTOs.Response.Blog;
+using Entities.Concretes;
 
 namespace Business.Concretes
 {

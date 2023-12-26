@@ -44,20 +44,13 @@ namespace Business.Concretes
 
         public async Task<DeletedEducationInformationResponse> Delete(DeleteEducationInformationRequest deleteEducationInformationRequest)
         {
-            EducationInformation educationInformation = await _educationInformationDal.GetAsync(i => i.Id == deleteEducationInformationRequest.Id);
-            educationInformation.DeletedDate = DateTime.Now;
-            var deletedEducationInformation = await _educationInformationDal.DeleteAsync(educationInformation);
-            DeletedEducationInformationResponse deletedEducationInformationResponse = _mapper.Map<DeletedEducationInformationResponse>(deletedEducationInformation);
 
-            return deletedEducationInformationResponse;
-
-
-            //var data = await _educationInformationDal.GetAsync(i => i.Id == deleteEducationInformationRequest.Id);
-            //_mapper.Map(deleteEducationInformationRequest, data);
-            //data.DeletedDate = DateTime.Now;
-            //var result = await _educationInformationDal.DeleteAsync(data);
-            //var result2 = _mapper.Map<DeletedEducationInformationResponse>(result);
-            //return result2;
+            var data = await _educationInformationDal.GetAsync(i => i.Id == deleteEducationInformationRequest.Id);
+            _mapper.Map(deleteEducationInformationRequest, data);
+            data.DeletedDate = DateTime.Now;
+            var result = await _educationInformationDal.DeleteAsync(data);
+            var result2 = _mapper.Map<DeletedEducationInformationResponse>(result);
+            return result2;
         }
 
         public async Task<CreatedEducationInformationResponse> GetById(int id)
@@ -84,22 +77,13 @@ namespace Business.Concretes
 
         public async Task<UpdatedEducationInformationResponse> Update(UpdateEducationInformationRequest updateEducationInformationRequest)
         {
-            EducationInformation educationInformation = await _educationInformationDal.GetAsync(i => i.Id == updateEducationInformationRequest.Id);
-            educationInformation.UpdatedDate = DateTime.Now;
-            var updatedEducationInformation = await _educationInformationDal.UpdateAsync(educationInformation);
-            UpdatedEducationInformationResponse updatedEducationInformationResponse =
-                _mapper.Map<UpdatedEducationInformationResponse>(updatedEducationInformation);
 
-            return updatedEducationInformationResponse;
-
-
-
-            //var data = await _educationInformationDal.GetAsync(i => i.Id == updateEducationInformationRequest.Id);
-            //_mapper.Map(updateEducationInformationRequest, data);
-            //data.UpdatedDate = DateTime.Now;
-            //await _educationInformationDal.UpdateAsync(data);
-            //var result = _mapper.Map<UpdatedEducationInformationResponse>(data);
-            //return result;
+            var data = await _educationInformationDal.GetAsync(i => i.Id == updateEducationInformationRequest.Id);
+            _mapper.Map(updateEducationInformationRequest, data);
+            data.UpdatedDate = DateTime.Now;
+            await _educationInformationDal.UpdateAsync(data);
+            var result = _mapper.Map<UpdatedEducationInformationResponse>(data);
+            return result;
         }
     }
 }

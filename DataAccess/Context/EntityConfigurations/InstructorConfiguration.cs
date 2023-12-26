@@ -19,6 +19,7 @@ namespace DataAccess.Context.EntityConfigurations
             builder.Property(b => b.HireDate).HasColumnName("HireDate").IsRequired();
 
             builder.HasOne(b => b.User);
+            builder.HasMany(c => c.InstructorCourses);
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 
         }

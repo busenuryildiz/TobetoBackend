@@ -43,6 +43,7 @@ namespace DataAccess.Context.EntityConfigurations
                 .HasForeignKey(sc => sc.CourseId);
 
             builder.HasMany(c => c.CourseSubjects);
+            builder.HasMany(c => c.InstructorCourses);
 
             // Course tablosu üzerinde silinmiş kayıtları filtreleme
             builder.HasQueryFilter(c => !c.DeletedDate.HasValue);

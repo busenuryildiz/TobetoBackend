@@ -14,7 +14,7 @@ namespace Business.Abstracts
         Task<CreatedCategoryResponse> Add(CreateCategoryRequest createCategoryRequest);
         Task<DeletedCategoryResponse> Delete(DeleteCategoryRequest deleteCategoryRequest);
         Task<UpdatedCategoryResponse> Update(UpdateCategoryRequest updateCategoryRequest);
-        Task<GetByIdCategoryResponse> GetById(int id);
+        Task<CreatedCategoryResponse> GetById(int id);
         Task<IPaginate<GetListCategoryInfoResponse>> GetListAsync(PageRequest pageRequest);
     }
 }

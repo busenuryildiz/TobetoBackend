@@ -11,7 +11,7 @@ namespace Business.DTOs.Response.StudentCourse
         public int Id { get; set; }
         public Guid StudentId { get; set; }
         public int CourseId { get; set; }
-        public int Progress { get; set; }
+        public int? Progress { get; set; }
         // Güncellenen öğrenci kursu hakkında bilgileri ekleyebilirsiniz
     }
 }

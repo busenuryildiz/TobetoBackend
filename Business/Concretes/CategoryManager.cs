@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.Category;
+using Business.DTOs.Response.Blog;
 using Business.DTOs.Response.Category;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -52,15 +54,16 @@ namespace Business.Concretes
             return result;
         }
 
-        public async Task<GetByIdCategoryResponse> GetById(int id)
+
+        public async Task<CreatedCategoryResponse> GetById(int id)
         {
             var result = await _categoryDal.GetAsync(c => c.Id == id);
             Category mappedCategory = _mapper.Map<Category>(result);
-
-            GetByIdCategoryResponse getByIdCategoryResponse = _mapper.Map<GetByIdCategoryResponse>(mappedCategory);
-
-            return getByIdCategoryResponse;
+            CreatedCategoryResponse createdCategoryResponse = _mapper.Map<CreatedCategoryResponse>(mappedCategory);
+            return createdCategoryResponse;
         }
+
+
 
         public async Task<IPaginate<GetListCategoryInfoResponse>> GetListAsync(PageRequest pageRequest)
         {

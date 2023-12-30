@@ -31,7 +31,7 @@ namespace Core.CrossCuttingConcerns.Exceptions
             }
 
         }
-        
+
         private Task HandleExceptionAsync(HttpResponse response, Exception exception)
         {
             response.ContentType = "application/json";

@@ -120,7 +120,6 @@ namespace Business
             services.AddScoped<LessonBusinessRules>();
             services.AddScoped<ContactUsBusinessRules>();
 
-            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
             return services;
         }
         public static IServiceCollection AddSubClassesOfType(

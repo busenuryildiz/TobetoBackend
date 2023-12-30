@@ -3,6 +3,8 @@ using Business.Abstracts;
 using Business.DTOs.Request.Role;
 using Business.DTOs.Response.Role;
 using Business.Rules;
+using Business.Rules.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
@@ -26,6 +28,8 @@ namespace Business.Concretes
             _roleDal = roleDal;
             _mapper = mapper;
         }
+
+
 
         public async Task<CreatedRoleResponse> Add(CreateRoleRequest createRoleRequest)
         {

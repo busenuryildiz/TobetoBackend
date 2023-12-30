@@ -5,6 +5,7 @@ using Business.DTOs.Request.Subject;
 using Business.DTOs.Response.Subject;
 using Business.DTOs.Response.Subject;
 using Business.Rules;
+using Core.Aspects.Autofac.Validation;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
@@ -19,6 +20,8 @@ public class SubjectManager : ISubjectService
         _repository = repository;
         _mapper = mapper;
     }
+
+
 
     public async Task<CreatedSubjectResponse> Add(CreateSubjectRequest createSubjectRequest)
     {

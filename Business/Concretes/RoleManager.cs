@@ -30,7 +30,7 @@ namespace Business.Concretes
         }
 
 
-
+        [ValidationAspect(typeof(CreateRoleRequestValidator))]
         public async Task<CreatedRoleResponse> Add(CreateRoleRequest createRoleRequest)
         {
             Role role = _mapper.Map<Role>(createRoleRequest);

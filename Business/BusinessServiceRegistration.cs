@@ -19,7 +19,7 @@ namespace Business
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
 
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
 
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IStudentService, StudentManager>();
@@ -80,7 +80,7 @@ namespace Business
             services.AddScoped<ICityService, CityManager>();
             services.AddScoped<ICountryService, CountryManager>();
             services.AddScoped<ILessonService, LessonManager>();
-            services.AddScoped<IContactUsService,ContactUsManager>();
+            services.AddScoped<IContactUsService, ContactUsManager>();
             services.AddScoped<IDistrictService, DistrictManager>();
 
 
@@ -119,6 +119,7 @@ namespace Business
             services.AddScoped<CountryBusinessRules>();
             services.AddScoped<LessonBusinessRules>();
             services.AddScoped<ContactUsBusinessRules>();
+
 
             return services;
         }

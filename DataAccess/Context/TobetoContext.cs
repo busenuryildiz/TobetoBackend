@@ -54,7 +54,7 @@ namespace DataAccess.Context
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Manager> Managers { get; set; }
         public DbSet<City> Cities { get; set; } 
-        public DbSet<District> Districts { get; set; } 
+        public DbSet<District> Districts { get; set; }
 
 
 

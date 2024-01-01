@@ -1,33 +1,56 @@
 using Autofac;
+using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using Business;
 using Business.DependencyResolvers.Autofac;
 using Castle.Core.Configuration;
 using Core.CrossCuttingConcerns.Exceptions.Extensions;
 using DataAccess;
+using DataAccess.Context;
+using DataAccess.DependencyResolvers.Autofac;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.Reflection;
+
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
 //builder.Services.AddBusinessServices();
 //builder.Services.AddDataAccessServices(builder.Configuration);
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+var config = builder.Configuration;
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-var config = builder.Configuration;
-builder.Host
-    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-    .ConfigureContainer<ContainerBuilder>(builder =>
-    {
-        builder.RegisterModule(new AutofacBusinessModule());
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddDbContext<TobetoContext>(options => options.UseSqlServer(config.GetConnectionString("Tobeto")));
 
-    }).ConfigureContainer<ContainerBuilder>(builder =>
+builder.Host
+.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+.ConfigureContainer<ContainerBuilder>(builder =>
+{
+    // AutofacDataAccessModule.cs veya benzer bir yerde
+    builder.RegisterInstance(config).As<Microsoft.Extensions.Configuration.IConfiguration>();
+    // AutofacDataAccessModule.cs veya benzer bir yerde
+    // AutofacDataAccessModule.cs veya benzer bir yerde
+    builder.Register<DbContextOptions<TobetoContext>>(c =>
     {
-        builder.RegisterModule(new AutofacDataAccessModule(config));
-    });
+        var dbContextOptionsBuilder = new DbContextOptionsBuilder<TobetoContext>();
+        dbContextOptionsBuilder.UseSqlServer(c.Resolve<Microsoft.Extensions.Configuration.IConfiguration>().GetConnectionString("Tobeto"));
+        return dbContextOptionsBuilder.Options;
+    }).InstancePerLifetimeScope();
+
+
+    builder.RegisterModule(new AutofacDataAccessModule(config));
+    builder.RegisterModule(new AutofacBusinessModule(config));
+
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,6 +60,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.ConfigureCustomExceptionMiddleware();
+
 
 app.UseAuthorization();
 

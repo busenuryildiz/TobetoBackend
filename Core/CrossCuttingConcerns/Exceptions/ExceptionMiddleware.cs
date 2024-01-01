@@ -23,6 +23,7 @@ namespace Core.CrossCuttingConcerns.Exceptions
         {
             try
             {
+                
                 await _next(context);
             }
             catch (Exception exception)

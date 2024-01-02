@@ -22,34 +22,31 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers();
-//builder.Services.AddBusinessServices();
-//builder.Services.AddDataAccessServices(builder.Configuration);
+builder.Services.AddBusinessServices();
+builder.Services.AddDataAccessServices(builder.Configuration);
 var config = builder.Configuration;
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.AddDbContext<TobetoContext>(options => options.UseSqlServer(config.GetConnectionString("Tobeto")));
+//builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+//builder.Services.AddDbContext<TobetoContext>(options => options.UseSqlServer(config.GetConnectionString("Tobeto")));
 
-builder.Host
-.UseServiceProviderFactory(new AutofacServiceProviderFactory())
-.ConfigureContainer<ContainerBuilder>(builder =>
-{
-    // AutofacDataAccessModule.cs veya benzer bir yerde
-    builder.RegisterInstance(config).As<Microsoft.Extensions.Configuration.IConfiguration>();
-    // AutofacDataAccessModule.cs veya benzer bir yerde
-    // AutofacDataAccessModule.cs veya benzer bir yerde
-    builder.Register<DbContextOptions<TobetoContext>>(c =>
-    {
-        var dbContextOptionsBuilder = new DbContextOptionsBuilder<TobetoContext>();
-        dbContextOptionsBuilder.UseSqlServer(c.Resolve<Microsoft.Extensions.Configuration.IConfiguration>().GetConnectionString("Tobeto"));
-        return dbContextOptionsBuilder.Options;
-    }).InstancePerLifetimeScope();
+//builder.Host
+//.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+//.ConfigureContainer<ContainerBuilder>(builder =>
+//{
+//    builder.RegisterInstance(config).As<Microsoft.Extensions.Configuration.IConfiguration>();
+//    builder.Register<DbContextOptions<TobetoContext>>(c =>
+//    {
+//        var dbContextOptionsBuilder = new DbContextOptionsBuilder<TobetoContext>();
+//        dbContextOptionsBuilder.UseSqlServer(c.Resolve<Microsoft.Extensions.Configuration.IConfiguration>().GetConnectionString("Tobeto"));
+//        return dbContextOptionsBuilder.Options;
+//    }).InstancePerLifetimeScope();
 
 
-    builder.RegisterModule(new AutofacDataAccessModule(config));
-    builder.RegisterModule(new AutofacBusinessModule(config));
+//    builder.RegisterModule(new AutofacDataAccessModule(config));
+//    builder.RegisterModule(new AutofacBusinessModule(config));
 
-});
+//});
 
 var app = builder.Build();
 

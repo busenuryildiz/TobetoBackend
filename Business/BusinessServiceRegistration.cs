@@ -21,6 +21,11 @@ namespace Business
 
 
 
+
+
+            // AUTOMAPPER
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IStudentService, StudentManager>();
 
@@ -44,6 +49,10 @@ namespace Business
             services.AddScoped<IStudentAssignmentService, StudentAssignmentManager>();
 
             services.AddScoped<ISoftwareLanguageService, SoftwareLanguageManager>();
+            services.AddScoped<IStudentAssignmentService, StudentAssignmentManager>();
+            services.AddScoped<IDistrictService, DistrictManager>();
+            services.AddScoped<StudentAssignmentBusinessRules>();
+            services.AddScoped<DistrictBusinessRules>();
 
             services.AddScoped<IManagerService, ManagerManager>();
             services.AddScoped<IInstructorService, InstructorManager>();

@@ -5,10 +5,12 @@ using Business.DTOs.Request.Subject;
 using Business.DTOs.Response.Subject;
 using Business.DTOs.Response.Subject;
 using Business.Rules;
+using Core.Aspects.Autofac.Logging;
 using Core.Aspects.Autofac.Validation;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
+using Microsoft.Extensions.Logging;
 
 public class SubjectManager : ISubjectService
 {
@@ -22,7 +24,7 @@ public class SubjectManager : ISubjectService
     }
 
 
-
+    [LogAspect]
     public async Task<CreatedSubjectResponse> Add(CreateSubjectRequest createSubjectRequest)
     {
         var subject = _mapper.Map<Subject>(createSubjectRequest);

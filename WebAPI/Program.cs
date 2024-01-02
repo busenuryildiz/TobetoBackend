@@ -2,9 +2,13 @@ using Autofac;
 using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using Business;
+using Business.Abstracts;
+using Business.Concretes;
 using Business.DependencyResolvers.Autofac;
 using Castle.Core.Configuration;
 using Core.CrossCuttingConcerns.Exceptions.Extensions;
+using Core.Middlewares;
+using Core.Utilities.JWT;
 using DataAccess;
 using DataAccess.Context;
 using DataAccess.DependencyResolvers.Autofac;
@@ -13,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System.Reflection;
 
 
@@ -22,11 +27,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers();
-builder.Services.AddBusinessServices();
+
+
 builder.Services.AddDataAccessServices(builder.Configuration);
+builder.Services.AddBusinessServices();
+
+
 var config = builder.Configuration;
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+
 //builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 //builder.Services.AddDbContext<TobetoContext>(options => options.UseSqlServer(config.GetConnectionString("Tobeto")));
 
@@ -60,6 +71,9 @@ app.ConfigureCustomExceptionMiddleware();
 
 
 app.UseAuthorization();
+
+app.UseMiddleware<LogMiddleware>();
+
 
 app.MapControllers();
 

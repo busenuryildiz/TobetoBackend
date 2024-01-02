@@ -2,7 +2,7 @@
 
 public class CreatedUserRoleResponse
 {
-    public int Id { get; set; }
     public Guid UserId { get; set; }
-    public int RoleId { get; set; }
+    public List<string> Roles { get; set; }
+    // Diğer gerekli alanlar
 }

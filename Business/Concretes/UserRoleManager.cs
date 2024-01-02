@@ -18,11 +18,9 @@ namespace Business.Concretes
     {
         IUserRoleDal _userRoleDal;
         IMapper _mapper;
-        UserRoleBusinessRules _businessRules;
 
         public UserRoleManager(UserRoleBusinessRules businessRules, IUserRoleDal userRoleDal, IMapper mapper)
         {
-            _businessRules = businessRules;
             _userRoleDal = userRoleDal;
             _mapper = mapper;
         }
@@ -75,6 +73,22 @@ namespace Business.Concretes
             await _userRoleDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedUserRoleResponse>(data);
             return result;
+        }
+
+        public async Task<CreatedUserRoleResponse> GetRolesByUserId(Guid userId)
+        {
+  
+            // Kullanıcının rollerini repository üzerinden al
+            var userRoles = await _userRoleDal.GetRolesByUserId(userId);
+
+            // Burada CreatedUserRoleResponse oluşturabilir ve gerekli işlemleri yapabilirsiniz.
+            var response = new CreatedUserRoleResponse
+            {
+                UserId = userId,
+                Roles = userRoles
+            };
+
+            return response;
         }
     }
 }

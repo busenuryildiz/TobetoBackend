@@ -2,6 +2,9 @@
 using Business.Concretes;
 using Business.Rules;
 using Core.Business.Rules;
+using Core.Utilities.JWT;
+using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -23,12 +26,13 @@ namespace Business
 
 
 
+
+
             // AUTOMAPPER
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IStudentService, StudentManager>();
-
+            services.AddScoped<IUserRoleService,UserRoleManager >();
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<IMediaPostService, MediaPostManager>();
@@ -85,12 +89,14 @@ namespace Business
             services.AddScoped<IStudentSkillService, StudentSkillManager>();
             services.AddScoped<ISubjectService, SubjectManager>();
             services.AddScoped<ISurveyService, SurveyManager>();
-            services.AddScoped<IUserRoleService, UserRoleManager>();
+
             services.AddScoped<ICityService, CityManager>();
             services.AddScoped<ICountryService, CountryManager>();
             services.AddScoped<ILessonService, LessonManager>();
             services.AddScoped<IContactUsService, ContactUsManager>();
             services.AddScoped<IDistrictService, DistrictManager>();
+            services.AddScoped<IUserService, UserManager>();
+
 
 
             services.AddScoped<InstructorBusinessRules>();
@@ -123,12 +129,14 @@ namespace Business
             services.AddScoped<RoleBusinessRules>();
             services.AddScoped<StudentSkillBusinessRules>();
             services.AddScoped<StudentCourseBusinessRules>();
-            services.AddScoped<UserRoleBusinessRules>();
             services.AddScoped<CityBusinessRules>();
             services.AddScoped<CountryBusinessRules>();
+
             services.AddScoped<LessonBusinessRules>();
             services.AddScoped<ContactUsBusinessRules>();
-
+            services.AddTransient<UserRoleBusinessRules>();
+            services.AddScoped<JwtService>();
+            //kerem@gmail.com
 
             return services;
         }

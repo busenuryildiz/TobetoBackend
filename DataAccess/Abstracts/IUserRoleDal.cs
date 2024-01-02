@@ -5,9 +5,7 @@ namespace DataAccess.Abstracts
 {
     public interface IUserRoleDal : IRepository<UserRole, int>, IAsyncRepository<UserRole, int>
     {
-        // UserRole'a özgü metodlar buraya eklenebilir.
+        public Task<List<string>> GetRolesByUserId(Guid userId);
     }
-
-
 
 }

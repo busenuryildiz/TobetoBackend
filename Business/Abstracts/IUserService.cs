@@ -18,6 +18,7 @@ namespace Business.Abstracts
         Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest);
         Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest);
         Task<CreatedUserResponse> GetById(Guid id);
+        Task<UserLoginResponse> Login(string email, string password);
 
     }
 }

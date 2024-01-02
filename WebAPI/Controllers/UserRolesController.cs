@@ -46,9 +46,9 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
         [HttpGet("GetById")]
-        public async Task<IActionResult> GetById([FromQuery] int id)
+        public async Task<IActionResult> GetById([FromQuery] Guid id)
         {
-            var result = await _userRoleService.GetById(id);
+            var result = await _userRoleService.GetRolesByUserId(id);
             return Ok(result);
         }
     }

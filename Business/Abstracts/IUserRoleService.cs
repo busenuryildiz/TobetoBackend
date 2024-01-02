@@ -15,6 +15,6 @@ namespace Business.Abstracts
         Task<CreatedUserRoleResponse> Add(CreateUserRoleRequest createUserRoleRequest);
         Task<UpdatedUserRoleResponse> Update(UpdateUserRoleRequest updateUserRoleRequest);
         Task<DeletedUserRoleResponse> Delete(DeleteUserRoleRequest deleteUserRoleRequest);
-        Task<CreatedUserRoleResponse> GetById(int id);
+        Task<CreatedUserRoleResponse> GetRolesByUserId(Guid userId);
     }
 }

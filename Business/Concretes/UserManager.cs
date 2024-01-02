@@ -20,20 +20,20 @@ namespace Business.Concretes
     {
         IUserDal _userDal;
         IMapper _mapper;
-        UserBusinessRules _userBusinessRules;
+        //UserBusinessRules _userBusinessRules;
 
-        public UserManager(UserBusinessRules userBusinessRules, IUserDal userDal, IMapper mapper)
+        public UserManager( IUserDal userDal, IMapper mapper)
         {
-            _userBusinessRules = userBusinessRules;
+            //_userBusinessRules = userBusinessRules;
             _userDal = userDal;
             _mapper = mapper;
         }
 
         public async Task<CreatedUserResponse> Add(CreateUserRequest createUserRequest)
         {
-            await _userBusinessRules.EmailShouldBeUnique(createUserRequest.Email);
-            await _userBusinessRules.PhoneShouldBeUnique(createUserRequest.PhoneNumber);
-            await _userBusinessRules.NationalIdNumberCannotBeTheSame(createUserRequest.NationalIdentity);
+            //await _userBusinessRules.EmailShouldBeUnique(createUserRequest.Email);
+            //await _userBusinessRules.PhoneShouldBeUnique(createUserRequest.PhoneNumber);
+            //await _userBusinessRules.NationalIdNumberCannotBeTheSame(createUserRequest.NationalIdentity);
             User user = _mapper.Map<User>(createUserRequest);
             User createdUser = await _userDal.AddAsync(user);
             CreatedUserResponse createdUserResponse = _mapper.Map<CreatedUserResponse>(createdUser);
@@ -90,6 +90,29 @@ namespace Business.Concretes
             await _userDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedUserResponse>(data);
             return result;
+        }
+
+
+
+        public async Task<UserLoginResponse> Login(string email, string password)
+        {
+            // E-posta ve şifre ile kullanıcıyı getir (şifreyi kontrol etmeden)
+            var user = _userDal.Get(predicate : u => u.Email== email && u.Password== password);
+
+            if (user != null)
+            {
+                // Kullanıcı bulundu, kullanıcı DTO'sunu döndür
+                return new UserLoginResponse
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                };
+            }
+
+            // Kullanıcı bulunamadı
+            return null;
         }
     }
 }

@@ -22,10 +22,18 @@ namespace DataAccess
             services.AddDbContext<TobetoContext>(options => options.UseSqlServer(configuration.GetConnectionString("Tobeto")));
 
 
+
+
+
+
+
+            services.AddScoped<IUserDal, EfUserDal>();  // Change from Singleton to Scoped
             services.AddScoped<IInstructorDal, EfInstructorDal>();
             services.AddScoped<IManagerDal, EfManagerDal>();
             services.AddScoped<IStudentDal, EfStudentDal>();
-            services.AddScoped<IUserDal, EfUserDal>();
+ 
+
+            services.AddScoped<IUserRoleDal, EfUserRoleDal>();
 
             services.AddScoped<IAssignmentDal, EfAssignmentDal>();
             services.AddScoped<IAddressDal, EfAddressDal>();
@@ -64,8 +72,7 @@ namespace DataAccess
             services.AddScoped<IStudentSkillDal, EfStudentSkillDal>();
             services.AddScoped<ISubjectDal, EfSubjectDal>();
             services.AddScoped<ISurveyDal, EfSurveyDal>();
-            services.AddScoped<IUserRoleDal, EfUserRoleDal>();
-            services.AddScoped<ICourseSubjectDal, EfCourseSubjectDal>();
+                  services.AddScoped<ICourseSubjectDal, EfCourseSubjectDal>();
             services.AddScoped<ICityDal, EfCityDal>();
             services.AddScoped<ICountryDal, EfCountryDal>();
             services.AddScoped<IDistrictDal, EfDistrictDal>();

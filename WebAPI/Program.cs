@@ -19,6 +19,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
+using Microsoft.IdentityModel.Tokens;
+
 
 
 
@@ -31,6 +33,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddDataAccessServices(builder.Configuration);
 builder.Services.AddBusinessServices();
+
 
 
 var config = builder.Configuration;
@@ -67,14 +70,22 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Use custom exception handling middleware
 app.ConfigureCustomExceptionMiddleware();
 
+// Use JWT token decoding middleware
+app.UseJwtDecoderMiddleware();
 
-app.UseAuthorization();
-
+// Use custom log middleware
 app.UseMiddleware<LogMiddleware>();
 
+// Use authentication and authorization middleware
+app.UseAuthentication();
+app.UseAuthorization();
 
+// Map controllers
 app.MapControllers();
 
+// Run the application
 app.Run();

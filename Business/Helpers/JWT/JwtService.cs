@@ -33,6 +33,7 @@ namespace Core.Utilities.JWT
 
             var claims = new List<Claim>
     {
+        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()), // Kullanıcı ID'si
         new Claim(ClaimTypes.Email, user.Email),
         // Diğer gerekli claim'ler...
     };

@@ -45,7 +45,28 @@ namespace WebAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "Student")]
+
+        [HttpGet("decode")]
+        public IActionResult DecodeJwtToken()
+        {
+            // Önceki middleware tarafından eklenen bilgileri al
+            var userId = HttpContext.Items["UserId"]?.ToString();
+            var userEmail = HttpContext.Items["UserEmail"]?.ToString();
+            var userRoles = HttpContext.Items["UserRoles"] as IEnumerable<string>;
+
+            // Bu bilgileri kullanarak istediğiniz işlemleri yapabilirsiniz
+            // Örneğin, bu bilgileri kullanarak bir response dönebilirsiniz
+            var response = new
+            {
+                UserId = userId,
+                Email = userEmail,
+                Roles = userRoles
+            };
+
+            return Ok(response);
+        }
+
+        [AuthorizeRole("string", "Admin")]
         [HttpGet]
         [Route("secured-data")]
         public IActionResult GetSecuredData()

@@ -11,6 +11,10 @@ using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+
+
 
 namespace Business.Concretes
 {
@@ -77,18 +81,31 @@ namespace Business.Concretes
 
         public async Task<CreatedUserRoleResponse> GetRolesByUserId(Guid userId)
         {
-  
             // Kullanıcının rollerini repository üzerinden al
-            var userRoles = await _userRoleDal.GetRolesByUserId(userId);
+            var userRoles = await _userRoleDal.GetListAsync(
+                predicate: p => p.UserId == userId,
+                include: q => q.Include(ur => ur.User).Include(ur => ur.Role)
+            );
+
+            // Kullanıcının rollerini listeye ekle
+            var roles = new List<string>();
+            foreach (var userRole in userRoles.Items)
+            {
+                // Assuming RoleName is a property in your Role entity
+                roles.Add(userRole.Role?.Name);
+            }
 
             // Burada CreatedUserRoleResponse oluşturabilir ve gerekli işlemleri yapabilirsiniz.
             var response = new CreatedUserRoleResponse
             {
                 UserId = userId,
-                Roles = userRoles
+                Roles = roles
             };
 
             return response;
         }
+
+
+
     }
 }

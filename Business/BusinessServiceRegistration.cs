@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.Concretes;
+using Business.DTOs.Request.Announcement;
 using Business.DTOs.Request.Blog;
 using Business.Rules;
 using Business.Rules.ValidationRules;
@@ -126,6 +127,7 @@ namespace Business
 
             //Validators
             services.AddScoped<IValidator<CreateBlogRequest>, CreateBlogRequestValidator>();
+            services.AddScoped<IValidator<CreateAnnouncementRequest>, CreateAnnouncementRequestValidator>();
 
 
 

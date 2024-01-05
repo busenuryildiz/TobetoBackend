@@ -38,10 +38,9 @@ namespace Business.Concretes
 
             public async Task<DeletedLanguageLevelResponse> Delete(DeleteLanguageLevelRequest deleteLanguageLevelRequest)
             {
-                var data = await _languageLevelDal.GetAsync(i => i.Id == deleteLanguageLevelRequest.Id);
+                var data = await _languageLevelDal.GetAsync(predicate: i => i.Id == deleteLanguageLevelRequest.Id);
                 _mapper.Map(deleteLanguageLevelRequest, data);
-                data.DeletedDate = DateTime.Now;
-                var result = await _languageLevelDal.DeleteAsync(data, true);
+                var result = await _languageLevelDal.DeleteAsync(data);
                 var result2 = _mapper.Map<DeletedLanguageLevelResponse>(result);
                 return result2;
             }

@@ -8,8 +8,8 @@ namespace Business.DTOs.Response.UserLanguage
 {
     public class DeletedUserLanguageResponse
     {
-        public int Id { get; set; }
-        public Guid UserId { get; set; }
+        public int? Id { get; set; }
+        public Guid? UserId { get; set; }
         public int? LanguageId { get; set; }
         public int? LanguageLevelId { get; set; }
     }

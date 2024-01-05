@@ -18,8 +18,8 @@ namespace Business.Concretes
 {
     public class StudentCourseManager : IStudentCourseService
     {
-        private readonly IStudentCourseDal _studentCourseDal;
-        private readonly IMapper _mapper;
+        IStudentCourseDal _studentCourseDal;
+        IMapper _mapper;
         StudentCourseBusinessRules _businessRules;
 
         public StudentCourseManager(IStudentCourseDal studentCourseDal, IMapper mapper, StudentCourseBusinessRules businessRules)
@@ -79,7 +79,7 @@ namespace Business.Concretes
 
         public async Task<CreatedStudentCourseResponse> GetCertificateByExamAndStudentCourseId(int examId, int studentCourseId)
         {
-            await _businessRules.CertificateCanNotBeGivenDueToProgress(examId, studentCourseId);
+            //await _businessRules.CertificateCanNotBeGivenDueToProgress(examId, studentCourseId);
             var result = await _studentCourseDal.GetAsync(c => c.Id == studentCourseId);
             StudentCourse mappedStudentCourse = _mapper.Map<StudentCourse>(result);
 

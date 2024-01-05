@@ -9,8 +9,8 @@ namespace Business.DTOs.Request.UserLanguage
 {
     public class UpdateUserLanguageRequest
     {
-        public int Id { get; set; }
-        public Guid UserId { get; set; }
+        public int? Id { get; set; }
+        public Guid? UserId { get; set; }
         public int? LanguageId { get; set; }
         public int? LanguageLevelId { get; set; }
     }

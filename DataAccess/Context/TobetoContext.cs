@@ -27,7 +27,6 @@ namespace DataAccess.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<CourseLevel> CourseLevels { get; set; }
         public DbSet<CourseSubject> CourseSubjects { get; set; }
-        public DbSet<CourseStatus> CourseStatuses { get; set; }
         public DbSet<User> Users{ get; set; }
         public DbSet<Lesson> Lessons{ get; set; }
         public DbSet<Language> Languages{ get; set; }

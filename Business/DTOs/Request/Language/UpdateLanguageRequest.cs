@@ -8,8 +8,7 @@ namespace Business.DTOs.Request.Language
 {
     public class UpdateLanguageRequest
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int LanguageLevelId { get; set; }
+        public int? Id { get; set; }
+        public string? Name { get; set; }
     }
 }

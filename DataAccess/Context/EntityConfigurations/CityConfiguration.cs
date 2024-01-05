@@ -20,7 +20,7 @@ namespace DataAccess.Context.EntityConfigurations
                    .IsRequired()
                    .HasMaxLength(255);
 
-            // City sınıfının County koleksiyonu ile ilişkisi
+            // City sınıfının District koleksiyonu ile ilişkisi
             builder.HasMany(c => c.Counties)
                    .WithOne()
                    .HasForeignKey(c => c.CityId)

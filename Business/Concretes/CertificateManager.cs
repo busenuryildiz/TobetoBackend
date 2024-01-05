@@ -39,10 +39,9 @@ namespace Business.Concretes
 
         public async Task<DeletedCertificateResponse> Delete(DeleteCertificateRequest deleteCertificateRequest)
         {
-            var data = await _certificateDal.GetAsync(i => i.Id == deleteCertificateRequest.Id);
+            var data = await _certificateDal.GetAsync(predicate:i => i.Id == deleteCertificateRequest.Id);
             _mapper.Map(deleteCertificateRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _certificateDal.DeleteAsync(data, true);
+            var result = await _certificateDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedCertificateResponse>(result);
             return result2;
         }

@@ -80,6 +80,7 @@ namespace Business
             services.AddScoped<ICountryService, CountryManager>();
             services.AddScoped<ILessonService, LessonManager>();
             services.AddScoped<IContactUsService,ContactUsManager>();
+            services.AddScoped<IDistrictService, DistrictManager>();
 
 
             services.AddScoped<InstructorBusinessRules>();

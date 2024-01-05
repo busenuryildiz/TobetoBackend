@@ -67,6 +67,8 @@ namespace DataAccess
             services.AddScoped<ICourseSubjectDal, EfCourseSubjectDal>();
             services.AddScoped<ICityDal, EfCityDal>();
             services.AddScoped<ICountryDal, EfCountryDal>();
+            services.AddScoped<IDistrictDal, EfDistrictDal>();
+
 
 
 

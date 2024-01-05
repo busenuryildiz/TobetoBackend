@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Request.County
+namespace Business.DTOs.Request.District
 {
-    public class DeleteCountyRequest
+    public class DeleteDistrictRequest
     {
         public int Id { get; set; }
        

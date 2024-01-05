@@ -1,5 +1,5 @@
-﻿using Business.DTOs.Request.County;
-using Business.DTOs.Response.County;
+﻿using Business.DTOs.Request.District;
+using Business.DTOs.Response.District;
 using Core.DataAccess.Paging;
 using System;
 using System.Collections.Generic;
@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Business.Abstracts
 {
-        public interface ICountyService
+        public interface IDistrictService
         {
-            Task<IPaginate<GetListCountyResponse>> GetListAsync(PageRequest pageRequest);
-            Task<CreatedCountyResponse> Add(CreateCountyRequest createCountyRequest);
-            Task<UpdatedCountyResponse> Update(UpdateCountyRequest updateCountyRequest);
-            Task<DeletedCountyResponse> Delete(DeleteCountyRequest deleteCountyRequest);
-            Task<CreatedCountyResponse> GetById(int id);
+            Task<IPaginate<GetListDistrictResponse>> GetListAsync(PageRequest pageRequest);
+            Task<CreatedDistrictResponse> Add(CreateDistrictRequest createDistrictRequest);
+            Task<UpdatedDistrictResponse> Update(UpdateDistrictRequest updateDistrictRequest);
+            Task<DeletedDistrictResponse> Delete(DeleteDistrictRequest deleteDistrictRequest);
+            Task<CreatedDistrictResponse> GetById(int id);
         }
     
 }

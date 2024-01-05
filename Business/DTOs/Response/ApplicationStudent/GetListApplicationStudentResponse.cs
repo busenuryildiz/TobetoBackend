@@ -7,7 +7,7 @@ using Core.DataAccess.Paging;
 
 namespace Business.DTOs.Response.ApplicationStudent
 {
-    public class GetListApplicationStudentResponse: BasePageableModel
+    public class GetListApplicationStudentResponse
     {
         public int Id { get; set; }
         public int ApplicationId { get; set; }

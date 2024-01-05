@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+
 using Business.Abstracts;
 using Business.DTOs.Request.Country;
 using Business.DTOs.Response.Country;
@@ -61,6 +63,8 @@ namespace Business.Concretes
         public async Task<IPaginate<GetListCountryResponse>> GetListAsync(PageRequest pageRequest)
         {
             var data = await _countryDal.GetListAsync(
+                include: u => u
+                    .Include(c => c.Cities),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize
             );

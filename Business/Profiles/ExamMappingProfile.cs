@@ -1,15 +1,9 @@
 ﻿using AutoMapper;
 using Business.DTOs.Request.Exam;
-using Business.DTOs.Request.Exam;
-using Business.DTOs.Request.Exam;
-using Business.DTOs.Response.Exam;
-using Business.DTOs.Response.Exam;
 using Business.DTOs.Response.Exam;
 using Core.DataAccess.Paging;
-using Entities.Concretes.Clients;
 using Entities.Concretes.Courses;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;

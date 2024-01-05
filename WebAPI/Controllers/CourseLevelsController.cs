@@ -1,6 +1,5 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.CourseLevel;
-using Business.DTOs.Request.CourseLevel;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

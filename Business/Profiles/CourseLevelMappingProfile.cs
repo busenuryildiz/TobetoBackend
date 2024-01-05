@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using Business.DTOs.Request.CourseLevel;
-using Business.DTOs.Request.CourseLevel;
 using Business.DTOs.Response.CourseLevel;
 using Core.DataAccess.Paging;
-using Entities.Concretes;
 using Entities.Concretes.Courses;
 using System;
 using System.Collections.Generic;

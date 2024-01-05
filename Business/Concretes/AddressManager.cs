@@ -40,7 +40,6 @@ namespace Business.Concretes
         {
             var data = await _addressDal.GetAsync(i => i.Id == deleteAddressRequest.Id);
             _mapper.Map(deleteAddressRequest, data);
-            data.DeletedDate = DateTime.Now;
             var result = await _addressDal.DeleteAsync(data, true);
             var result2 = _mapper.Map<DeletedAddressResponse>(result);
             return result2;

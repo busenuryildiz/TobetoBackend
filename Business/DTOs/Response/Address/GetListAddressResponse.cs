@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Response.Address
 {
-    public class GetListAddressResponse : BasePageableModel
+    public class GetListAddressResponse
     {
         public int Id { get; set; }
         public Guid UserId { get; set; }

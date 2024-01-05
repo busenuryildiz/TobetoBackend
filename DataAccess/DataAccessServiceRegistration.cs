@@ -26,6 +26,7 @@ namespace DataAccess
             services.AddScoped<IManagerDal, EfManagerDal>();
             services.AddScoped<IStudentDal, EfStudentDal>();
             services.AddScoped<IUserDal, EfUserDal>();
+            services.AddScoped<IUserUniversityDal, EfUserUniversityDal>();
 
             services.AddScoped<IAssignmentDal, EfAssignmentDal>();
             services.AddScoped<IAddressDal, EfAddressDal>();
@@ -69,6 +70,7 @@ namespace DataAccess
             services.AddScoped<ICityDal, EfCityDal>();
             services.AddScoped<ICountryDal, EfCountryDal>();
             services.AddScoped<IDistrictDal, EfDistrictDal>();
+            services.AddScoped<IUniversityDal, EfUniversityDal>();
 
 
 

@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.Subject;
-using Business.DTOs.Request.Subject;
 using Business.DTOs.Response.Subject;
-using Business.DTOs.Response.Subject;
-using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;

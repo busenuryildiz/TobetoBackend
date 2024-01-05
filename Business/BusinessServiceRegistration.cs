@@ -1,6 +1,7 @@
 ﻿using Business.Abstracts;
 using Business.Concretes;
 using Business.Rules;
+using Core.Aspects.ActionFilters;
 using Core.Business.Rules;
 using Core.Utilities.JWT;
 using DataAccess.Abstracts;
@@ -137,6 +138,7 @@ namespace Business
             services.AddTransient<UserRoleBusinessRules>();
             services.AddScoped<JwtService>();
             //kerem@gmail.com
+            services.AddScoped<LogActionFilter>();
 
             return services;
         }

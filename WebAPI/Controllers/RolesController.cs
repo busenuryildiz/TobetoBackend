@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.Role;
+using Core.Aspects.ActionFilters;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,8 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ServiceFilter(typeof(LogActionFilter))] // Action Filter'ı ekleyin
+
     public class RolesController : ControllerBase
     {
         IRoleService _roleService;

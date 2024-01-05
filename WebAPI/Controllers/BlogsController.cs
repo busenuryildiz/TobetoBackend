@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.Blog;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,8 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateBlogRequestValidator))]
+
         public async Task<IActionResult> Add([FromBody] CreateBlogRequest createBlogRequest)
         {
             var result = await _blogService.Add(createBlogRequest);

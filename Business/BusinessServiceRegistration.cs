@@ -23,7 +23,6 @@ namespace Business
 
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IStudentService, StudentManager>();
-
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<IMediaPostService, MediaPostManager>();
@@ -42,6 +41,8 @@ namespace Business
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
             services.AddScoped<IApplicationStudentService, ApplicationStudentManager>();
             services.AddScoped<IStudentAssignmentService, StudentAssignmentManager>();
+            services.AddScoped<IUniversityService, UniversityManager>();
+            services.AddScoped<IUserUniversityService, UserUniversityManager>();
 
             services.AddScoped<ISoftwareLanguageService, SoftwareLanguageManager>();
 
@@ -90,6 +91,7 @@ namespace Business
             services.AddScoped<StudentBusinessRules>();
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<SoftwareLanguageBusinessRules>();
+            services.AddScoped<UserUniversityBusinessRules>();
 
             services.AddScoped<AssignmentBusinessRules>();
             services.AddScoped<CourseBusinessRules>();
@@ -119,6 +121,7 @@ namespace Business
             services.AddScoped<CountryBusinessRules>();
             services.AddScoped<LessonBusinessRules>();
             services.AddScoped<ContactUsBusinessRules>();
+            services.AddScoped<UniversityBusinessRules>();
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
             return services;

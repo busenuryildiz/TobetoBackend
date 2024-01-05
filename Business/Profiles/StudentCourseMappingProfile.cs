@@ -1,6 +1,4 @@
 ﻿using Business.DTOs.Request.StudentCourse;
-using Business.DTOs.Request.StudentCourse;
-using Business.DTOs.Response.StudentCourse;
 using Business.DTOs.Response.StudentCourse;
 using Core.DataAccess.Paging;
 using Entities.Concretes.Courses;

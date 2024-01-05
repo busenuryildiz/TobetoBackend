@@ -6,20 +6,13 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.Manager;
-using Business.DTOs.Request.Manager;
-using Business.DTOs.Request.Manager;
 using Business.DTOs.Request.User;
-using Business.DTOs.Response.Manager;
-using Business.DTOs.Response.Manager;
 using Business.DTOs.Response.Manager;
 using Business.DTOs.Response.User;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using DataAccess.Concretes;
-using Entities.Concretes;
 using Entities.Concretes.Clients;
-using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes
 {

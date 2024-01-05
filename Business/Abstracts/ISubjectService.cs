@@ -1,6 +1,4 @@
 ﻿using Business.DTOs.Request.Subject;
-using Business.DTOs.Request.Subject;
-using Business.DTOs.Response.Subject;
 using Business.DTOs.Response.Subject;
 using Core.DataAccess.Paging;
 using System;

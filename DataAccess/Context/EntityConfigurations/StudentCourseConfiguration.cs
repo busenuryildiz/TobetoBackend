@@ -47,11 +47,9 @@ namespace DataAccess.Context.EntityConfigurations
                 .HasColumnName("IsPaid");
 
             builder.Property(sc => sc.SpentTime)
-                .IsRequired()
                 .HasColumnName("SpentTime"); 
 
             builder.Property(sc => sc.EstimatedTime)
-                .IsRequired()
                 .HasColumnName("EstimatedTime"); 
 
             builder.HasOne(sc => sc.Student)
@@ -61,6 +59,10 @@ namespace DataAccess.Context.EntityConfigurations
             builder.HasOne(sc => sc.Course)
                 .WithMany(c => c.StudentCourses)
                 .HasForeignKey(sc => sc.CourseId);
+
+            builder.HasMany(sc => sc.Payments)
+                .WithOne(p => p.StudentCourse)
+                .HasForeignKey(sc => sc.StudentCourseId);
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }

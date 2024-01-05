@@ -9,8 +9,7 @@ namespace Business.DTOs.Request.InstructorCourse
     public class UpdateInstructorCourseRequest
     {
         public int Id { get; set; }
-        public Guid UserId { get; set; }
-        public string Name { get; set; }
-        public string ImagePath { get; set; }
+        public Guid InstructorId { get; set; }
+        public int CourseId { get; set; }
     }
 }

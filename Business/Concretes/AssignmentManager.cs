@@ -7,9 +7,11 @@ using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.Announcement;
 using Business.DTOs.Request.Assignments;
+using Business.DTOs.Request.Blog;
 using Business.DTOs.Request.User;
 using Business.DTOs.Response.Announcement;
 using Business.DTOs.Response.Assignments;
+using Business.DTOs.Response.Blog;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
@@ -42,19 +44,12 @@ namespace Business.Concretes
 
         public async Task<DeletedAssignmentResponse> Delete(DeleteAssignmentRequest deleteAssignmentRequest)
         {
-            Assignment assignment = await _assignmentDal.GetAsync(i => i.Id == deleteAssignmentRequest.Id);
-            var deletedAssignment = await _assignmentDal.DeleteAsync(assignment);
-            DeletedAssignmentResponse deletedAssignmentResponse = _mapper.Map<DeletedAssignmentResponse>(deletedAssignment);
-
-            return deletedAssignmentResponse;
-
-
-            //var data = await _assignmentDal.GetAsync(i => i.Id == deleteAssignmentRequest.Id);
-            //_mapper.Map(deleteAssignmentRequest, data);
-            //data.DeletedDate = DateTime.Now;
-            //var result = await _assignmentDal.DeleteAsync(data);
-            //var result2 = _mapper.Map<DeletedAssignmentResponse>(result);
-            //return result2;
+            var data = await _assignmentDal.GetAsync(i => i.Id == deleteAssignmentRequest.Id);
+            _mapper.Map(deleteAssignmentRequest, data);
+            data.DeletedDate = DateTime.Now;
+            var result = await _assignmentDal.DeleteAsync(data);
+            var result2 = _mapper.Map<DeletedAssignmentResponse>(result);
+            return result2;
         }
 
         public async Task<CreatedAssignmentResponse> GetById(int id)
@@ -81,22 +76,12 @@ namespace Business.Concretes
 
         public async Task<UpdatedAssignmentResponse> Update(UpdateAssignmentRequest updateAssignmentRequest)
         {
-            Assignment assignment = await _assignmentDal.GetAsync(i => i.Id == updateAssignmentRequest.Id);
-            assignment.UpdatedDate = DateTime.Now;
-            var updatedAssignment = await _assignmentDal.UpdateAsync(assignment);
-            UpdatedAssignmentResponse updatedAssignmentResponse =
-                _mapper.Map<UpdatedAssignmentResponse>(updatedAssignment);
 
-            return updatedAssignmentResponse;
-
-
-
-            //var data = await _assignmentDal.GetAsync(i => i.Id == updateAssignmentRequest.Id);
-            //_mapper.Map(updateAssignmentRequest, data);
-            //data.UpdatedDate = DateTime.Now;
-            //await _assignmentDal.UpdateAsync(data);
-            //var result = _mapper.Map<UpdatedAssignmentResponse>(data);
-            //return result;
+            var data = await _assignmentDal.GetAsync(i => i.Id == updateAssignmentRequest.Id);
+            _mapper.Map(updateAssignmentRequest, data);
+            await _assignmentDal.UpdateAsync(data);
+            var result = _mapper.Map<UpdatedAssignmentResponse>(data);
+            return result;
         }
     }
 }

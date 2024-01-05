@@ -15,7 +15,7 @@ namespace Business.Abstracts
         Task<DeletedStudentCourseResponse> Delete(DeleteStudentCourseRequest deleteStudentCourseRequest);
         Task<UpdatedStudentCourseResponse> Update(UpdateStudentCourseRequest updateStudentCourseRequest);
         Task<CreatedStudentCourseResponse> GetById(int id);
-        Task<IPaginate<GetListStudentCourseInfoResponse>> GetListAsync(PageRequest pageRequest);
+        Task<IPaginate<GetListStudentCourseResponse>> GetListAsync(PageRequest pageRequest);
         Task<CreatedStudentCourseResponse> GetCertificateByExamAndStudentCourseId(int examId, int studentCourseId);
 
     }

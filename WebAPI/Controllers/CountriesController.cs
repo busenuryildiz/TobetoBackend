@@ -7,10 +7,10 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CountrysController : ControllerBase
+    public class CountriesController : ControllerBase
     {
         ICountryService _countryService;
-        public CountrysController(ICountryService CountryService)
+        public CountriesController(ICountryService CountryService)
         {
             _countryService = CountryService;
         }

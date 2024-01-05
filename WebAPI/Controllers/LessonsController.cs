@@ -1,4 +1,6 @@
-﻿using Business.Concretes;
+﻿using Business.Abstracts;
+using Business.Concretes;
+using Business.DTOs.Request.Lesson;
 using Business.DTOs.Request.Lesson;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
@@ -8,89 +10,45 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LessonController : ControllerBase
+    public class LessonsController : ControllerBase
     {
-        private readonly LessonManager _lessonManager;
-
-        public LessonController(LessonManager lessonManager)
+        ILessonService _lessonService;
+        public LessonsController(ILessonService lessonService)
         {
-            _lessonManager = lessonManager;
+            _lessonService = lessonService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddLesson([FromBody] CreateLessonRequest createLessonRequest)
+
+        [HttpPost("Add")]
+        public async Task<IActionResult> Add([FromBody] CreateLessonRequest createLessonRequest)
         {
-            try
-            {
-                var result = await _lessonManager.Add(createLessonRequest);
-                return CreatedAtAction(nameof(GetLessonById), new { id = result.Id }, result);
-            }
-            catch (Exception ex)
-            {
-                // Handle exception and return appropriate response
-                return BadRequest(ex.Message);
-            }
+            var result = await _lessonService.Add(createLessonRequest);
+            return Ok(result);
+        }
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete([FromBody] DeleteLessonRequest deleteLessonRequest)
+        {
+            var result = await _lessonService.Delete(deleteLessonRequest);
+            return Ok(result);
+        }
+        [HttpPut("Update")]
+        public async Task<IActionResult> Update([FromBody] UpdateLessonRequest updateLessonRequest)
+        {
+            var result = await _lessonService.Update(updateLessonRequest);
+            return Ok(result);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLesson(int id)
+        [HttpGet("GetList")]
+        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
-            try
-            {
-                var deleteRequest = new DeleteLessonRequest { Id = id };
-                var result = await _lessonManager.Delete(deleteRequest);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                // Handle exception and return appropriate response
-                return BadRequest(ex.Message);
-            }
+            var result = await _lessonService.GetListAsync(pageRequest);
+            return Ok(result);
         }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetLessonById(int id)
+        [HttpGet("GetById")]
+        public async Task<IActionResult> GetById([FromQuery] int id)
         {
-            try
-            {
-                var result = await _lessonManager.GetById(id);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                // Handle exception and return appropriate response
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetLessonList([FromQuery] PageRequest pageRequest)
-        {
-            try
-            {
-                var result = await _lessonManager.GetListAsync(pageRequest);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                // Handle exception and return appropriate response
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpPut]
-        public async Task<IActionResult> UpdateLesson([FromBody] UpdateLessonRequest updateLessonRequest)
-        {
-            try
-            {
-                var result = await _lessonManager.Update(updateLessonRequest);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                // Handle exception and return appropriate response
-                return BadRequest(ex.Message);
-            }
+            var result = await _lessonService.GetById(id);
+            return Ok(result);
         }
     }
 }

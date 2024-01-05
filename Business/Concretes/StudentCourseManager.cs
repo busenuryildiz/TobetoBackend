@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using Business.Rules;
 using DataAccess.Concretes;
 using Entities.Concretes.Clients;
+using Business.DTOs.Request.Blog;
+using Business.DTOs.Response.Blog;
+using Entities.Concretes;
 
 namespace Business.Concretes
 {
@@ -67,13 +70,13 @@ namespace Business.Concretes
             return createdStudentCourseResponse;
         }
 
-        public async Task<IPaginate<GetListStudentCourseInfoResponse>> GetListAsync(PageRequest pageRequest)
+        public async Task<IPaginate<GetListStudentCourseResponse>> GetListAsync(PageRequest pageRequest)
         {
             var data = await _studentCourseDal.GetListAsync(
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize
             );
-            var result = _mapper.Map<Paginate<GetListStudentCourseInfoResponse>>(data);
+            var result = _mapper.Map<Paginate<GetListStudentCourseResponse>>(data);
             return result;
         }
 

@@ -23,6 +23,7 @@ namespace Entities.Concretes.Courses
         public List<CourseSubject>? CourseSubjects { get; set; }
         public SoftwareLanguage? SoftwareLanguage { get; set; }
         public List<StudentCourse>? StudentCourses { get; set; } // Eklenen alan
+        public List<InstructorCourse> InstructorCourses { get; set; }
 
 
 

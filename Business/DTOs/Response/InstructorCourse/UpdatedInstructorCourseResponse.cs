@@ -10,8 +10,7 @@ namespace Business.DTOs.Response.InstructorCourse
     public class UpdatedInstructorCourseResponse : BasePageableModel
     {
         public int Id { get; set; }
-        public Guid UserId { get; set; }
-        public string Name { get; set; }
-        public string ImagePath { get; set; }
+        public Guid InstructorId { get; set; }
+        public int CourseId { get; set; }
     }
 }

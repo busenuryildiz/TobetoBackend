@@ -15,6 +15,8 @@ using Business.DTOs.Request.User;
 using Business.DTOs.Response.User;
 using DataAccess.Concretes;
 using Entities.Concretes.Courses;
+using Business.DTOs.Request.Student;
+using Business.DTOs.Response.Student;
 
 namespace Business.Concretes
 {
@@ -69,16 +71,14 @@ namespace Business.Concretes
             return result;
         }
 
-
         public async Task<UpdatedStudentResponse> Update(UpdateStudentRequest updateStudentRequest)
         {
-            Student student = await _studentDal.GetAsync(i => i.Id == updateStudentRequest.Id);
-            student.UpdatedDate = DateTime.Now;
-            var updatedStudent = await _studentDal.UpdateAsync(student);
-            UpdatedStudentResponse updatedStudentResponse =
-                _mapper.Map<UpdatedStudentResponse>(updatedStudent);
-
-            return updatedStudentResponse;
+            var data = await _studentDal.GetAsync(i => i.Id == updateStudentRequest.Id);
+            _mapper.Map(updateStudentRequest, data);
+            data.UpdatedDate = DateTime.Now;
+            await _studentDal.UpdateAsync(data);
+            var result = _mapper.Map<UpdatedStudentResponse>(data);
+            return result;
         }
     }
 }

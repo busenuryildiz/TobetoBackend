@@ -13,7 +13,11 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<LessonCourse> builder)
         {
-            builder.HasKey(lc => new { lc.LessonId, lc.CourseId });
+            builder.ToTable("LessonCourse").HasKey(cs => cs.Id);
+
+
+            builder.Property(cs => cs.LessonId).IsRequired();
+            builder.Property(cs => cs.CourseId).IsRequired();
 
             builder.HasOne(lc => lc.Lesson)
                 .WithMany(l => l.LessonCourses)
@@ -24,6 +28,8 @@ namespace DataAccess.Context.EntityConfigurations
                 .WithMany(c => c.LessonCourses)
                 .HasForeignKey(lc => lc.CourseId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }
 }

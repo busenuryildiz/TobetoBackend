@@ -17,38 +17,38 @@ namespace Business.Concretes
 {
     public class AddressManager : IAddressService
     {
-        IAddressDal _blogDal;
+        IAddressDal _addressDal;
         IMapper _mapper;
         AddressBusinessRules _businessRules;
 
-        public AddressManager(AddressBusinessRules businessRules, IAddressDal blogDal, IMapper mapper)
+        public AddressManager(AddressBusinessRules businessRules, IAddressDal addressDal, IMapper mapper)
         {
             _businessRules = businessRules;
-            _blogDal = blogDal;
+            _addressDal = addressDal;
             _mapper = mapper;
         }
 
         public async Task<CreatedAddressResponse> Add(CreateAddressRequest createAddressRequest)
         {
-            Address blog = _mapper.Map<Address>(createAddressRequest);
-            Address createdAddress = await _blogDal.AddAsync(blog);
+            Address address = _mapper.Map<Address>(createAddressRequest);
+            Address createdAddress = await _addressDal.AddAsync(address);
             CreatedAddressResponse createdAddressResponse = _mapper.Map<CreatedAddressResponse>(createdAddress);
             return createdAddressResponse;
         }
 
         public async Task<DeletedAddressResponse> Delete(DeleteAddressRequest deleteAddressRequest)
         {
-            var data = await _blogDal.GetAsync(i => i.Id == deleteAddressRequest.Id);
+            var data = await _addressDal.GetAsync(i => i.Id == deleteAddressRequest.Id);
             _mapper.Map(deleteAddressRequest, data);
             data.DeletedDate = DateTime.Now;
-            var result = await _blogDal.DeleteAsync(data, true);
+            var result = await _addressDal.DeleteAsync(data, true);
             var result2 = _mapper.Map<DeletedAddressResponse>(result);
             return result2;
         }
 
         public async Task<CreatedAddressResponse> GetById(int id)
         {
-            var result = await _blogDal.GetAsync(c => c.Id == id);
+            var result = await _addressDal.GetAsync(c => c.Id == id);
             Address mappedAddress = _mapper.Map<Address>(result);
             CreatedAddressResponse createdAddressResponse = _mapper.Map<CreatedAddressResponse>(mappedAddress);
             return createdAddressResponse;
@@ -57,7 +57,7 @@ namespace Business.Concretes
 
         public async Task<IPaginate<GetListAddressResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _blogDal.GetListAsync(
+            var data = await _addressDal.GetListAsync(
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize
             );
@@ -68,10 +68,10 @@ namespace Business.Concretes
 
         public async Task<UpdatedAddressResponse> Update(UpdateAddressRequest updateAddressRequest)
         {
-            var data = await _blogDal.GetAsync(i => i.Id == updateAddressRequest.Id);
+            var data = await _addressDal.GetAsync(i => i.Id == updateAddressRequest.Id);
             _mapper.Map(updateAddressRequest, data);
             data.UpdatedDate = DateTime.Now;
-            await _blogDal.UpdateAsync(data);
+            await _addressDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedAddressResponse>(data);
             return result;
         }

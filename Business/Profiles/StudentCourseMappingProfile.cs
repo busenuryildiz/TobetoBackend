@@ -1,12 +1,15 @@
-﻿using AutoMapper;
+﻿using Business.DTOs.Request.StudentCourse;
 using Business.DTOs.Request.StudentCourse;
 using Business.DTOs.Response.StudentCourse;
+using Business.DTOs.Response.StudentCourse;
+using Core.DataAccess.Paging;
 using Entities.Concretes.Courses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace Business.Profiles
 {
@@ -14,16 +17,17 @@ namespace Business.Profiles
     {
         public StudentCourseMappingProfile()
         {
-            CreateMap<CreateStudentCourseRequest, StudentCourse>();
-            CreateMap<StudentCourse, CreatedStudentCourseResponse>();
-            CreateMap<DeleteStudentCourseRequest, StudentCourse>();
-            CreateMap<StudentCourse, DeletedStudentCourseResponse>();
-            CreateMap<UpdateStudentCourseRequest, StudentCourse>();
-            CreateMap<StudentCourse, UpdatedStudentCourseResponse>();
-            CreateMap<StudentCourse, CreatedStudentCourseResponse>();
-            CreateMap<StudentCourse, GetListStudentCourseInfoResponse>();
+            CreateMap<CreateStudentCourseRequest, StudentCourse>().ReverseMap();
+            CreateMap<StudentCourse, CreatedStudentCourseResponse>().ReverseMap();
 
-            // Eğer ihtiyacınız varsa diğer özelleştirmeleri buraya ekleyebilirsiniz
+            CreateMap<DeleteStudentCourseRequest, StudentCourse>().ReverseMap();
+            CreateMap<StudentCourse, DeletedStudentCourseResponse>().ReverseMap();
+
+            CreateMap<UpdateStudentCourseRequest, StudentCourse>().ReverseMap();
+            CreateMap<StudentCourse, UpdatedStudentCourseResponse>().ReverseMap();
+
+            CreateMap<StudentCourse, GetListStudentCourseResponse>().ReverseMap();
+            CreateMap<Paginate<StudentCourse>, Paginate<GetListStudentCourseResponse>>().ReverseMap();
         }
     }
 }

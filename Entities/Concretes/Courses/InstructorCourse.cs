@@ -10,7 +10,7 @@ namespace Entities.Concretes.Courses
 {
     public class InstructorCourse : Entity<int>
     {
-        public int InstructorId { get; set; }
+        public Guid InstructorId { get; set; }
         public int CourseId { get; set; }
         public Course Course { get; set; }
         public Instructor Instructor { get; set; }

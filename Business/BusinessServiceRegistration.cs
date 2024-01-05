@@ -1,7 +1,11 @@
 ﻿using Business.Abstracts;
 using Business.Concretes;
+using Business.DTOs.Request.Announcement;
+using Business.DTOs.Request.Blog;
 using Business.Rules;
+using Business.Rules.ValidationRules;
 using Core.Business.Rules;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -49,6 +53,7 @@ namespace Business
             services.AddScoped<IInstructorService, InstructorManager>();
 
             services.AddScoped<IAssignmentService, AssignmentManager>();
+            services.AddScoped<IAddressService, AddressManager>();
             services.AddScoped<ICourseService, CourseManager>();
             services.AddScoped<ICourseLevelService, CourseLevelManager>();
             services.AddScoped<ICourseSubjectService, CourseSubjectManager>();
@@ -85,6 +90,7 @@ namespace Business
 
             services.AddScoped<InstructorBusinessRules>();
             services.AddScoped<ManagerBusinessRules>();
+            services.AddScoped<AddressBusinessRules>();
             services.AddScoped<StudentBusinessRules>();
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<SoftwareLanguageBusinessRules>();
@@ -117,6 +123,13 @@ namespace Business
             services.AddScoped<CountryBusinessRules>();
             services.AddScoped<LessonBusinessRules>();
             services.AddScoped<ContactUsBusinessRules>();
+
+
+            //Validators
+            services.AddScoped<IValidator<CreateBlogRequest>, CreateBlogRequestValidator>();
+            services.AddScoped<IValidator<CreateAnnouncementRequest>, CreateAnnouncementRequestValidator>();
+
+
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
             return services;

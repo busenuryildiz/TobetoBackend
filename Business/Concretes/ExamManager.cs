@@ -39,7 +39,7 @@ namespace Business.Concretes
 
         public async Task<CreatedExamResponse> Add(CreateExamRequest createExamRequest)
         {
-            await _examBusinessRules.ValidateExamPoint(createExamRequest.Point);
+            //await _examBusinessRules.ValidateExamPoint(createExamRequest.Point);
             var examDal = _mapper.Map<Exam>(createExamRequest);
             var createdExam = await _examDal.AddAsync(examDal);
             var result = _mapper.Map<CreatedExamResponse>(createdExam);

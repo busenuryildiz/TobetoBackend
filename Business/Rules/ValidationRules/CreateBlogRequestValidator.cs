@@ -1,28 +1,28 @@
 ﻿
 using Business.DTOs.Request.Blog;
 using Business.Messages;
-    using Entities.Concretes;
-    using FluentValidation;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+using Entities.Concretes;
+using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-    namespace Business.Rules.ValidationRules
+namespace Business.Rules.ValidationRules
+{
+    public class CreateBlogRequestValidator : AbstractValidator<CreateBlogRequest>
     {
-        public class CreateBlogRequestValidator : AbstractValidator<CreateBlogRequest>
+        public CreateBlogRequestValidator()
         {
-            public CreateBlogRequestValidator()
-            {
-                RuleFor(x => x.Title).NotEmpty();
+            RuleFor(x => x.Title).NotEmpty();
 
 
-                RuleFor(x => x.Description).MinimumLength(10);
+            RuleFor(x => x.Description).MinimumLength(10);
 
-            }
         }
     }
+}
 
 
 

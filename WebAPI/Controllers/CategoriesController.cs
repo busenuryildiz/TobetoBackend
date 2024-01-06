@@ -1,5 +1,7 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.Category;
+using Business.DTOs.Request.Category;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +20,11 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateCategoryRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateCategoryRequest createCategoryRequest)
         {
             var result = await _categoryService.Add(createCategoryRequest);
-            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+            return Ok(result);
         }
 
         [HttpDelete("Delete")]

@@ -67,7 +67,6 @@ namespace Business.Concretes
         {
             var data = await _applicationStudentDal.GetAsync(i => i.Id == updateApplicationStudentRequest.Id);
             _mapper.Map(updateApplicationStudentRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _applicationStudentDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedApplicationStudentResponse>(data);
             return result;

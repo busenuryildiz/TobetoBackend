@@ -16,6 +16,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Business.DTOs.Request.Application;
+using Business.DTOs.Request.ApplicationStudent;
+using Business.DTOs.Request.Category;
+using Business.DTOs.Request.ContactUs;
+using Business.DTOs.Request.MediaPost;
 
 namespace Business
 {
@@ -134,6 +139,11 @@ namespace Business
             //Validators
             services.AddScoped<IValidator<CreateBlogRequest>, CreateBlogRequestValidator>();
             services.AddScoped<IValidator<CreateAnnouncementRequest>, CreateAnnouncementRequestValidator>();
+            services.AddScoped<IValidator<CreateMediaPostRequest>, CreateMediaPostRequestValidator>();
+            services.AddScoped<IValidator<CreateCategoryRequest>, CreateCategoryRequestValidator>();
+            services.AddScoped<IValidator<CreateApplicationRequest>, CreateApplicationRequestValidator>();
+            services.AddScoped<IValidator<CreateApplicationStudentRequest>, CreateApplicationStudentRequestValidator>();
+            services.AddScoped<IValidator<CreateContactUsRequest>, CreateContactUsRequestValidator>();
             services.AddScoped<IValidator<CreateSurveyRequest>, CreateSurveyRequestValidator>();
             services.AddScoped<IValidator<CreateSubjectRequest>, CreateSubjectRequestValidator>();
             services.AddScoped<IValidator<CreateRoleRequest>, CreateRoleRequestValidator>();

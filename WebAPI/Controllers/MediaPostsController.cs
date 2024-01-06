@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.MediaPost;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,7 @@ namespace WebAPI.Controllers
             _mapper = mapper;
         }
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateMediaPostRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateMediaPostRequest createMediaPostRequest)
         {
             var result = await _mediapostService.Add(createMediaPostRequest);

@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.ContactUs;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,7 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateContactUsRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateContactUsRequest createContactUsRequest)
         {
             var result = await _contactUsService.Add(createContactUsRequest);

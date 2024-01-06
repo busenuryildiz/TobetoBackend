@@ -2,6 +2,9 @@
 using Business.Concretes;
 using Business.DTOs.Request.Announcement;
 using Business.DTOs.Request.Blog;
+using Business.DTOs.Request.Role;
+using Business.DTOs.Request.Subject;
+using Business.DTOs.Request.Survey;
 using Business.Rules;
 using Business.Rules.ValidationRules;
 using Core.Business.Rules;
@@ -131,13 +134,10 @@ namespace Business
             //Validators
             services.AddScoped<IValidator<CreateBlogRequest>, CreateBlogRequestValidator>();
             services.AddScoped<IValidator<CreateAnnouncementRequest>, CreateAnnouncementRequestValidator>();
+            services.AddScoped<IValidator<CreateSurveyRequest>, CreateSurveyRequestValidator>();
+            services.AddScoped<IValidator<CreateSubjectRequest>, CreateSubjectRequestValidator>();
+            services.AddScoped<IValidator<CreateRoleRequest>, CreateRoleRequestValidator>();
 
-
-
-
-            //Validators
-            services.AddScoped<IValidator<CreateBlogRequest>, CreateBlogRequestValidator>();
-            services.AddScoped<IValidator<CreateAnnouncementRequest>, CreateAnnouncementRequestValidator>();
 
 
 

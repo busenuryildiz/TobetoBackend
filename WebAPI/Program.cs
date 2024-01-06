@@ -23,7 +23,9 @@ using Serilog;
 using Serilog.Core;
 using Core.Aspects.ActionFilters;
 using Castle.Core.Logging;
-
+using NRedisStack;
+using NRedisStack.RedisStackCommands;
+using StackExchange.Redis;
 
 
 
@@ -45,15 +47,21 @@ builder.Services.AddScoped<Serilog.ILogger>(provider => new LoggerConfiguration(
 
 builder.Services.AddScoped<LogActionFilter>();
 
-// LogActionFilter'ý ekleyin
+ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("redis-16350.c267.us-east-1-4.ec2.cloud.redislabs.com:16350,password=6CkWVBIu5cVuXRa7sU2LLeXCZZv389yY");
+IDatabase database = redis.GetDatabase();
 
+builder.Services.AddSingleton<RedisService>();
 
+database.StringSet("foo", "bar");
+Console.WriteLine(database.StringGet("foo")); // prints bar
+builder.Services.AddScoped<RedisCacheAttribute>();
 
 var config = builder.Configuration;
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 builder.Logging.ClearProviders();
+builder.Services.AddSingleton<RedisService>();
 // Uncomment the Autofac-related code
 //builder.Host
 //    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
@@ -83,4 +91,6 @@ app.UseJwtDecoderMiddleware();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+var redisService = app.Services.GetRequiredService<RedisService>();
+
 app.Run();

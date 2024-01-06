@@ -61,7 +61,6 @@ namespace Business
 
             services.AddScoped<IManagerService, ManagerManager>();
             services.AddScoped<IInstructorService, InstructorManager>();
-
             services.AddScoped<IAssignmentService, AssignmentManager>();
             services.AddScoped<IAddressService, AddressManager>();
             services.AddScoped<ICourseService, CourseManager>();

@@ -40,6 +40,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("GetList")]
+        [RedisCache]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             var result = await _roleService.GetListAsync(pageRequest);

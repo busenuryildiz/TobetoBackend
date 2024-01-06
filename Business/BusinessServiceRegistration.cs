@@ -1,7 +1,17 @@
 ﻿using Business.Abstracts;
 using Business.Concretes;
 using Business.DTOs.Request.Announcement;
+using Business.DTOs.Request.Assignments;
 using Business.DTOs.Request.Blog;
+using Business.DTOs.Request.Course;
+using Business.DTOs.Request.CourseLevel;
+using Business.DTOs.Request.Exam;
+using Business.DTOs.Request.InstructorCourse;
+using Business.DTOs.Request.Lesson;
+using Business.DTOs.Request.Option;
+using Business.DTOs.Request.SoftwareLanguage;
+using Business.DTOs.Request.StudentAssignment;
+using Business.DTOs.Request.StudentCourse;
 using Business.Rules;
 using Business.Rules.ValidationRules;
 using Core.Business.Rules;
@@ -128,7 +138,17 @@ namespace Business
             //Validators
             services.AddScoped<IValidator<CreateBlogRequest>, CreateBlogRequestValidator>();
             services.AddScoped<IValidator<CreateAnnouncementRequest>, CreateAnnouncementRequestValidator>();
-
+            services.AddScoped<IValidator<CreateAssignmentRequest>, CreateAssignmentRequestValidator>();
+            services.AddScoped<IValidator<CreateCourseRequest>, CreateCourseRequestValidator>();
+            services.AddScoped<IValidator<CreateCourseLevelRequest>, CreateCourseLevelRequestValidator>();
+            services.AddScoped<IValidator<CreateExamRequest>, CreateExamRequestValidator>();
+            services.AddScoped<IValidator<CreateInstructorCourseRequest>, CreateInstructorCourseRequestValidator>();
+            services.AddScoped<IValidator<CreateLessonRequest>, CreateLessonRequestValidator>();
+            services.AddScoped<IValidator<CreateOptionRequest>, CreateOptionRequestValidator>();
+            services.AddScoped<IValidator<CreateQuestionRequest>, CreateQuestionRequestValidator>();
+            services.AddScoped<IValidator<CreateSoftwareLanguageRequest>, CreateSoftwareLanguageRequestValidator>();
+            services.AddScoped<IValidator<CreateStudentAssignmentRequest>, CreateStudentAssignmentRequestValidator>();
+            services.AddScoped<IValidator<CreateStudentCourseRequest>, CreateStudentCourseRequestValidator>();
 
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));

@@ -19,8 +19,6 @@ namespace Business.Abstracts
         Task<DeletedOptionResponse> Delete(DeleteOptionRequest deleteOptionRequest);
         Task<IPaginate<Option>> GetOptionsByQuestionId(int questionId);
         Task<Option> AddOptionToQuestion(int questionId, CreateOptionRequest createOptionRequest);
-
-
-
+        Task GetById(int id);
     }
 }

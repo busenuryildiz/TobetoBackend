@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.SoftwareLanguage;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
+        [ValidateModel(typeof(CreateSoftwareLanguageRequestValidator))]
         public async Task<IActionResult> AddSoftwareLanguage([FromBody] CreateSoftwareLanguageRequest createSoftwareLanguageRequest)
         {
             var result = await _softwareLanguageService.Add(createSoftwareLanguageRequest);

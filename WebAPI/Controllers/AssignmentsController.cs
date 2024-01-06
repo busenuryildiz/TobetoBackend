@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.Assignments;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,7 @@ namespace WebAPI.Controllers
             _assignmentService = assignmentService;
         }
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateAssignmentRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateAssignmentRequest createAssignmentRequest)
         {
             var result = await _assignmentService.Add(createAssignmentRequest);

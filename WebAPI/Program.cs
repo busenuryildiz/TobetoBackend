@@ -26,6 +26,7 @@ using Castle.Core.Logging;
 using NRedisStack;
 using NRedisStack.RedisStackCommands;
 using StackExchange.Redis;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
 
 
 
@@ -44,24 +45,26 @@ builder.Services.AddScoped<Serilog.ILogger>(provider => new LoggerConfiguration(
     .WriteTo.File("myapp.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger());
 
-
-builder.Services.AddScoped<LogActionFilter>();
+builder.Services.AddScoped<LogActionAttribute>();
 
 ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("redis-16350.c267.us-east-1-4.ec2.cloud.redislabs.com:16350,password=6CkWVBIu5cVuXRa7sU2LLeXCZZv389yY");
 IDatabase database = redis.GetDatabase();
-
-builder.Services.AddSingleton<RedisService>();
-
 database.StringSet("foo", "bar");
 Console.WriteLine(database.StringGet("foo")); // prints bar
+
+//Services
+builder.Services.AddSingleton<RedisService>();
 builder.Services.AddScoped<RedisCacheAttribute>();
+builder.Services.AddScoped<RemoveCacheAttribute>();
+
 
 var config = builder.Configuration;
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 builder.Logging.ClearProviders();
-builder.Services.AddSingleton<RedisService>();
+
+builder.Services.AddScoped<LogActionAttribute>();
 // Uncomment the Autofac-related code
 //builder.Host
 //    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
@@ -78,7 +81,7 @@ builder.Services.AddSingleton<RedisService>();
 //        builder.RegisterModule(new AutofacDataAccessModule(config));
 //        builder.RegisterModule(new AutofacBusinessModule(config));
 //    });
-builder.Services.AddScoped<LogActionFilter>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -91,6 +94,5 @@ app.UseJwtDecoderMiddleware();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-var redisService = app.Services.GetRequiredService<RedisService>();
 
 app.Run();

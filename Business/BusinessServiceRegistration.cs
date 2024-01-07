@@ -137,7 +137,6 @@ namespace Business
             services.AddTransient<UserRoleBusinessRules>();
             services.AddScoped<JwtService>();
             //kerem@gmail.com
-            services.AddScoped<LogActionFilter>();
 
             return services;
         }

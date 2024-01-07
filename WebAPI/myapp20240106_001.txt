@@ -103,3 +103,30 @@ File name: 'Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30
 2024-01-06 04:56:23.574 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.
 2024-01-06 04:58:31.027 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.
 2024-01-06 04:58:35.716 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.
+2024-01-06 13:53:18.053 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.
+2024-01-06 13:53:18.984 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.
+2024-01-06 13:53:29.933 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.
+2024-01-06 13:53:30.073 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.
+2024-01-06 13:55:30.806 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.
+2024-01-06 13:55:43.724 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.
+2024-01-06 14:11:45.358 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.  DENEME DENEME DENEME 
+2024-01-06 14:11:48.947 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed. DENEME  DENEME DENEME DENEME DENEME
+2024-01-06 14:14:02.233 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.  DENEME DENEME DENEME 
+2024-01-06 14:14:14.862 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed. DENEME  DENEME DENEME DENEME DENEME
+2024-01-06 14:17:56.724 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.  DENEME DENEME DENEME 
+2024-01-06 14:17:58.840 +03:00 [INF] içeride var
+2024-01-06 14:17:58.841 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed. DENEME  DENEME DENEME DENEME DENEME
+2024-01-06 14:18:24.106 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.  DENEME DENEME DENEME 
+2024-01-06 14:18:30.980 +03:00 [INF] içeride var
+2024-01-06 14:18:30.980 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed. DENEME  DENEME DENEME DENEME DENEME
+2024-01-06 14:28:43.578 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.
+2024-01-06 14:28:46.224 +03:00 [INF] Cache hit. Key: WebAPI.Controllers.RolesController.GetList (WebAPI)/api/Roles/GetList_pageRequest_Core.DataAccess.Paging.PageRequest
+2024-01-06 14:28:46.231 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.
+2024-01-06 16:31:43.668 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.
+2024-01-06 16:31:43.706 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.
+2024-01-06 16:31:44.177 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.
+2024-01-06 16:32:50.139 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.
+2024-01-06 16:36:31.154 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.
+2024-01-06 16:36:31.193 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.
+2024-01-06 16:36:31.651 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.
+2024-01-06 16:36:45.502 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.

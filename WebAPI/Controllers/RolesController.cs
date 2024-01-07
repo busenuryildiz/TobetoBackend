@@ -9,7 +9,8 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [ServiceFilter(typeof(LogActionFilter))] // Action Filter'ı ekleyin
+    // Action Filter'ı ekleyin
+    [ServiceFilter(typeof(LogActionAttribute))] // LogActionAttribute'ün eklenmesi
 
     public class RolesController : ControllerBase
     {
@@ -40,7 +41,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("GetList")]
-        [RedisCache]
+        [ServiceFilter(typeof(RedisCacheAttribute))]
+        //[RemoveCache(CacheKey = "Roles/GetList")]
+        [ServiceFilter(typeof(LogActionAttribute))] // LogActionAttribute'ün eklenmesi
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             var result = await _roleService.GetListAsync(pageRequest);

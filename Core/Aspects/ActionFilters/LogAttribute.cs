@@ -3,11 +3,11 @@
     using Microsoft.AspNetCore.Mvc.Filters;
     using Serilog;
 
-    public class LogActionFilter : IActionFilter
+    public class LogActionAttribute : IActionFilter
     {
         private readonly ILogger _logger;
 
-        public LogActionFilter(ILogger logger)
+        public LogActionAttribute(ILogger logger)
         {
             _logger = logger;
         }
@@ -15,6 +15,7 @@
         public void OnActionExecuting(ActionExecutingContext context)
         {
             _logger.Information($"Action {context.ActionDescriptor.DisplayName} is executing.");
+
         }
 
         public void OnActionExecuted(ActionExecutedContext context)

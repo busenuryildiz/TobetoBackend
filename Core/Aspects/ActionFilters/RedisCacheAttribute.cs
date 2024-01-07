@@ -43,7 +43,7 @@ public class RedisCacheAttribute : ActionFilterAttribute
         var resultContext = await next();
 
 
-   
+
 
         if (resultContext?.Result is ObjectResult objectResult1 && objectResult1.Value != null)
         {
@@ -63,18 +63,30 @@ public class RedisCacheAttribute : ActionFilterAttribute
             Log.Logger.Error($"Anahtar: {key}, İşlem: Redis'e eklenirken Items özelliği beklenen türde değil.");
         }
     }
-    
+
 
     private string GenerateCacheKey(ActionExecutingContext context)
     {
         var keyBuilder = new StringBuilder();
 
         keyBuilder.Append(context.HttpContext.Request.Path);
+
         foreach (var (key, value) in context.ActionArguments)
         {
             keyBuilder.Append($"_{key}_{value}");
         }
 
+        // Controller'ın parametrelerini ekle
+        foreach (var parameter in context.ActionDescriptor.Parameters)
+        {
+            keyBuilder.Append($"_{parameter.Name}");
+        }
+        foreach (var (key, value) in context.HttpContext.Request.Query)
+        {
+            keyBuilder.Append($"_{key}_{value}");
+        }
+        Console.WriteLine("OLUSTURULAN KEY", keyBuilder.ToString());
         return keyBuilder.ToString();
     }
+
 }

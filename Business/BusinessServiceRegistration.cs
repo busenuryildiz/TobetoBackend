@@ -21,6 +21,20 @@ using Business.DTOs.Request.ApplicationStudent;
 using Business.DTOs.Request.Category;
 using Business.DTOs.Request.ContactUs;
 using Business.DTOs.Request.MediaPost;
+using Business.DTOs.Request.Address;
+using Business.DTOs.Request.Certificate;
+using Business.DTOs.Request.City;
+using Business.DTOs.Request.Country;
+using Business.DTOs.Request.District;
+using Business.DTOs.Request.EducationInformation;
+using Business.DTOs.Request.Language;
+using Business.DTOs.Request.LanguageLevel;
+using Business.DTOs.Request.Skill;
+using Business.DTOs.Request.SocialMediaAccount;
+using Business.DTOs.Request.University;
+using Business.DTOs.Request.UserExperience;
+using Business.DTOs.Request.UserLanguage;
+using Business.DTOs.Request.UserUniversity;
 
 namespace Business
 {
@@ -147,8 +161,20 @@ namespace Business
             services.AddScoped<IValidator<CreateSurveyRequest>, CreateSurveyRequestValidator>();
             services.AddScoped<IValidator<CreateSubjectRequest>, CreateSubjectRequestValidator>();
             services.AddScoped<IValidator<CreateRoleRequest>, CreateRoleRequestValidator>();
-
-
+            services.AddScoped<IValidator<CreateAddressRequest>, CreateAddressRequestValidator>();
+            services.AddScoped<IValidator<CreateCertificateRequest>, CreateCertificateRequestValidator>();
+            services.AddScoped<IValidator<CreateCityRequest>, CreateCityRequestValidator>();
+            services.AddScoped<IValidator<CreateCountryRequest>, CreateCountryRequestValidator>();
+            services.AddScoped<IValidator<CreateDistrictRequest>, CreateDistrictRequestValidator>();
+            services.AddScoped<IValidator<CreateEducationInformationRequest>, CreateEducationInformationRequestValidator>();
+            services.AddScoped<IValidator<CreateLanguageRequest>, CreateLanguageRequestValidator>();
+            services.AddScoped<IValidator<CreateLanguageLevelRequest>, CreateLanguageLevelRequestValidator>();
+            services.AddScoped<IValidator<CreateSkillRequest>, CreateSkillRequestValidator>();
+            services.AddScoped<IValidator<CreateSocialMediaAccountRequest>, CreateSocialMediaAccountRequestValidator>();
+            services.AddScoped<IValidator<CreateUniversityRequest>, CreateUniversityRequestValidator>();
+            services.AddScoped<IValidator<CreateUserExperienceRequest>, CreateUserExperienceRequestValidator>();
+            services.AddScoped<IValidator<CreateUserLanguageRequest>, CreateUserLanguageRequestValidator>();
+            services.AddScoped<IValidator<CreateUserUniversityRequest>, CreateUserUniversityRequestValidator>();
 
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));

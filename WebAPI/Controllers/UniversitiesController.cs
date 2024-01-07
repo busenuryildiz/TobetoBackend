@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.University;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateUniversityRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateUniversityRequest createUniversityRequest)
         {
             var result = await _universityService.Add(createUniversityRequest);

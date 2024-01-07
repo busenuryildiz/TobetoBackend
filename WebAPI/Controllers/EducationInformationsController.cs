@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.EducationInformation;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,7 @@ namespace WebAPI.Controllers
             _educationInformationService = educationInformationService;
         }
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateEducationInformationRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateEducationInformationRequest createEducationInformationRequest)
         {
             var result = await _educationInformationService.Add(createEducationInformationRequest);

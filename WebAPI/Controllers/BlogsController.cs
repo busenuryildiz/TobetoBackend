@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("Add")]
-        [ValidateModel(typeof(CreateBlogRequestValidator))]
+        //[ValidateModel(typeof(CreateBlogRequestValidator))]
 
         public async Task<IActionResult> Add([FromBody] CreateBlogRequest createBlogRequest)
         {

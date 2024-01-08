@@ -72,9 +72,13 @@ namespace Business.Concretes
             return await _repository.AddAsync(option);
         }
 
-        public Task GetById(int id)
+        public async Task<CreatedOptionResponse> GetById(int id)
         {
-            throw new NotImplementedException();
+            var result = await _repository.GetAsync(c => c.Id == id);
+            Option mappedOption = _mapper.Map<Option>(result);
+            CreatedOptionResponse createdOptionResponse = _mapper.Map<CreatedOptionResponse>(mappedOption);
+
+            return createdOptionResponse;
         }
     }
 

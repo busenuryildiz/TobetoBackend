@@ -16,7 +16,7 @@ namespace Business.Rules.ValidationRules
             RuleFor(x => x.UserId).NotEmpty().WithMessage("UserId alanı boş olamaz.");
             RuleFor(x => x.DistrictId).NotEmpty().WithMessage("DistrictId alanı boş olamaz.");
             RuleFor(x => x.Name).NotEmpty().WithMessage("Name alanı boş olamaz.");
-            RuleFor(x => x.AboutMe).MinimumLength(20).WithMessage("AboutMe en az 20 karakter uzunluğunda olmalıdır.");
+            //RuleFor(x => x.AboutMe).MinimumLength(20).WithMessage("AboutMe en az 20 karakter uzunluğunda olmalıdır.");
 
 
         }

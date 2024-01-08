@@ -34,3 +34,7 @@
 2024-01-08 20:42:04.790 +03:00 [INF] Action WebAPI.Controllers.RolesController.Add (WebAPI) is executing.
 2024-01-08 20:42:04.832 +03:00 [INF] TRANSACTIN LOG WORKED
 2024-01-08 20:42:05.147 +03:00 [INF] Action WebAPI.Controllers.RolesController.Add (WebAPI) executed.
+2024-01-08 21:18:52.064 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.
+2024-01-08 21:18:52.251 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.
+2024-01-08 21:21:03.567 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.
+2024-01-08 21:21:06.369 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.

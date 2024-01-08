@@ -20,26 +20,13 @@ namespace DataAccess
         {
 
             services.AddDbContext<TobetoContext>(options => options.UseSqlServer(configuration.GetConnectionString("Tobeto")));
-
-
-
-
-
-
-
             services.AddScoped<IUserDal, EfUserDal>();  // Change from Singleton to Scoped
             services.AddScoped<IInstructorDal, EfInstructorDal>();
             services.AddScoped<IManagerDal, EfManagerDal>();
             services.AddScoped<IStudentDal, EfStudentDal>();
-
- 
-
             services.AddScoped<IUserRoleDal, EfUserRoleDal>();
-
             services.AddScoped<IUserDal, EfUserDal>();
             services.AddScoped<IUserUniversityDal, EfUserUniversityDal>();
-
-
             services.AddScoped<IAssignmentDal, EfAssignmentDal>();
             services.AddScoped<IAddressDal, EfAddressDal>();
             services.AddScoped<ICourseDal, EfCourseDal>();
@@ -56,7 +43,6 @@ namespace DataAccess
             services.AddScoped<IStudentCourseDal, EfStudentCourseDal>();
             services.AddScoped<IApplicationStudentDal, EfApplicationStudentDal>();
             services.AddScoped<IStudentAssignmentDal, EfStudentAssignmentDal>();
-
             services.AddScoped<ICertificateDal, EfCertificateDal>();
             services.AddScoped<IEducationInformationDal, EfEducationInformationDal>();
             services.AddScoped<ILanguageDal, EfLanguageDal>();
@@ -66,7 +52,6 @@ namespace DataAccess
             services.AddScoped<IUserExperienceDal, EfUserExperienceDal>();
             services.AddScoped<ISoftwareLanguageDal, EfSoftwareLanguageDal>();
             services.AddScoped<IUserLanguageDal, EfUserLanguageDal>();
-
             services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
             services.AddScoped<IApplicationDal, EfApplicationDal>();
             services.AddScoped<IBlogDal, EfBlogDal>();
@@ -77,14 +62,11 @@ namespace DataAccess
             services.AddScoped<IStudentSkillDal, EfStudentSkillDal>();
             services.AddScoped<ISubjectDal, EfSubjectDal>();
             services.AddScoped<ISurveyDal, EfSurveyDal>();
-                  services.AddScoped<ICourseSubjectDal, EfCourseSubjectDal>();
+            services.AddScoped<ICourseSubjectDal, EfCourseSubjectDal>();
             services.AddScoped<ICityDal, EfCityDal>();
             services.AddScoped<ICountryDal, EfCountryDal>();
             services.AddScoped<IDistrictDal, EfDistrictDal>();
             services.AddScoped<IUniversityDal, EfUniversityDal>();
-
-
-
 
             return services;
         }

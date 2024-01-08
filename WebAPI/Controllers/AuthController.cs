@@ -6,7 +6,10 @@ using Entities.Concretes.Clients;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mail;
+using System.Net;
 using System.Security.Claims;
+using Business.DTOs.Request.Email;
 
 namespace WebAPI.Controllers
 {
@@ -16,11 +19,13 @@ namespace WebAPI.Controllers
     {
         private readonly IUserService _userService;
         private readonly JwtService _jwtService;
+        private readonly IEmailService _emailService;
 
-        public AuthController(IUserService userService, JwtService jwtService)
+        public AuthController(IUserService userService, JwtService jwtService, IEmailService emailService)
         {
             _userService = userService;
             _jwtService = jwtService;
+            _emailService = emailService;
         }
 
         [HttpPost]
@@ -28,7 +33,7 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Login([FromBody] LoginRequest model)
         {
             // Öğrenci kullanıcı doğrulama işlemleri
-            UserLoginResponse user = await _userService.Login(model.Email , model.Password);
+            UserLoginResponse user = await _userService.Login(model.Email, model.Password);
 
             if (user != null)
             {
@@ -75,5 +80,24 @@ namespace WebAPI.Controllers
             // İlgili işlemleri gerçekleştirin ve sonucu döndürün.
             return Ok("Secured Data for Student");
         }
+
+
+
+
+        [HttpPost("send")]
+        public IActionResult SendEmail([FromBody] EmailRequestModel model)
+        {
+            try
+            {
+                // IEmailService kullanarak e-posta gönder
+                _emailService.SendEmail(model.ToEmail, model.Subject, model.Body);
+
+                return Ok("E-posta başarıyla gönderildi.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
-}
+    }

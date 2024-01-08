@@ -42,7 +42,7 @@ builder.Services.AddBusinessServices();
 builder.Services.AddScoped<Serilog.ILogger>(provider => new LoggerConfiguration()
     .MinimumLevel.Debug()
     .WriteTo.Console()
-    .WriteTo.File("myapp.txt", rollingInterval: RollingInterval.Day)
+    .WriteTo.File("../logger/myapp.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger());
 
 builder.Services.AddScoped<LogActionAttribute>();

@@ -137,6 +137,7 @@ namespace Business
             services.AddScoped<IContactUsService, ContactUsManager>();
             services.AddScoped<IDistrictService, DistrictManager>();
             services.AddScoped<IUserService, UserManager>();
+            services.AddScoped< IEmailService, EmailManager >();
 
 
 

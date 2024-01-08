@@ -5,29 +5,35 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore; // Include this for DbContext
 using DataAccess.Context;
 using Serilog;
+using Microsoft.Extensions.Logging;
+using ILogger = Serilog.ILogger;
+using Serilog.Core;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class TransactionAttribute : ActionFilterAttribute
 {
-    private readonly ILogger _logger;
+    private  ILogger _logger;
 
-    public TransactionAttribute(ILogger logger)
+    public TransactionAttribute()
     {
-        _logger = logger;
+   
     }
 
     public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
         var serviceProvider = context.HttpContext.RequestServices;
         var dbContext = serviceProvider.GetRequiredService<TobetoContext>(); // Get the DbContext directly
+         _logger = serviceProvider.GetRequiredService<ILogger>(); // Get the ILogger from the IServiceProvider
+        _logger.Information("TRANSACTIN LOG WORKED");
 
         try
         {
             using (var transaction = await dbContext.Database.BeginTransactionAsync())
             {
                 // Action işlemlerini gerçekleştirme
-                var executedContext = await next();
 
+                var executedContext = await next();
+                
                 // Hata yoksa, transaction'ı onayla
                 if (executedContext.Exception == null)
                 {

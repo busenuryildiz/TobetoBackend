@@ -56,6 +56,8 @@ Console.WriteLine(database.StringGet("foo")); // prints bar
 builder.Services.AddSingleton<RedisService>();
 builder.Services.AddScoped<RedisCacheAttribute>();
 builder.Services.AddScoped<RemoveCacheAttribute>();
+builder.Services.AddScoped<TransactionAttribute>();
+
 
 
 var config = builder.Configuration;

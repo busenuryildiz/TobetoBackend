@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
             _roleService = roleService;
         }
 
-
+        [Transaction]
         [HttpPost("Add")]
         public async Task<IActionResult> Add([FromBody] CreateRoleRequest createRoleRequest)
         {
@@ -44,6 +44,7 @@ namespace WebAPI.Controllers
         [ServiceFilter(typeof(RedisCacheAttribute))]
         //[RemoveCache(CacheKey = "Roles/GetList")]
         [ServiceFilter(typeof(LogActionAttribute))] // LogActionAttribute'ün eklenmesi
+        [Transaction]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             var result = await _roleService.GetListAsync(pageRequest);

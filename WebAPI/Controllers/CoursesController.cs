@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.Course;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Entities.Concretes;
 using Microsoft.AspNetCore.Http;
@@ -21,6 +22,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateCourseRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateCourseRequest createCourseRequest)
         {
             var result = await _courseService.Add(createCourseRequest);

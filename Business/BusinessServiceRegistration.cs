@@ -1,10 +1,8 @@
 ﻿using Business.Abstracts;
 using Business.Concretes;
 using Business.DTOs.Request.Announcement;
+using Business.DTOs.Request.Assignments;
 using Business.DTOs.Request.Blog;
-using Business.DTOs.Request.Role;
-using Business.DTOs.Request.Subject;
-using Business.DTOs.Request.Survey;
 using Business.Rules;
 using Business.Rules.ValidationRules;
 using Core.Business.Rules;
@@ -175,6 +173,17 @@ namespace Business
             services.AddScoped<IValidator<CreateUserExperienceRequest>, CreateUserExperienceRequestValidator>();
             services.AddScoped<IValidator<CreateUserLanguageRequest>, CreateUserLanguageRequestValidator>();
             services.AddScoped<IValidator<CreateUserUniversityRequest>, CreateUserUniversityRequestValidator>();
+            services.AddScoped<IValidator<CreateAssignmentRequest>, CreateAssignmentRequestValidator>();
+            services.AddScoped<IValidator<CreateCourseRequest>, CreateCourseRequestValidator>();
+            services.AddScoped<IValidator<CreateCourseLevelRequest>, CreateCourseLevelRequestValidator>();
+            services.AddScoped<IValidator<CreateExamRequest>, CreateExamRequestValidator>();
+            services.AddScoped<IValidator<CreateInstructorCourseRequest>, CreateInstructorCourseRequestValidator>();
+            services.AddScoped<IValidator<CreateLessonRequest>, CreateLessonRequestValidator>();
+            services.AddScoped<IValidator<CreateOptionRequest>, CreateOptionRequestValidator>();
+            services.AddScoped<IValidator<CreateQuestionRequest>, CreateQuestionRequestValidator>();
+            services.AddScoped<IValidator<CreateSoftwareLanguageRequest>, CreateSoftwareLanguageRequestValidator>();
+            services.AddScoped<IValidator<CreateStudentAssignmentRequest>, CreateStudentAssignmentRequestValidator>();
+            services.AddScoped<IValidator<CreateStudentCourseRequest>, CreateStudentCourseRequestValidator>();
 
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));

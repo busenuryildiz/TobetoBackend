@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.LessonCourse;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,7 @@ namespace WebAPI.Controllers
             _lessonCourseService = lessonCourseService;
         }
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateLessonCourseRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateLessonCourseRequest createLessonCourseRequest)
         {
             var result = await _lessonCourseService.Add(createLessonCourseRequest);

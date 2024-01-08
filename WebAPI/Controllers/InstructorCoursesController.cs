@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.InstructorCourse;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,8 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateInstructorCourseRequestValidator))]
+
         public async Task<IActionResult> Add([FromBody] CreateInstructorCourseRequest createInstructorCourseRequest)
         {
             var result = await InstructorCourseService.Add(createInstructorCourseRequest);

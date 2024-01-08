@@ -14,6 +14,6 @@ namespace Business.DTOs.Request.Address
         public int? CityId { get; set; }
         public int? CountryId { get; set; }
         public string? Name { get; set; }
-        public string? AboutMe { get; set; }
+        public string? Description { get; set; }
     }
 }

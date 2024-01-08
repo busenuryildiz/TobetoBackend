@@ -8,7 +8,8 @@ namespace Business.Abstracts
 {
     public interface IEmailService
     {
-        void SendEmail(string toEmail, string subject, string body);
+        void SendEmail(string fromEmail, string fullName,string subject, string body);
+        void ForgetPassword(string toEmail);
 
     }
 }

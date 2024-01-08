@@ -1,55 +1,46 @@
 ﻿using Business.Abstracts;
 using Business.Concretes;
+using Business.DTOs.Request.Address;
 using Business.DTOs.Request.Announcement;
-using Business.DTOs.Request.Assignments;
-using Business.DTOs.Request.Blog;
-using Business.Rules;
-using Core.Aspects.ActionFilters;
-using Core.Business.Rules;
-using Core.Utilities.JWT;
-using DataAccess.Abstracts;
-using DataAccess.Concretes;
-using Business.Rules.ValidationRules;
-using Core.Business.Rules;
-using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Business.DTOs.Request.Application;
 using Business.DTOs.Request.ApplicationStudent;
+using Business.DTOs.Request.Assignments;
+using Business.DTOs.Request.Blog;
 using Business.DTOs.Request.Category;
-using Business.DTOs.Request.ContactUs;
-using Business.DTOs.Request.MediaPost;
-using Business.DTOs.Request.Address;
 using Business.DTOs.Request.Certificate;
 using Business.DTOs.Request.City;
+using Business.DTOs.Request.ContactUs;
 using Business.DTOs.Request.Country;
+using Business.DTOs.Request.Course;
+using Business.DTOs.Request.CourseLevel;
 using Business.DTOs.Request.District;
 using Business.DTOs.Request.EducationInformation;
+using Business.DTOs.Request.Exam;
+using Business.DTOs.Request.InstructorCourse;
 using Business.DTOs.Request.Language;
 using Business.DTOs.Request.LanguageLevel;
+using Business.DTOs.Request.Lesson;
+using Business.DTOs.Request.MediaPost;
+using Business.DTOs.Request.Option;
+using Business.DTOs.Request.Role;
 using Business.DTOs.Request.Skill;
 using Business.DTOs.Request.SocialMediaAccount;
+using Business.DTOs.Request.SoftwareLanguage;
+using Business.DTOs.Request.StudentAssignment;
+using Business.DTOs.Request.StudentCourse;
+using Business.DTOs.Request.Subject;
+using Business.DTOs.Request.Survey;
 using Business.DTOs.Request.University;
 using Business.DTOs.Request.UserExperience;
 using Business.DTOs.Request.UserLanguage;
 using Business.DTOs.Request.UserUniversity;
-using Business.DTOs.Request.Lesson;
-using Business.DTOs.Request.InstructorCourse;
-using Business.DTOs.Request.Exam;
-using Business.DTOs.Request.CourseLevel;
-using Business.DTOs.Request.Course;
-using Business.DTOs.Request.SoftwareLanguage;
-using Business.DTOs.Request.StudentAssignment;
-using Business.DTOs.Request.StudentCourse;
-using Business.DTOs.Request.Option;
-using Business.DTOs.Request.Role;
-using Business.DTOs.Request.Subject;
-using Business.DTOs.Request.Survey;
+using Business.Rules;
+using Business.Rules.ValidationRules;
+using Core.Business.Rules;
+using Core.Utilities.JWT;
+using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Business
 {
@@ -59,19 +50,11 @@ namespace Business
 
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
-
-
-
-
-
-
-
-            // AUTOMAPPER
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddScoped<IStudentService, StudentManager>();
 
-            services.AddScoped<IUserRoleService,UserRoleManager >();
+            services.AddScoped<IUserRoleService, UserRoleManager>();
 
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<ISurveyService, SurveyManager>();
@@ -130,14 +113,13 @@ namespace Business
             services.AddScoped<IStudentSkillService, StudentSkillManager>();
             services.AddScoped<ISubjectService, SubjectManager>();
             services.AddScoped<ISurveyService, SurveyManager>();
-
             services.AddScoped<ICityService, CityManager>();
             services.AddScoped<ICountryService, CountryManager>();
             services.AddScoped<ILessonService, LessonManager>();
             services.AddScoped<IContactUsService, ContactUsManager>();
             services.AddScoped<IDistrictService, DistrictManager>();
             services.AddScoped<IUserService, UserManager>();
-            services.AddScoped< IEmailService, EmailManager >();
+            services.AddScoped<IEmailService, EmailManager>();
 
 
 
@@ -223,14 +205,16 @@ namespace Business
             services.AddScoped<IValidator<CreateStudentCourseRequest>, CreateStudentCourseRequestValidator>();
 
 
+            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
             return services;
+
         }
+
         public static IServiceCollection AddSubClassesOfType(
             this IServiceCollection services,
             Assembly assembly,
             Type type,
-            Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle = null
-        )
+            Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle = null)
         {
             var types = assembly.GetTypes().Where(t => t.IsSubclassOf(type) && type != t).ToList();
             foreach (var item in types)
@@ -242,4 +226,5 @@ namespace Business
             return services;
         }
     }
+
 }

@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.Announcement;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,10 @@ namespace WebAPI.Controllers
         {
             _announcementService = announcementService;
         }
+
+
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateAnnouncementRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateAnnouncementRequest createAnnouncementRequest)
         {
             var result = await _announcementService.Add(createAnnouncementRequest);

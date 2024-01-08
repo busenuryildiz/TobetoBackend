@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.UserExperience;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateUserExperienceRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateUserExperienceRequest createUserExperienceRequest)
         {
             var result = await _userExperienceService.Add(createUserExperienceRequest);

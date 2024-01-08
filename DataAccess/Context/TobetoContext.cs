@@ -17,6 +17,8 @@ namespace DataAccess.Context
     {
         protected IConfiguration Configuration { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<University> Universities { get; set; }
         public DbSet<StudentCourse> StudentCourses { get; set; }
         public DbSet<StudentSkill> StudentSkills { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
@@ -26,6 +28,7 @@ namespace DataAccess.Context
         public DbSet<ContactUs> ContactUses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CourseLevel> CourseLevels { get; set; }
+        public DbSet<UserUniversity> UserUniversities { get; set; }
         public DbSet<CourseSubject> CourseSubjects { get; set; }
         public DbSet<User> Users{ get; set; }
         public DbSet<Lesson> Lessons{ get; set; }
@@ -55,6 +58,8 @@ namespace DataAccess.Context
         public DbSet<Manager> Managers { get; set; }
         public DbSet<City> Cities { get; set; } 
         public DbSet<District> Districts { get; set; }
+        //public DbSet<District> Districts { get; set; } 
+        public DbSet<Country> Countries { get; set; } 
 
 
 
@@ -67,6 +72,7 @@ namespace DataAccess.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             //Konfigirasyon dosyalarını bul ve onu uygula demek
         }

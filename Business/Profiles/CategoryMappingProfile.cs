@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using Business.DTOs.Request.Category;
-using Business.DTOs.Request.Category;
-using Business.DTOs.Response.Category;
 using Business.DTOs.Response.Category;
 using Core.DataAccess.Paging;
 using Entities.Concretes;

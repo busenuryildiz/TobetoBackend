@@ -71,6 +71,11 @@ namespace Business.Concretes
 
             return await _repository.AddAsync(option);
         }
+
+        public Task GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

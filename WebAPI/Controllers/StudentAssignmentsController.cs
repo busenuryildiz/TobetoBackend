@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.StudentAssignment;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,8 @@ namespace WebAPI.Controllers
             _studentAssignmentService = studentAssignmentService;
         }
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateStudentAssignmentRequestValidator))]
+
         public async Task<IActionResult> Add([FromBody] CreateStudentAssignmentRequest createStudentAssignmentRequest)
         {
             var result = await _studentAssignmentService.Add(createStudentAssignmentRequest);

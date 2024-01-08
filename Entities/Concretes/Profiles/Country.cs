@@ -11,5 +11,6 @@ namespace Entities.Concretes.Profiles
     {
         public string Name { get; set; }
         public List<City> Cities { get; set; }
+
     }
 }

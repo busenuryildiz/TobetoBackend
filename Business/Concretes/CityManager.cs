@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes
 {
@@ -40,7 +41,6 @@ namespace Business.Concretes
         {
             var data = await _CityDal.GetAsync(i => i.Id == deleteCityRequest.Id);
             _mapper.Map(deleteCityRequest, data);
-            data.DeletedDate = DateTime.Now;
             var result = await _CityDal.DeleteAsync(data, true);
             var result2 = _mapper.Map<DeletedCityResponse>(result);
             return result2;
@@ -58,6 +58,8 @@ namespace Business.Concretes
         public async Task<IPaginate<GetListCityResponse>> GetListAsync(PageRequest pageRequest)
         {
             var data = await _CityDal.GetListAsync(
+                include: u => u
+                    .Include(c => c.Districts),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize
             );
@@ -70,7 +72,6 @@ namespace Business.Concretes
         {
             var data = await _CityDal.GetAsync(i => i.Id == updateCityRequest.Id);
             _mapper.Map(updateCityRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _CityDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedCityResponse>(data);
             return result;

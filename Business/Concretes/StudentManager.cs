@@ -11,12 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Abstracts;
-using Business.DTOs.Request.User;
-using Business.DTOs.Response.User;
-using DataAccess.Concretes;
-using Entities.Concretes.Courses;
-using Business.DTOs.Request.Student;
-using Business.DTOs.Response.Student;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes
 {
@@ -64,6 +59,10 @@ namespace Business.Concretes
         public async Task<IPaginate<GetListStudentResponse>> GetListAsync(PageRequest pageRequest)
         {
             var data = await _studentDal.GetListAsync(
+                include: u => u
+                    .Include(c => c.ApplicationStudents)
+                    .Include(c => c.StudentAssignments)
+                    .Include(c => c.StudentCourses),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize
             );

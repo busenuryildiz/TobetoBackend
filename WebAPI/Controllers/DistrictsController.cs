@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.District;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateDistrictRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateDistrictRequest createDistrictRequest)
         {
             var result = await _districtService.Add(createDistrictRequest);

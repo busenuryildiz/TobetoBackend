@@ -2,6 +2,7 @@
 using Business.Abstracts;
 using Business.DTOs.Request.Subject;
 using Business.DTOs.Response.Subject;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
+        [ValidateModel(typeof(CreateSubjectRequestValidator))]
         public async Task<ActionResult<CreatedSubjectResponse>> Add([FromBody] CreateSubjectRequest createSubjectRequest)
         {
             var result = await _subjectService.Add(createSubjectRequest);

@@ -12,6 +12,6 @@ namespace Business.DTOs.Request.Address
         public Guid UserId { get; set; }
         public int? DistrictId { get; set; }
         public string? Name { get; set; }
-        public string? AboutMe { get; set; }
+        public string? Description { get; set; }
     }
 }

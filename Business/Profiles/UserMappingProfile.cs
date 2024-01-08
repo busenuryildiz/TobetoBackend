@@ -24,8 +24,11 @@ namespace Business.Profiles
             CreateMap<UpdateUserRequest, User>().ReverseMap();
             CreateMap<User, UpdatedUserResponse>().ReverseMap();
 
-            CreateMap<User, GetListUserResponse>().ReverseMap();
-            CreateMap<Paginate<User>, Paginate<GetListUserResponse>>().ReverseMap();
+            CreateMap<User, GetListUserResponse>()
+                .ForMember(dest => dest.Addresses, opt => opt.MapFrom(src => src.Addresses));
+            //CreateMap<Paginate<User>, Paginate<GetListUserResponse>>().ReverseMap();
+            CreateMap<Paginate<User>, Paginate<GetListUserResponse>>()
+                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items)).ReverseMap();
         }
     }
 }

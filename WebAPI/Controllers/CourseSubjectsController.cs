@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.CourseSubject;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateCourseSubjectRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateCourseSubjectRequest createCourseSubjectRequest)
         {
             var result = await _courseSubjectService.Add(createCourseSubjectRequest);

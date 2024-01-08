@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.Exam;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateExamRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateExamRequest createExamRequest)
         {
             var result = await _examService.Add(createExamRequest);

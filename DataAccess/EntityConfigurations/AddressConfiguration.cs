@@ -16,7 +16,7 @@ namespace DataAccess.Context.EntityConfigurations
         {
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Name).IsRequired().HasMaxLength(255);
-            builder.Property(b => b.AboutMe);
+            builder.Property(b => b.Description);
 
             builder.HasOne(ei => ei.User)
                 .WithMany(u => u.Addresses)

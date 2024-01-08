@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.ApplicationStudent;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateApplicationStudentRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateApplicationStudentRequest createApplicationStudentRequest)
         {
             var result = await _applicationService.Add(createApplicationStudentRequest);

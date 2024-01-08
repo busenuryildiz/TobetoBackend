@@ -1,11 +1,17 @@
 ﻿using Business.Abstracts;
 using Business.Concretes;
+using Business.DTOs.Request.Announcement;
+using Business.DTOs.Request.Assignments;
+using Business.DTOs.Request.Blog;
 using Business.Rules;
 using Core.Aspects.ActionFilters;
 using Core.Business.Rules;
 using Core.Utilities.JWT;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
+using Business.Rules.ValidationRules;
+using Core.Business.Rules;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,6 +19,37 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Business.DTOs.Request.Application;
+using Business.DTOs.Request.ApplicationStudent;
+using Business.DTOs.Request.Category;
+using Business.DTOs.Request.ContactUs;
+using Business.DTOs.Request.MediaPost;
+using Business.DTOs.Request.Address;
+using Business.DTOs.Request.Certificate;
+using Business.DTOs.Request.City;
+using Business.DTOs.Request.Country;
+using Business.DTOs.Request.District;
+using Business.DTOs.Request.EducationInformation;
+using Business.DTOs.Request.Language;
+using Business.DTOs.Request.LanguageLevel;
+using Business.DTOs.Request.Skill;
+using Business.DTOs.Request.SocialMediaAccount;
+using Business.DTOs.Request.University;
+using Business.DTOs.Request.UserExperience;
+using Business.DTOs.Request.UserLanguage;
+using Business.DTOs.Request.UserUniversity;
+using Business.DTOs.Request.Lesson;
+using Business.DTOs.Request.InstructorCourse;
+using Business.DTOs.Request.Exam;
+using Business.DTOs.Request.CourseLevel;
+using Business.DTOs.Request.Course;
+using Business.DTOs.Request.SoftwareLanguage;
+using Business.DTOs.Request.StudentAssignment;
+using Business.DTOs.Request.StudentCourse;
+using Business.DTOs.Request.Option;
+using Business.DTOs.Request.Role;
+using Business.DTOs.Request.Subject;
+using Business.DTOs.Request.Survey;
 
 namespace Business
 {
@@ -33,7 +70,9 @@ namespace Business
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddScoped<IStudentService, StudentManager>();
+
             services.AddScoped<IUserRoleService,UserRoleManager >();
+
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<IMediaPostService, MediaPostManager>();
@@ -52,6 +91,8 @@ namespace Business
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
             services.AddScoped<IApplicationStudentService, ApplicationStudentManager>();
             services.AddScoped<IStudentAssignmentService, StudentAssignmentManager>();
+            services.AddScoped<IUniversityService, UniversityManager>();
+            services.AddScoped<IUserUniversityService, UserUniversityManager>();
 
             services.AddScoped<ISoftwareLanguageService, SoftwareLanguageManager>();
             services.AddScoped<IStudentAssignmentService, StudentAssignmentManager>();
@@ -105,6 +146,7 @@ namespace Business
             services.AddScoped<StudentBusinessRules>();
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<SoftwareLanguageBusinessRules>();
+            services.AddScoped<UserUniversityBusinessRules>();
 
             services.AddScoped<AssignmentBusinessRules>();
             services.AddScoped<CourseBusinessRules>();
@@ -134,9 +176,51 @@ namespace Business
 
             services.AddScoped<LessonBusinessRules>();
             services.AddScoped<ContactUsBusinessRules>();
+
             services.AddTransient<UserRoleBusinessRules>();
             services.AddScoped<JwtService>();
-            //kerem@gmail.com
+
+
+            services.AddScoped<UniversityBusinessRules>();
+
+
+            //Validators
+            services.AddScoped<IValidator<CreateBlogRequest>, CreateBlogRequestValidator>();
+            services.AddScoped<IValidator<CreateAnnouncementRequest>, CreateAnnouncementRequestValidator>();
+            services.AddScoped<IValidator<CreateMediaPostRequest>, CreateMediaPostRequestValidator>();
+            services.AddScoped<IValidator<CreateCategoryRequest>, CreateCategoryRequestValidator>();
+            services.AddScoped<IValidator<CreateApplicationRequest>, CreateApplicationRequestValidator>();
+            services.AddScoped<IValidator<CreateApplicationStudentRequest>, CreateApplicationStudentRequestValidator>();
+            services.AddScoped<IValidator<CreateContactUsRequest>, CreateContactUsRequestValidator>();
+            services.AddScoped<IValidator<CreateSurveyRequest>, CreateSurveyRequestValidator>();
+            services.AddScoped<IValidator<CreateSubjectRequest>, CreateSubjectRequestValidator>();
+            services.AddScoped<IValidator<CreateRoleRequest>, CreateRoleRequestValidator>();
+            services.AddScoped<IValidator<CreateAddressRequest>, CreateAddressRequestValidator>();
+            services.AddScoped<IValidator<CreateCertificateRequest>, CreateCertificateRequestValidator>();
+            services.AddScoped<IValidator<CreateCityRequest>, CreateCityRequestValidator>();
+            services.AddScoped<IValidator<CreateCountryRequest>, CreateCountryRequestValidator>();
+            services.AddScoped<IValidator<CreateDistrictRequest>, CreateDistrictRequestValidator>();
+            services.AddScoped<IValidator<CreateEducationInformationRequest>, CreateEducationInformationRequestValidator>();
+            services.AddScoped<IValidator<CreateLanguageRequest>, CreateLanguageRequestValidator>();
+            services.AddScoped<IValidator<CreateLanguageLevelRequest>, CreateLanguageLevelRequestValidator>();
+            services.AddScoped<IValidator<CreateSkillRequest>, CreateSkillRequestValidator>();
+            services.AddScoped<IValidator<CreateSocialMediaAccountRequest>, CreateSocialMediaAccountRequestValidator>();
+            services.AddScoped<IValidator<CreateUniversityRequest>, CreateUniversityRequestValidator>();
+            services.AddScoped<IValidator<CreateUserExperienceRequest>, CreateUserExperienceRequestValidator>();
+            services.AddScoped<IValidator<CreateUserLanguageRequest>, CreateUserLanguageRequestValidator>();
+            services.AddScoped<IValidator<CreateUserUniversityRequest>, CreateUserUniversityRequestValidator>();
+            services.AddScoped<IValidator<CreateAssignmentRequest>, CreateAssignmentRequestValidator>();
+            services.AddScoped<IValidator<CreateCourseRequest>, CreateCourseRequestValidator>();
+            services.AddScoped<IValidator<CreateCourseLevelRequest>, CreateCourseLevelRequestValidator>();
+            services.AddScoped<IValidator<CreateExamRequest>, CreateExamRequestValidator>();
+            services.AddScoped<IValidator<CreateInstructorCourseRequest>, CreateInstructorCourseRequestValidator>();
+            services.AddScoped<IValidator<CreateLessonRequest>, CreateLessonRequestValidator>();
+            services.AddScoped<IValidator<CreateOptionRequest>, CreateOptionRequestValidator>();
+            services.AddScoped<IValidator<CreateQuestionRequest>, CreateQuestionRequestValidator>();
+            services.AddScoped<IValidator<CreateSoftwareLanguageRequest>, CreateSoftwareLanguageRequestValidator>();
+            services.AddScoped<IValidator<CreateStudentAssignmentRequest>, CreateStudentAssignmentRequestValidator>();
+            services.AddScoped<IValidator<CreateStudentCourseRequest>, CreateStudentCourseRequestValidator>();
+
 
             return services;
         }

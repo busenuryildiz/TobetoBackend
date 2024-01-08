@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.Country;
+using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("Add")]
+        [ValidateModel(typeof(CreateCountryRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateCountryRequest createCountryRequest)
         {
             var result = await _countryService.Add(createCountryRequest);

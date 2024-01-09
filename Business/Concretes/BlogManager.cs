@@ -2,18 +2,10 @@
 using Business.Abstracts;
 using Business.DTOs.Request.Blog;
 using Business.DTOs.Response.Blog;
-using Business.DTOs.Response.Instructor;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using DataAccess.Concretes;
 using Entities.Concretes;
-using Entities.Concretes.Clients;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
@@ -42,7 +34,6 @@ namespace Business.Concretes
         {
             var data = await _blogDal.GetAsync(i => i.Id == deleteBlogRequest.Id);
             _mapper.Map(deleteBlogRequest, data);
-            data.DeletedDate = DateTime.Now;
             var result = await _blogDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedBlogResponse>(result);
             return result2;
@@ -72,7 +63,6 @@ namespace Business.Concretes
         {
             var data = await _blogDal.GetAsync(i => i.Id == updateBlogRequest.Id);
             _mapper.Map(updateBlogRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _blogDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedBlogResponse>(data);
             return result;

@@ -1,22 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Business.Abstracts;
-using Business.DTOs.Request.Announcement;
 using Business.DTOs.Request.Assignments;
-using Business.DTOs.Request.Blog;
-using Business.DTOs.Request.User;
-using Business.DTOs.Response.Announcement;
 using Business.DTOs.Response.Assignments;
-using Business.DTOs.Response.Blog;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using DataAccess.Concretes;
-using Entities.Concretes;
 using Entities.Concretes.Courses;
 
 namespace Business.Concretes
@@ -46,7 +34,6 @@ namespace Business.Concretes
         {
             var data = await _assignmentDal.GetAsync(i => i.Id == deleteAssignmentRequest.Id);
             _mapper.Map(deleteAssignmentRequest, data);
-            data.DeletedDate = DateTime.Now;
             var result = await _assignmentDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedAssignmentResponse>(result);
             return result2;
@@ -56,9 +43,7 @@ namespace Business.Concretes
         {
             var result = await _assignmentDal.GetAsync(c => c.Id == id);
             Assignment mappedAssignment = _mapper.Map<Assignment>(result);
-
             CreatedAssignmentResponse createdAssignmentResponse = _mapper.Map<CreatedAssignmentResponse>(mappedAssignment);
-
             return createdAssignmentResponse;
         }
 

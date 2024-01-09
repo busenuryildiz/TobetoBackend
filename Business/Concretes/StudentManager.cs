@@ -38,10 +38,8 @@ namespace Business.Concretes
         public async Task<DeletedStudentResponse> Delete(DeleteStudentRequest deleteStudentRequest)
         {
             Student student = await _studentDal.GetAsync(i => i.Id == deleteStudentRequest.Id);
-            student.DeletedDate = DateTime.Now;
             var deletedStudent = await _studentDal.DeleteAsync(student);
             DeletedStudentResponse deletedStudentResponse = _mapper.Map<DeletedStudentResponse>(deletedStudent);
-
             return deletedStudentResponse;
         }
 
@@ -74,7 +72,6 @@ namespace Business.Concretes
         {
             var data = await _studentDal.GetAsync(i => i.Id == updateStudentRequest.Id);
             _mapper.Map(updateStudentRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _studentDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedStudentResponse>(data);
             return result;

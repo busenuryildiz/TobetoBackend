@@ -5,13 +5,7 @@ using Business.DTOs.Response.City;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using Entities.Concretes;
 using Entities.Concretes.Profiles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes
@@ -41,7 +35,7 @@ namespace Business.Concretes
         {
             var data = await _CityDal.GetAsync(i => i.Id == deleteCityRequest.Id);
             _mapper.Map(deleteCityRequest, data);
-            var result = await _CityDal.DeleteAsync(data, true);
+            var result = await _CityDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedCityResponse>(result);
             return result2;
         }

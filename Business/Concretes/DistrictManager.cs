@@ -5,12 +5,6 @@ using Business.DTOs.Response.District;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using Entities.Concretes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Entities.Concretes.Profiles;
 
 namespace Business.Concretes

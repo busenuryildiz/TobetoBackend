@@ -1,14 +1,8 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
-using Core.DataAccess.Paging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Business.DTOs.Request.User;
 using Business.DTOs.Response.User;
-using Business.Rules;
+using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.Clients;
 using Microsoft.EntityFrameworkCore;
@@ -44,7 +38,6 @@ namespace Business.Concretes
         {
             var data = await _userDal.GetAsync(predicate:i => i.Id == deleteUserRequest.Id);
             _mapper.Map(deleteUserRequest, data);
-            data.DeletedDate = DateTime.Now;
             var result = await _userDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedUserResponse>(result);
             return result2;
@@ -54,9 +47,7 @@ namespace Business.Concretes
         {
             var result = await _userDal.GetAsync(c => c.Id == id);
             User mappedUser = _mapper.Map<User>(result);
-
             CreatedUserResponse createdUserResponse = _mapper.Map<CreatedUserResponse>(mappedUser);
-
             return createdUserResponse;
         }
 
@@ -87,7 +78,6 @@ namespace Business.Concretes
         {
             var data = await _userDal.GetAsync(i => i.Id == updateUserRequest.Id);
             _mapper.Map(updateUserRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _userDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedUserResponse>(data);
             return result;
@@ -97,12 +87,10 @@ namespace Business.Concretes
 
         public async Task<UserLoginResponse> Login(string email, string password)
         {
-            // E-posta ve şifre ile kullanıcıyı getir (şifreyi kontrol etmeden)
             var user = _userDal.Get(predicate : u => u.Email== email && u.Password== password);
 
             if (user != null)
             {
-                // Kullanıcı bulundu, kullanıcı DTO'sunu döndür
                 return new UserLoginResponse
                 {
                     Id = user.Id,
@@ -111,8 +99,6 @@ namespace Business.Concretes
                     Email = user.Email,
                 };
             }
-
-            // Kullanıcı bulunamadı
             return null;
         }
     }

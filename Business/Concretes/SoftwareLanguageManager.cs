@@ -49,9 +49,7 @@ namespace Business.Concretes
         {
             var result = await _SoftwareLanguageDal.GetAsync(c => c.Id == id);
             SoftwareLanguage mappedSoftwareLanguage = _mapper.Map<SoftwareLanguage>(result);
-
             CreatedSoftwareLanguageResponse createdSoftwareLanguageResponse = _mapper.Map<CreatedSoftwareLanguageResponse>(mappedSoftwareLanguage);
-
             return createdSoftwareLanguageResponse;
         }
 
@@ -71,7 +69,6 @@ namespace Business.Concretes
         {
             var data = await _SoftwareLanguageDal.GetAsync(i => i.Id == updateSoftwareLanguageRequest.Id);
             _mapper.Map(updateSoftwareLanguageRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _SoftwareLanguageDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedSoftwareLanguageResponse>(data);
             return result;

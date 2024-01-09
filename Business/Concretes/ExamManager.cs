@@ -2,18 +2,11 @@
 using Business.Abstracts;
 using Business.DTOs.Request.Exam;
 using Business.DTOs.Response.Exam;
+using Business.DTOs.Response.Question;
+using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.Courses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Business.Rules;
-using Business.DTOs.Response.Question;
-using DataAccess.Concretes;
-using Entities.Concretes;
 
 namespace Business.Concretes
 {

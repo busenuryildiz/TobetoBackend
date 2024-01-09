@@ -15,8 +15,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
 using Module = Autofac.Module;
-using Microsoft.Extensions.Configuration; // Specify Microsoft.Extensions.Configuration.IConfiguration
-using System.Reflection;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 using AutoMapper;
 

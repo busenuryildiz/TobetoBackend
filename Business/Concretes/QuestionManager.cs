@@ -5,12 +5,6 @@ using Business.DTOs.Response.Question;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.Courses;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
@@ -26,10 +20,6 @@ namespace Business.Concretes
             _optionService = optionService;
             _mapper = mapper;
         }
-
-
-
-
 
         public async Task<IPaginate<GetListQuestionResponse>> GetListAsync(PageRequest pageRequest)
         {

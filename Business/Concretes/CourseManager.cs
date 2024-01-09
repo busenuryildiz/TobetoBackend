@@ -44,7 +44,6 @@ namespace Business.Concretes
         {
             var data = await _courseDal.GetAsync(i => i.Id == deleteCourseRequest.Id);
             _mapper.Map(deleteCourseRequest, data);
-            data.DeletedDate = DateTime.Now;
             var result = await _courseDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedCourseResponse>(result);
             return result2;
@@ -54,13 +53,9 @@ namespace Business.Concretes
         {
             var result = await _courseDal.GetAsync(c => c.Id == id);
             Course mappedCourse = _mapper.Map<Course>(result);
-
             CreatedCourseResponse createdCourseResponse = _mapper.Map<CreatedCourseResponse>(mappedCourse);
-
             return createdCourseResponse;
         }
-
-
 
         public async Task<IPaginate<GetListCourseResponse>> GetListAsync(PageRequest pageRequest)
         {
@@ -85,7 +80,6 @@ namespace Business.Concretes
         {
             var data = await _courseDal.GetAsync(i => i.Id == updateCourseRequest.Id);
             _mapper.Map(updateCourseRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _courseDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedCourseResponse>(data);
             return result;

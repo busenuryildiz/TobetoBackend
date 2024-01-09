@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Request.Email
 {
-    public class FromEmailRequestModel
+    public class ContactUsRequestModel
     {
         public string FullName { get; set; }
         public string FromEmail { get; set; }

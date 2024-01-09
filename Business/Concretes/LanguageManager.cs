@@ -5,13 +5,7 @@ using Business.DTOs.Response.Language;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using Entities.Concretes;
 using Entities.Concretes.Profiles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
@@ -49,9 +43,7 @@ namespace Business.Concretes
         {
             var result = await _languageDal.GetAsync(c => c.Id == id);
             Language mappedLanguage = _mapper.Map<Language>(result);
-
             CreatedLanguageResponse createdLanguageResponse = _mapper.Map<CreatedLanguageResponse>(mappedLanguage);
-
             return createdLanguageResponse;
         }
 
@@ -71,7 +63,6 @@ namespace Business.Concretes
         {
             var data = await _languageDal.GetAsync(i => i.Id == updateLanguageRequest.Id);
             _mapper.Map(updateLanguageRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _languageDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedLanguageResponse>(data);
             return result;

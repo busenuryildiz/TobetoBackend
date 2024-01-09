@@ -2,20 +2,10 @@
 using Business.Abstracts;
 using Business.DTOs.Request.StudentCourse;
 using Business.DTOs.Response.StudentCourse;
+using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.Courses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Business.Rules;
-using DataAccess.Concretes;
-using Entities.Concretes.Clients;
-using Business.DTOs.Request.Blog;
-using Business.DTOs.Response.Blog;
-using Entities.Concretes;
 
 namespace Business.Concretes
 {
@@ -44,8 +34,7 @@ namespace Business.Concretes
         {
             var data = await _studentCourseDal.GetAsync(i => i.Id == deleteStudentCourseRequest.Id);
             _mapper.Map(deleteStudentCourseRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _studentCourseDal.DeleteAsync(data, true);
+            var result = await _studentCourseDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedStudentCourseResponse>(result);
             return result2;
         }
@@ -54,7 +43,6 @@ namespace Business.Concretes
         {
             var data = await _studentCourseDal.GetAsync(i => i.Id == updateStudentCourseRequest.Id);
             _mapper.Map(updateStudentCourseRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _studentCourseDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedStudentCourseResponse>(data);
             return result;
@@ -64,9 +52,7 @@ namespace Business.Concretes
         {
             var result = await _studentCourseDal.GetAsync(c => c.Id == id);
             StudentCourse mappedStudentCourse = _mapper.Map<StudentCourse>(result);
-
             CreatedStudentCourseResponse createdStudentCourseResponse = _mapper.Map<CreatedStudentCourseResponse>(mappedStudentCourse);
-
             return createdStudentCourseResponse;
         }
 
@@ -85,9 +71,7 @@ namespace Business.Concretes
             //await _businessRules.CertificateCanNotBeGivenDueToProgress(examId, studentCourseId);
             var result = await _studentCourseDal.GetAsync(c => c.Id == studentCourseId);
             StudentCourse mappedStudentCourse = _mapper.Map<StudentCourse>(result);
-
             CreatedStudentCourseResponse createdStudentCourseResponse = _mapper.Map<CreatedStudentCourseResponse>(mappedStudentCourse);
-
             return createdStudentCourseResponse;
         }
 

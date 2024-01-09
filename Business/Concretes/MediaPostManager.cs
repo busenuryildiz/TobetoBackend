@@ -1,16 +1,10 @@
 ﻿using AutoMapper;
+using Business.Abstracts;
 using Business.DTOs.Request.MediaPost;
 using Business.DTOs.Response.MediaPost;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using Entities.Concretes.Clients;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Business.Abstracts;
 using Entities.Concretes;
 
 namespace Business.Concretes
@@ -40,8 +34,7 @@ namespace Business.Concretes
         {
             var data = await _mediaPostDal.GetAsync(i => i.Id == deleteMediaPostRequest.Id);
             _mapper.Map(deleteMediaPostRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _mediaPostDal.DeleteAsync(data, true);
+            var result = await _mediaPostDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedMediaPostResponse>(result);
             return result2;
         }
@@ -50,9 +43,7 @@ namespace Business.Concretes
         {
             var result = await _mediaPostDal.GetAsync(c => c.Id == id);
             MediaPost mappedMediaPost = _mapper.Map<MediaPost>(result);
-
             CreatedMediaPostResponse createdMediaPostResponse = _mapper.Map<CreatedMediaPostResponse>(mappedMediaPost);
-
             return createdMediaPostResponse;
         }
 
@@ -70,7 +61,6 @@ namespace Business.Concretes
         {
             var data = await _mediaPostDal.GetAsync(i => i.Id == updateMediaPostRequest.Id);
             _mapper.Map(updateMediaPostRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _mediaPostDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedMediaPostResponse>(data);
             return result;

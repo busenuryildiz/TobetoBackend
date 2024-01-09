@@ -4,9 +4,6 @@ using Business.DTOs.Response.Survey;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 public class SurveyManager : ISurveyService
 {
@@ -31,8 +28,7 @@ public class SurveyManager : ISurveyService
     {
         var data = await _surveyDal.GetAsync(i => i.Id == deleteSurveyRequest.Id);
         _mapper.Map(deleteSurveyRequest, data);
-        data.DeletedDate = DateTime.Now;
-        var result = await _surveyDal.DeleteAsync(data, true);
+        var result = await _surveyDal.DeleteAsync(data);
         var result2 = _mapper.Map<DeletedSurveyResponse>(result);
         return result2;
     }
@@ -41,9 +37,7 @@ public class SurveyManager : ISurveyService
     {
         var result = await _surveyDal.GetAsync(c => c.Id == id);
         Survey mappedSurvey = _mapper.Map<Survey>(result);
-
         CreatedSurveyResponse createdSurveyResponse = _mapper.Map<CreatedSurveyResponse>(mappedSurvey);
-
         return createdSurveyResponse;
     }
 
@@ -61,7 +55,6 @@ public class SurveyManager : ISurveyService
     {
         var data = await _surveyDal.GetAsync(i => i.Id == updateSurveyRequest.Id);
         _mapper.Map(updateSurveyRequest, data);
-        data.UpdatedDate = DateTime.Now;
         await _surveyDal.UpdateAsync(data);
         var result = _mapper.Map<UpdatedSurveyResponse>(data);
         return result;

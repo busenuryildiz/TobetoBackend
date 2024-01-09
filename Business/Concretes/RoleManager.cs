@@ -8,11 +8,6 @@ using Core.Aspects.Autofac.Validation;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
@@ -43,8 +38,7 @@ namespace Business.Concretes
         {
             var data = await _roleDal.GetAsync(i => i.Id == deleteRoleRequest.Id);
             _mapper.Map(deleteRoleRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _roleDal.DeleteAsync(data, true);
+            var result = await _roleDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedRoleResponse>(result);
             return result2;
         }
@@ -53,9 +47,7 @@ namespace Business.Concretes
         {
             var result = await _roleDal.GetAsync(c => c.Id == id);
             Role mappedRole = _mapper.Map<Role>(result);
-
             CreatedRoleResponse createdRoleResponse = _mapper.Map<CreatedRoleResponse>(mappedRole);
-
             return createdRoleResponse;
         }
 
@@ -75,7 +67,6 @@ namespace Business.Concretes
         {
             var data = await _roleDal.GetAsync(i => i.Id == updateRoleRequest.Id);
             _mapper.Map(updateRoleRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _roleDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedRoleResponse>(data);
             return result;

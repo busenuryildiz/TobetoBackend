@@ -17,6 +17,7 @@ namespace DataAccess.EntityConfigurations
             builder.HasKey(u => u.Id);
             builder.Property(u => u.Name).IsRequired();
             builder.Property(u => u.Website);
+            builder.Property(u => u.Department);
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.UserRole;
 using Business.DTOs.Response.UserRole;
@@ -11,7 +6,6 @@ using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -41,8 +35,7 @@ namespace Business.Concretes
         {
             var data = await _userRoleDal.GetAsync(i => i.Id == deleteUserRoleRequest.Id);
             _mapper.Map(deleteUserRoleRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _userRoleDal.DeleteAsync(data, true);
+            var result = await _userRoleDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedUserRoleResponse>(result);
             return result2;
         }
@@ -51,9 +44,7 @@ namespace Business.Concretes
         {
             var result = await _userRoleDal.GetAsync(c => c.Id == id);
             UserRole mappedUserRole = _mapper.Map<UserRole>(result);
-
             CreatedUserRoleResponse createdUserRoleResponse = _mapper.Map<CreatedUserRoleResponse>(mappedUserRole);
-
             return createdUserRoleResponse;
         }
 
@@ -73,7 +64,6 @@ namespace Business.Concretes
         {
             var data = await _userRoleDal.GetAsync(i => i.Id == updateUserRoleRequest.Id);
             _mapper.Map(updateUserRoleRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _userRoleDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedUserRoleResponse>(data);
             return result;
@@ -104,8 +94,6 @@ namespace Business.Concretes
 
             return response;
         }
-
-
 
     }
 }

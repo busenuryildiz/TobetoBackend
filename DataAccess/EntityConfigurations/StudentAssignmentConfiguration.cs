@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entities.Concretes;
 
-namespace DataAccess.Context.EntityConfigurations
+namespace DataAccess.EntityConfigurations
 {
     public class StudentAssignmentConfiguration : IEntityTypeConfiguration<StudentAssignment>
     {

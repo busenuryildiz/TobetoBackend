@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Entities.Concretes.Courses;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DataAccess.Context.EntityConfigurations
+namespace DataAccess.EntityConfigurations
 {
     public class ExamConfiguration: IEntityTypeConfiguration<Exam>
     {

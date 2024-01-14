@@ -14,5 +14,6 @@ namespace Entities.Concretes.Profiles
         public int UniversityId { get; set; }
         public User User { get; set; }
         public University University { get; set; }
+        
     }
 }

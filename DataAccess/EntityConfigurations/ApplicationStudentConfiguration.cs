@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Entities.Concretes.Clients;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DataAccess.Context.EntityConfigurations
+namespace DataAccess.EntityConfigurations
 {
     public class ApplicationStudentConfiguration : IEntityTypeConfiguration<ApplicationStudent>
     {

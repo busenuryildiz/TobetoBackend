@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Context.EntityConfigurations
+namespace DataAccess.EntityConfigurations
 {
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {
@@ -25,8 +25,7 @@ namespace DataAccess.Context.EntityConfigurations
 
             builder.HasMany(u => u.EducationInformations)
                 .WithOne(ei => ei.User)
-                .HasForeignKey(ei => ei.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(ei => ei.UserId);
 
             builder.HasMany(u => u.Addresses)
                 .WithOne(ei => ei.User)
@@ -53,7 +52,10 @@ namespace DataAccess.Context.EntityConfigurations
                 .WithOne(ue => ue.User)
                 .HasForeignKey(ue => ue.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
-                
+
+            builder.HasMany(s => s.UserUniversities)
+                .WithOne(ss => ss.User)
+                .HasForeignKey(ss => ss.UserId);
 
             builder.HasQueryFilter(u => !u.DeletedDate.HasValue);
         }

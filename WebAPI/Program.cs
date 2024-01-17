@@ -37,7 +37,6 @@ builder.Services.AddScoped<RemoveCacheAttribute>();
 builder.Services.AddScoped<TransactionAttribute>();
 
 
-
 var config = builder.Configuration;
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

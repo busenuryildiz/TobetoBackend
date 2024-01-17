@@ -1,14 +1,8 @@
-﻿using Entities.Concretes;
-using Entities.Concretes.Profiles;
+﻿using Entities.Concretes.Profiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataAccess.Context.EntityConfigurations
+namespace DataAccess.EntityConfigurations
 {
     public class AddressConfiguration: IEntityTypeConfiguration<Address>
     {
@@ -20,7 +14,8 @@ namespace DataAccess.Context.EntityConfigurations
 
             builder.HasOne(ei => ei.User)
                 .WithMany(u => u.Addresses)
-                .HasForeignKey(ei => ei.UserId);
+                .HasForeignKey(ei => ei.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
             builder.HasOne(ei => ei.District)

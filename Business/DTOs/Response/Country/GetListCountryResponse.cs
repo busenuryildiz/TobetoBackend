@@ -11,7 +11,7 @@ namespace Business.DTOs.Response.Country
     {
         public int Id { get; set; }
         public string Name { get; set; }
-      public List<GetListCityResponse> Cities { get; set; }
-        
+        public List<GetListCityResponse> Cities { get; set; }
+
     }
 }

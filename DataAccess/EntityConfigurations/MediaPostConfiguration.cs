@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DataAccess.Context.EntityConfigurations
+namespace DataAccess.EntityConfigurations
 {
     public class MediaPostConfiguration: IEntityTypeConfiguration<MediaPost>
     {

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Context.EntityConfigurations
+namespace DataAccess.EntityConfigurations
 {
     public class UserLanguageConfiguration : IEntityTypeConfiguration<UserLanguage>
     {
@@ -37,7 +37,9 @@ namespace DataAccess.Context.EntityConfigurations
                 .HasForeignKey(ul => ul.LanguageId);
 
 
-            builder.HasOne(ul => ul.LanguageLevel);
+            builder.HasOne(ul => ul.LanguageLevel)
+                .WithMany(l => l.UserLanguages)
+                .HasForeignKey(ul => ul.LanguageLevelId);
 
             builder.HasQueryFilter(ul => !ul.DeletedDate.HasValue);
         }

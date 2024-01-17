@@ -1,20 +1,11 @@
-﻿using Business.Abstracts;
-using Core.DataAccess.Paging;
-using DataAccess.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Entities.Concretes.Courses;
-using AutoMapper;
+﻿using AutoMapper;
+using Business.Abstracts;
 using Business.DTOs.Request.Course;
 using Business.DTOs.Response.Course;
 using Business.Rules;
-using Entities.Concretes;
-using Business.DTOs.Response.User;
-using DataAccess.Concretes;
-using Entities.Concretes.Clients;
+using Core.DataAccess.Paging;
+using DataAccess.Abstracts;
+using Entities.Concretes.Courses;
 using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes

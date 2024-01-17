@@ -19,6 +19,10 @@ namespace DataAccess.EntityConfigurations
             builder.Property(u => u.Website);
             builder.Property(u => u.Department);
 
+            builder.HasMany(s => s.UserUniversities)
+                .WithOne(ss => ss.University)
+                .HasForeignKey(ss => ss.UniversityId);
+
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 
         }

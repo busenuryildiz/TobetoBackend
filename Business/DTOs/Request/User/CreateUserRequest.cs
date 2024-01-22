@@ -10,11 +10,10 @@ namespace Business.DTOs.Request.User
 {
     public class CreateUserRequest
     {
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public CreateUserAddressRequest Address { get; set; }
         public string Email { get; set; }
+        public string ImagePath { get; set; }
         public string Password { get; set; }
         public string NationalIdentity { get; set; }
         public DateTime BirthDate { get; set; }

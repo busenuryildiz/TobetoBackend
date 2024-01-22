@@ -9,7 +9,5 @@ namespace Business.DTOs.Request.Instructor
     public class DeleteInstructorRequest
     {
         public Guid Id { get; set; }
-        public int CourseId { get; set; }
-        public DateTime? HireDate { get; set; }
     }
 }

@@ -1,17 +1,10 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.Category;
-using Business.DTOs.Response.Blog;
 using Business.DTOs.Response.Category;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using DataAccess.Concretes;
 using Entities.Concretes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
@@ -38,8 +31,7 @@ namespace Business.Concretes
         {
             var data = await _categoryDal.GetAsync(i => i.Id == deleteCategoryRequest.Id);
             _mapper.Map(deleteCategoryRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _categoryDal.DeleteAsync(data, true);
+            var result = await _categoryDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedCategoryResponse>(result);
             return result2;
         }
@@ -48,7 +40,6 @@ namespace Business.Concretes
         {
             var data = await _categoryDal.GetAsync(i => i.Id == updateCategoryRequest.Id);
             _mapper.Map(updateCategoryRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _categoryDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedCategoryResponse>(data);
             return result;
@@ -63,8 +54,6 @@ namespace Business.Concretes
             return createdCategoryResponse;
         }
 
-
-
         public async Task<IPaginate<GetListCategoryInfoResponse>> GetListAsync(PageRequest pageRequest)
         {
             var categories = await _categoryDal.GetListAsync(
@@ -72,9 +61,7 @@ namespace Business.Concretes
                 size: pageRequest.PageSize
             );
 
-            // Map the categories to GetListCategoryInfoResponse
             var result = _mapper.Map<Paginate<GetListCategoryInfoResponse>>(categories);
-
             return result;
         }
 

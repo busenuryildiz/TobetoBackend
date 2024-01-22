@@ -6,12 +6,6 @@ using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
@@ -41,8 +35,7 @@ namespace Business.Concretes
         {
             var data = await _ContactUsDal.GetAsync(i => i.Id == deleteContactUsRequest.Id);
             _mapper.Map(deleteContactUsRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _ContactUsDal.DeleteAsync(data, true);
+            var result = await _ContactUsDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedContactUsResponse>(result);
             return result2;
         }
@@ -51,9 +44,7 @@ namespace Business.Concretes
         {
             var result = await _ContactUsDal.GetAsync(c => c.Id == id);
             ContactUs mappedContactUs = _mapper.Map<ContactUs>(result);
-
             CreatedContactUsResponse createdContactUsResponse = _mapper.Map<CreatedContactUsResponse>(mappedContactUs);
-
             return createdContactUsResponse;
         }
 
@@ -73,7 +64,6 @@ namespace Business.Concretes
         {
             var data = await _ContactUsDal.GetAsync(i => i.Id == updateContactUsRequest.Id);
             _mapper.Map(updateContactUsRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _ContactUsDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedContactUsResponse>(data);
             return result;

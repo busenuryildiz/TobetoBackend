@@ -5,13 +5,7 @@ using Business.DTOs.Response.CourseLevel;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using Entities.Concretes;
 using Entities.Concretes.Courses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
@@ -40,8 +34,7 @@ namespace Business.Concretes
         {
             var data = await _courseLevelDal.GetAsync(i => i.Id == deleteCourseLevelRequest.Id);
             _mapper.Map(deleteCourseLevelRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _courseLevelDal.DeleteAsync(data, true);
+            var result = await _courseLevelDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedCourseLevelResponse>(result);
             return result2;
         }
@@ -50,9 +43,7 @@ namespace Business.Concretes
         {
             var result = await _courseLevelDal.GetAsync(c => c.Id == id);
             CourseLevel mappedCourseLevel = _mapper.Map<CourseLevel>(result);
-
             CreatedCourseLevelResponse createdCourseLevelResponse = _mapper.Map<CreatedCourseLevelResponse>(mappedCourseLevel);
-
             return createdCourseLevelResponse;
         }
 
@@ -72,9 +63,8 @@ namespace Business.Concretes
         {
             var data = await _courseLevelDal.GetAsync(i => i.Id == updateCourseLevelRequest.Id);
             _mapper.Map(updateCourseLevelRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _courseLevelDal.UpdateAsync(data);
-            return true; // Başarı durumunu döndürün.
+            return true; 
         }
 
     }

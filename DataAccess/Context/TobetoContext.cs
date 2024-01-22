@@ -61,7 +61,6 @@ namespace DataAccess.Context
         public DbSet<Manager> Managers { get; set; }
         public DbSet<City> Cities { get; set; } 
         public DbSet<District> Districts { get; set; }
-        //public DbSet<District> Districts { get; set; } 
         public DbSet<Country> Countries { get; set; } 
 
 

@@ -1,18 +1,11 @@
 ﻿using AutoMapper;
-using Azure;
 using Business.Abstracts;
-using Business.DTOs.Request.EducationInformation;
 using Business.DTOs.Request.UserExperience;
 using Business.DTOs.Response.UserExperience;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.Profiles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concretes
 {

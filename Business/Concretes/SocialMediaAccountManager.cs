@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.SocialMediaAccount;
 using Business.DTOs.Response.SocialMediaAccount;
@@ -11,7 +6,6 @@ using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
-using Entities.Concretes.Profiles;
 
 namespace Business.Concretes
 {
@@ -40,7 +34,6 @@ namespace Business.Concretes
         {
             var data = await _socialMediaAccountDal.GetAsync(i => i.Id == deleteSocialMediaAccountRequest.Id);
             _mapper.Map(deleteSocialMediaAccountRequest, data);
-            data.DeletedDate = DateTime.Now;
             var result = await _socialMediaAccountDal.DeleteAsync(data, true);
             var result2 = _mapper.Map<DeletedSocialMediaAccountResponse>(result);
             return result2;
@@ -50,9 +43,7 @@ namespace Business.Concretes
         {
             var result = await _socialMediaAccountDal.GetAsync(c => c.Id == id);
             SocialMediaAccount mappedSocialMediaAccount = _mapper.Map<SocialMediaAccount>(result);
-
             CreatedSocialMediaAccountResponse createdSocialMediaAccountResponse = _mapper.Map<CreatedSocialMediaAccountResponse>(mappedSocialMediaAccount);
-
             return createdSocialMediaAccountResponse;
         }
 
@@ -72,7 +63,6 @@ namespace Business.Concretes
         {
             var data = await _socialMediaAccountDal.GetAsync(i => i.Id == updateSocialMediaAccountRequest.Id);
             _mapper.Map(updateSocialMediaAccountRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _socialMediaAccountDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedSocialMediaAccountResponse>(data);
             return result;

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Entities.Concretes.Surveys;
 
-namespace DataAccess.Context.EntityConfigurations
+namespace DataAccess.EntityConfigurations
 {
     public class SurveyConfiguration : IEntityTypeConfiguration<Survey>
     {

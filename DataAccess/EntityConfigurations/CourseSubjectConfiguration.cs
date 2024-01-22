@@ -1,13 +1,8 @@
 ﻿using Entities.Concretes.Courses;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DataAccess.Context.EntityConfigurations
+namespace DataAccess.EntityConfigurations
 {
     public class CourseSubjectConfiguration : IEntityTypeConfiguration<CourseSubject>
     {
@@ -22,10 +17,12 @@ namespace DataAccess.Context.EntityConfigurations
                 .WithMany(c => c.CourseSubjects)
                 .HasForeignKey(cs => cs.CourseId);
 
+
             // Subject ilişkisi
             builder.HasOne(cs => cs.Subject)
                 .WithMany(s => s.CourseSubjects)
                 .HasForeignKey(cs => cs.SubjectId);
+
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 

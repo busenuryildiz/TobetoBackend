@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 namespace Business.Concretes
 {
 
-
     public class InstructorCourseManager : IInstructorCourseService
     {
         IInstructorCourseDal _InstructorCourseDal;
@@ -42,8 +41,7 @@ namespace Business.Concretes
         {
             var data = await _InstructorCourseDal.GetAsync(i => i.Id == deleteInstructorCourseRequest.Id);
             _mapper.Map(deleteInstructorCourseRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _InstructorCourseDal.DeleteAsync(data, true);
+            var result = await _InstructorCourseDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedInstructorCourseResponse>(result);
             return result2;
         }
@@ -52,9 +50,7 @@ namespace Business.Concretes
         {
             var result = await _InstructorCourseDal.GetAsync(c => c.Id == id);
             InstructorCourse mappedInstructorCourse = _mapper.Map<InstructorCourse>(result);
-
             CreatedInstructorCourseResponse createdInstructorCourseResponse = _mapper.Map<CreatedInstructorCourseResponse>(mappedInstructorCourse);
-
             return createdInstructorCourseResponse;
         }
 
@@ -74,7 +70,6 @@ namespace Business.Concretes
         {
             var data = await _InstructorCourseDal.GetAsync(i => i.Id == updateInstructorCourseRequest.Id);
             _mapper.Map(updateInstructorCourseRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _InstructorCourseDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedInstructorCourseResponse>(data);
             return result;

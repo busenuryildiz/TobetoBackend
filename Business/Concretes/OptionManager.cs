@@ -3,16 +3,8 @@ using Business.Abstracts;
 using Business.DTOs.Request.Option;
 using Business.DTOs.Response.Option;
 using Core.DataAccess.Paging;
-using Core.DataAccess.Repositories;
 using DataAccess.Abstracts;
-using DataAccess.Concretes;
 using Entities.Concretes.Courses;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
@@ -77,7 +69,6 @@ namespace Business.Concretes
             var result = await _repository.GetAsync(c => c.Id == id);
             Option mappedOption = _mapper.Map<Option>(result);
             CreatedOptionResponse createdOptionResponse = _mapper.Map<CreatedOptionResponse>(mappedOption);
-
             return createdOptionResponse;
         }
     }

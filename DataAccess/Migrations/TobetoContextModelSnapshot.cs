@@ -1576,9 +1576,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("int")
                         .HasColumnName("SkillId");
 
-                    b.Property<int?>("SkillId1")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("StudentId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("StudentId");
@@ -1589,8 +1586,6 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("SkillId");
-
-                    b.HasIndex("SkillId1");
 
                     b.HasIndex("StudentId");
 
@@ -2065,10 +2060,6 @@ namespace DataAccess.Migrations
                         .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Entities.Concretes.Profiles.Skill", null)
-                        .WithMany("StudentSkills")
-                        .HasForeignKey("SkillId1");
 
                     b.HasOne("Entities.Concretes.Clients.Student", "Student")
                         .WithMany("StudentSkills")

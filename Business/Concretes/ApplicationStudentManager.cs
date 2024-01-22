@@ -38,7 +38,7 @@ namespace Business.Concretes
         {
             var data = await _applicationStudentDal.GetAsync(i => i.Id == deleteApplicationStudentRequest.Id);
             _mapper.Map(deleteApplicationStudentRequest, data);
-            var result = await _applicationStudentDal.DeleteAsync(data, true);
+            var result = await _applicationStudentDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedApplicationStudentResponse>(result);
             return result2;
         }

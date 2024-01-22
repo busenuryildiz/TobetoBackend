@@ -36,29 +36,18 @@ namespace Business.Concretes
 
         public async Task<DeletedLessonCourseResponse> Delete(DeleteLessonCourseRequest deleteLessonCourseRequest)
         {
-            LessonCourse lessonCourse = await _lessonCourseDal.GetAsync(i => i.Id == deleteLessonCourseRequest.Id);
-            lessonCourse.DeletedDate = DateTime.Now;
-            var deletedLessonCourse = await _lessonCourseDal.DeleteAsync(lessonCourse);
-            DeletedLessonCourseResponse deletedLessonCourseResponse = _mapper.Map<DeletedLessonCourseResponse>(deletedLessonCourse);
-
-            return deletedLessonCourseResponse;
-
-
-            //var data = await _lessonCourseDal.GetAsync(i => i.Id == deleteLessonCourseRequest.Id);
-            //_mapper.Map(deleteLessonCourseRequest, data);
-            //data.DeletedDate = DateTime.Now;
-            //var result = await _lessonCourseDal.DeleteAsync(data);
-            //var result2 = _mapper.Map<DeletedLessonCourseResponse>(result);
-            //return result2;
+            var data = await _lessonCourseDal.GetAsync(i => i.Id == deleteLessonCourseRequest.Id);
+            _mapper.Map(deleteLessonCourseRequest, data);
+            var result = await _lessonCourseDal.DeleteAsync(data);
+            var result2 = _mapper.Map<DeletedLessonCourseResponse>(result);
+            return result2;
         }
 
         public async Task<CreatedLessonCourseResponse> GetById(int id)
         {
             var result = await _lessonCourseDal.GetAsync(c => c.Id == id);
             LessonCourse mappedLessonCourse = _mapper.Map<LessonCourse>(result);
-
             CreatedLessonCourseResponse createdLessonCourseResponse = _mapper.Map<CreatedLessonCourseResponse>(mappedLessonCourse);
-
             return createdLessonCourseResponse;
         }
 
@@ -76,22 +65,11 @@ namespace Business.Concretes
 
         public async Task<UpdatedLessonCourseResponse> Update(UpdateLessonCourseRequest updateLessonCourseRequest)
         {
-            LessonCourse lessonCourse = await _lessonCourseDal.GetAsync(i => i.Id == updateLessonCourseRequest.Id);
-            lessonCourse.UpdatedDate = DateTime.Now;
-            var updatedLessonCourse = await _lessonCourseDal.UpdateAsync(lessonCourse);
-            UpdatedLessonCourseResponse updatedLessonCourseResponse =
-                _mapper.Map<UpdatedLessonCourseResponse>(updatedLessonCourse);
-
-            return updatedLessonCourseResponse;
-
-
-
-            //var data = await _lessonCourseDal.GetAsync(i => i.Id == updateLessonCourseRequest.Id);
-            //_mapper.Map(updateLessonCourseRequest, data);
-            //data.UpdatedDate = DateTime.Now;
-            //await _lessonCourseDal.UpdateAsync(data);
-            //var result = _mapper.Map<UpdatedLessonCourseResponse>(data);
-            //return result;
+            var data = await _lessonCourseDal.GetAsync(i => i.Id == updateLessonCourseRequest.Id);
+            _mapper.Map(updateLessonCourseRequest, data);
+            await _lessonCourseDal.UpdateAsync(data);
+            var result = _mapper.Map<UpdatedLessonCourseResponse>(data);
+            return result;
         }
     }
 }

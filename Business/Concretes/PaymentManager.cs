@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.Payment;
 using Business.DTOs.Response.Payment;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using Entities.Concretes.Clients;
 using Entities.Concretes.Courses;
 using Microsoft.EntityFrameworkCore;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Business.Concretes
 {
@@ -33,7 +26,6 @@ namespace Business.Concretes
         public async Task<CreatedPaymentResponse> Add(CreatePaymentRequest createPaymentRequest)
         {
             Payment payment = _mapper.Map<Payment>(createPaymentRequest);
-            payment.PaymentDate = DateTime.Now;
             Payment createdPayment = await _paymentDal.AddAsync(payment);
             CreatedPaymentResponse createdPaymentResponse = _mapper.Map<CreatedPaymentResponse>(createdPayment);
             
@@ -44,8 +36,7 @@ namespace Business.Concretes
         {
             var data = await _paymentDal.GetAsync(i => i.Id == deletePaymentRequest.Id);
             _mapper.Map(deletePaymentRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _paymentDal.DeleteAsync(data, true);
+            var result = await _paymentDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedPaymentResponse>(result);
             return result2;
         }
@@ -54,9 +45,7 @@ namespace Business.Concretes
         {
             var result = await _paymentDal.GetAsync(c => c.Id == id);
             Payment mappedPayment = _mapper.Map<Payment>(result);
-
             CreatedPaymentResponse createdPaymentResponse = _mapper.Map<CreatedPaymentResponse>(mappedPayment);
-
             return createdPaymentResponse;
         }
 
@@ -79,7 +68,6 @@ namespace Business.Concretes
         {
             var data = await _paymentDal.GetAsync(i => i.Id == updatePaymentRequest.Id);
             _mapper.Map(updatePaymentRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _paymentDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedPaymentResponse>(data);
             return result;

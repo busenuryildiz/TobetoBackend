@@ -5,14 +5,7 @@ using Business.DTOs.Response.Certificate;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using Entities.Concretes;
-using Entities.Concretes.Courses;
 using Entities.Concretes.Profiles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
@@ -50,9 +43,7 @@ namespace Business.Concretes
         {
             var result = await _certificateDal.GetAsync(c => c.Id == id);
             Certificate mappedCertificate = _mapper.Map<Certificate>(result);
-
             CreatedCertificateResponse createdCertificateResponse = _mapper.Map<CreatedCertificateResponse>(mappedCertificate);
-
             return createdCertificateResponse;
         }
 
@@ -72,7 +63,6 @@ namespace Business.Concretes
         {
             var data = await _certificateDal.GetAsync(i => i.Id == updateCertificateRequest.Id);
             _mapper.Map(updateCertificateRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _certificateDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedCertificateResponse>(data);
             return result;

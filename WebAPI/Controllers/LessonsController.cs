@@ -1,10 +1,7 @@
 ﻿using Business.Abstracts;
-using Business.Concretes;
-using Business.DTOs.Request.Lesson;
 using Business.DTOs.Request.Lesson;
 using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers

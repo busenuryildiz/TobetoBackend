@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entities.Concretes.Clients;
 
-namespace DataAccess.Context.EntityConfigurations
+namespace DataAccess.EntityConfigurations
 {
     public class StudentConfiguration : IEntityTypeConfiguration<Student>
     {

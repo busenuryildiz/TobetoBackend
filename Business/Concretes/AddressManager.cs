@@ -40,7 +40,7 @@ namespace Business.Concretes
         {
             var data = await _addressDal.GetAsync(i => i.Id == deleteAddressRequest.Id);
             _mapper.Map(deleteAddressRequest, data);
-            var result = await _addressDal.DeleteAsync(data, true);
+            var result = await _addressDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedAddressResponse>(result);
             return result2;
         }
@@ -69,7 +69,6 @@ namespace Business.Concretes
         {
             var data = await _addressDal.GetAsync(i => i.Id == updateAddressRequest.Id);
             _mapper.Map(updateAddressRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _addressDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedAddressResponse>(data);
             return result;

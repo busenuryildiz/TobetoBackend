@@ -1,22 +1,12 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-
 using Business.Abstracts;
 using Business.DTOs.Request.Country;
 using Business.DTOs.Response.Country;
-using Business.DTOs.Response.Instructor;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using DataAccess.Concretes;
-using Entities.Concretes;
-using Entities.Concretes.Clients;
 using Entities.Concretes.Profiles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes
 {
@@ -45,8 +35,7 @@ namespace Business.Concretes
         {
             var data = await _countryDal.GetAsync(i => i.Id == deleteCountryRequest.Id);
             _mapper.Map(deleteCountryRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _countryDal.DeleteAsync(data, true);
+            var result = await _countryDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedCountryResponse>(result);
             return result2;
         }
@@ -77,7 +66,6 @@ namespace Business.Concretes
         {
             var data = await _countryDal.GetAsync(i => i.Id == updateCountryRequest.Id);
             _mapper.Map(updateCountryRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _countryDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedCountryResponse>(data);
             return result;

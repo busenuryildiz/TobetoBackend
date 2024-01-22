@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.ContactUs;
+using Business.DTOs.Request.Email;
 using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
@@ -13,19 +14,34 @@ namespace WebAPI.Controllers
     {
 
         IContactUsService _contactUsService;
-        public ContactUsController(IContactUsService contactUsService)
+        IEmailService _emailService;
+        public ContactUsController(IContactUsService contactUsService, IEmailService emailService)
         {
             _contactUsService = contactUsService;
+            _emailService = emailService;
         }
 
-
-        [HttpPost("Add")]
-        [ValidateModel(typeof(CreateContactUsRequestValidator))]
-        public async Task<IActionResult> Add([FromBody] CreateContactUsRequest createContactUsRequest)
+        [HttpPost("sendMail")]
+        public IActionResult SendEmail([FromBody] ContactUsRequestModel model)
         {
-            var result = await _contactUsService.Add(createContactUsRequest);
-            return Ok(result);
+            try
+            {
+                _emailService.SendEmail(model.FromEmail, model.FullName, model.Subject, model.Body);
+
+                return Ok("İletişim Formu başarıyla gönderildi.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
+        //[HttpPost("Add")]
+        //[ValidateModel(typeof(CreateContactUsRequestValidator))]
+        //public async Task<IActionResult> Add([FromBody] CreateContactUsRequest createContactUsRequest)
+        //{
+        //    var result = await _contactUsService.Add(createContactUsRequest);
+        //    return Ok(result);
+        //}
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteContactUsRequest deleteContactUsRequest)
         {

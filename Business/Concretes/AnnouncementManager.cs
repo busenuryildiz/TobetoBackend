@@ -39,7 +39,7 @@ namespace Business.Concretes
         {
             var data = await _announcementDal.GetAsync(i => i.Id == deleteAnnouncementRequest.Id);
             _mapper.Map(deleteAnnouncementRequest, data);
-            var result = await _announcementDal.DeleteAsync(data, true);
+            var result = await _announcementDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedAnnouncementResponse>(result);
             return result2;
         }
@@ -48,9 +48,7 @@ namespace Business.Concretes
         {
             var result = await _announcementDal.GetAsync(c => c.Id == id);
             Announcement mappedAnnouncement = _mapper.Map<Announcement>(result);
-
             CreatedAnnouncementResponse createdAnnouncementResponse = _mapper.Map<CreatedAnnouncementResponse>(mappedAnnouncement);
-
             return createdAnnouncementResponse;
         }
 

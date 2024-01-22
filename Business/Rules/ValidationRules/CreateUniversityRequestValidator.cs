@@ -23,6 +23,10 @@ namespace Business.Rules.ValidationRules
             RuleFor(university => university.Website)
                 .NotEmpty().WithMessage("Üniversite websitesi boş olamaz.")
                 .MaximumLength(255).WithMessage("Üniversite websitesi 255 karakteri geçemez.");
+
+            RuleFor(university => university.Department)
+                .NotEmpty().WithMessage("Üniversite bölümü boş olamaz.")
+                .MaximumLength(255).WithMessage("Üniversite bölümü 255 karakteri geçemez.");
         }
     }
 }

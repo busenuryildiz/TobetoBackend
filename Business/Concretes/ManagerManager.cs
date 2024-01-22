@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.Manager;
 using Business.DTOs.Request.User;
@@ -58,8 +53,8 @@ namespace Business.Concretes
                 {
                     try
                     {
-                        await _userDal.DeleteAsync(user, true);
-                        await _managerDal.DeleteAsync(manager, true);
+                        await _userDal.DeleteAsync(user);
+                        await _managerDal.DeleteAsync(manager);
 
                         var deletedManagerResponse = _mapper.Map<DeletedManagerResponse>(manager);
                         return deletedManagerResponse;
@@ -84,9 +79,7 @@ namespace Business.Concretes
         {
             var result = await _managerDal.GetAsync(c => c.Id == id);
             Manager mappedManager = _mapper.Map<Manager>(result);
-
             CreatedManagerResponse createdManagerResponse = _mapper.Map<CreatedManagerResponse>(mappedManager);
-
             return createdManagerResponse;
         }
 
@@ -103,7 +96,6 @@ namespace Business.Concretes
         {
             var data = await _managerDal.GetAsync(i => i.Id == updateManagerRequest.Id);
             _mapper.Map(updateManagerRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _managerDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedManagerResponse>(data);
             return result;

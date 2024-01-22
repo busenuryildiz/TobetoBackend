@@ -1,32 +1,10 @@
-using Autofac;
-using Autofac.Core;
-using Autofac.Extensions.DependencyInjection;
 using Business;
-using Business.Abstracts;
-using Business.Concretes;
-using Business.DependencyResolvers.Autofac;
-using Castle.Core.Configuration;
+using Core.Aspects.ActionFilters;
 using Core.CrossCuttingConcerns.Exceptions.Extensions;
 using Core.Utilities.JWT;
 using DataAccess;
-using DataAccess.Context;
-using DataAccess.DependencyResolvers.Autofac;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System.Reflection;
-using Microsoft.IdentityModel.Tokens;
 using Serilog;
-using Serilog.Core;
-using Core.Aspects.ActionFilters;
-using Castle.Core.Logging;
-using NRedisStack;
-using NRedisStack.RedisStackCommands;
 using StackExchange.Redis;
-using Microsoft.Extensions.Caching.StackExchangeRedis;
 
 
 
@@ -65,7 +43,6 @@ builder.Services.AddSingleton<RedisService>();
 builder.Services.AddScoped<RedisCacheAttribute>();
 builder.Services.AddScoped<RemoveCacheAttribute>();
 builder.Services.AddScoped<TransactionAttribute>();
-
 
 
 var config = builder.Configuration;

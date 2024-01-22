@@ -84,13 +84,12 @@ namespace WebAPI.Controllers
 
 
 
-        [HttpPost("send")]
-        public IActionResult SendEmail([FromBody] EmailRequestModel model)
+        [HttpPost("forgetPassword")]
+        public IActionResult ForgetPassword([FromBody] ResetPasswordEmailRequest model)
         {
             try
             {
-                // IEmailService kullanarak e-posta gönder
-                _emailService.SendEmail(model.ToEmail, model.Subject, model.Body);
+                _emailService.ForgetPassword(model.Email);
 
                 return Ok("E-posta başarıyla gönderildi.");
             }

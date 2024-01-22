@@ -5,13 +5,7 @@ using Business.DTOs.Response.Lesson;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using Entities.Concretes;
 using Entities.Concretes.Courses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
@@ -40,8 +34,7 @@ namespace Business.Concretes
         {
             var data = await _LessonDal.GetAsync(i => i.Id == deleteLessonRequest.Id);
             _mapper.Map(deleteLessonRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _LessonDal.DeleteAsync(data, true);
+            var result = await _LessonDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedLessonResponse>(result);
             return result2;
         }
@@ -50,9 +43,7 @@ namespace Business.Concretes
         {
             var result = await _LessonDal.GetAsync(c => c.Id == id);
             Lesson mappedLesson = _mapper.Map<Lesson>(result);
-
             CreatedLessonResponse createdLessonResponse = _mapper.Map<CreatedLessonResponse>(mappedLesson);
-
             return createdLessonResponse;
         }
 
@@ -72,7 +63,6 @@ namespace Business.Concretes
         {
             var data = await _LessonDal.GetAsync(i => i.Id == updateLessonRequest.Id);
             _mapper.Map(updateLessonRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _LessonDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedLessonResponse>(data);
             return result;

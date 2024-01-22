@@ -40,8 +40,7 @@ namespace Business.Concretes
         {
             var data = await _skillDal.GetAsync(i => i.Id == deleteSkillRequest.Id);
             _mapper.Map(deleteSkillRequest, data);
-            data.DeletedDate = DateTime.Now;
-            var result = await _skillDal.DeleteAsync(data, true);
+            var result = await _skillDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedSkillResponse>(result);
             return result2;
         }
@@ -50,9 +49,7 @@ namespace Business.Concretes
         {
             var result = await _skillDal.GetAsync(c => c.Id == id);
             Skill mappedSkill = _mapper.Map<Skill>(result);
-
             CreatedSkillResponse createdSkillResponse = _mapper.Map<CreatedSkillResponse>(mappedSkill);
-
             return createdSkillResponse;
         }
 
@@ -72,7 +69,6 @@ namespace Business.Concretes
         {
             var data = await _skillDal.GetAsync(i => i.Id == updateSkillRequest.Id);
             _mapper.Map(updateSkillRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _skillDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedSkillResponse>(data);
             return result;

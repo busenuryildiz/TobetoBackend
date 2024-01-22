@@ -5,13 +5,7 @@ using Business.DTOs.Response.CourseSubject;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using Entities.Concretes;
 using Entities.Concretes.Courses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
@@ -41,7 +35,6 @@ namespace Business.Concretes
         {
             var data = await _courseSubjectDal.GetAsync(i => i.Id == deleteCourseSubjectRequest.Id);
             _mapper.Map(deleteCourseSubjectRequest, data);
-            data.DeletedDate = DateTime.Now;
             var result = await _courseSubjectDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedCourseSubjectResponse>(result);
             return result2;
@@ -51,9 +44,7 @@ namespace Business.Concretes
         {
             var result = await _courseSubjectDal.GetAsync(c => c.Id == id);
             CourseSubject mappedCourseSubject = _mapper.Map<CourseSubject>(result);
-
             CreatedCourseSubjectResponse createdCourseSubjectResponse = _mapper.Map<CreatedCourseSubjectResponse>(mappedCourseSubject);
-
             return createdCourseSubjectResponse;
         }
 
@@ -68,12 +59,10 @@ namespace Business.Concretes
             return result;
         }
 
-
         public async Task<UpdatedCourseSubjectResponse> Update(UpdateCourseSubjectRequest updateCourseSubjectRequest)
         {
             var data = await _courseSubjectDal.GetAsync(i => i.Id == updateCourseSubjectRequest.Id);
             _mapper.Map(updateCourseSubjectRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _courseSubjectDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedCourseSubjectResponse>(data);
             return result;

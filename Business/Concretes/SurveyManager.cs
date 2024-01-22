@@ -3,10 +3,14 @@ using Business.DTOs.Request.Survey;
 using Business.DTOs.Response.Survey;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
+<<<<<<< HEAD
 using Entities.Concretes.Surveys;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+=======
+using Entities.Concretes;
+>>>>>>> 12feaf0771577791e99a01dd1864b3f85de6a22c
 
 public class SurveyManager : ISurveyService
 {
@@ -31,8 +35,7 @@ public class SurveyManager : ISurveyService
     {
         var data = await _surveyDal.GetAsync(i => i.Id == deleteSurveyRequest.Id);
         _mapper.Map(deleteSurveyRequest, data);
-        data.DeletedDate = DateTime.Now;
-        var result = await _surveyDal.DeleteAsync(data, true);
+        var result = await _surveyDal.DeleteAsync(data);
         var result2 = _mapper.Map<DeletedSurveyResponse>(result);
         return result2;
     }
@@ -41,9 +44,7 @@ public class SurveyManager : ISurveyService
     {
         var result = await _surveyDal.GetAsync(c => c.Id == id);
         Survey mappedSurvey = _mapper.Map<Survey>(result);
-
         CreatedSurveyResponse createdSurveyResponse = _mapper.Map<CreatedSurveyResponse>(mappedSurvey);
-
         return createdSurveyResponse;
     }
 
@@ -61,7 +62,6 @@ public class SurveyManager : ISurveyService
     {
         var data = await _surveyDal.GetAsync(i => i.Id == updateSurveyRequest.Id);
         _mapper.Map(updateSurveyRequest, data);
-        data.UpdatedDate = DateTime.Now;
         await _surveyDal.UpdateAsync(data);
         var result = _mapper.Map<UpdatedSurveyResponse>(data);
         return result;

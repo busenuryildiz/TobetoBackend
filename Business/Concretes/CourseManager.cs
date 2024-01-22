@@ -1,20 +1,11 @@
-﻿using Business.Abstracts;
-using Core.DataAccess.Paging;
-using DataAccess.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Entities.Concretes.Courses;
-using AutoMapper;
+﻿using AutoMapper;
+using Business.Abstracts;
 using Business.DTOs.Request.Course;
 using Business.DTOs.Response.Course;
 using Business.Rules;
-using Entities.Concretes;
-using Business.DTOs.Response.User;
-using DataAccess.Concretes;
-using Entities.Concretes.Clients;
+using Core.DataAccess.Paging;
+using DataAccess.Abstracts;
+using Entities.Concretes.Courses;
 using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes
@@ -44,7 +35,6 @@ namespace Business.Concretes
         {
             var data = await _courseDal.GetAsync(i => i.Id == deleteCourseRequest.Id);
             _mapper.Map(deleteCourseRequest, data);
-            data.DeletedDate = DateTime.Now;
             var result = await _courseDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedCourseResponse>(result);
             return result2;
@@ -54,13 +44,9 @@ namespace Business.Concretes
         {
             var result = await _courseDal.GetAsync(c => c.Id == id);
             Course mappedCourse = _mapper.Map<Course>(result);
-
             CreatedCourseResponse createdCourseResponse = _mapper.Map<CreatedCourseResponse>(mappedCourse);
-
             return createdCourseResponse;
         }
-
-
 
         public async Task<IPaginate<GetListCourseResponse>> GetListAsync(PageRequest pageRequest)
         {
@@ -85,7 +71,6 @@ namespace Business.Concretes
         {
             var data = await _courseDal.GetAsync(i => i.Id == updateCourseRequest.Id);
             _mapper.Map(updateCourseRequest, data);
-            data.UpdatedDate = DateTime.Now;
             await _courseDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedCourseResponse>(data);
             return result;

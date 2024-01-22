@@ -1,11 +1,6 @@
-﻿using Entities.Concretes;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Entities.Concretes.Surveys;
 
 namespace DataAccess.Context.EntityConfigurations
 {
@@ -13,27 +8,31 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Survey> builder)
         {
-            builder.ToTable("Surveys").HasKey(s => s.Id);
+            builder.ToTable("Surveys");
 
-            builder.Property(s => s.StudentId)
-                .IsRequired()
-                .HasColumnName("StudentId");
+            builder.HasKey(s => s.Id);
+            builder.Property(s => s.Title).IsRequired();
+            builder.Property(s => s.Description).IsRequired();
+            builder.Property(s => s.CreatorUserID).IsRequired();
 
-            builder.Property(s => s.Name)
-                .IsRequired()
-                .HasMaxLength(255)
-                .HasColumnName("Name");
+            builder.HasOne(s => s.User)
+                .WithMany()
+                .HasForeignKey(s => s.CreatorUserID)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            builder.Property(s => s.SurveyUrl)
-                .HasColumnName("SurveyUrl");
+    
 
-            builder.HasOne(s => s.Student)
-                .WithMany(st => st.Surveys)
-                .HasForeignKey(s => s.StudentId)
-                .IsRequired();
+            builder.HasMany(s => s.SurveyQuestions)
+                .WithOne(sq => sq.Survey)
+                .HasForeignKey(sq => sq.SurveyID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(s => s.SurveyAnswers)
+                .WithOne(sa => sa.Survey)
+                .HasForeignKey(sa => sa.SurveyID)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
-
     }
 }

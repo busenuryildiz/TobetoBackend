@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Core.Entities;
+using Entities.Concretes.Courses;
+using Entities.Concretes.Surveys;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Entities;
-using Entities.Concretes.Courses;
+
+
+
+
 
 namespace Entities.Concretes.Clients
 {
@@ -13,7 +18,7 @@ namespace Entities.Concretes.Clients
         public Guid? UserId { get; set; }
         public int? StudentNumber { get; set; }
         public User? User { get; set; }
-        public List<Survey>? Surveys { get; set; }
+        public virtual ICollection<Survey> AssignedSurveys { get; set; } = new List<Survey>();  // Öğrenciye atanmış anketler
         public List<StudentCourse>? StudentCourses { get; set; } // Eklenen alan
         public List<StudentSkill>? StudentSkills { get; set; }
         public List<ApplicationStudent>? ApplicationStudents { get; set; }

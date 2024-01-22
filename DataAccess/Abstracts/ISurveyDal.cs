@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess.Repositories;
-using Entities.Concretes;
+using Entities.Concretes.Surveys;
+using Entities.Concretes.Surveys;
 
 namespace DataAccess.Abstracts
 {

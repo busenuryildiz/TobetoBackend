@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Business.DTOs.Request.Survey;
 using Business.DTOs.Response.Survey;
-using Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +11,7 @@ namespace Business.Profiles
 {
     using AutoMapper;
     using Core.DataAccess.Paging;
+    using Entities.Concretes.Surveys;
 
     public class SurveyMappingProfile : Profile
     {

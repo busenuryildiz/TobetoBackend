@@ -24,10 +24,7 @@ namespace DataAccess.Context.EntityConfigurations
                 .HasForeignKey<Student>(b => b.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Surveys ilişkisi
-            builder.HasMany(b => b.Surveys)
-                .WithOne(s => s.Student)
-                .HasForeignKey(s => s.StudentId);
+
 
 
             builder.HasMany(u => u.StudentAssignments)

@@ -10,12 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Entities.Concretes.Courses;
 using Entities.Concretes.Profiles;
+using Entities.Concretes.Surveys;
 
 namespace DataAccess.Context
 {
     public class TobetoContext : DbContext
     {
         protected IConfiguration Configuration { get; set; }
+        public DbSet<Survey> Surveys { get; set; }
+        public DbSet<SurveyAnswer> SurveyAnswers { get; set; }
+        public DbSet<SurveyQuestion> SurveyQuestions { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<University> Universities { get; set; }
@@ -45,7 +49,6 @@ namespace DataAccess.Context
         public DbSet<MediaPost> MediaPosts { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<Survey> Surveys { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<SoftwareLanguage> SoftwareLanguages { get; set; }

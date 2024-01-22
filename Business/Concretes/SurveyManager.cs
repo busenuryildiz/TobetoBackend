@@ -3,7 +3,7 @@ using Business.DTOs.Request.Survey;
 using Business.DTOs.Response.Survey;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using Entities.Concretes;
+using Entities.Concretes.Surveys;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

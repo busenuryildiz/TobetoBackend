@@ -13,7 +13,7 @@ namespace DataAccess.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("Users").HasKey(u => u.Id); 
+            builder.ToTable("Users").HasKey(u => u.Id);
             builder.Property(u => u.FirstName).IsRequired().HasMaxLength(255);
             builder.Property(u => u.LastName).IsRequired().HasMaxLength(255);
             builder.Property(u => u.Email).IsRequired().HasMaxLength(255);
@@ -53,7 +53,17 @@ namespace DataAccess.Context.EntityConfigurations
                 .WithOne(ue => ue.User)
                 .HasForeignKey(ue => ue.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
-                
+            // Surveys ilişkisi
+            builder.HasMany(user => user.Surveys)
+                .WithOne(survey => survey.User)
+                .HasForeignKey(survey => survey.CreatorUserID)
+                .OnDelete(DeleteBehavior.SetNull);  // Eğer kullanıcı silinirse, anketleri null yap, Cascade yerine SetNull kullanılabilir
+
+            // SurveyAnswers ilişkisi
+            builder.HasMany(user => user.SurveyAnswers)
+                .WithOne(answer => answer.User)
+                .HasForeignKey(answer => answer.UserID)
+                .OnDelete(DeleteBehavior.Cascade);  // Eğer kullanıcı silinirse, cevapları da sil
 
             builder.HasQueryFilter(u => !u.DeletedDate.HasValue);
         }

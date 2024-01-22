@@ -7,6 +7,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using Entities.Concretes.Surveys;
 
 namespace Entities.Concretes.Clients
 {
@@ -31,7 +32,8 @@ namespace Entities.Concretes.Clients
         public List<UserRole> UserRoles { get; set; }
         public List<Application> Applications { get; set; }
         public List<Address> Addresses { get; set; }
-
+        public virtual ICollection<Survey> Surveys { get; set; }
+        public virtual ICollection<SurveyAnswer> SurveyAnswers { get; set; } 
     }
 
 }

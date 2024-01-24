@@ -1,13 +1,11 @@
 ﻿namespace Business.DTOs.Response.Survey
 {
+    // DeletedSurveyResponse
     public class DeletedSurveyResponse
     {
-        public int Id { get; set; }
-        public Guid StudentId { get; set; }
-        public string Name { get; set; }
-        public string SurveyUrl { get; set; }
-        public DateTime DeletedDate { get; set; }
+        public int SurveyId { get; set; }
     }
+
 
 
 }

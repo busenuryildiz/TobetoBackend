@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concretes
 {
-    public class EfSurverAnswerDal : EfRepositoryBase<SurveyAnswer, int, TobetoContext>, ISurveyAnswerDal
+    public class EfSurveyAnswerDal : EfRepositoryBase<SurveyAnswer, int, TobetoContext>, ISurveyAnswerDal
     {
-        public EfSurverAnswerDal(TobetoContext context) : base(context)
+        public EfSurveyAnswerDal(TobetoContext context) : base(context)
         {
         }
 

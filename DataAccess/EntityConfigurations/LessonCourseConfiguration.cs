@@ -21,13 +21,11 @@ namespace DataAccess.EntityConfigurations
 
             builder.HasOne(lc => lc.Lesson)
                 .WithMany(l => l.LessonCourses)
-                .HasForeignKey(lc => lc.LessonId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(lc => lc.LessonId);
 
             builder.HasOne(lc => lc.Course)
                 .WithMany(c => c.LessonCourses)
-                .HasForeignKey(lc => lc.CourseId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(lc => lc.CourseId);
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }

@@ -20,8 +20,22 @@ namespace WebAPI.Controllers
         [ValidateModel(typeof(CreateLessonCourseRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateLessonCourseRequest createLessonCourseRequest)
         {
-            var result = await _lessonCourseService.Add(createLessonCourseRequest);
-            return Ok(result);
+            //var result = await _lessonCourseService.Add(createLessonCourseRequest);
+            //return Ok(result);
+            try
+            {
+                var result = await _lessonCourseService.Add(createLessonCourseRequest);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                // Hata mesajını terminale yazdırma
+                Console.WriteLine($"Error in Add method: {ex.Message}. Inner Exception: {ex.InnerException?.Message}");
+
+                // HTTP 500 hatası döndürme
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error");
+            }
         }
 
         [HttpDelete("Delete")]
@@ -43,6 +57,7 @@ namespace WebAPI.Controllers
             var result = await _lessonCourseService.GetListAsync(pageRequest);
             return Ok(result);
         }
+
         [HttpGet("GetById")]
         public async Task<IActionResult> GetById([FromQuery] int id)
         {

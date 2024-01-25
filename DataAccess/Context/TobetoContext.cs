@@ -59,6 +59,8 @@ namespace DataAccess.Context
         public DbSet<City> Cities { get; set; } 
         public DbSet<District> Districts { get; set; }
         public DbSet<Country> Countries { get; set; } 
+        public DbSet<ClassroomOfCourse> ClassroomOfCourses { get; set; } 
+        public DbSet<Classroom> Classrooms { get; set; } 
 
 
 
@@ -66,7 +68,7 @@ namespace DataAccess.Context
             dbContextOptions)
         {
             Configuration = configuration;
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

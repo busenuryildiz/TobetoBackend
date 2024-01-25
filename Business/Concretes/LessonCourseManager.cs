@@ -11,10 +11,11 @@ using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.Courses;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes
 {
-    public class LessonCourseManager: ILessonCourseService
+    public class LessonCourseManager : ILessonCourseService
     {
         ILessonCourseDal _lessonCourseDal;
         IMapper _mapper;
@@ -51,14 +52,23 @@ namespace Business.Concretes
             return createdLessonCourseResponse;
         }
 
-
         public async Task<IPaginate<GetListLessonCourseResponse>> GetListAsync(PageRequest pageRequest)
         {
             var data = await _lessonCourseDal.GetListAsync(
-                index: pageRequest.PageIndex,
-                size: pageRequest.PageSize
-            );
+         include: query => query
+             .Include(p => p.Course)
+             .Include(p => p.Lesson)
+             .Include(p => p.Course.InstructorCourses)
+                 .ThenInclude(ic => ic.Instructor)
+                 .ThenInclude(i => i.User)
+         .Include(p => p.Course.ClassroomOfCourses)
+            .ThenInclude(cc => cc.Classroom),
+         index: pageRequest.PageIndex,
+         size: pageRequest.PageSize
+             );
             var result = _mapper.Map<Paginate<GetListLessonCourseResponse>>(data);
+
+
             return result;
         }
 
@@ -71,5 +81,7 @@ namespace Business.Concretes
             var result = _mapper.Map<UpdatedLessonCourseResponse>(data);
             return result;
         }
+
+
     }
 }

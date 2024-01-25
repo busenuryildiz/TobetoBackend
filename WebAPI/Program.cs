@@ -15,7 +15,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDataAccessServices(builder.Configuration);
 builder.Services.AddBusinessServices();
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyCorsPolicy", builder =>
+    {
+        builder.WithOrigins("http://localhost:3000")
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 
 builder.Services.AddScoped<Serilog.ILogger>(provider => new LoggerConfiguration()
     .MinimumLevel.Debug()
@@ -73,5 +81,6 @@ app.UseJwtDecoderMiddleware();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.UseCors("MyCorsPolicy");
 
 app.Run();

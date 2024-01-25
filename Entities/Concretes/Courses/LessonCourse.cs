@@ -13,5 +13,6 @@ namespace Entities.Concretes.Courses
         public int CourseId { get; set; }
         public Course Course { get; set; }
         public Lesson Lesson { get; set; }
+      
     }
 }

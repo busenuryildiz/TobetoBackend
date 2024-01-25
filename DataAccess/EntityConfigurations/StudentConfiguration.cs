@@ -19,10 +19,8 @@ namespace DataAccess.EntityConfigurations
             builder.Property(b => b.StudentNumber).HasColumnName("StudentNumber").IsRequired();
 
             // User ilişkisi
-            builder.HasOne(b => b.User)
-                .WithOne(u => u.Student)
-                .HasForeignKey<Student>(b => b.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(b => b.User);
+           
 
             // Surveys ilişkisi
             builder.HasMany(b => b.Surveys)
@@ -35,10 +33,13 @@ namespace DataAccess.EntityConfigurations
                 .HasForeignKey(ei => ei.StudentId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(u => u.ApplicationStudents)
+            builder.HasMany(u => u.StudentSkills)
                 .WithOne(ei => ei.Student)
-                .HasForeignKey(ei => ei.StudentId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(ei => ei.StudentId);
+
+            builder.HasMany(u => u.ApplicationStudents)
+               .WithOne(ei => ei.Student)
+               .HasForeignKey(ei => ei.StudentId);
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }

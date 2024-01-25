@@ -13,10 +13,10 @@ namespace Entities.Concretes.Courses
         public string Name { get; set; }
         public string Content { get; set; }
         public string VideoUrl { get; set; }
+        public DateTime LessonTime { get; set; }
         public List<LessonCourse> LessonCourses { get; set; }
-        public List<Assignment> Assignments { get; set; } // Bu satır eklenmiştir.
+        public List<Assignment> Assignments { get; set; }
 
-        // İlgili alanlar, details clasına bakılacak.
     }
 
 }

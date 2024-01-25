@@ -25,8 +25,33 @@ namespace Business.Profiles
             CreateMap<UpdateLessonCourseRequest, LessonCourse>().ReverseMap();
             CreateMap<LessonCourse, UpdatedLessonCourseResponse>().ReverseMap();
 
-            CreateMap<LessonCourse, GetListLessonCourseResponse>().ReverseMap();
-            CreateMap<Paginate<LessonCourse>, Paginate<GetListLessonCourseResponse>>().ReverseMap();
+            CreateMap<LessonCourse, GetListLessonCourseResponse>()
+                .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src => src.Course.Name))
+                .ForMember(dest => dest.LessonName, opt => opt.MapFrom(src => src.Lesson.Name))
+                .ForMember(dest => dest.LessonTime, opt => opt.MapFrom(src => src.Lesson.LessonTime))
+                .ForMember(dest => dest.InstructorName, opt => opt.MapFrom(src =>
+                    src.Course.InstructorCourses.Any() ?
+                    string.Join(", ", src.Course.InstructorCourses.Select(ic => ic.Instructor.User.FirstName + " " + ic.Instructor.User.LastName)) :
+                    "No Instructor"
+                ))
+                .ForMember(dest => dest.ClassroomName, opt => opt.MapFrom(src =>
+                    src.Course.ClassroomOfCourses.Any() ?
+                    string.Join(", ", src.Course.ClassroomOfCourses.Select(cc => cc.Classroom.Name)) :
+                    "No Classroom"
+                ))
+                 .ReverseMap();
+
+            CreateMap<Paginate<LessonCourse>, Paginate<GetListLessonCourseResponse>>()
+                .ReverseMap();
+
+
+
+
+
+
+
+
+
         }
     }
 }

@@ -16,11 +16,9 @@ namespace DataAccess.EntityConfigurations
             builder.ToTable("StudentSkills").HasKey(ss => ss.Id);
 
             builder.Property(ss => ss.StudentId)
-                .IsRequired()
                 .HasColumnName("StudentId");
 
             builder.Property(ss => ss.SkillId)
-                .IsRequired()
                 .HasColumnName("SkillId");
 
             builder.HasOne(ss => ss.Student)
@@ -29,7 +27,7 @@ namespace DataAccess.EntityConfigurations
                 .IsRequired();
 
             builder.HasOne(ss => ss.Skill)
-                .WithMany()
+                .WithMany(s => s.StudentSkills)
                 .HasForeignKey(ss => ss.SkillId)
                 .IsRequired();
 

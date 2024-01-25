@@ -12,5 +12,7 @@ namespace Business.DTOs.Request.Lesson
         public string Name { get; set; }
         public string Content { get; set; }
         public string VideoUrl { get; set; }
+        public DateTime LessonTime { get; set; }
+
     }
 }

@@ -453,6 +453,67 @@ namespace DataAccess.Migrations
                     b.ToTable("Assignments", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.Concretes.Courses.Classroom", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Classrooms");
+                });
+
+            modelBuilder.Entity("Entities.Concretes.Courses.ClassroomOfCourse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClassroomId")
+                        .HasColumnType("int")
+                        .HasColumnName("ClassroomId");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int")
+                        .HasColumnName("CourseId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassroomId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("ClassroomOfCourses", (string)null);
+                });
+
             modelBuilder.Entity("Entities.Concretes.Courses.Course", b =>
                 {
                     b.Property<int>("Id")
@@ -667,6 +728,10 @@ namespace DataAccess.Migrations
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LessonTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LessonTime");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1197,11 +1262,6 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Faculty")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Faculty");
-
                     b.Property<DateTime?>("GraduationYear")
                         .HasColumnType("datetime")
                         .HasColumnName("GraduationYear");
@@ -1216,11 +1276,6 @@ namespace DataAccess.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("Status");
-
-                    b.Property<string>("University")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("University");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -1337,6 +1392,10 @@ namespace DataAccess.Migrations
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1743,8 +1802,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Entities.Concretes.Clients.User", "User")
                         .WithOne("Student")
-                        .HasForeignKey("Entities.Concretes.Clients.Student", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("Entities.Concretes.Clients.Student", "UserId");
 
                     b.Navigation("User");
                 });
@@ -1760,6 +1818,25 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concretes.Courses.Lesson", null)
                         .WithMany("Assignments")
                         .HasForeignKey("LessonId");
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("Entities.Concretes.Courses.ClassroomOfCourse", b =>
+                {
+                    b.HasOne("Entities.Concretes.Courses.Classroom", "Classroom")
+                        .WithMany("ClassroomOfCourses")
+                        .HasForeignKey("ClassroomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Concretes.Courses.Course", "Course")
+                        .WithMany("ClassroomOfCourses")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Classroom");
 
                     b.Navigation("Course");
                 });
@@ -1837,13 +1914,13 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concretes.Courses.Course", "Course")
                         .WithMany("LessonCourses")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Entities.Concretes.Courses.Lesson", "Lesson")
                         .WithMany("LessonCourses")
                         .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
@@ -1979,7 +2056,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concretes.Clients.User", "User")
                         .WithMany("EducationInformations")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -2056,7 +2133,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concretes.StudentSkill", b =>
                 {
                     b.HasOne("Entities.Concretes.Profiles.Skill", "Skill")
-                        .WithMany()
+                        .WithMany("StudentSkills")
                         .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2162,9 +2239,16 @@ namespace DataAccess.Migrations
                     b.Navigation("StudentAssignments");
                 });
 
+            modelBuilder.Entity("Entities.Concretes.Courses.Classroom", b =>
+                {
+                    b.Navigation("ClassroomOfCourses");
+                });
+
             modelBuilder.Entity("Entities.Concretes.Courses.Course", b =>
                 {
                     b.Navigation("Assignments");
+
+                    b.Navigation("ClassroomOfCourses");
 
                     b.Navigation("CourseSubjects");
 

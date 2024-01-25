@@ -26,11 +26,15 @@ namespace DataAccess.EntityConfigurations
 
             builder.Property(l => l.VideoUrl)
                 .IsRequired()
-                .HasColumnName("VideoUrl"); 
+                .HasColumnName("VideoUrl");
+
+            builder.Property(l => l.LessonTime)
+               .IsRequired()
+               .HasColumnName("LessonTime");
 
             builder.HasMany(l => l.LessonCourses)
                 .WithOne(lc => lc.Lesson)
-                .HasForeignKey(lc => lc.LessonId); 
+                .HasForeignKey(l => l.LessonId);
 
             builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
 

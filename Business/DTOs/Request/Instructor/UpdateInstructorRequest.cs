@@ -9,7 +9,6 @@ namespace Business.DTOs.Request.Instructor
     public class UpdateInstructorRequest
     {
         public Guid Id { get; set; }
-        public int CourseId { get; set; }
         public DateTime? HireDate { get; set; }
     }
 }

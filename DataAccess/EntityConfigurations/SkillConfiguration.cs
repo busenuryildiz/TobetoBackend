@@ -22,7 +22,8 @@ namespace DataAccess.EntityConfigurations
 
             builder.HasMany(s => s.StudentSkills)
                 .WithOne(ss => ss.Skill)
-                .HasForeignKey(ss => ss.SkillId);
+                .HasForeignKey(s => s.SkillId);
+
 
             builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
         }

@@ -82,5 +82,6 @@ app.UseJwtDecoderMiddleware();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.UseCors("MyCorsPolicy");
 
 app.Run();

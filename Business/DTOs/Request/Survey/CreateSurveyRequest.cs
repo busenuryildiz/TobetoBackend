@@ -5,7 +5,7 @@
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public int CreatorUserID { get; set; }
+        public Guid CreatorUserID { get; set; }
     }
 
 }

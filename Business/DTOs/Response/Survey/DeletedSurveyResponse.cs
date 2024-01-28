@@ -3,7 +3,7 @@
     // DeletedSurveyResponse
     public class DeletedSurveyResponse
     {
-        public int SurveyId { get; set; }
+        public int Id { get; set; }
     }
 
 

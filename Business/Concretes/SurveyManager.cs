@@ -3,14 +3,9 @@ using Business.DTOs.Request.Survey;
 using Business.DTOs.Response.Survey;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-<<<<<<< HEAD
 using Entities.Concretes.Surveys;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-=======
-using Entities.Concretes;
->>>>>>> 12feaf0771577791e99a01dd1864b3f85de6a22c
+
+
 
 public class SurveyManager : ISurveyService
 {

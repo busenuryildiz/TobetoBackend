@@ -3,7 +3,7 @@
     // UpdatedSurveyResponse
     public class UpdatedSurveyResponse
     {
-        public int SurveyId { get; set; }
+        public int Id { get; set; }
         // Güncellenmiş alanlar
     }
 

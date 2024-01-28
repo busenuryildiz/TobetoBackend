@@ -61,4 +61,25 @@ public class SurveyManager : ISurveyService
         var result = _mapper.Map<UpdatedSurveyResponse>(data);
         return result;
     }
+    public async Task<List<GetListSurveyResponse>> GetUnsentSurveysAsync(Guid userId)
+    {
+
+        var answeredSurveyIds = await _surveyDal.GetListAsync(sa => sa.SurveyAnswers.Any(sar => sar.UserID == userId));
+        var allSurveyIds = await _surveyDal.GetListAsync(size: int.MaxValue, index:0);
+        var unsentSurveyIds = allSurveyIds.Items.Select(s => s.Id).Except(answeredSurveyIds.Items.Select(sa => sa.Id)).ToList();
+
+        var unsentSurveysResult = await _surveyDal.GetListAsync(survey => unsentSurveyIds.Contains(survey.Id));
+
+        // Items özelliği üzerinden anketlere eriş ve projeksiyon yap
+        var unsentSurveyResponses = unsentSurveysResult.Items
+            .OfType<Survey>() // Eğer Items bir IEnumerable ise, OfType ile uygun tipi seçebilirsiniz.
+            .Select(survey => _mapper.Map<GetListSurveyResponse>(survey))
+            .ToList();
+
+        return unsentSurveyResponses;
+    }
+
+
+
+
 }

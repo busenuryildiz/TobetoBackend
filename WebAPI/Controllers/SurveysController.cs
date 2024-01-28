@@ -175,4 +175,24 @@ public class SurveyController : ControllerBase
             return BadRequest($"An error occurred: {ex.Message}");
         }
     }
+
+    [HttpGet("GetUnsentSurveys/{userId}")] // İsteği ele alacak route'u belirtin
+    public async Task<IActionResult> GetUnsentSurveys(Guid userId)
+    {
+        try
+        {
+            var unsentSurveys = await _surveyService.GetUnsentSurveysAsync(userId);
+
+            // Burada unsentSurveys listesini kullanabilirsiniz.
+
+            return Ok(unsentSurveys); // İstenirse listeyi JSON olarak döndürür.
+        }
+        catch (Exception ex)
+        {
+            // Hata durumunda uygun bir şekilde işleyin.
+            return StatusCode(500, "Internal Server Error");
+        }
+    }
+
+
 }

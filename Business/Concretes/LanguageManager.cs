@@ -2,7 +2,7 @@
 using Business.Abstracts;
 using Business.DTOs.Request.Language;
 using Business.DTOs.Response.Language;
-using Business.Rules;
+using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.Profiles;

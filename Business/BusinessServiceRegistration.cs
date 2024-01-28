@@ -34,7 +34,7 @@ using Business.DTOs.Request.University;
 using Business.DTOs.Request.UserExperience;
 using Business.DTOs.Request.UserLanguage;
 using Business.DTOs.Request.UserUniversity;
-using Business.Rules;
+using Business.Rules.BusinessRules;
 using Business.Rules.ValidationRules;
 using Core.Business.Rules;
 using Core.Utilities.JWT;

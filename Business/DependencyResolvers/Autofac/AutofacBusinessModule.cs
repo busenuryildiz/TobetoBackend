@@ -4,7 +4,6 @@ using Autofac.Core;
 using Autofac.Extras.DynamicProxy;
 using Business.Abstracts;
 using Business.Concretes;
-using Business.Rules;
 using Castle.Core.Configuration;
 using Core.Business.Rules;
 using Core.Utilities.Interceptors;
@@ -17,6 +16,7 @@ using System.Reflection;
 using Module = Autofac.Module;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 using AutoMapper;
+using Business.Rules.BusinessRules;
 
 namespace Business.DependencyResolvers.Autofac
 {

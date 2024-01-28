@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Business.DTOs.Request.UserLanguage;
 using Business.DTOs.Response.UserLanguage;
 using Entities.Concretes.Profiles;
+using Business.DTOs.Response.User;
+using Entities.Concretes.Clients;
 
 namespace Business.Profiles
 {
@@ -27,6 +29,9 @@ namespace Business.Profiles
 
             CreateMap<UserLanguage, GetListUserLanguageResponse>().ReverseMap();
             CreateMap<Paginate<UserLanguage>, Paginate<GetListUserLanguageResponse>>().ReverseMap();
+
+            CreateMap<User, UserLoginResponse>().ReverseMap();
+  
         }
     }
 }

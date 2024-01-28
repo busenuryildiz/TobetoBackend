@@ -1,4 +1,5 @@
-﻿namespace Core.DataAccess.Paging;
+﻿
+namespace Core.DataAccess.Paging;
 
 public interface IPaginate<T>
 {
@@ -10,4 +11,5 @@ public interface IPaginate<T>
     IList<T> Items { get; }
     bool HasPrevious { get; }
     bool HasNext { get; }
+
 }

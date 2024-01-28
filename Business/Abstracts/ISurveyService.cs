@@ -9,4 +9,5 @@ public interface ISurveyService
     Task<UpdatedSurveyResponse> Update(UpdateSurveyRequest updateSurveyRequest);
     Task<DeletedSurveyResponse> Delete(DeleteSurveyRequest deleteSurveyRequest);
     Task<CreatedSurveyResponse> GetById(int id);
+    Task<List<GetListSurveyResponse>> GetUnsentSurveysAsync(Guid userId);
 }

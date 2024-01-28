@@ -120,6 +120,9 @@ namespace Business
             services.AddScoped<IDistrictService, DistrictManager>();
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IEmailService, EmailManager>();
+            services.AddScoped<ISurveyAnswerService, SurveyAnswerManager>();
+            services.AddScoped<ISurveyService, SurveyManager>();
+            services.AddScoped<ISurveyQuestionService, SurveyQuestionManager>();
 
 
 
@@ -175,7 +178,11 @@ namespace Business
             services.AddScoped<IValidator<CreateApplicationRequest>, CreateApplicationRequestValidator>();
             services.AddScoped<IValidator<CreateApplicationStudentRequest>, CreateApplicationStudentRequestValidator>();
             services.AddScoped<IValidator<CreateContactUsRequest>, CreateContactUsRequestValidator>();
-            services.AddScoped<IValidator<CreateSurveyRequest>, CreateSurveyRequestValidator>();
+     
+
+
+
+            //services.AddScoped<IValidator<CreateSurveyRequest>, CreateSurveyRequestValidator>();
             services.AddScoped<IValidator<CreateSubjectRequest>, CreateSubjectRequestValidator>();
             services.AddScoped<IValidator<CreateRoleRequest>, CreateRoleRequestValidator>();
             services.AddScoped<IValidator<CreateAddressRequest>, CreateAddressRequestValidator>();

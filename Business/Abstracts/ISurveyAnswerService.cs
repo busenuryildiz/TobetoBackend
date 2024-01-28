@@ -1,5 +1,7 @@
 ﻿using Business.DTOs.Request.Survey;
+using Business.DTOs.Request.SurveyAnswer;
 using Business.DTOs.Response.Survey;
+using Business.DTOs.Response.SurveyAnswer;
 using Core.DataAccess.Paging;
 using System;
 using System.Collections.Generic;
@@ -9,14 +11,16 @@ using System.Threading.Tasks;
 
 namespace Business.Abstracts
 {
-    public interface ISurveyService
+    public interface ISurveyAnswerService
     {
-        Task<IPaginate<GetListSurveyResponse>> GetListAsync(PageRequest pageRequest);
-        Task<CreatedSurveyResponse> Create(CreateSurveyRequest createSurveyRequest);
-        Task<UpdatedSurveyResponse> Update(UpdateSurveyRequest updateSurveyRequest);
-        Task<DeletedSurveyResponse> Delete(DeleteSurveyRequest deleteSurveyRequest);
-        Task<GetSurveyDetailResponse> GetDetail(int surveyId);
-        Task<ICollection<GetSurveyQuestionResponse>> GetSurveyQuestions(int surveyId);
+        Task<IPaginate<GetListSurveyAnswerResponse>> GetListAsync(PageRequest pageRequest);
+        Task<CreatedSurveyAnswerResponse> Add(AddSurveyAnswerRequest addSurveyAnswerRequest);
+        Task<UpdatedSurveyAnswerResponse> Update(UpdateSurveyAnswerRequest updateSurveyAnswerRequest);
+        Task<DeletedSurveyAnswerResponse> Delete(DeleteSurveyAnswerRequest deleteSurveyAnswerRequest);
+        Task<GetSurveyAnswerResponse> GetById(int id);
+        Task<IPaginate<GetSurveyAnswerResponse>> GetUserSurveyAnswers(Guid userId, int surveyId);
+
+
     }
 
 }

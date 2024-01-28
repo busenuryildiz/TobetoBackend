@@ -17,7 +17,6 @@ namespace DataAccess.Context
     public class TobetoContext : DbContext
     {
         protected IConfiguration Configuration { get; set; }
-        public DbSet<Survey> Surveys { get; set; }
         public DbSet<SurveyAnswer> SurveyAnswers { get; set; }
         public DbSet<SurveyQuestion> SurveyQuestions { get; set; }
         public DbSet<Course> Courses { get; set; }
@@ -62,6 +61,8 @@ namespace DataAccess.Context
         public DbSet<City> Cities { get; set; } 
         public DbSet<District> Districts { get; set; }
         public DbSet<Country> Countries { get; set; } 
+        public DbSet<Subject> Surveys { get; set; } 
+        
 
 
 

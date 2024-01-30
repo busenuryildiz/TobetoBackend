@@ -12,7 +12,7 @@ namespace Business.Rules.ValidationRules
     {
         public CreateSurveyRequestValidator()
         {
-            RuleFor(x => x.Name).NotEmpty();
+            RuleFor(x => x.Title).NotEmpty();
 
         }
     }

@@ -52,7 +52,6 @@ namespace DataAccess.EntityConfigurations
                 .WithOne(ue => ue.User)
                 .HasForeignKey(ue => ue.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
-<<<<<<< HEAD
             // Surveys ilişkisi
             builder.HasMany(user => user.Surveys)
                 .WithOne(survey => survey.User)
@@ -64,12 +63,10 @@ namespace DataAccess.EntityConfigurations
                 .WithOne(answer => answer.User)
                 .HasForeignKey(answer => answer.UserID)
                 .OnDelete(DeleteBehavior.Cascade);  // Eğer kullanıcı silinirse, cevapları da sil
-=======
 
             builder.HasMany(s => s.UserUniversities)
                 .WithOne(ss => ss.User)
                 .HasForeignKey(ss => ss.UserId);
->>>>>>> 12feaf0771577791e99a01dd1864b3f85de6a22c
 
             builder.HasQueryFilter(u => !u.DeletedDate.HasValue);
         }

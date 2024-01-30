@@ -54,8 +54,20 @@ namespace WebAPI.Controllers
         [HttpGet("GetList")]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
-            var result = await _lessonCourseService.GetListAsync(pageRequest);
-            return Ok(result);
+            try {
+                var result = await _lessonCourseService.GetListAsync(pageRequest);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                // Hata mesajını terminale yazdırma
+                Console.WriteLine($"Error in Add method: {ex.Message}. Inner Exception: {ex.InnerException?.Message}");
+
+                // HTTP 500 hatası döndürme
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error");
+            }
+
         }
 
         [HttpGet("GetById")]

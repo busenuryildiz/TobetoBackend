@@ -5,7 +5,7 @@ namespace Entities.Concretes.Surveys
 {
     public class SurveyAnswer : Entity<int>
     {
-        public int UserID { get; set; }
+        public Guid UserID { get; set; }
         public int SurveyID { get; set; }
         public int QuestionID { get; set; }
         public string AnswerValue { get; set; }

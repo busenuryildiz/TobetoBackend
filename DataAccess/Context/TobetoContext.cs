@@ -64,6 +64,9 @@ namespace DataAccess.Context
         public DbSet<ClassroomOfCourse> ClassroomOfCourses { get; set; } 
         public DbSet<Classroom> Classrooms { get; set; } 
 
+            
+
+
 
 
         public TobetoContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(

@@ -284,8 +284,11 @@ namespace DataAccess.Migrations
 
                     b.Property<int?>("StudentNumber")
                         .IsRequired()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("StudentNumber");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("StudentNumber"));
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -295,6 +298,9 @@ namespace DataAccess.Migrations
                         .HasColumnName("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("StudentNumber")
+                        .IsUnique();
 
                     b.HasIndex("UserId")
                         .IsUnique()
@@ -330,7 +336,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -1679,7 +1686,90 @@ namespace DataAccess.Migrations
                     b.ToTable("Subjects", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Survey", b =>
+            modelBuilder.Entity("Entities.Concretes.Surveys.Survey", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CreatorUserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<Guid?>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorUserID");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Surveys", (string)null);
+                });
+
+            modelBuilder.Entity("Entities.Concretes.Surveys.SurveyAnswer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AnswerValue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("QuestionID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SurveyID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionID");
+
+                    b.HasIndex("SurveyID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("SurveyAnswers", (string)null);
+                });
+
+            modelBuilder.Entity("Entities.Concretes.Surveys.SurveyQuestion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1693,29 +1783,25 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("QuestionText")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("StudentId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("StudentId");
-
-                    b.Property<string>("SurveyUrl")
+                    b.Property<string>("QuestionType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("SurveyUrl");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SurveyID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StudentId");
+                    b.HasIndex("SurveyID");
 
-                    b.ToTable("Surveys", (string)null);
+                    b.ToTable("SurveyQuestions", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Concretes.UserRole", b =>
@@ -1802,7 +1888,8 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Entities.Concretes.Clients.User", "User")
                         .WithOne("Student")
-                        .HasForeignKey("Entities.Concretes.Clients.Student", "UserId");
+                        .HasForeignKey("Entities.Concretes.Clients.Student", "UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("User");
                 });
@@ -2149,15 +2236,56 @@ namespace DataAccess.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Survey", b =>
+            modelBuilder.Entity("Entities.Concretes.Surveys.Survey", b =>
                 {
-                    b.HasOne("Entities.Concretes.Clients.Student", "Student")
+                    b.HasOne("Entities.Concretes.Clients.User", "User")
                         .WithMany("Surveys")
-                        .HasForeignKey("StudentId")
+                        .HasForeignKey("CreatorUserID")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Entities.Concretes.Clients.Student", null)
+                        .WithMany("AssignedSurveys")
+                        .HasForeignKey("StudentId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Concretes.Surveys.SurveyAnswer", b =>
+                {
+                    b.HasOne("Entities.Concretes.Surveys.SurveyQuestion", "SurveyQuestion")
+                        .WithMany("SurveyAnswers")
+                        .HasForeignKey("QuestionID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Concretes.Surveys.Survey", "Survey")
+                        .WithMany("SurveyAnswers")
+                        .HasForeignKey("SurveyID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Student");
+                    b.HasOne("Entities.Concretes.Clients.User", "User")
+                        .WithMany("SurveyAnswers")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Survey");
+
+                    b.Navigation("SurveyQuestion");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Concretes.Surveys.SurveyQuestion", b =>
+                {
+                    b.HasOne("Entities.Concretes.Surveys.Survey", "Survey")
+                        .WithMany("SurveyQuestions")
+                        .HasForeignKey("SurveyID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Survey");
                 });
 
             modelBuilder.Entity("Entities.Concretes.UserRole", b =>
@@ -2198,13 +2326,13 @@ namespace DataAccess.Migrations
                 {
                     b.Navigation("ApplicationStudents");
 
+                    b.Navigation("AssignedSurveys");
+
                     b.Navigation("StudentAssignments");
 
                     b.Navigation("StudentCourses");
 
                     b.Navigation("StudentSkills");
-
-                    b.Navigation("Surveys");
                 });
 
             modelBuilder.Entity("Entities.Concretes.Clients.User", b =>
@@ -2224,6 +2352,10 @@ namespace DataAccess.Migrations
 
                     b.Navigation("Student")
                         .IsRequired();
+
+                    b.Navigation("SurveyAnswers");
+
+                    b.Navigation("Surveys");
 
                     b.Navigation("UserExperiences");
 
@@ -2331,6 +2463,18 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concretes.Subject", b =>
                 {
                     b.Navigation("CourseSubjects");
+                });
+
+            modelBuilder.Entity("Entities.Concretes.Surveys.Survey", b =>
+                {
+                    b.Navigation("SurveyAnswers");
+
+                    b.Navigation("SurveyQuestions");
+                });
+
+            modelBuilder.Entity("Entities.Concretes.Surveys.SurveyQuestion", b =>
+                {
+                    b.Navigation("SurveyAnswers");
                 });
 #pragma warning restore 612, 618
         }

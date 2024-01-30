@@ -25,13 +25,27 @@ namespace WebAPI.Controllers
         [HttpPost("Add")]
         public async Task<IActionResult> AddStudent([FromBody] CreateStudentRequest createStudentRequest)
         {
-            var result = await _studentService.Add(createStudentRequest);
-            if (result != null)
+            try
             {
-                return CreatedAtAction(nameof(GetStudentById), new { id = result.UserId }, result);
+                var result = await _studentService.Add(createStudentRequest);
+                return Ok(result);
             }
-            return BadRequest("Failed to create student.");
+            catch (Exception ex)
+            {
+                // Hata oluştuğunda loglama yapabilirsiniz.
+                Console.WriteLine("Failed to create student. Error: " + ex.Message);
+
+                // Inner exception varsa onu da loglama yapabilirsiniz.
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine("Inner Exception: " + ex.InnerException.Message);
+                }
+
+                return BadRequest("Failed to create student.");
+            }
         }
+
+
 
         [HttpGet("GetById")]
         public async Task<IActionResult> GetStudentById(Guid id)

@@ -2,6 +2,7 @@
 using DataAccess.Abstracts;
 using DataAccess.Context;
 using Entities.Concretes.Clients;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,10 @@ namespace DataAccess.Concretes
     {
         public EfStudentDal(TobetoContext context) : base(context)
         {
+
         }
+        
+
+
     }
 }

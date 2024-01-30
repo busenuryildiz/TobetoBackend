@@ -1,10 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Entities.Concretes.Clients;
 
 namespace DataAccess.EntityConfigurations
@@ -16,14 +11,22 @@ namespace DataAccess.EntityConfigurations
             builder.ToTable("Students").HasKey(b => b.Id);
             builder.Property(b => b.Id).HasColumnName("StudentId").IsRequired();
             builder.Property(b => b.UserId).HasColumnName("UserId");
-            builder.Property(b => b.StudentNumber).HasColumnName("StudentNumber").IsRequired();
+
+            // Öğrenci numarası için otomatik oluşturulması ve unique olması
+            builder.Property(b => b.StudentNumber)
+      .HasColumnName("StudentNumber")
+      .ValueGeneratedOnAdd()
+      .UseIdentityColumn();
+
+
+            builder.HasIndex(b => b.StudentNumber)
+                .IsUnique();  // Benzersiz index oluştur
 
             // User ilişkisi
-            builder.HasOne(b => b.User);
-           
-
-
-
+            builder.HasOne(b => b.User)
+                   .WithOne(u => u.Student)
+                   .HasForeignKey<Student>(b => b.UserId)
+                   .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(u => u.StudentAssignments)
                 .WithOne(ei => ei.Student)

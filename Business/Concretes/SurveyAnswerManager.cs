@@ -85,10 +85,33 @@ namespace Business.Concretes
             var surveyAnswers = await _surveyAnswerDal.GetListAsync(
       sa => sa.SurveyID == surveyId && sa.UserID == userId,
       include: sa => sa.Include(sa => sa.SurveyQuestion)
-  );
+            );
 
             var mappedSurveyAnswers = _mapper.Map<Paginate<GetSurveyAnswerResponse>>(surveyAnswers);
             return mappedSurveyAnswers;
+        }
+
+
+        public async Task<List<CreatedSurveyAnswerResponse>> SubmitAnswers(List<AddSurveyAnswerRequest> addSurveyAnswerRequests)
+        {
+            var createdSurveyAnswers = new List<CreatedSurveyAnswerResponse>();
+
+            foreach (var addSurveyAnswerRequest in addSurveyAnswerRequests)
+            {
+                // Map AddSurveyAnswerRequest to SurveyAnswer entity
+                var surveyAnswer = _mapper.Map<SurveyAnswer>(addSurveyAnswerRequest);
+
+                // Add the survey answer to the database
+                var createdSurveyAnswer = await _surveyAnswerDal.AddAsync(surveyAnswer);
+
+                // Map the created survey answer to response DTO
+                var createdSurveyAnswerResponse = _mapper.Map<CreatedSurveyAnswerResponse>(createdSurveyAnswer);
+
+                // Add the response to the list
+                createdSurveyAnswers.Add(createdSurveyAnswerResponse);
+            }
+
+            return createdSurveyAnswers;
         }
 
 

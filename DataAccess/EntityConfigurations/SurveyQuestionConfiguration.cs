@@ -15,15 +15,18 @@ namespace DataAccess.Context.EntityConfigurations
             builder.Property(sq => sq.QuestionText).IsRequired();
             builder.Property(sq => sq.QuestionType).IsRequired();
 
+            // SurveyQuestion tablosundaki Survey ilişkisi
             builder.HasOne(sq => sq.Survey)
                 .WithMany(s => s.SurveyQuestions)
                 .HasForeignKey(sq => sq.SurveyID)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction); // veya başka bir davranış
 
+            // SurveyQuestion tablosundaki SurveyAnswers ilişkisi
             builder.HasMany(sq => sq.SurveyAnswers)
                 .WithOne(sa => sa.SurveyQuestion)
                 .HasForeignKey(sa => sa.QuestionID)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction); // veya başka bir davranış
+
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }

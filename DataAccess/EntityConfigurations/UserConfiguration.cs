@@ -1,11 +1,6 @@
-﻿using Entities.Concretes.Clients;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Entities.Concretes.Clients;
 
 namespace DataAccess.EntityConfigurations
 {
@@ -21,17 +16,16 @@ namespace DataAccess.EntityConfigurations
             builder.Property(u => u.NationalIdentity).IsRequired();
             builder.Property(u => u.BirthDate).IsRequired().HasColumnType("date");
             builder.Property(u => u.PhoneNumber).HasMaxLength(20);
-
+            builder.Property(u => u.ImagePath).HasMaxLength(255); // İmge yolu için örnek sınırlama
 
             builder.HasMany(u => u.EducationInformations)
                 .WithOne(ei => ei.User)
                 .HasForeignKey(ei => ei.UserId);
 
             builder.HasMany(u => u.Addresses)
-                .WithOne(ei => ei.User)
-                .HasForeignKey(ei => ei.UserId)
+                .WithOne(a => a.User)
+                .HasForeignKey(a => a.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
-
 
             builder.HasMany(u => u.Certificates)
                 .WithOne(c => c.User)
@@ -49,27 +43,25 @@ namespace DataAccess.EntityConfigurations
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(u => u.UserLanguages)
-                .WithOne(ue => ue.User)
-                .HasForeignKey(ue => ue.UserId)
+                .WithOne(ul => ul.User)
+                .HasForeignKey(ul => ul.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
-            // Surveys ilişkisi
-            builder.HasMany(user => user.Surveys)
-                .WithOne(survey => survey.User)
-                .HasForeignKey(survey => survey.CreatorUserID)
-                .OnDelete(DeleteBehavior.SetNull);  // Eğer kullanıcı silinirse, anketleri null yap, Cascade yerine SetNull kullanılabilir
 
-            // SurveyAnswers ilişkisi
-            builder.HasMany(user => user.SurveyAnswers)
-                .WithOne(answer => answer.User)
-                .HasForeignKey(answer => answer.UserID)
-                .OnDelete(DeleteBehavior.Cascade);  // Eğer kullanıcı silinirse, cevapları da sil
+            //builder.HasMany(u => u.Surveys)
+            //    .WithOne(s => s.User)
+            //    .HasForeignKey(s => s.CreatorUserID)
+            //    .OnDelete(DeleteBehavior.SetNull);
 
-            builder.HasMany(s => s.UserUniversities)
-                .WithOne(ss => ss.User)
-                .HasForeignKey(ss => ss.UserId);
+            builder.HasMany(u => u.SurveyAnswers)
+                .WithOne(sa => sa.User)
+                .HasForeignKey(sa => sa.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(u => u.UserUniversities)
+                .WithOne(uu => uu.User)
+                .HasForeignKey(uu => uu.UserId);
 
             builder.HasQueryFilter(u => !u.DeletedDate.HasValue);
         }
     }
-
 }

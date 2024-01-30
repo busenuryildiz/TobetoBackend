@@ -43,7 +43,15 @@ builder.Services.AddSingleton<RedisService>();
 builder.Services.AddScoped<RedisCacheAttribute>();
 builder.Services.AddScoped<RemoveCacheAttribute>();
 builder.Services.AddScoped<TransactionAttribute>();
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyCorsPolicy", builder =>
+    {
+        builder.WithOrigins("http://localhost:3000")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 
 var config = builder.Configuration;
 builder.Services.AddEndpointsApiExplorer();
@@ -79,6 +87,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors("MyCorsPolicy");
 app.ConfigureCustomExceptionMiddleware();
 app.UseJwtDecoderMiddleware();
+app.UseCors("MyCorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

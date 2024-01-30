@@ -97,6 +97,10 @@ namespace Business.Concretes
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,
+                    BirthDate = user.BirthDate,
+                    PhoneNumber = user.PhoneNumber,
+                    ImagePath = user.ImagePath,
+
                 };
             }
             return null;

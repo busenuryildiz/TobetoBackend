@@ -2,7 +2,7 @@
 using Business.Abstracts;
 using Business.DTOs.Request.SocialMediaAccount;
 using Business.DTOs.Response.SocialMediaAccount;
-using Business.Rules;
+using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;

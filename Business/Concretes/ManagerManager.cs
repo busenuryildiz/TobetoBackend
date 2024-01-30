@@ -4,7 +4,7 @@ using Business.DTOs.Request.Manager;
 using Business.DTOs.Request.User;
 using Business.DTOs.Response.Manager;
 using Business.DTOs.Response.User;
-using Business.Rules;
+using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.Clients;

@@ -2,7 +2,7 @@
 using Business.Abstracts;
 using Business.DTOs.Request.CourseSubject;
 using Business.DTOs.Response.CourseSubject;
-using Business.Rules;
+using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.Courses;

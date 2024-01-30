@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
                 var claims = userRoles.Select(role => new Claim(ClaimTypes.Role, role));
                 var token = await _jwtService.GenerateToken(user, claims);
 
-                return Ok(new { Token = token, /* Diğer gerekli bilgiler */ });
+                return Ok(new { Token = token, User =  user });
             }
 
             else

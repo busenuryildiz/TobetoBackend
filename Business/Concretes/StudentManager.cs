@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Business.DTOs.Request.Student;
 using Business.DTOs.Response.Student;
-using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.Clients;
@@ -12,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.Abstracts;
 using Microsoft.EntityFrameworkCore;
+using Business.Rules.BusinessRules;
 
 namespace Business.Concretes
 {
@@ -29,7 +29,7 @@ namespace Business.Concretes
         public async Task<CreatedStudentResponse> Add(CreateStudentRequest createStudentRequest)
         {
             Student student = _mapper.Map<Student>(createStudentRequest);
-            student.GenerateStudentNumber();
+            GenerateStudentNumber(student);
             await _businessRules.StudentNumberShouldBeUnique(student.StudentNumber);
             Student createdStudent = await _studentDal.AddAsync(student);
             CreatedStudentResponse createdStudentResponse = _mapper.Map<CreatedStudentResponse>(createdStudent);
@@ -75,6 +75,12 @@ namespace Business.Concretes
             await _studentDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedStudentResponse>(data);
             return result;
+        }
+
+        private void GenerateStudentNumber(Student student)
+        {
+            // Öğrenci numarası oluşturma işlemleri
+            student.StudentNumber = new Random().Next(1000, 99999);
         }
     }
 }

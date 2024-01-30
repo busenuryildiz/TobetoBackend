@@ -25,10 +25,5 @@ namespace Entities.Concretes.Clients
         public List<StudentAssignment>? StudentAssignments { get; set; }
         
 
-        public void GenerateStudentNumber()
-        {
-            // Öğrenci numarası oluşturma işlemleri
-            StudentNumber = new Random().Next(1000, 99999);
-        }
     }
 }

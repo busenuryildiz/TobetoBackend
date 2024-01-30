@@ -2,7 +2,7 @@
 using Business.Abstracts;
 using Business.DTOs.Request.Role;
 using Business.DTOs.Response.Role;
-using Business.Rules;
+using Business.Rules.BusinessRules;
 using Business.Rules.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.DataAccess.Paging;

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
-using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.Courses;
@@ -11,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.DTOs.Request.StudentAssignment;
 using Business.DTOs.Response.StudentAssignment;
+using Business.Rules.BusinessRules;
 
 namespace Business.Concretes
 {

@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete([FromBody] DeletePaymentRequest deletePaymentRequest)
+        public async Task<IActionResult> Delete([FromQuery] DeletePaymentRequest deletePaymentRequest)
         {
             var result = await _paymentService.Delete(deletePaymentRequest);
             return Ok(result);

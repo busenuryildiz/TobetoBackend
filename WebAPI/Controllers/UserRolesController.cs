@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteUserRoleRequest deleteUserRoleRequest)
+        public async Task<IActionResult> Delete([FromQuery] DeleteUserRoleRequest deleteUserRoleRequest)
         {
             var result = await _userRoleService.Delete(deleteUserRoleRequest);
             return Ok(result);

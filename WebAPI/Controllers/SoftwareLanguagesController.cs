@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSoftwareLanguage(int id)
+        public async Task<IActionResult> DeleteSoftwareLanguage([FromQuery] int id)
         {
             var deleteRequest = new DeleteSoftwareLanguageRequest { Id = id };
             var result = await _softwareLanguageService.Delete(deleteRequest);

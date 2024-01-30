@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
             _subjectService = subjectService;
         }
 
-        [HttpPost("add")]
+        [HttpPost("Add")]
         [ValidateModel(typeof(CreateSubjectRequestValidator))]
         public async Task<ActionResult<CreatedSubjectResponse>> Add([FromBody] CreateSubjectRequest createSubjectRequest)
         {
@@ -28,22 +28,22 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("delete/{id}")]
-        public async Task<ActionResult<DeletedSubjectResponse>> Delete(int id)
+        [HttpDelete("Delete")]
+        public async Task<ActionResult<DeletedSubjectResponse>> Delete([FromQuery] int id)
         {
             var result = await _subjectService.Delete(new DeleteSubjectRequest { Id = id });
             return Ok(result);
         }
 
-        [HttpPut("update")]
+        [HttpPut("Update")]
         public async Task<ActionResult<UpdatedSubjectResponse>> Update([FromBody] UpdateSubjectRequest updateSubjectRequest)
         {
             var result = await _subjectService.Update(updateSubjectRequest);
             return Ok(result);
         }
 
-        [HttpGet("get/{id}")]
-        public async Task<ActionResult<GetByIdSubjectResponse>> GetById(int id)
+        [HttpGet("Get")]
+        public async Task<ActionResult<GetByIdSubjectResponse>> GetById([FromQuery] int id)
         {
             var result = await _subjectService.GetById(id);
             return Ok(result);

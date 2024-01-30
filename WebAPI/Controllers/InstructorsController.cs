@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("Delete")]
-        public async Task<IActionResult> DeleteInstructor(Guid id)
+        public async Task<IActionResult> DeleteInstructor([FromQuery] Guid id)
         {
             var deleteRequest = new DeleteInstructorRequest { Id = id };
             var result = await _instructorService.Delete(deleteRequest);

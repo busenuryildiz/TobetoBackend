@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteRoleRequest deleteRoleRequest)
+        public async Task<IActionResult> Delete([FromQuery] DeleteRoleRequest deleteRoleRequest)
         {
             var result = await _roleService.Delete(deleteRoleRequest);
             return Ok(result);

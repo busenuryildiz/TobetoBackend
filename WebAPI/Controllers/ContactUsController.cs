@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("sendMail")]
-        public IActionResult SendEmail([FromBody] ContactUsRequestModel model)
+        public IActionResult SendEmail([FromQuery] ContactUsRequestModel model)
         {
             try
             {

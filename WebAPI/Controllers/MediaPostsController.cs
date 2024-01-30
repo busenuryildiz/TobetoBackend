@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteMediaPostRequest deleteMediaPostRequest)
+        public async Task<IActionResult> Delete([FromQuery] DeleteMediaPostRequest deleteMediaPostRequest)
         {
             var result = await _mediapostService.Delete(deleteMediaPostRequest);
             return Ok(result);

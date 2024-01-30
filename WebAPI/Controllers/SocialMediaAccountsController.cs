@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteSocialMediaAccountRequest deleteSocialMediaAccountRequest)
+        public async Task<IActionResult> Delete([FromQuery] DeleteSocialMediaAccountRequest deleteSocialMediaAccountRequest)
         {
             var result = await _socialMediaAccountService.Delete(deleteSocialMediaAccountRequest);
             return Ok(result);

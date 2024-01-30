@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteCountryRequest deleteCountryRequest)
+        public async Task<IActionResult> Delete([FromQuery] DeleteCountryRequest deleteCountryRequest)
         {
             var result = await _countryService.Delete(deleteCountryRequest);
             return Ok(result);

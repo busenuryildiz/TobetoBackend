@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteSkillRequest deleteSkillRequest)
+        public async Task<IActionResult> Delete([FromQuery] DeleteSkillRequest deleteSkillRequest)
         {
             var result = await _skillService.Delete(deleteSkillRequest);
             return Ok(result);

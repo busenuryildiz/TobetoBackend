@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteCertificateRequest deleteCertificateRequest)
+        public async Task<IActionResult> Delete([FromQuery] DeleteCertificateRequest deleteCertificateRequest)
         {
             var result = await _certificateService.Delete(deleteCertificateRequest);
             return Ok(result);

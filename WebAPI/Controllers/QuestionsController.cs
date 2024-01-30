@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteQuestionRequest deleteQuestionRequest)
+        public async Task<IActionResult> Delete([FromQuery] DeleteQuestionRequest deleteQuestionRequest)
         {
             var result = await _questionService.Delete(deleteQuestionRequest);
             return Ok(result);

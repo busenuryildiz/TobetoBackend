@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("Add")]
-        public async Task<IActionResult> Add([FromBody] CreateClassroomRequest createClassroomRequest)
+        public async Task<IActionResult> Add([FromQuery] CreateClassroomRequest createClassroomRequest)
         {
             try
             {

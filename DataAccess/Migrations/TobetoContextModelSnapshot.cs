@@ -538,6 +538,10 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("Duration")
+                        .HasColumnType("int")
+                        .HasColumnName("Duration");
+
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ImagePath");
@@ -554,6 +558,10 @@ namespace DataAccess.Migrations
                     b.Property<int?>("SoftwareLanguageId")
                         .HasColumnType("int")
                         .HasColumnName("SoftwareLanguageId");
+
+                    b.Property<int?>("TotalLike")
+                        .HasColumnType("int")
+                        .HasColumnName("TotalLike");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");

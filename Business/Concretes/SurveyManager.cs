@@ -4,6 +4,7 @@ using Business.DTOs.Response.Survey;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.Surveys;
+using Microsoft.EntityFrameworkCore;
 
 
 
@@ -35,13 +36,31 @@ public class SurveyManager : ISurveyService
         return result2;
     }
 
-    public async Task<CreatedSurveyResponse> GetById(int id)
+    public async Task<GetByIdSurveyResponse> GetById(int id)
     {
-        var result = await _surveyDal.GetAsync(c => c.Id == id);
-        Survey mappedSurvey = _mapper.Map<Survey>(result);
-        CreatedSurveyResponse createdSurveyResponse = _mapper.Map<CreatedSurveyResponse>(mappedSurvey);
-        return createdSurveyResponse;
+        var result = await _surveyDal.GetAsync(
+            s => s.Id == id,
+            include: sa => sa.Include(sa => sa.SurveyQuestions.Where(sq => sq.SurveyID == id))
+        );
+
+        Console.WriteLine("Gelen result: " + result);
+
+        GetByIdSurveyResponse customResponse = _mapper.Map<GetByIdSurveyResponse>(result);
+
+        // Özel survey question response'ları oluştur
+        customResponse.SurveyQuestions = result.SurveyQuestions
+            .Select(sq => new GetSurveyQuestionResponse
+            {
+                QuestionId = sq.Id,
+                QuestionText = sq.QuestionText,
+                QuestionType = sq.QuestionType
+                // Diğer özellikler...
+            })
+            .ToList();
+
+        return customResponse;
     }
+
 
     public async Task<IPaginate<GetListSurveyResponse>> GetListAsync(PageRequest pageRequest)
     {
@@ -65,7 +84,7 @@ public class SurveyManager : ISurveyService
     {
 
         var answeredSurveyIds = await _surveyDal.GetListAsync(sa => sa.SurveyAnswers.Any(sar => sar.UserID == userId));
-        var allSurveyIds = await _surveyDal.GetListAsync(size: int.MaxValue, index:0);
+        var allSurveyIds = await _surveyDal.GetListAsync(size: int.MaxValue, index: 0);
         var unsentSurveyIds = allSurveyIds.Items.Select(s => s.Id).Except(answeredSurveyIds.Items.Select(sa => sa.Id)).ToList();
 
         var unsentSurveysResult = await _surveyDal.GetListAsync(survey => unsentSurveyIds.Contains(survey.Id));

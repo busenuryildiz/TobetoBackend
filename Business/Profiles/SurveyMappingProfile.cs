@@ -28,6 +28,16 @@ namespace Business.Profiles
 
             CreateMap<Survey, GetListSurveyResponse>().ReverseMap();
             CreateMap<Paginate<Survey>, Paginate<GetListSurveyResponse>>().ReverseMap();
+
+            CreateMap<Survey, GetByIdSurveyResponse>()
+            .ForMember(dest => dest.SurveyQuestions, opt => opt.MapFrom(src => src.SurveyQuestions));
+    
+
+            CreateMap<SurveyQuestion, GetSurveyQuestionResponse>()
+                .ForMember(dest => dest.QuestionId, opt => opt.MapFrom(src => src.Id));
+            // Diğer özellikleri de belirtmek istiyorsanız burada tanımlayabilirsiniz.
+
+
         }
     }
 

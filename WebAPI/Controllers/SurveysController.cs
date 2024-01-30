@@ -11,13 +11,13 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
-public class SurveyController : ControllerBase
+public class SurveysController : ControllerBase
 {
     private readonly ISurveyService _surveyService;
     private readonly ISurveyQuestionService _surveyQuestionService;
     private readonly ISurveyAnswerService _surveyAnswerService;
 
-    public SurveyController(ISurveyService surveyService, ISurveyQuestionService surveyQuestionService, ISurveyAnswerService surveyAnswerService)
+    public SurveysController(ISurveyService surveyService, ISurveyQuestionService surveyQuestionService, ISurveyAnswerService surveyAnswerService)
     {
         _surveyService = surveyService ?? throw new ArgumentNullException(nameof(surveyService));
         _surveyQuestionService = surveyQuestionService ?? throw new ArgumentNullException(nameof(surveyQuestionService));
@@ -192,6 +192,19 @@ public class SurveyController : ControllerBase
             // Hata durumunda uygun bir şekilde işleyin.
             return StatusCode(500, "Internal Server Error");
         }
+    }
+
+
+    [HttpPost("SubmitAnswers/{surveyId}")]
+    public async Task<IActionResult> SubmitAnswers(int surveyId, [FromBody] List<AddSurveyAnswerRequest> addSurveyAnswerRequests)
+    {
+        // TODO: Validations and error handling
+
+        var createdSurveyAnswers = await _surveyAnswerService.SubmitAnswers(addSurveyAnswerRequests);
+
+        // TODO: Additional logic after submitting answers
+
+        return Ok(createdSurveyAnswers);
     }
 
 

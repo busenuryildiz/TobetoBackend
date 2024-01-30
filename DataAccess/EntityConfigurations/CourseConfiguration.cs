@@ -21,6 +21,8 @@ namespace DataAccess.EntityConfigurations
             builder.Property(c => c.Name).HasColumnName("Name").HasMaxLength(255);
             builder.Property(c => c.ImagePath).HasColumnName("ImagePath");
             builder.Property(c => c.Price).HasColumnName("Price");
+            builder.Property(c => c.Duration).HasColumnName("Duration");
+            builder.Property(c => c.TotalLike).HasColumnName("TotalLike");
 
             // Course ile Category arasındaki ilişki
             builder.HasOne(c => c.Category)

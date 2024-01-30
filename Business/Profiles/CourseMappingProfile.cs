@@ -27,7 +27,10 @@ namespace Business.Profiles
             CreateMap<UpdateCourseRequest, Course>().ReverseMap();
             CreateMap<Course, UpdatedCourseResponse>().ReverseMap();
 
-            CreateMap<Course, GetListCourseResponse>().ReverseMap();
+            CreateMap<Course, GetListCourseResponse>()
+                .ForMember(dest => dest.InstructorName, opt =>
+                    opt.MapFrom(src => $"{src.InstructorCourses.FirstOrDefault().Instructor.User.FirstName} {src.InstructorCourses.FirstOrDefault().Instructor.User.LastName}"))
+                .ReverseMap();
             CreateMap<Paginate<Course>, Paginate<GetListCourseResponse>>().ReverseMap();
         }
     }

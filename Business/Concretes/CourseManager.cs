@@ -58,15 +58,18 @@ namespace Business.Concretes
                     .Include(u => u.CourseLevel)
                     .Include(u => u.LessonCourses)
                     .Include(u => u.SoftwareLanguage)
-                    .Include(u => u.StudentCourses),
+                    .Include(u => u.StudentCourses)
+                    .Include(c => c.InstructorCourses)
+                    .ThenInclude(ic => ic.Instructor)
+                    .ThenInclude(i => i.User),
 
-                index: pageRequest.PageIndex,
+        index: pageRequest.PageIndex,
                 size: pageRequest.PageSize
             );
             var result = _mapper.Map<Paginate<GetListCourseResponse>>(data);
             return result;
         }
-        
+
         public async Task<UpdatedCourseResponse> Update(UpdateCourseRequest updateCourseRequest)
         {
             var data = await _courseDal.GetAsync(i => i.Id == updateCourseRequest.Id);

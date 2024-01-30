@@ -15,6 +15,8 @@ namespace Entities.Concretes.Courses
         public string? Name { get; set; }
         public string? ImagePath { get; set; }
         public double? Price { get; set; }
+        public int? Duration { get; set; }
+        public int? TotalLike { get; set; }
         public Category? Category { get; set; }
         public List<Assignment>? Assignments { get; set; }
         public List<Exam>? Exams { get; set; }

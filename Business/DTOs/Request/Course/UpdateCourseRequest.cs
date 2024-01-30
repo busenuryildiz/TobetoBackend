@@ -11,9 +11,12 @@ namespace Business.DTOs.Request.Course
         public int Id { get; set; }
         public int? CourseLevelId { get; set; }
         public int? SoftwareLanguageId { get; set; }
+        public string? InstructorName { get; set; }
         public int? CategoryId { get; set; }
         public string? Name { get; set; }
         public string? ImagePath { get; set; }
         public double? Price { get; set; }
+        public int? Duration { get; set; }
+        public int? TotalLike { get; set; }
     }
 }

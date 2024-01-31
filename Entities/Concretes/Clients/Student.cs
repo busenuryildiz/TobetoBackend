@@ -1,5 +1,5 @@
 ﻿using Core.Entities;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 using Entities.Concretes.Surveys;
 using System;
 using System.Collections.Generic;

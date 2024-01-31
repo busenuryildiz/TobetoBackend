@@ -1,6 +1,6 @@
 ﻿using Core.Entities;
 
-namespace Entities.Concretes.Courses;
+namespace Entities.Concretes.CoursesFolder;
 
 public class Option : Entity<int>
 {

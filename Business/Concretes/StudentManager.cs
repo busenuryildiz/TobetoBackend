@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Business.Abstracts;
 using Microsoft.EntityFrameworkCore;
 using Business.Rules.BusinessRules;
+using Serilog;
 
 namespace Business.Concretes
 {
@@ -28,13 +29,34 @@ namespace Business.Concretes
         }
         public async Task<CreatedStudentResponse> Add(CreateStudentRequest createStudentRequest)
         {
-            Student student = _mapper.Map<Student>(createStudentRequest);
-            GenerateStudentNumber(student);
-            await _businessRules.StudentNumberShouldBeUnique(student.StudentNumber);
-            Student createdStudent = await _studentDal.AddAsync(student);
-            CreatedStudentResponse createdStudentResponse = _mapper.Map<CreatedStudentResponse>(createdStudent);
-            return createdStudentResponse;
+            try
+            {
+                // DTO'dan Entity'e dönüştürme
+                Student student = _mapper.Map<Student>(createStudentRequest);
+
+                // Generate a unique student number
+                GenerateUniqueStudentNumber(student);
+
+                // Öğrenciyi veritabanına ekle
+                Student createdStudent = await _studentDal.AddAsync(student);
+
+                // Oluşturulan öğrenciyi response nesnesine dönüştür
+                CreatedStudentResponse createdStudentResponse = _mapper.Map<CreatedStudentResponse>(createdStudent);
+
+                // Başarılı durumu döndür
+                return createdStudentResponse;
+            }
+            catch (Exception ex)
+            {
+                // Hata mesajını ve iç hatayı logla
+                Log.Error(ex.Message, "An error occurred while adding a student");
+
+                // Hata durumunda uygun bir cevap veya istisna fırlatılabilir
+                throw new Exception("Failed to create student.", ex.InnerException);
+            }
         }
+
+
         public async Task<DeletedStudentResponse> Delete(DeleteStudentRequest deleteStudentRequest)
         {
             Student student = await _studentDal.GetAsync(i => i.Id == deleteStudentRequest.Id);
@@ -77,11 +99,36 @@ namespace Business.Concretes
             return result;
         }
 
-        private void GenerateStudentNumber(Student student)
+        private void GenerateUniqueStudentNumber(Student student)
         {
-            // Öğrenci numarası oluşturma işlemleri
-            student.StudentNumber = new Random().Next(1000, 99999);
+            int maxAttempts = 10; // You can adjust the maximum number of attempts as needed
+            int attempt = 0;
+
+            do
+            {
+                // Generate a random student number
+                int studentNumber = new Random().Next(1000, 99999);
+
+                // Check if the generated student number is unique
+                if (_studentDal.GetAsync(s => s.StudentNumber == studentNumber).Result == null)
+                {
+                    // If unique, set the student number and break out of the loop
+                    student.StudentNumber = studentNumber;
+                    break;
+                }
+
+                // If not unique, try again
+                attempt++;
+
+                if (attempt >= maxAttempts)
+                {
+                    // Handle the case where a unique student number couldn't be generated after maximum attempts
+                    throw new Exception("Failed to generate a unique student number.");
+                }
+            } while (true);
         }
     }
+
+
 }
 

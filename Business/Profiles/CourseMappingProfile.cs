@@ -5,7 +5,7 @@ using Business.DTOs.Response.Course;
 using Business.DTOs.Response.User;
 using Core.DataAccess.Paging;
 using Entities.Concretes.Clients;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.DTOs.Request.Student;
 using Business.DTOs.Response.Student;
+using Entities.Concretes.Clients;
 
 namespace Business.Abstracts
 {
@@ -16,5 +17,6 @@ namespace Business.Abstracts
         Task<UpdatedStudentResponse> Update(UpdateStudentRequest updateStudentRequest);
         Task<DeletedStudentResponse> Delete(DeleteStudentRequest deleteStudentRequest);
         Task<CreatedStudentResponse> GetById(Guid id);
+
     }
 }

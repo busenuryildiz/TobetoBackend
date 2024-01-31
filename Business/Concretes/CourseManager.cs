@@ -5,7 +5,7 @@ using Business.DTOs.Response.Course;
 using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes

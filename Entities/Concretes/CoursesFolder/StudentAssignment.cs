@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Core.Entities;
 using Entities.Concretes.Clients;
 
-namespace Entities.Concretes.Courses
+namespace Entities.Concretes.CoursesFolder
 {
     public class StudentAssignment:Entity<int>
     {

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 using Entities.Concretes.Profiles;
 using Entities.Concretes.Surveys;
 
@@ -63,6 +63,9 @@ namespace DataAccess.Context
         public DbSet<Country> Countries { get; set; } 
         public DbSet<ClassroomOfCourse> ClassroomOfCourses { get; set; } 
         public DbSet<Classroom> Classrooms { get; set; } 
+
+            
+
 
 
 

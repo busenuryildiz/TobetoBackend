@@ -8,7 +8,7 @@ using Business.Abstracts;
 using Business.Messages;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using DataAccess.Abstracts;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 
 namespace Business.Rules.BusinessRules
 {

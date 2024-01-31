@@ -5,6 +5,11 @@ using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace WebAPI.Controllers
 {
@@ -51,9 +56,51 @@ namespace WebAPI.Controllers
         [HttpGet("list")]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
+
             var result = await _studentCourseService.GetListAsync(pageRequest);
-            return Ok(result);
+
+            var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve,
+                // Diğer seçenekler
+            };
+
+            // Json string'i düzenle ve güzel bir şekilde formatla
+            var jsonString = System.Text.Json.JsonSerializer.Serialize(result, options);
+            var formattedJsonString = JToken.Parse(jsonString).ToString(Formatting.Indented);
+
+            return Ok(formattedJsonString);
+
+
         }
+        [HttpGet("get-student-courses")]
+        public async Task<IActionResult> GetStudentCoursesByStudentId([FromQuery] Guid studentId, [FromQuery] PageRequest pageRequest)
+        {
+            try
+            {
+                var result = await _studentCourseService.GetListAsync(studentId, pageRequest);
+                var options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    // Diğer seçenekler
+                };
+
+                // Json string'i düzenle ve güzel bir şekilde formatla
+                var jsonString = System.Text.Json.JsonSerializer.Serialize(result, options);
+                var formattedJsonString = JToken.Parse(jsonString).ToString(Formatting.Indented);
+
+                return Ok(formattedJsonString);
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                Log.Error(ex, "An error occurred while getting the student courses for StudentId {StudentId}", studentId);
+
+                // Handle the error gracefully and return an appropriate response
+                return StatusCode(500, "An error occurred while processing the request.");
+            }
+        }
+
 
     }
 }

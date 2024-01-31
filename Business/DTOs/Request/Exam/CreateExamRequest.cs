@@ -1,4 +1,4 @@
-﻿using Entities.Concretes.Courses;
+﻿using Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.CrossCuttingConcerns.Exceptions.Handlers;
 using Microsoft.AspNetCore.Http;
+using Serilog;
 
 namespace Core.CrossCuttingConcerns.Exceptions
 {
@@ -28,6 +29,7 @@ namespace Core.CrossCuttingConcerns.Exceptions
             }
             catch (Exception exception)
             {
+                Log.Information(exception.Message, "An error occurred while fetching the list of StudentCourses");
                 await HandleExceptionAsync(context.Response, exception);
             }
 
@@ -35,6 +37,8 @@ namespace Core.CrossCuttingConcerns.Exceptions
 
         private Task HandleExceptionAsync(HttpResponse response, Exception exception)
         {
+
+
             response.ContentType = "application/json";
             _httpExceptionHandler.Response = response;
             return _httpExceptionHandler.HandleExceptionAsync(exception);

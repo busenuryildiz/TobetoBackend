@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 
 namespace DataAccess.Concretes
 {

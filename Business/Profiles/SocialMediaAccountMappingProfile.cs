@@ -1,7 +1,7 @@
 ﻿using Business.DTOs.Request.SocialMediaAccount;
 using Business.DTOs.Response.SocialMediaAccount;
 using Core.DataAccess.Paging;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;

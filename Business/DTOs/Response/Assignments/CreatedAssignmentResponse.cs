@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.DataAccess.Paging;
-using Entities.Concretes.Courses;
+using Entities;
 
 namespace Business.DTOs.Response.Assignments
 {

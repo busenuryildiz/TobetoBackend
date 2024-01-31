@@ -2,7 +2,7 @@
 using Business.DTOs.Request.InstructorCourse;
 using Business.DTOs.Response.InstructorCourse;
 using Core.DataAccess.Paging;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 using Entities.Concretes.Profiles;
 using System;
 using System.Collections.Generic;

@@ -4,7 +4,7 @@ using Business.DTOs.Request.Option;
 using Business.DTOs.Response.Option;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 
 namespace Business.Concretes
 {

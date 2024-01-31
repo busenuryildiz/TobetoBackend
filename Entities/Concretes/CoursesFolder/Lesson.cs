@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concretes.Courses
+namespace Entities.Concretes.CoursesFolder
 {
     // Lesson sınıfına ekleyin
     public class Lesson : Entity<int>

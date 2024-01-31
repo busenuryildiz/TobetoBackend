@@ -3,7 +3,7 @@ using Business.DTOs.Request.CourseSubject;
 using Business.DTOs.Response.CourseSubject;
 using Core.DataAccess.Paging;
 using Entities.Concretes;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;

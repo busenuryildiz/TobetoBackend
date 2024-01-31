@@ -12,14 +12,10 @@ namespace Entities.Concretes.CoursesFolder
         public int? CourseLevelId { get; set; }
         public int? SoftwareLanguageId { get; set; }
         public int? CategoryId { get; set; }
-        public string? EducationType { get; set; }
         public string? Name { get; set; }
         public string? ImagePath { get; set; }
         public double? Price { get; set; }
-        public DateTime StartDate { get; set; }
-        public bool IsCompleted { get; set; }
         public int? Duration { get; set; }
-        public int? TotalLike { get; set; }
         public Category? Category { get; set; }
         public List<Assignment>? Assignments { get; set; }
         public List<Exam>? Exams { get; set; }

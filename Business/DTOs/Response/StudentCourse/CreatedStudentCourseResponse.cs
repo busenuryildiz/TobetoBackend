@@ -19,6 +19,7 @@ namespace Business.DTOs.Response.StudentCourse
         public bool? IsPaid { get; set; }
         public TimeSpan? SpentTime { get; set; }
         public TimeSpan? EstimatedTime { get; set; }
-        // Diğer özellikleri buraya ekleyebilirsiniz
+        public DateTime StartDate { get; set; }
+        public bool IsCompleted { get; set; }
     }
 }

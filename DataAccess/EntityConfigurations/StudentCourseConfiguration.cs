@@ -50,9 +50,15 @@ namespace DataAccess.EntityConfigurations
                 .HasColumnName("SpentTime"); 
 
             builder.Property(sc => sc.EstimatedTime)
-                .HasColumnName("EstimatedTime"); 
+                .HasColumnName("EstimatedTime");
 
-            builder.HasOne(sc => sc.Student)
+            builder.Property(sc => sc.StartDate)
+                .HasColumnName("StartDate"); 
+
+            builder.Property(sc => sc.IsCompleted)
+                .HasColumnName("IsCompleted");
+
+        builder.HasOne(sc => sc.Student)
                 .WithMany(s => s.StudentCourses)
                 .HasForeignKey(sc => sc.StudentId); 
 

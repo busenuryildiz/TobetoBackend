@@ -283,7 +283,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("StudentNumber")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("StudentNumber");
@@ -300,7 +299,8 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("StudentNumber")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[StudentNumber] IS NOT NULL");
 
                     b.HasIndex("UserId")
                         .IsUnique()
@@ -564,10 +564,6 @@ namespace DataAccess.Migrations
                     b.Property<int?>("SoftwareLanguageId")
                         .HasColumnType("int")
                         .HasColumnName("SoftwareLanguageId");
-
-                    b.Property<int?>("TotalLike")
-                        .HasColumnType("int")
-                        .HasColumnName("TotalLike");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -998,6 +994,10 @@ namespace DataAccess.Migrations
                         .HasColumnType("time")
                         .HasColumnName("EstimatedTime");
 
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit")
+                        .HasColumnName("IsCompleted");
+
                     b.Property<bool?>("IsPaid")
                         .HasColumnType("bit")
                         .HasColumnName("IsPaid");
@@ -1025,6 +1025,10 @@ namespace DataAccess.Migrations
                     b.Property<TimeSpan?>("SpentTime")
                         .HasColumnType("time")
                         .HasColumnName("SpentTime");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("StartDate");
 
                     b.Property<Guid?>("StudentId")
                         .IsRequired()

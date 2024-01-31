@@ -2,7 +2,7 @@
 using DataAccess.Abstracts;
 using DataAccess.Context;
 using Entities.Concretes;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 
 namespace DataAccess.Concretes
 {

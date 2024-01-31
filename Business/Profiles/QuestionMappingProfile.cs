@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Business.DTOs.Request.Question;
 using Business.DTOs.Response.Question;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;

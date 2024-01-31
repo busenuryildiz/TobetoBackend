@@ -1,5 +1,5 @@
 ﻿using Core.Entities;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 
 namespace Entities.Concretes
 {

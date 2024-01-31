@@ -1,4 +1,4 @@
-﻿using Entities.Concretes.Courses;
+﻿using Entities.Concretes.CoursesFolder;
 
 namespace Business.DTOs.Request.Exam;
 

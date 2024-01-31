@@ -5,7 +5,9 @@ using Business.DTOs.Response.StudentCourse;
 using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
+using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace Business.Concretes
 {
@@ -24,11 +26,34 @@ namespace Business.Concretes
 
         public async Task<CreatedStudentCourseResponse> Add(CreateStudentCourseRequest createStudentCourseRequest)
         {
-            StudentCourse studentCourse = _mapper.Map<StudentCourse>(createStudentCourseRequest);
-            StudentCourse createdStudentCourse = await _studentCourseDal.AddAsync(studentCourse);
-            CreatedStudentCourseResponse createdStudentCourseResponse = _mapper.Map<CreatedStudentCourseResponse>(createdStudentCourse);
-            return createdStudentCourseResponse;
+            try
+            {
+                // Validate createStudentCourseRequest if necessary
+
+                // DTO to Entity mapping
+                StudentCourse studentCourse = _mapper.Map<StudentCourse>(createStudentCourseRequest);
+
+                // Add the StudentCourse to the database
+                StudentCourse createdStudentCourse = await _studentCourseDal.AddAsync(studentCourse);
+
+                // Entity to DTO mapping for the response
+                CreatedStudentCourseResponse createdStudentCourseResponse = _mapper.Map<CreatedStudentCourseResponse>(createdStudentCourse);
+
+                // Log success or any additional information
+                Log.Information("StudentCourse added successfully. ID: {StudentCourseId}", createdStudentCourse.Id);
+                // Return the response
+                return createdStudentCourseResponse;
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                Log.Error(ex.Message, "An error occurred while adding a StudentCourse");
+
+                // Rethrow the exception or handle it based on your requirements
+                throw;
+            }
         }
+
 
         public async Task<DeletedStudentCourseResponse> Delete(DeleteStudentCourseRequest deleteStudentCourseRequest)
         {
@@ -58,13 +83,32 @@ namespace Business.Concretes
 
         public async Task<IPaginate<GetListStudentCourseResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _studentCourseDal.GetListAsync(
-                index: pageRequest.PageIndex,
-                size: pageRequest.PageSize
-            );
-            var result = _mapper.Map<Paginate<GetListStudentCourseResponse>>(data);
-            return result;
+
+
+            try
+            {
+                var data = await _studentCourseDal.GetListAsync(
+                    index: pageRequest.PageIndex,
+                    size: pageRequest.PageSize,
+                    include: sc => sc.Include(sc => sc.Course)
+                );
+
+
+                Log.Information("data", data);
+
+                var result = _mapper.Map<Paginate<GetListStudentCourseResponse>>(data);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                Log.Information(ex.Message, "An error occurred while fetching the list of StudentCourses");
+
+                // Rethrow the exception or handle it based on your requirements
+                throw;
+            }
         }
+
 
         public async Task<CreatedStudentCourseResponse> GetCertificateByExamAndStudentCourseId(int examId, int studentCourseId)
         {
@@ -74,6 +118,33 @@ namespace Business.Concretes
             CreatedStudentCourseResponse createdStudentCourseResponse = _mapper.Map<CreatedStudentCourseResponse>(mappedStudentCourse);
             return createdStudentCourseResponse;
         }
+
+        public async Task<IPaginate<GetListStudentCourseResponse>> GetListAsync(Guid studentId, PageRequest pageRequest)
+        {
+            try
+            {
+                var data = await _studentCourseDal.GetListAsync(
+                    predicate: sc => sc.StudentId == studentId, // Sadece belirli öğrencinin verilerini getir
+                    index: pageRequest.PageIndex,
+                    size: pageRequest.PageSize,
+                    include: sc => sc.Include(sc => sc.Course)
+                );
+
+                Log.Information("Fetched data for StudentId {StudentId}: {@Data}", studentId, data);
+
+                var result = _mapper.Map<Paginate<GetListStudentCourseResponse>>(data);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                Log.Error(ex, "An error occurred while fetching the list of StudentCourses for StudentId {StudentId}", studentId);
+
+                // Rethrow the exception or handle it based on your requirements
+                throw;
+            }
+        }
+
 
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Entities;
 
-namespace Entities.Concretes.Courses
+namespace Entities.Concretes.CoursesFolder
 {
     public class SoftwareLanguage : Entity<int>
     {

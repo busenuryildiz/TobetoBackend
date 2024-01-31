@@ -17,6 +17,7 @@ namespace Business.Abstracts
         Task<CreatedStudentCourseResponse> GetById(int id);
         Task<IPaginate<GetListStudentCourseResponse>> GetListAsync(PageRequest pageRequest);
         Task<CreatedStudentCourseResponse> GetCertificateByExamAndStudentCourseId(int examId, int studentCourseId);
+        Task<IPaginate<GetListStudentCourseResponse>> GetListAsync(Guid studentId, PageRequest pageRequest);
 
     }
 }

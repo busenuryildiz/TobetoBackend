@@ -403,7 +403,7 @@ namespace DataAccess.Migrations
                     b.ToTable("ContactUs", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Assignment", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Assignment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -460,7 +460,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Assignments", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Classroom", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Classroom", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -487,7 +487,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Classrooms");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.ClassroomOfCourse", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.ClassroomOfCourse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -521,7 +521,7 @@ namespace DataAccess.Migrations
                     b.ToTable("ClassroomOfCourses", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Course", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Course", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -575,7 +575,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Courses", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.CourseLevel", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.CourseLevel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -603,7 +603,7 @@ namespace DataAccess.Migrations
                     b.ToTable("CourseLevels", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.CourseSubject", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.CourseSubject", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -635,7 +635,7 @@ namespace DataAccess.Migrations
                     b.ToTable("CourseSubjects");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Exam", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Exam", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -683,7 +683,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Exams", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.InstructorCourse", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.InstructorCourse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -717,7 +717,7 @@ namespace DataAccess.Migrations
                     b.ToTable("InstructorCourses", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Lesson", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Lesson", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -759,7 +759,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Lessons", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.LessonCourse", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.LessonCourse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -791,7 +791,7 @@ namespace DataAccess.Migrations
                     b.ToTable("LessonCourse", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Option", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Option", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -828,7 +828,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Options", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Payment", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Payment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -871,7 +871,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Payments", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Question", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Question", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -903,7 +903,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Questions", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.SoftwareLanguage", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.SoftwareLanguage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -931,7 +931,7 @@ namespace DataAccess.Migrations
                     b.ToTable("SoftwareLanguages", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.StudentAssignment", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentAssignment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -963,7 +963,7 @@ namespace DataAccess.Migrations
                     b.ToTable("StudentAssignments", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.StudentCourse", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentCourse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1894,30 +1894,30 @@ namespace DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Assignment", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Assignment", b =>
                 {
-                    b.HasOne("Entities.Concretes.Courses.Course", "Course")
+                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
                         .WithMany("Assignments")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Courses.Lesson", null)
+                    b.HasOne("Entities.Concretes.CoursesFolder.Lesson", null)
                         .WithMany("Assignments")
                         .HasForeignKey("LessonId");
 
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.ClassroomOfCourse", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.ClassroomOfCourse", b =>
                 {
-                    b.HasOne("Entities.Concretes.Courses.Classroom", "Classroom")
+                    b.HasOne("Entities.Concretes.CoursesFolder.Classroom", "Classroom")
                         .WithMany("ClassroomOfCourses")
                         .HasForeignKey("ClassroomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Courses.Course", "Course")
+                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
                         .WithMany("ClassroomOfCourses")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1928,17 +1928,17 @@ namespace DataAccess.Migrations
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Course", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Course", b =>
                 {
                     b.HasOne("Entities.Concretes.Category", "Category")
                         .WithMany("Courses")
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("Entities.Concretes.Courses.CourseLevel", "CourseLevel")
+                    b.HasOne("Entities.Concretes.CoursesFolder.CourseLevel", "CourseLevel")
                         .WithMany("Courses")
                         .HasForeignKey("CourseLevelId");
 
-                    b.HasOne("Entities.Concretes.Courses.SoftwareLanguage", "SoftwareLanguage")
+                    b.HasOne("Entities.Concretes.CoursesFolder.SoftwareLanguage", "SoftwareLanguage")
                         .WithMany("Courses")
                         .HasForeignKey("SoftwareLanguageId");
 
@@ -1949,9 +1949,9 @@ namespace DataAccess.Migrations
                     b.Navigation("SoftwareLanguage");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.CourseSubject", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.CourseSubject", b =>
                 {
-                    b.HasOne("Entities.Concretes.Courses.Course", "Course")
+                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
                         .WithMany("CourseSubjects")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1968,18 +1968,18 @@ namespace DataAccess.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Exam", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Exam", b =>
                 {
-                    b.HasOne("Entities.Concretes.Courses.Course", "Course")
+                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
                         .WithMany("Exams")
                         .HasForeignKey("CourseId");
 
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.InstructorCourse", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.InstructorCourse", b =>
                 {
-                    b.HasOne("Entities.Concretes.Courses.Course", "Course")
+                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
                         .WithMany("InstructorCourses")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1996,15 +1996,15 @@ namespace DataAccess.Migrations
                     b.Navigation("Instructor");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.LessonCourse", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.LessonCourse", b =>
                 {
-                    b.HasOne("Entities.Concretes.Courses.Course", "Course")
+                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
                         .WithMany("LessonCourses")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Courses.Lesson", "Lesson")
+                    b.HasOne("Entities.Concretes.CoursesFolder.Lesson", "Lesson")
                         .WithMany("LessonCourses")
                         .HasForeignKey("LessonId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2015,9 +2015,9 @@ namespace DataAccess.Migrations
                     b.Navigation("Lesson");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Option", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Option", b =>
                 {
-                    b.HasOne("Entities.Concretes.Courses.Question", "Question")
+                    b.HasOne("Entities.Concretes.CoursesFolder.Question", "Question")
                         .WithMany("Options")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2026,9 +2026,9 @@ namespace DataAccess.Migrations
                     b.Navigation("Question");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Payment", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Payment", b =>
                 {
-                    b.HasOne("Entities.Concretes.Courses.StudentCourse", "StudentCourse")
+                    b.HasOne("Entities.Concretes.CoursesFolder.StudentCourse", "StudentCourse")
                         .WithMany("Payments")
                         .HasForeignKey("StudentCourseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2037,9 +2037,9 @@ namespace DataAccess.Migrations
                     b.Navigation("StudentCourse");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Question", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Question", b =>
                 {
-                    b.HasOne("Entities.Concretes.Courses.Exam", "Exam")
+                    b.HasOne("Entities.Concretes.CoursesFolder.Exam", "Exam")
                         .WithMany("Questions")
                         .HasForeignKey("ExamId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2048,9 +2048,9 @@ namespace DataAccess.Migrations
                     b.Navigation("Exam");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.StudentAssignment", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentAssignment", b =>
                 {
-                    b.HasOne("Entities.Concretes.Courses.Assignment", "Assignment")
+                    b.HasOne("Entities.Concretes.CoursesFolder.Assignment", "Assignment")
                         .WithMany("StudentAssignments")
                         .HasForeignKey("AssignmentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2067,9 +2067,9 @@ namespace DataAccess.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.StudentCourse", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentCourse", b =>
                 {
-                    b.HasOne("Entities.Concretes.Courses.Course", "Course")
+                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
                         .WithMany("StudentCourses")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2366,17 +2366,17 @@ namespace DataAccess.Migrations
                     b.Navigation("UserUniversities");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Assignment", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Assignment", b =>
                 {
                     b.Navigation("StudentAssignments");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Classroom", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Classroom", b =>
                 {
                     b.Navigation("ClassroomOfCourses");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Course", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Course", b =>
                 {
                     b.Navigation("Assignments");
 
@@ -2393,34 +2393,34 @@ namespace DataAccess.Migrations
                     b.Navigation("StudentCourses");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.CourseLevel", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.CourseLevel", b =>
                 {
                     b.Navigation("Courses");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Exam", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Exam", b =>
                 {
                     b.Navigation("Questions");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Lesson", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Lesson", b =>
                 {
                     b.Navigation("Assignments");
 
                     b.Navigation("LessonCourses");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.Question", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Question", b =>
                 {
                     b.Navigation("Options");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.SoftwareLanguage", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.SoftwareLanguage", b =>
                 {
                     b.Navigation("Courses");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Courses.StudentCourse", b =>
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentCourse", b =>
                 {
                     b.Navigation("Payments");
                 });

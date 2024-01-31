@@ -1,7 +1,7 @@
 ﻿using Core.DataAccess.Repositories;
 using DataAccess.Abstracts;
 using DataAccess.Context;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;

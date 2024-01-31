@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Entities;
+using Entities.Concretes.Clients;
 
-namespace Entities.Concretes.Courses
+namespace Entities.Concretes.CoursesFolder
 {
-    public class LessonCourse: Entity<int>
+    public class InstructorCourse : Entity<int>
     {
-        public int LessonId { get; set; }
+        public Guid InstructorId { get; set; }
         public int CourseId { get; set; }
         public Course Course { get; set; }
-        public Lesson Lesson { get; set; }
-      
+        public Instructor Instructor { get; set; }
     }
 }

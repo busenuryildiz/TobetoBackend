@@ -2,7 +2,7 @@
 using Business.DTOs.Request.Exam;
 using Business.DTOs.Response.Exam;
 using Core.DataAccess.Paging;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 using System;
 using System.Linq;
 using System.Text;

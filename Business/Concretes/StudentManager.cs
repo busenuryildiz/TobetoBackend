@@ -49,7 +49,7 @@ namespace Business.Concretes
             catch (Exception ex)
             {
                 // Hata mesajını ve iç hatayı logla
-                Log.Error(ex, "An error occurred while adding a student");
+                Log.Error(ex.Message, "An error occurred while adding a student");
 
                 // Hata durumunda uygun bir cevap veya istisna fırlatılabilir
                 throw new Exception("Failed to create student.", ex.InnerException);

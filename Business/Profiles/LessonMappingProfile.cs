@@ -8,7 +8,7 @@ using Business.DTOs.Request.Lesson;
 using Business.DTOs.Response.Lesson;
 using Core.DataAccess.Paging;
 using Entities.Concretes;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 using Entities.Concretes.Profiles;
 
 namespace Business.Profiles

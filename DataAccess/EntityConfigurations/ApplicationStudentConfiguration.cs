@@ -1,5 +1,5 @@
 ﻿using Entities.Concretes;
-using Entities.Concretes.Courses;
+using Entities.Concretes.CoursesFolder;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

@@ -56,6 +56,8 @@ namespace Business.Concretes
                     .Include(u => u.Assignments)
                     .Include(u => u.Exams)
                     .Include(u => u.CourseLevel)
+                    .Include(u => u.CourseSubjects)
+                    .ThenInclude(u => u.Subject)
                     .Include(u => u.LessonCourses)
                     .Include(u => u.SoftwareLanguage)
                     .Include(u => u.StudentCourses)

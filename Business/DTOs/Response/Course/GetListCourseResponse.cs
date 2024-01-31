@@ -11,8 +11,16 @@ namespace Business.DTOs.Response.Course
     {
         public int Id { get; set; }
         public int? CourseLevelId { get; set; }
+        public string? CourseLevelName { get; set; }
+        public string? CourseSubjectName { get; set; }
         public int? SoftwareLanguageId { get; set; }
+        public string? SoftwareLanguageName { get; set; }
+        public DateTime StartDate { get; set; }
+        public bool IsCompleted { get; set; }
+        public string? ClassroomName { get; set; }
+        public string? EducationType { get; set; }
         public int? CategoryId { get; set; }
+        public string? CategoryName { get; set; }
         public string? InstructorName { get; set; }
         public string? Name { get; set; }
         public string? ImagePath { get; set; }

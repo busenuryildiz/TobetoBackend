@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Business.Profiles
 {
-    public class CourseMappingProfile:Profile 
+    public class CourseMappingProfile : Profile
     {
         public CourseMappingProfile()
         {
@@ -30,6 +30,16 @@ namespace Business.Profiles
             CreateMap<Course, GetListCourseResponse>()
                 .ForMember(dest => dest.InstructorName, opt =>
                     opt.MapFrom(src => $"{src.InstructorCourses.FirstOrDefault().Instructor.User.FirstName} {src.InstructorCourses.FirstOrDefault().Instructor.User.LastName}"))
+                .ForMember(dest => dest.CategoryName, opt =>
+                                       opt.MapFrom(src => src.Category.Name))
+                .ForMember(dest => dest.CourseLevelName, opt =>
+                                                          opt.MapFrom(src => src.CourseLevel.Name))
+                .ForMember(dest => dest.SoftwareLanguageName, opt =>
+                                                                             opt.MapFrom(src => src.SoftwareLanguage.Name))
+                .ForMember(dest => dest.ClassroomName, opt =>
+                                                                                                opt.MapFrom(src => src.ClassroomOfCourses.FirstOrDefault().Classroom.Name))
+                .ForMember(dest => dest.CourseSubjectName, opt =>
+                                                                                                                      opt.MapFrom(src => src.CourseSubjects.FirstOrDefault().Subject.Name))
                 .ReverseMap();
             CreateMap<Paginate<Course>, Paginate<GetListCourseResponse>>().ReverseMap();
         }

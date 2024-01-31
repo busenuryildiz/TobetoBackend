@@ -23,6 +23,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(c => c.Price).HasColumnName("Price");
             builder.Property(c => c.Duration).HasColumnName("Duration");
             builder.Property(c => c.TotalLike).HasColumnName("TotalLike");
+            builder.Property(c => c.EducationType).HasColumnName("EducationType");
 
             // Course ile Category arasındaki ilişki
             builder.HasOne(c => c.Category)

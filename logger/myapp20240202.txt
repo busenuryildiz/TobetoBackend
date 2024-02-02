@@ -1,0 +1,20 @@
+2024-02-02 22:59:30.174 +03:00 [INF] Application starting
+2024-02-02 23:21:46.879 +03:00 [INF] Application starting
+2024-02-02 23:28:05.331 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-02 23:28:21.758 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-02 23:28:36.988 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-02 23:29:54.144 +03:00 [INF] Application starting
+2024-02-02 23:33:58.744 +03:00 [INF] Application starting
+2024-02-02 23:37:18.141 +03:00 [INF] Validation failed: 
+ -- Content: 'Content', 10 karakterden büyük veya eşit olmalıdır. 6 karakter girdiniz.
+2024-02-02 23:37:23.420 +03:00 [INF] Validation failed: 
+ -- Content: 'Content', 10 karakterden büyük veya eşit olmalıdır. 6 karakter girdiniz.
+2024-02-02 23:37:26.189 +03:00 [INF] Validation failed: 
+ -- Content: 'Content', 10 karakterden büyük veya eşit olmalıdır. 6 karakter girdiniz.
+2024-02-02 23:37:28.889 +03:00 [INF] Validation failed: 
+ -- Content: 'Content', 10 karakterden büyük veya eşit olmalıdır. 6 karakter girdiniz.
+2024-02-02 23:37:36.517 +03:00 [INF] Validation failed: 
+ -- Content: 'Content', 10 karakterden büyük veya eşit olmalıdır. 6 karakter girdiniz.
+2024-02-02 23:39:16.947 +03:00 [INF] Application starting
+2024-02-02 23:52:38.348 +03:00 [INF] Application starting
+2024-02-02 23:59:34.104 +03:00 [INF] Application starting

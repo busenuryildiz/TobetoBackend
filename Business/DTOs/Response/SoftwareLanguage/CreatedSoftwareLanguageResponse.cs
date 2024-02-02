@@ -9,7 +9,7 @@ namespace Business.DTOs.Response.SoftwareLanguage
 {
     public class CreatedSoftwareLanguageResponse : BasePageableModel
     {
-      
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

@@ -15,8 +15,6 @@ namespace Entities.Concretes.CoursesFolder
         public string VideoUrl { get; set; }
         public DateTime LessonTime { get; set; }
         public List<LessonCourse> LessonCourses { get; set; }
-        public List<Assignment> Assignments { get; set; }
-
     }
 
 }

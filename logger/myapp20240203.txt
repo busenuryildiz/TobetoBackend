@@ -1,0 +1,4 @@
+2024-02-03 00:37:39.489 +03:00 [INF] Application starting
+2024-02-03 00:38:06.607 +03:00 [INF] Application starting
+2024-02-03 00:40:47.323 +03:00 [INF] Application starting
+2024-02-03 00:41:44.988 +03:00 [INF] Invalid object name 'LessonCourse'.

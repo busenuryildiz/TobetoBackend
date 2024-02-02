@@ -10,3 +10,9 @@
 2024-02-03 00:54:06.317 +03:00 [INF] Format of the initialization string does not conform to specification starting at index 245.
 >>>>>>> kerem
 2024-02-03 00:59:40.567 +03:00 [INF] Application starting
+2024-02-03 01:00:22.190 +03:00 [INF] Application starting
+2024-02-03 01:00:48.638 +03:00 [INF] Invalid object name 'LessonCourse'.
+2024-02-03 01:07:33.039 +03:00 [INF] Application starting
+2024-02-03 01:09:38.847 +03:00 [INF] Invalid object name 'LessonCourse'.
+2024-02-03 01:10:07.087 +03:00 [INF] Application starting
+2024-02-03 01:10:28.558 +03:00 [INF] Invalid object name 'LessonCourse'.

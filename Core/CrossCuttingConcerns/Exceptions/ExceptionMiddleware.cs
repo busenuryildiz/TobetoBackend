@@ -30,6 +30,12 @@ namespace Core.CrossCuttingConcerns.Exceptions
             catch (Exception exception)
             {
                 Log.Information(exception.Message, "An error occurred while fetching the list of StudentCourses");
+                Exception innerException = exception.InnerException; 
+                while (innerException != null)
+                {
+                    Log.Information(innerException.Message, "Inner Exception");
+                    innerException = innerException.InnerException;
+                }
                 await HandleExceptionAsync(context.Response, exception);
             }
 

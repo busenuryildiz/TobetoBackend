@@ -1,0 +1,2 @@
+2024-02-03 00:53:40.091 +03:00 [INF] Application starting
+2024-02-03 00:54:06.317 +03:00 [INF] Format of the initialization string does not conform to specification starting at index 245.

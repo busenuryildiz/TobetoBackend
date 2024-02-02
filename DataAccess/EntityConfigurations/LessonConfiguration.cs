@@ -13,7 +13,7 @@ namespace DataAccess.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Lesson> builder)
         {
-            builder.ToTable("Lessons").HasKey(l => l.Id); // Primary key'i belirtiyoruz
+            builder.ToTable("Lessons").HasKey(l => l.Id); 
 
             builder.Property(l => l.Name)
                 .IsRequired()

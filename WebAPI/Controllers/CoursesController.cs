@@ -25,8 +25,24 @@ namespace WebAPI.Controllers
         [ValidateModel(typeof(CreateCourseRequestValidator))]
         public async Task<IActionResult> Add([FromBody] CreateCourseRequest createCourseRequest)
         {
-            var result = await _courseService.Add(createCourseRequest);
-            return Ok(result);
+            try
+            {
+                var result = await _courseService.Add(createCourseRequest);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                // İç istisnayı (inner exception) konsola yazdırma
+                Console.WriteLine("Inner Exception:");
+                Console.WriteLine(ex.InnerException?.Message);
+
+                // Dış istisnayı (outer exception) konsola yazdırma
+                Console.WriteLine("Outer Exception:");
+                Console.WriteLine(ex.Message);
+
+                // Dönüş yaparken genel bir hata mesajı verme
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
         }
 
         [HttpDelete("Delete")]

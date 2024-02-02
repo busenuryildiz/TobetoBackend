@@ -17,7 +17,7 @@ namespace DataAccess.EntityConfigurations
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Name).IsRequired().HasMaxLength(255);
 
-  
+
 
             builder.HasMany(a => a.ClassroomOfCourses)
                 .WithOne(ct => ct.Classroom)

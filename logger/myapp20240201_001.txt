@@ -1,0 +1,7 @@
+2024-02-01 18:49:24.566 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.
+2024-02-01 18:49:24.720 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) is executing.
+2024-02-01 18:49:24.721 +03:00 [INF] TRANSACTIN LOG WORKED
+2024-02-01 18:49:24.926 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.
+2024-02-01 18:49:25.150 +03:00 [INF] Action WebAPI.Controllers.RolesController.GetList (WebAPI) executed.
+2024-02-01 18:54:29.866 +03:00 [INF] Application starting
+2024-02-01 19:20:38.227 +03:00 [INF] Application starting

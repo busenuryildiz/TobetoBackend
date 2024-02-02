@@ -13,7 +13,7 @@ namespace DataAccess.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<LessonCourse> builder)
         {
-            builder.ToTable("LessonCourse").HasKey(cs => cs.Id);
+            builder.ToTable("LessonCourses").HasKey(cs => cs.Id);
 
 
             builder.Property(cs => cs.LessonId).IsRequired();

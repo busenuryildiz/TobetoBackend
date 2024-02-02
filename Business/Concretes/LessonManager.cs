@@ -11,37 +11,47 @@ namespace Business.Concretes
 {
     public class LessonManager : ILessonService
     {
-        ILessonDal _LessonDal;
+        ILessonDal _lessonDal;
         IMapper _mapper;
         LessonBusinessRules _businessRules;
 
         public LessonManager(LessonBusinessRules businessRules, ILessonDal LessonDal, IMapper mapper)
         {
             _businessRules = businessRules;
-            _LessonDal = LessonDal;
+            _lessonDal = LessonDal;
             _mapper = mapper;
         }
 
         public async Task<CreatedLessonResponse> Add(CreateLessonRequest createLessonRequest)
         {
-            Lesson lesson = _mapper.Map<Lesson>(createLessonRequest);
-            Lesson createdLesson = await _LessonDal.AddAsync(lesson);
-            CreatedLessonResponse createdLessonResponse = _mapper.Map<CreatedLessonResponse>(createdLesson);
-            return createdLessonResponse;
+            try
+            {
+                Lesson lesson = _mapper.Map<Lesson>(createLessonRequest);
+                Lesson createdLesson = await _lessonDal.AddAsync(lesson);
+                CreatedLessonResponse createdLessonResponse = _mapper.Map<CreatedLessonResponse>(createdLesson);
+                return createdLessonResponse;
+            }
+            catch (Exception ex)
+            {
+                // InnerException'ı kontrol etmek için bir hata işleyici ekleyelim
+                Console.WriteLine("Inner Exception: " + ex.InnerException?.Message);
+                // veya hata mesajını geri döndürerek istemciye iletebiliriz
+                return null; // veya hata koduyla birlikte uygun bir hata mesajı döndürebilirsiniz
+            }
         }
 
         public async Task<DeletedLessonResponse> Delete(DeleteLessonRequest deleteLessonRequest)
         {
-            var data = await _LessonDal.GetAsync(i => i.Id == deleteLessonRequest.Id);
+            var data = await _lessonDal.GetAsync(i => i.Id == deleteLessonRequest.Id);
             _mapper.Map(deleteLessonRequest, data);
-            var result = await _LessonDal.DeleteAsync(data);
+            var result = await _lessonDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedLessonResponse>(result);
             return result2;
         }
 
         public async Task<CreatedLessonResponse> GetById(int id)
         {
-            var result = await _LessonDal.GetAsync(c => c.Id == id);
+            var result = await _lessonDal.GetAsync(c => c.Id == id);
             Lesson mappedLesson = _mapper.Map<Lesson>(result);
             CreatedLessonResponse createdLessonResponse = _mapper.Map<CreatedLessonResponse>(mappedLesson);
             return createdLessonResponse;
@@ -50,20 +60,30 @@ namespace Business.Concretes
 
         public async Task<IPaginate<GetListLessonResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _LessonDal.GetListAsync(
-                index: pageRequest.PageIndex,
-                size: pageRequest.PageSize
-            );
-            var result = _mapper.Map<Paginate<GetListLessonResponse>>(data);
-            return result;
+            try
+            {
+                var data = await _lessonDal.GetListAsync(
+                    index: pageRequest.PageIndex,
+                    size: pageRequest.PageSize
+                );
+                var result = _mapper.Map<Paginate<GetListLessonResponse>>(data);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                // InnerException'ı kontrol etmek için bir hata işleyici ekleyelim
+                Console.WriteLine("Inner Exception: " + ex.InnerException?.Message);
+                // veya hata mesajını geri döndürerek istemciye iletebiliriz
+                return null; // veya hata koduyla birlikte uygun bir hata mesajı döndürebilirsiniz
+            }
         }
 
 
         public async Task<UpdatedLessonResponse> Update(UpdateLessonRequest updateLessonRequest)
         {
-            var data = await _LessonDal.GetAsync(i => i.Id == updateLessonRequest.Id);
+            var data = await _lessonDal.GetAsync(i => i.Id == updateLessonRequest.Id);
             _mapper.Map(updateLessonRequest, data);
-            await _LessonDal.UpdateAsync(data);
+            await _lessonDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedLessonResponse>(data);
             return result;
         }

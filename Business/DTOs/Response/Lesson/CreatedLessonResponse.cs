@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Response.Lesson
 {
-    public class CreatedLessonResponse : BasePageableModel
+    public class CreatedLessonResponse
     {
         public int Id { get; set; }
         public string Name { get; set; }

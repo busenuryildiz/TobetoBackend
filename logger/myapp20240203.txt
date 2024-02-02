@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 2024-02-03 00:37:39.489 +03:00 [INF] Application starting
 2024-02-03 00:38:06.607 +03:00 [INF] Application starting
 2024-02-03 00:40:47.323 +03:00 [INF] Application starting
 2024-02-03 00:41:44.988 +03:00 [INF] Invalid object name 'LessonCourse'.
 2024-02-03 00:46:32.018 +03:00 [INF] Application starting
 2024-02-03 00:48:14.409 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+=======
+2024-02-03 00:53:40.091 +03:00 [INF] Application starting
+2024-02-03 00:54:06.317 +03:00 [INF] Format of the initialization string does not conform to specification starting at index 245.
+>>>>>>> kerem
+2024-02-03 00:59:40.567 +03:00 [INF] Application starting

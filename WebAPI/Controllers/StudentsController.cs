@@ -75,30 +75,13 @@ namespace WebAPI.Controllers
         [HttpGet("GetList")]
         public async Task<IActionResult> GetStudentList([FromQuery] PageRequest pageRequest)
         {
-            try
-            {
-
-                Log.Information("sdgagsgdsagdsagsad");
-                Log.Information("sdgagsgdsagdsagsad");
-                Log.Information("sdgagsgdsagdsagsad");
-                Log.Information("sdgagsgdsagdsagsad");
-                Log.Information("sdgagsgdsagdsagsad");
-                Log.Information("sdgagsgdsagdsagsad");
 
            
 
 
                 var result = await _studentService.GetListAsync(pageRequest);
                 return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                // Log the error
-                Log.Error(ex, "An error occurred while getting the student list");
 
-                // Handle the error gracefully and return an appropriate response
-                return StatusCode(500, "An error occurred while processing the request.");
-            }
         }
 
 

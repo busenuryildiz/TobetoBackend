@@ -96,10 +96,10 @@ namespace Business.Concretes
         {
             var createdSurveyAnswers = new List<CreatedSurveyAnswerResponse>();
 
-            foreach (var addSurveyAnswerRequest in addSurveyAnswerRequests)
+            foreach (var addSurveyAnswerRequestOne in addSurveyAnswerRequests)
             {
                 // Map AddSurveyAnswerRequest to SurveyAnswer entity
-                var surveyAnswer = _mapper.Map<SurveyAnswer>(addSurveyAnswerRequest);
+                SurveyAnswer surveyAnswer = _mapper.Map<SurveyAnswer>(addSurveyAnswerRequestOne);
 
                 // Add the survey answer to the database
                 var createdSurveyAnswer = await _surveyAnswerDal.AddAsync(surveyAnswer);

@@ -195,8 +195,8 @@ public class SurveysController : ControllerBase
     }
 
 
-    [HttpPost("SubmitAnswers/{surveyId}")]
-    public async Task<IActionResult> SubmitAnswers(int surveyId, [FromBody] List<AddSurveyAnswerRequest> addSurveyAnswerRequests)
+    [HttpPost("SubmitAnswers")]
+    public async Task<IActionResult> SubmitAnswers([FromBody] List<AddSurveyAnswerRequest> addSurveyAnswerRequests)
     {
         // TODO: Validations and error handling
 

@@ -282,29 +282,27 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("StudentNumber")
+                    b.Property<int>("StudentNumber")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("StudentNumber");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("StudentNumber"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentNumber"));
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("UserId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("StudentNumber")
-                        .IsUnique()
-                        .HasFilter("[StudentNumber] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Students", (string)null);
                 });
@@ -1922,7 +1920,8 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concretes.Clients.User", "User")
                         .WithOne("Student")
                         .HasForeignKey("Entities.Concretes.Clients.Student", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

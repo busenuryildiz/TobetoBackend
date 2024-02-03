@@ -22,3 +22,62 @@
 2024-02-03 00:42:28.131 +03:00 [INF] Application starting
 2024-02-03 00:46:33.040 +03:00 [INF] Application starting
 >>>>>>> 060a9a238537aa6d79d3096c099d435d0f693b48
+2024-02-03 01:16:08.329 +03:00 [INF] Application starting
+2024-02-03 01:16:54.953 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-03 01:16:54.954 +03:00 [INF] The INSERT statement conflicted with the FOREIGN KEY constraint "FK_SurveyAnswers_SurveyQuestions_QuestionID". The conflict occurred in database "TobetoBackend", table "dbo.SurveyQuestions", column 'Id'.
+2024-02-03 02:04:28.412 +03:00 [INF] Application starting
+2024-02-03 02:05:07.232 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-03 02:05:07.233 +03:00 [INF] The INSERT statement conflicted with the FOREIGN KEY constraint "FK_SurveyAnswers_SurveyQuestions_QuestionID". The conflict occurred in database "TobetoBackend", table "dbo.SurveyQuestions", column 'Id'.
+2024-02-03 02:08:14.316 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-03 02:08:14.316 +03:00 [INF] The INSERT statement conflicted with the FOREIGN KEY constraint "FK_SurveyAnswers_SurveyQuestions_QuestionID". The conflict occurred in database "TobetoBackend", table "dbo.SurveyQuestions", column 'Id'.
+2024-02-03 02:10:55.674 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-03 02:10:55.674 +03:00 [INF] The INSERT statement conflicted with the FOREIGN KEY constraint "FK_SurveyAnswers_SurveyQuestions_QuestionID". The conflict occurred in database "TobetoBackend", table "dbo.SurveyQuestions", column 'Id'.
+2024-02-03 02:11:59.563 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-03 02:11:59.564 +03:00 [INF] The INSERT statement conflicted with the FOREIGN KEY constraint "FK_SurveyAnswers_Users_UserID". The conflict occurred in database "TobetoBackend", table "dbo.Users", column 'Id'.
+2024-02-03 02:12:48.312 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-03 02:12:48.312 +03:00 [INF] The INSERT statement conflicted with the FOREIGN KEY constraint "FK_SurveyAnswers_Users_UserID". The conflict occurred in database "TobetoBackend", table "dbo.Users", column 'Id'.
+2024-02-03 02:19:58.183 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-03 02:19:58.183 +03:00 [INF] The INSERT statement conflicted with the FOREIGN KEY constraint "FK_SurveyAnswers_Users_UserID". The conflict occurred in database "TobetoBackend", table "dbo.Users", column 'Id'.
+2024-02-03 02:20:50.697 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-03 02:20:50.698 +03:00 [INF] The INSERT statement conflicted with the FOREIGN KEY constraint "FK_SurveyAnswers_Users_UserID". The conflict occurred in database "TobetoBackend", table "dbo.Users", column 'Id'.
+2024-02-03 02:24:50.609 +03:00 [INF] Application starting
+2024-02-03 02:26:22.129 +03:00 [INF] Application starting
+2024-02-03 02:37:58.866 +03:00 [INF] Application starting
+2024-02-03 02:42:55.346 +03:00 [INF] Application starting
+2024-02-03 02:43:18.577 +03:00 [INF] sdgagsgdsagdsagsad
+2024-02-03 02:43:18.577 +03:00 [INF] sdgagsgdsagdsagsad
+2024-02-03 02:43:18.577 +03:00 [INF] sdgagsgdsagdsagsad
+2024-02-03 02:43:18.578 +03:00 [INF] sdgagsgdsagdsagsad
+2024-02-03 02:43:18.578 +03:00 [INF] sdgagsgdsagdsagsad
+2024-02-03 02:43:18.578 +03:00 [INF] sdgagsgdsagdsagsad
+2024-02-03 02:43:21.193 +03:00 [ERR] An error occurred while getting the student list
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'IsCompleted'.
+Invalid column name 'StartDate'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__209_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Core.DataAccess.Paging.IQueryablePaginateExtensions.ToPaginateAsync[T](IQueryable`1 source, Int32 index, Int32 size, Int32 from, CancellationToken cancellationToken) in C:\Users\kerem\Source\Repos\TobetoBackend2\Core\DataAccess\Paging\IQueryablePaginateExtensions.cs:line 25
+   at Core.DataAccess.Repositories.EfRepositoryBase`3.GetListAsync(Expression`1 predicate, Func`2 orderBy, Func`2 include, Int32 index, Int32 size, Boolean withDeleted, Boolean enableTracking, CancellationToken cancellationToken) in C:\Users\kerem\Source\Repos\TobetoBackend2\Core\DataAccess\Repositories\EfRepositoryBase.cs:line 96
+   at Business.Concretes.StudentManager.GetListAsync(PageRequest pageRequest) in C:\Users\kerem\Source\Repos\TobetoBackend2\Business\Concretes\StudentManager.cs:line 81
+   at WebAPI.Controllers.StudentsController.GetStudentList(PageRequest pageRequest) in C:\Users\kerem\Source\Repos\TobetoBackend2\WebAPI\Controllers\StudentsController.cs:line 91
+ClientConnectionId:cda0a00a-8ca0-4790-a794-8704b7eeb12e
+Error Number:207,State:1,Class:16
+2024-02-03 02:45:28.983 +03:00 [INF] Application starting
+2024-02-03 02:45:44.639 +03:00 [INF] Invalid column name 'IsCompleted'.
+Invalid column name 'StartDate'.
+2024-02-03 03:00:39.362 +03:00 [INF] Application starting
+2024-02-03 03:00:52.351 +03:00 [INF] Invalid object name 'Students'.
+2024-02-03 03:01:12.347 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-03 03:01:12.348 +03:00 [INF] Invalid object name 'Users'.
+2024-02-03 03:12:26.509 +03:00 [INF] Application starting

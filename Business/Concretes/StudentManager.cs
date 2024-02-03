@@ -107,7 +107,7 @@ namespace Business.Concretes
             do
             {
                 // Generate a random student number
-                int studentNumber = new Random().Next(1000, 99999);
+                string studentNumber = new Random().Next(1000, 99999).ToString();
 
                 // Check if the generated student number is unique
                 if (_studentDal.GetAsync(s => s.StudentNumber == studentNumber).Result == null)

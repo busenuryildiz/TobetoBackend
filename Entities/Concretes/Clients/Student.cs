@@ -16,7 +16,7 @@ namespace Entities.Concretes.Clients
     public class Student : Entity<Guid>
     {
         public Guid UserId { get; set; }
-        public int StudentNumber { get; set; }
+        public string StudentNumber { get; set; }
         public User? User { get; set; }
         public virtual ICollection<Survey> AssignedSurveys { get; set; } = new List<Survey>();  // Öğrenciye atanmış anketler
         public List<StudentCourse>? StudentCourses { get; set; } // Eklenen alan

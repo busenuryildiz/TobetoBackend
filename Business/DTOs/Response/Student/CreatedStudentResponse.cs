@@ -12,6 +12,6 @@ namespace Business.DTOs.Response.Student
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
-        public int StudentNumber { get; set; }
+        public string StudentNumber { get; set; }
     }
 }

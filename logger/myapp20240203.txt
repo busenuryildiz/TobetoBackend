@@ -81,3 +81,11 @@ Invalid column name 'StartDate'.
 2024-02-03 03:01:12.347 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
 2024-02-03 03:01:12.348 +03:00 [INF] Invalid object name 'Users'.
 2024-02-03 03:12:26.509 +03:00 [INF] Application starting
+2024-02-03 03:14:58.084 +03:00 [INF] Application starting
+2024-02-03 03:18:22.227 +03:00 [ERR] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-03 04:18:57.010 +03:00 [INF] Application starting
+2024-02-03 04:23:45.200 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-03 04:23:45.201 +03:00 [INF] The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Surveys_Users_CreatorUserID". The conflict occurred in database "TobetoBackend", table "dbo.Users", column 'Id'.
+2024-02-03 04:24:48.767 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-03 04:24:48.767 +03:00 [INF] The INSERT statement conflicted with the FOREIGN KEY constraint "FK_SurveyQuestions_Surveys_SurveyID". The conflict occurred in database "TobetoBackend", table "dbo.Surveys", column 'Id'.
+2024-02-03 04:47:46.840 +03:00 [INF] StudentCourse added successfully. ID: 1

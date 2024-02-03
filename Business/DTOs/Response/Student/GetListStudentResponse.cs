@@ -15,7 +15,7 @@ namespace Business.DTOs.Response.Student
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
-        public int StudentNumber { get; set; }
+        public string StudentNumber { get; set; }
         public int CourseId { get; set; }
         public List<GetListApplicationStudentResponse> ApplicationStudents { get; set; }
         public List<GetListStudentAssignmentResponse> StudentAssignments { get; set; }

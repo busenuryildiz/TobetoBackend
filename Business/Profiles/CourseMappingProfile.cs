@@ -36,8 +36,7 @@ namespace Business.Profiles
                                                           opt.MapFrom(src => src.CourseLevel.Name))
                 .ForMember(dest => dest.SoftwareLanguageName, opt =>
                                                                              opt.MapFrom(src => src.SoftwareLanguage.Name))
-                .ForMember(dest => dest.ClassroomName, opt =>
-                                                                                                opt.MapFrom(src => src.ClassroomOfCourses.FirstOrDefault().Classroom.Name))
+               
                 .ForMember(dest => dest.CourseSubjectName, opt =>
                                                                                                                       opt.MapFrom(src => src.CourseSubjects.FirstOrDefault().Subject.Name))
 

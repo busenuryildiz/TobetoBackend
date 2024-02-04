@@ -450,67 +450,6 @@ namespace DataAccess.Migrations
                     b.ToTable("Assignments", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Classroom", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Classrooms");
-                });
-
-            modelBuilder.Entity("Entities.Concretes.CoursesFolder.ClassroomOfCourse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ClassroomId")
-                        .HasColumnType("int")
-                        .HasColumnName("ClassroomId");
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int")
-                        .HasColumnName("CourseId");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClassroomId");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("ClassroomOfCourses", (string)null);
-                });
-
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Course", b =>
                 {
                     b.Property<int>("Id")
@@ -523,6 +462,10 @@ namespace DataAccess.Migrations
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int")
                         .HasColumnName("CategoryId");
+
+                    b.Property<string>("Classroom")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Classroom");
 
                     b.Property<int?>("CourseLevelId")
                         .HasColumnType("int")
@@ -1035,32 +978,6 @@ namespace DataAccess.Migrations
                     b.HasIndex("StudentId");
 
                     b.ToTable("StudentCourses", (string)null);
-                });
-
-            modelBuilder.Entity("Entities.Concretes.Experience", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Experiences");
                 });
 
             modelBuilder.Entity("Entities.Concretes.MediaPost", b =>
@@ -1934,25 +1851,6 @@ namespace DataAccess.Migrations
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.CoursesFolder.ClassroomOfCourse", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.Classroom", "Classroom")
-                        .WithMany("ClassroomOfCourses")
-                        .HasForeignKey("ClassroomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
-                        .WithMany("ClassroomOfCourses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Classroom");
-
-                    b.Navigation("Course");
-                });
-
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Course", b =>
                 {
                     b.HasOne("Entities.Concretes.Category", "Category")
@@ -2396,16 +2294,9 @@ namespace DataAccess.Migrations
                     b.Navigation("StudentAssignments");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Classroom", b =>
-                {
-                    b.Navigation("ClassroomOfCourses");
-                });
-
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Course", b =>
                 {
                     b.Navigation("Assignments");
-
-                    b.Navigation("ClassroomOfCourses");
 
                     b.Navigation("CourseSubjects");
 

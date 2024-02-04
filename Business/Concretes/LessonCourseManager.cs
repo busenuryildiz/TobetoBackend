@@ -60,9 +60,7 @@ namespace Business.Concretes
              .Include(p => p.Lesson)
              .Include(p => p.Course.InstructorCourses)
                  .ThenInclude(ic => ic.Instructor)
-                 .ThenInclude(i => i.User)
-         .Include(p => p.Course.ClassroomOfCourses)
-            .ThenInclude(cc => cc.Classroom),
+                 .ThenInclude(i => i.User),
          index: pageRequest.PageIndex,
          size: pageRequest.PageSize
              );

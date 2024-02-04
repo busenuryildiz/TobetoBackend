@@ -77,8 +77,6 @@ namespace Business
             services.AddScoped<IStudentAssignmentService, StudentAssignmentManager>();
             services.AddScoped<IUniversityService, UniversityManager>();
             services.AddScoped<IUserUniversityService, UserUniversityManager>();
-            services.AddScoped<IClassroomOfCourseService, ClassroomOfCourseManager>();
-            services.AddScoped<IClassroomService, ClassroomManager>();
 
             services.AddScoped<ISoftwareLanguageService, SoftwareLanguageManager>();
             services.AddScoped<IStudentAssignmentService, StudentAssignmentManager>();

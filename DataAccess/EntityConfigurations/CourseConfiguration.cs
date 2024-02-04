@@ -22,6 +22,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(c => c.ImagePath).HasColumnName("ImagePath");
             builder.Property(c => c.Price).HasColumnName("Price");
             builder.Property(c => c.Duration).HasColumnName("Duration");
+            builder.Property(c => c.Classroom).HasColumnName("Classroom");
 
             // Course ile Category arasındaki ilişki
             builder.HasOne(c => c.Category)
@@ -52,7 +53,6 @@ namespace DataAccess.EntityConfigurations
                 .HasForeignKey(sc => sc.CourseId);
 
             builder.HasMany(c => c.CourseSubjects);
-            builder.HasMany(c => c.ClassroomOfCourses);
 
             // Course tablosu üzerinde silinmiş kayıtları filtreleme
             builder.HasQueryFilter(c => !c.DeletedDate.HasValue);

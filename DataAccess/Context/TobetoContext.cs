@@ -61,10 +61,6 @@ namespace DataAccess.Context
         public DbSet<City> Cities { get; set; } 
         public DbSet<District> Districts { get; set; }
         public DbSet<Country> Countries { get; set; }
-        public DbSet<ClassroomOfCourse> ClassroomOfCourses { get; set; }
-        public DbSet<Classroom> Classrooms { get; set; }
-        public DbSet<Experience> Experiences { get; set; }
-
 
 
 

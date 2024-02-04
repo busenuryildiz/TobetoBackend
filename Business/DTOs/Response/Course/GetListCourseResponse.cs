@@ -15,7 +15,7 @@ namespace Business.DTOs.Response.Course
         public string? CourseSubjectName { get; set; }
         public int? SoftwareLanguageId { get; set; }
         public string? SoftwareLanguageName { get; set; }
-        public string? ClassroomName { get; set; }
+        public string? Classroom { get; set; }
         public int? CategoryId { get; set; }
         public string? CategoryName { get; set; }
         public string? InstructorName { get; set; }

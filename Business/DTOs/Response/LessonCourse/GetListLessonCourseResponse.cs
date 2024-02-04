@@ -15,7 +15,7 @@ namespace Business.DTOs.Response.LessonCourse
         public string LessonName { get; set; }
         public DateTime LessonTime { get; set; }
         public string InstructorName { get; set; }
-        public string ClassroomName { get; set; }
+        public string Classroom { get; set; }
 
     }
 }

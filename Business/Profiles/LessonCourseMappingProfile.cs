@@ -27,17 +27,13 @@ namespace Business.Profiles
 
             CreateMap<LessonCourse, GetListLessonCourseResponse>()
                 .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src => src.Course.Name))
+                .ForMember(dest => dest.Classroom, opt => opt.MapFrom(src => src.Course.Classroom))
                 .ForMember(dest => dest.LessonName, opt => opt.MapFrom(src => src.Lesson.Name))
                 .ForMember(dest => dest.LessonTime, opt => opt.MapFrom(src => src.Lesson.LessonTime))
                 .ForMember(dest => dest.InstructorName, opt => opt.MapFrom(src =>
                     src.Course.InstructorCourses.Any() ?
                     string.Join(", ", src.Course.InstructorCourses.Select(ic => ic.Instructor.User.FirstName + " " + ic.Instructor.User.LastName)) :
                     "No Instructor"
-                ))
-                .ForMember(dest => dest.ClassroomName, opt => opt.MapFrom(src =>
-                    src.Course.ClassroomOfCourses.Any() ?
-                    string.Join(", ", src.Course.ClassroomOfCourses.Select(cc => cc.Classroom.Name)) :
-                    "No Classroom"
                 ))
                  .ReverseMap();
 

@@ -16,6 +16,7 @@ namespace Entities.Concretes.CoursesFolder
         public string? ImagePath { get; set; }
         public double? Price { get; set; }
         public int? Duration { get; set; }
+        public string? Classroom { get; set; }
         public Category? Category { get; set; }
         public List<Assignment>? Assignments { get; set; }
         public List<Exam>? Exams { get; set; }
@@ -25,7 +26,6 @@ namespace Entities.Concretes.CoursesFolder
         public SoftwareLanguage? SoftwareLanguage { get; set; }
         public List<StudentCourse>? StudentCourses { get; set; } 
         public List<InstructorCourse> InstructorCourses { get; set; }
-        public List<ClassroomOfCourse> ClassroomOfCourses { get; set; }
 
     }
 }

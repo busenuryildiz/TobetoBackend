@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.DTOs.Request.User;
 using Business.DTOs.Response.User;
+using Business.DTOs.Request.LessonCourse;
+using Business.DTOs.Response.LessonCourse;
+using Entities.Concretes.CoursesFolder;
 
 namespace Business.Profiles
 { 
@@ -29,6 +32,7 @@ namespace Business.Profiles
             //CreateMap<Paginate<User>, Paginate<GetListUserResponse>>().ReverseMap();
             CreateMap<Paginate<User>, Paginate<GetListUserResponse>>()
                 .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items)).ReverseMap();
+
         }
     }
 }

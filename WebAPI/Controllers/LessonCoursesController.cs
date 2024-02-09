@@ -52,10 +52,10 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("GetList")]
-        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+        public async Task<IActionResult> GetList()
         {
             try {
-                var result = await _lessonCourseService.GetListAsync(pageRequest);
+                var result = await _lessonCourseService.GetListAsync(int.MaxValue);
                 return Ok(result);
             }
             catch (Exception ex)

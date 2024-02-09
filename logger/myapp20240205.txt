@@ -1,0 +1,3 @@
+2024-02-05 01:06:01.579 +03:00 [INF] Application starting
+2024-02-05 01:18:06.909 +03:00 [INF] Application starting
+2024-02-05 01:35:47.777 +03:00 [INF] Application starting

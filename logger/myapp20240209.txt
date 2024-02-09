@@ -92,3 +92,4 @@ The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'Encode
 2024-02-09 22:20:33.816 +03:00 [INF] Application starting
 2024-02-09 22:45:24.277 +03:00 [INF] Application starting
 2024-02-09 22:49:11.883 +03:00 [INF] Application starting
+2024-02-09 22:55:18.753 +03:00 [INF] Application starting

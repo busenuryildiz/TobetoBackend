@@ -52,7 +52,7 @@ namespace Business.Concretes
             return createdLessonCourseResponse;
         }
 
-        public async Task<IPaginate<GetListLessonCourseResponse>> GetListAsync(PageRequest pageRequest)
+        public async Task<IPaginate<GetListLessonCourseResponse>> GetListAsync(int size)
         {
             var data = await _lessonCourseDal.GetListAsync(
          include: query => query
@@ -61,8 +61,7 @@ namespace Business.Concretes
              .Include(p => p.Course.InstructorCourses)
                  .ThenInclude(ic => ic.Instructor)
                  .ThenInclude(i => i.User),
-         index: pageRequest.PageIndex,
-         size: pageRequest.PageSize
+                 size: size
              );
             var result = _mapper.Map<Paginate<GetListLessonCourseResponse>>(data);
 

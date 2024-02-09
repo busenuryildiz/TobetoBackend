@@ -1,0 +1,94 @@
+2024-02-09 00:06:38.943 +03:00 [INF] Application starting
+2024-02-09 00:11:09.991 +03:00 [INF] Application starting
+2024-02-09 00:15:26.976 +03:00 [INF] IDX12709: CanReadToken() returned false. JWT is not well formed: '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2024-02-09 00:17:19.893 +03:00 [INF] IDX12709: CanReadToken() returned false. JWT is not well formed: '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2024-02-09 00:24:27.382 +03:00 [INF] Application starting
+2024-02-09 00:25:29.645 +03:00 [INF] Application starting
+2024-02-09 00:26:21.327 +03:00 [INF] Application starting
+2024-02-09 00:29:30.328 +03:00 [INF] Application starting
+2024-02-09 00:32:56.468 +03:00 [INF] Application starting
+2024-02-09 00:33:44.157 +03:00 [INF] IDX12709: CanReadToken() returned false. JWT is not well formed: '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2024-02-09 00:38:23.866 +03:00 [INF] IDX12709: CanReadToken() returned false. JWT is not well formed: '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2024-02-09 00:48:09.817 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-09 00:48:09.817 +03:00 [INF] Cannot insert the value NULL into column 'BirthDate', table 'TobetoBackend.dbo.Users'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+2024-02-09 01:12:38.226 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-09 01:12:38.226 +03:00 [INF] Cannot insert the value NULL into column 'BirthDate', table 'TobetoBackend.dbo.Users'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+2024-02-09 01:15:44.013 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-09 01:15:44.014 +03:00 [INF] Cannot insert the value NULL into column 'BirthDate', table 'TobetoBackend.dbo.Users'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+2024-02-09 01:21:04.150 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-09 01:21:04.150 +03:00 [INF] Cannot insert the value NULL into column 'BirthDate', table 'TobetoBackend.dbo.Users'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+2024-02-09 01:28:14.733 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-09 01:28:14.734 +03:00 [INF] Cannot insert the value NULL into column 'BirthDate', table 'TobetoBackend.dbo.Users'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+2024-02-09 01:30:56.939 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-09 01:30:56.939 +03:00 [INF] Cannot insert the value NULL into column 'BirthDate', table 'TobetoBackend.dbo.Users'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+2024-02-09 14:29:23.081 +03:00 [INF] Application starting
+2024-02-09 14:52:15.171 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-09 14:52:15.172 +03:00 [INF] Cannot insert the value NULL into column 'BirthDate', table 'TobetoBackend.dbo.Users'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+2024-02-09 15:06:59.087 +03:00 [INF] An error occurred while saving the entity changes. See the inner exception for details.
+2024-02-09 15:06:59.087 +03:00 [INF] Cannot insert the value NULL into column 'BirthDate', table 'TobetoBackend.dbo.Users'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+2024-02-09 15:16:18.538 +03:00 [INF] Application starting
+2024-02-09 15:17:48.640 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 15:18:12.876 +03:00 [INF] IDX12709: CanReadToken() returned false. JWT is not well formed: '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2024-02-09 17:14:11.805 +03:00 [INF] IDX12709: CanReadToken() returned false. JWT is not well formed: '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2024-02-09 17:18:23.331 +03:00 [INF] IDX12709: CanReadToken() returned false. JWT is not well formed: '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2024-02-09 17:19:08.124 +03:00 [INF] IDX12709: CanReadToken() returned false. JWT is not well formed: '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2024-02-09 17:19:14.032 +03:00 [INF] IDX12709: CanReadToken() returned false. JWT is not well formed: '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2024-02-09 17:23:56.498 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 17:24:13.780 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 17:24:47.860 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 17:26:31.160 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 17:29:53.888 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 17:30:30.915 +03:00 [INF] Application starting
+2024-02-09 17:31:07.990 +03:00 [INF] Application starting
+2024-02-09 17:32:18.039 +03:00 [INF] Application starting
+2024-02-09 17:33:17.386 +03:00 [INF] Application starting
+2024-02-09 17:34:55.916 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 17:40:07.907 +03:00 [INF] Application starting
+2024-02-09 17:41:15.214 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 17:43:42.988 +03:00 [INF] Application starting
+2024-02-09 17:46:20.926 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 17:46:35.277 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 17:48:49.734 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 17:54:12.169 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 18:07:36.755 +03:00 [INF] Application starting
+2024-02-09 18:08:13.056 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 18:10:06.919 +03:00 [INF] Application starting
+2024-02-09 18:10:27.989 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 18:12:30.100 +03:00 [INF] Application starting
+2024-02-09 18:12:47.943 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 18:14:54.462 +03:00 [INF] Application starting
+2024-02-09 18:15:20.815 +03:00 [INF] An error occurred while processing login request: Data is Null. This method or property cannot be called on Null values.
+2024-02-09 18:32:14.461 +03:00 [INF] Application starting
+2024-02-09 18:32:35.469 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 18:34:58.329 +03:00 [INF] Application starting
+2024-02-09 18:35:19.606 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 18:36:47.568 +03:00 [INF] Application starting
+2024-02-09 18:37:11.700 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 18:38:15.189 +03:00 [INF] Application starting
+2024-02-09 18:38:36.220 +03:00 [INF] Application starting
+2024-02-09 18:38:55.044 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 18:45:07.702 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 18:52:05.605 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 18:53:54.865 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 18:56:18.615 +03:00 [INF] Data is Null. This method or property cannot be called on Null values.
+2024-02-09 22:16:40.867 +03:00 [INF] Application starting
+2024-02-09 22:20:33.816 +03:00 [INF] Application starting
+2024-02-09 22:45:24.277 +03:00 [INF] Application starting
+2024-02-09 22:49:11.883 +03:00 [INF] Application starting

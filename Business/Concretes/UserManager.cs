@@ -16,7 +16,7 @@ namespace Business.Concretes
         IMapper _mapper;
         //UserBusinessRules _userBusinessRules;
 
-        public UserManager( IUserDal userDal, IMapper mapper)
+        public UserManager(IUserDal userDal, IMapper mapper)
         {
             //_userBusinessRules = userBusinessRules;
             _userDal = userDal;
@@ -36,7 +36,7 @@ namespace Business.Concretes
 
         public async Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest)
         {
-            var data = await _userDal.GetAsync(predicate:i => i.Id == deleteUserRequest.Id);
+            var data = await _userDal.GetAsync(predicate: i => i.Id == deleteUserRequest.Id);
             _mapper.Map(deleteUserRequest, data);
             var result = await _userDal.DeleteAsync(data);
             var result2 = _mapper.Map<DeletedUserResponse>(result);
@@ -87,23 +87,25 @@ namespace Business.Concretes
 
         public async Task<UserLoginResponse> Login(string email, string password)
         {
-            var user = _userDal.Get(predicate : u => u.Email== email && u.Password== password);
+           
+                var user = _userDal.Get(predicate: u => u.Email == email && u.Password == password);
 
-            if (user != null)
-            {
-                return new UserLoginResponse
+                if (user != null)
                 {
-                    Id = user.Id,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Email = user.Email,
-                    BirthDate = user.BirthDate,
-                    PhoneNumber = user.PhoneNumber,
-                    ImagePath = user.ImagePath,
+                    return new UserLoginResponse
+                    {
+                        Id = user.Id,
+                        FirstName = user?.FirstName,
+                        LastName = user?.LastName,
+                        Email = user?.Email,
+                        BirthDate = user?.BirthDate,
+                        PhoneNumber = user?.PhoneNumber,
+                        ImagePath = user?.ImagePath,
 
-                };
+                    };
+                }
+                return null;
             }
-            return null;
+           
         }
     }
-}

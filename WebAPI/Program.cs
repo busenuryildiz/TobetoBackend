@@ -15,15 +15,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDataAccessServices(builder.Configuration);
 builder.Services.AddBusinessServices();
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("MyCorsPolicy", builder =>
-    {
-        builder.WithOrigins("http://localhost:3000")
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-    });
-});
 
 
 builder.Services.AddScoped<Serilog.ILogger>(provider => new LoggerConfiguration()
@@ -58,6 +49,7 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader();
     });
 });
+
 
 var config = builder.Configuration;
 builder.Services.AddEndpointsApiExplorer();
@@ -96,6 +88,7 @@ app.UseCors("MyCorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
 
 Log.Information("Application starting");
 

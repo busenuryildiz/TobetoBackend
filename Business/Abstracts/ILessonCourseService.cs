@@ -11,7 +11,7 @@ namespace Business.Abstracts
 {
     public interface ILessonCourseService
     {
-        Task<IPaginate<GetListLessonCourseResponse>> GetListAsync(PageRequest pageRequest);
+        Task<IPaginate<GetListLessonCourseResponse>> GetListAsync(int size);
         Task<CreatedLessonCourseResponse> Add(CreateLessonCourseRequest createLessonCourseRequest);
         Task<UpdatedLessonCourseResponse> Update(UpdateLessonCourseRequest updateLessonCourseRequest);
         Task<DeletedLessonCourseResponse> Delete(DeleteLessonCourseRequest deleteLessonCourseRequest);

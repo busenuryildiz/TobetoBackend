@@ -1,10 +1,14 @@
+using Autofac.Core;
 using Business;
+using Business.DTOs.Response.Course;
 using Core.Aspects.ActionFilters;
 using Core.CrossCuttingConcerns.Exceptions.Extensions;
 using Core.Utilities.JWT;
 using DataAccess;
+using MediatR;
 using Serilog;
 using StackExchange.Redis;
+using System.Reflection;
 
 
 
@@ -56,6 +60,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 builder.Logging.ClearProviders();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+builder.Services.AddScoped<IRequestHandler<GetListCourseByDynamicQuery, CourseListModel>, GetListCourseByDynamicQuery.GetListCourseByDynamicQueryHandler>();
+
 
 builder.Services.AddScoped<LogActionAttribute>();
 // Uncomment the Autofac-related code
@@ -82,7 +89,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.ConfigureCustomExceptionMiddleware();
+
+if (app.Environment.IsProduction())
+{
+    app.ConfigureCustomExceptionMiddleware();
+}
 app.UseJwtDecoderMiddleware();
 app.UseCors("MyCorsPolicy");
 app.UseAuthentication();

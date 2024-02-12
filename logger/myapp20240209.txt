@@ -1,0 +1,1 @@
+2024-02-09 22:49:24.168 +03:00 [INF] Application starting

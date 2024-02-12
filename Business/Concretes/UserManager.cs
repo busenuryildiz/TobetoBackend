@@ -13,14 +13,16 @@ namespace Business.Concretes
     public class UserManager : IUserService
     {
         IUserDal _userDal;
+        IStudentService _studentService;
         IMapper _mapper;
         //UserBusinessRules _userBusinessRules;
 
-        public UserManager(IUserDal userDal, IMapper mapper)
+        public UserManager(IUserDal userDal, IMapper mapper, IStudentService studentService)
         {
             //_userBusinessRules = userBusinessRules;
             _userDal = userDal;
             _mapper = mapper;
+            _studentService = studentService;
         }
 
         public async Task<CreatedUserResponse> Add(CreateUserRequest createUserRequest)
@@ -88,19 +90,22 @@ namespace Business.Concretes
         public async Task<UserLoginResponse> Login(string email, string password)
         {
            
-                var user = _userDal.Get(predicate: u => u.Email == email && u.Password == password);
+                var user =  _userDal.Get(predicate: u => u.Email == email && u.Password == password);
+                 var userStudent = await _studentService.GetStudentByUserIdAsync(user.Id);
 
                 if (user != null)
                 {
-                    return new UserLoginResponse
-                    {
-                        Id = user.Id,
-                        FirstName = user?.FirstName,
-                        LastName = user?.LastName,
-                        Email = user?.Email,
-                        BirthDate = user?.BirthDate,
-                        PhoneNumber = user?.PhoneNumber,
-                        ImagePath = user?.ImagePath,
+                return new UserLoginResponse
+                {
+                    Id = user.Id,
+                    FirstName = user?.FirstName,
+                    LastName = user?.LastName,
+                    Email = user?.Email,
+                    BirthDate = user?.BirthDate,
+                    PhoneNumber = user?.PhoneNumber,
+                    ImagePath = user?.ImagePath,
+                    StudentId = userStudent.Id,
+                    StudentNumber = userStudent.StudentNumber
 
                     };
                 }

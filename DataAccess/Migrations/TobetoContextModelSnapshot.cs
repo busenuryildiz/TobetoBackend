@@ -471,6 +471,10 @@ namespace DataAccess.Migrations
                         .HasColumnType("int")
                         .HasColumnName("CourseLevelId");
 
+                    b.Property<string>("CourseType")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CourseType");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -2268,13 +2272,11 @@ namespace DataAccess.Migrations
 
                     b.Navigation("EducationInformations");
 
-                    b.Navigation("Instructor")
-                        .IsRequired();
+                    b.Navigation("Instructor");
 
                     b.Navigation("SocialMediaAccounts");
 
-                    b.Navigation("Student")
-                        .IsRequired();
+                    b.Navigation("Student");
 
                     b.Navigation("SurveyAnswers");
 

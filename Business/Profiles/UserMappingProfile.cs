@@ -11,9 +11,10 @@ using Business.DTOs.Response.User;
 using Business.DTOs.Request.LessonCourse;
 using Business.DTOs.Response.LessonCourse;
 using Entities.Concretes.CoursesFolder;
+using System.Runtime.InteropServices;
 
 namespace Business.Profiles
-{ 
+{
     public class UserMappingProfiles : Profile
     {
         public UserMappingProfiles()
@@ -32,6 +33,27 @@ namespace Business.Profiles
             //CreateMap<Paginate<User>, Paginate<GetListUserResponse>>().ReverseMap();
             CreateMap<Paginate<User>, Paginate<GetListUserResponse>>()
                 .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items)).ReverseMap();
+
+
+            //CreateMap<User, UpdatedUserAllInformationResponse>().ReverseMap();
+
+            CreateMap<User, UpdatedUserAllInformationResponse>()
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.AddressName, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().Name))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().Description))
+                .ForMember(dest => dest.DistrictName, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().District.Name))
+                .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().District.City.Name))
+                .ForMember(dest => dest.CountryName, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().District.City.Country.Name))
+            .ReverseMap();
+
+            CreateMap<User, UpdateUserAllInformationRequest>()
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.AddressName, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().Name))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().Description))
+                .ForMember(dest => dest.DistrictName, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().District.Name))
+                .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().District.City.Name))
+                .ForMember(dest => dest.CountryName, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().District.City.Country.Name))
+            .ReverseMap();
 
         }
     }

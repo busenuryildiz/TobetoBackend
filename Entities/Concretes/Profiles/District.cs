@@ -13,8 +13,8 @@ namespace Entities.Concretes.Profiles
     public class District: Entity<int>
     {
         public int CityId { get; set; }
-        public string Name { get; set; }
-        public City City { get; set; }
-        public List<Address> Addresses { get; set; }
+        public string? Name { get; set; }
+        public City? City { get; set; }
+        public List<Address>? Addresses { get; set; }
     }
 }

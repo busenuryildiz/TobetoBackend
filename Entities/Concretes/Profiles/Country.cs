@@ -9,8 +9,8 @@ namespace Entities.Concretes.Profiles
 {
     public class Country: Entity<int>
     {
-        public string Name { get; set; }
-        public List<City> Cities { get; set; }
+        public string? Name { get; set; }
+        public List<City>? Cities { get; set; }
 
     }
 }

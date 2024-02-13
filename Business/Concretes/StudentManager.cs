@@ -98,6 +98,15 @@ namespace Business.Concretes
             var result = _mapper.Map<UpdatedStudentResponse>(data);
             return result;
         }
+        public async Task<Student> GetStudentByUserIdAsync(Guid userId)
+        {
+            // Öğrenciyi kullanıcı kimliğine göre almak için lambda ifadesi kullanarak sorgu yapabilirsiniz
+            return await _studentDal.GetAsync(student => student.UserId == userId);
+        }
+
+
+
+
 
         private void GenerateUniqueStudentNumber(Student student)
         {

@@ -9,12 +9,12 @@ namespace DataAccess.EntityConfigurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.ToTable("Users").HasKey(u => u.Id);
-            builder.Property(u => u.FirstName).IsRequired().HasMaxLength(255);
-            builder.Property(u => u.LastName).IsRequired().HasMaxLength(255);
-            builder.Property(u => u.Email).IsRequired().HasMaxLength(255);
-            builder.Property(u => u.Password).IsRequired();
-            builder.Property(u => u.NationalIdentity).IsRequired();
-            builder.Property(u => u.BirthDate).IsRequired().HasColumnType("date");
+            builder.Property(u => u.FirstName).HasMaxLength(255);
+            builder.Property(u => u.LastName).HasMaxLength(255);
+            builder.Property(u => u.Email).HasMaxLength(255);
+            builder.Property(u => u.Password);
+            builder.Property(u => u.NationalIdentity);
+            builder.Property(u => u.BirthDate).HasColumnType("date");
             builder.Property(u => u.PhoneNumber).HasMaxLength(20);
             builder.Property(u => u.ImagePath).HasMaxLength(255); // İmge yolu için örnek sınırlama
 

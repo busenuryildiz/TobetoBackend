@@ -59,5 +59,12 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpPut("UpdateAllUserInformation")]
+
+        public async Task<IActionResult> Update([FromBody] UpdateUserAllInformationRequest request)
+        {
+            var result = await _userService.UpdateAllInformationAsync(request);
+            return Ok(result);
+        }
     }
 }

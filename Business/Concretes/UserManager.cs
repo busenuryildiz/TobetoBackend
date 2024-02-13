@@ -1,10 +1,18 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using Business.Abstracts;
+using Business.DTOs.Request.Address;
+using Business.DTOs.Request.City;
+using Business.DTOs.Request.Country;
+using Business.DTOs.Request.District;
 using Business.DTOs.Request.User;
 using Business.DTOs.Response.User;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using Entities.Concretes.Clients;
+using Entities.Concretes.Profiles;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -13,14 +21,24 @@ namespace Business.Concretes
     public class UserManager : IUserService
     {
         IUserDal _userDal;
+        IStudentService _studentService;
         IMapper _mapper;
         //UserBusinessRules _userBusinessRules;
+        IAddressService _addressService;
+        IDistrictService _districtService;
+        ICityService _cityService;
+        ICountryService _countryService;
 
-        public UserManager(IUserDal userDal, IMapper mapper)
+        public UserManager(IUserDal userDal, IMapper mapper, IStudentService studentService, ICountryService countryService, ICityService cityService, IDistrictService districtService, IAddressService addressService)
         {
             //_userBusinessRules = userBusinessRules;
             _userDal = userDal;
             _mapper = mapper;
+            _studentService = studentService;
+            _countryService = countryService;
+            _cityService = cityService;
+            _districtService = districtService;
+            _addressService = addressService;
         }
 
         public async Task<CreatedUserResponse> Add(CreateUserRequest createUserRequest)
@@ -87,25 +105,98 @@ namespace Business.Concretes
 
         public async Task<UserLoginResponse> Login(string email, string password)
         {
-           
-                var user = _userDal.Get(predicate: u => u.Email == email && u.Password == password);
 
-                if (user != null)
+            var user = _userDal.Get(predicate: u => u.Email == email && u.Password == password);
+
+            if (user != null)
+            {
+                return new UserLoginResponse
                 {
-                    return new UserLoginResponse
-                    {
-                        Id = user.Id,
-                        FirstName = user?.FirstName,
-                        LastName = user?.LastName,
-                        Email = user?.Email,
-                        BirthDate = user?.BirthDate,
-                        PhoneNumber = user?.PhoneNumber,
-                        ImagePath = user?.ImagePath,
+                    Id = user.Id,
+                    FirstName = user?.FirstName,
+                    LastName = user?.LastName,
+                    Email = user?.Email,
+                    BirthDate = user?.BirthDate,
+                    PhoneNumber = user?.PhoneNumber,
+                    ImagePath = user?.ImagePath,
 
-                    };
-                }
-                return null;
+                };
             }
-           
+            return null;
         }
+
+        public async Task<UpdatedUserAllInformationResponse> UpdateAllInformationAsync(UpdateUserAllInformationRequest request)
+        {
+            var user = await _userDal.GetAsync(u => u.Id == request.UserId,
+                                                include: query => query
+                                                    .Include(u => u.Addresses)
+                                                        .ThenInclude(a => a.District)
+                                                            .ThenInclude(d => d.City)
+                                                                .ThenInclude(c => c.Country));
+
+            var userAddress = user.Addresses.FirstOrDefault(p => p.UserId == request.UserId);
+
+            if (userAddress == null)
+            {
+                // Adres bilgisi yoksa, yeni bir adres oluştur
+                userAddress = new Address
+                {
+                    UserId = request.UserId,
+                    Name = request.AddressName,
+                    Description = request.Description,
+                    CreatedDate = DateTime.Now,
+                    District = new District
+                    {
+                        Name = request.DistrictName,
+                        CreatedDate = DateTime.Now,
+                        City = new City
+                        {
+                            Name = request.CityName,
+                            CreatedDate = DateTime.Now,
+                            Country = new Country
+                            {
+                                Name = request.CountryName,
+                                CreatedDate = DateTime.Now
+                            }
+                        }
+                    }
+                };
+
+                // Yeni adresi kullanıcıya ekle
+                user.Addresses.Add(userAddress);
+            }
+            else
+            {
+                // Adres bilgisi varsa, bilgileri güncelle
+                userAddress.Name = request.AddressName;
+                userAddress.UpdatedDate = DateTime.Now;
+                userAddress.Description = request.Description;
+                userAddress.District.Name = request.DistrictName;
+                userAddress.District.UpdatedDate = DateTime.Now;
+                userAddress.District.City.Name = request.CityName;
+                userAddress.District.City.UpdatedDate = DateTime.Now;
+                userAddress.District.City.Country.Name = request.CountryName;
+                userAddress.District.City.Country.UpdatedDate = DateTime.Now;
+            }
+
+            // Kullanıcıyı güncelleme talebiyle gelen bilgilerle güncelle
+            _mapper.Map(request, user);
+
+            // Güncellenmiş kullanıcıyı veritabanına kaydet
+            await _userDal.UpdateAsync(user);
+
+            // Güncellenmiş kullanıcıyı uygun DTO'ya dönüştür
+            var updatedUserResponse = _mapper.Map<UpdatedUserAllInformationResponse>(user);
+
+            return updatedUserResponse;
+        }
+
+
+
+
     }
+
+}
+
+
+

@@ -9,7 +9,7 @@ namespace DataAccess.EntityConfigurations
         public void Configure(EntityTypeBuilder<Address> builder)
         {
             builder.HasKey(b => b.Id);
-            builder.Property(b => b.Name).IsRequired().HasMaxLength(255);
+            builder.Property(b => b.Name).HasMaxLength(255);
             builder.Property(b => b.Description);
 
             builder.HasOne(ei => ei.User)

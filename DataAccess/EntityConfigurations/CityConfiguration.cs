@@ -17,7 +17,6 @@ namespace DataAccess.EntityConfigurations
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Name)
-                   .IsRequired()
                    .HasMaxLength(255);
 
             // City sınıfının District koleksiyonu ile ilişkisi

@@ -14,7 +14,7 @@ namespace DataAccess.EntityConfigurations
         public void Configure(EntityTypeBuilder<District> builder)
         {
             builder.HasKey(b => b.Id);
-            builder.Property(b => b.Name).IsRequired().HasMaxLength(255);
+            builder.Property(b => b.Name).HasMaxLength(255);
 
             builder.HasOne(ct => ct.City)
                 .WithMany(a => a.Districts)

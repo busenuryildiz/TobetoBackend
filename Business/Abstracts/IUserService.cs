@@ -20,6 +20,7 @@ namespace Business.Abstracts
         Task<CreatedUserResponse> GetById(Guid id);
         Task<UserLoginResponse> Login(string email, string password);
         Task<UpdatedUserAllInformationResponse> UpdateAllInformationAsync(UpdateUserAllInformationRequest request);
+        Task<UpdatedUserAllInformationResponse> GetAllUserInformationByIdAsync(Guid id);
 
     }
 }

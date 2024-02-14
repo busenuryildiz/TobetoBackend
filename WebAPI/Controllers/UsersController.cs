@@ -66,5 +66,12 @@ namespace WebAPI.Controllers
             var result = await _userService.UpdateAllInformationAsync(request);
             return Ok(result);
         }
+
+        [HttpGet("GetAllUserInformationById")]
+        public async Task<IActionResult> GetAllUserInformationById([FromQuery] Guid id)
+        {
+            var result = await _userService.GetAllUserInformationByIdAsync(id);
+            return Ok(result);
+        }
     }
 }

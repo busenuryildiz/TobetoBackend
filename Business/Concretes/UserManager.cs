@@ -6,6 +6,7 @@ using Business.DTOs.Request.City;
 using Business.DTOs.Request.Country;
 using Business.DTOs.Request.District;
 using Business.DTOs.Request.User;
+using Business.DTOs.Response.LessonCourse;
 using Business.DTOs.Response.User;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
@@ -189,6 +190,21 @@ namespace Business.Concretes
             var updatedUserResponse = _mapper.Map<UpdatedUserAllInformationResponse>(user);
 
             return updatedUserResponse;
+        }
+
+        public async Task<UpdatedUserAllInformationResponse> GetAllUserInformationByIdAsync(Guid id)
+        {
+            var user = await _userDal.GetAsync(u => u.Id == id,
+                                                include: query => query
+                                                    .Include(u => u.Addresses)
+                                                        .ThenInclude(a => a.District)
+                                                            .ThenInclude(d => d.City)
+                                                                .ThenInclude(c => c.Country));
+
+            var result = _mapper.Map<UpdatedUserAllInformationResponse>(user);
+
+
+            return result;
         }
 
 

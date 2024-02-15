@@ -1,2 +1,14 @@
 2024-02-04 17:35:53.525 +03:00 [INF] Application starting
-2024-02-04 18:41:49.686 +03:00 [INF] Application starting
+2024-02-04 20:30:10.627 +03:00 [INF] Application starting
+2024-02-04 20:34:12.784 +03:00 [INF] Cannot open server 'tobetohosting' requested by the login. Client with IP address '85.96.147.142' is not allowed to access the server.  To enable access, use the Azure Management Portal or run sp_set_firewall_rule on the master database to create a firewall rule for this IP address or address range.  It may take up to five minutes for this change to take effect.
+2024-02-04 22:01:23.650 +03:00 [INF] Application starting
+2024-02-04 22:32:23.207 +03:00 [INF] Application starting
+2024-02-04 22:32:58.723 +03:00 [INF] Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'WebAPI.Controllers.CoursesController'.
+2024-02-04 22:33:07.123 +03:00 [INF] Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'WebAPI.Controllers.CoursesController'.
+2024-02-04 22:33:51.637 +03:00 [INF] Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'WebAPI.Controllers.CoursesController'.
+2024-02-04 22:44:37.845 +03:00 [INF] Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'WebAPI.Controllers.CoursesController'.
+2024-02-04 22:44:56.338 +03:00 [INF] Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'WebAPI.Controllers.CoursesController'.
+2024-02-04 22:48:59.767 +03:00 [INF] Application starting
+2024-02-04 23:21:59.922 +03:00 [INF] Application starting
+2024-02-04 23:27:17.925 +03:00 [INF] Application starting
+2024-02-04 23:58:35.302 +03:00 [INF] Application starting

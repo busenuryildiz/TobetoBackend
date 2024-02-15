@@ -15,6 +15,8 @@ namespace Business.DTOs.Response.User
         public DateTime? BirthDate { get; set; }
         public string? PhoneNumber { get; set; }
         public string? ImagePath { get; set; }
+        public Guid StudentId { get; set; }
+        public string StudentNumber { get; set; }
 
     }
 }

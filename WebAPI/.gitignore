@@ -1,0 +1,194 @@
+# Dependency directories
+## .NET Core ##
+project.lock.json
+project.fragment.lock.json
+artifacts/
+bin/
+obj/
+
+# Visual Studio Code
+.vscode/
+
+# Visual Studio
+.vs/
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.pdb
+*.sqlite
+*.sdf
+*.ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Dd]ebugPublic/
+[Rr]elease*/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]uild/
+Builds/
+build/
+[Mm]akefile.Debug
+[Mm]akefile.Release
+*.aps
+*.ncb
+*.opensdf
+*.suo
+*.pdb
+*.idb
+*.exp
+*.usertype.dat
+*.manifest
+*.res
+*.resources
+*.pch
+*.obj
+*.lib
+*.dll
+*.exe
+*.a
+*.o
+*.so
+*.so.*
+*.ko
+*.tmp
+*.swp
+*~
+*~
+*.bak
+*.cache
+*.log
+*.rej
+*.class
+*.dSYM/
+*.hgtags
+Thumbs.db
+[Tt]humbs.db
+[Tt]humbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Rider
+.idea/
+*.sln.iml
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Roslyn cache directories
+*.ide/
+*.idb/
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# JustCode
+.JustCode
+
+# TeamCity is a build tool
+_TeamCity*
+
+# DotCover is a Code Coverage Tool
+*.dotCover
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+
+# MightyMoose
+*.mm.*
+AutoTest.Net/
+
+# Web workbench (sass)
+.sass-cache/
+
+# Installshield output folder
+[Ee]xpress/
+
+# DocProject is a documentation generator add-in
+DocProject/buildhelp/
+DocProject/Help/*.HxT
+DocProject/Help/*.HxC
+DocProject/Help/*.hhc
+DocProject/Help/*.hhk
+DocProject/Help/*.hhp
+DocProject/Help/Html2
+DocProject/Help/html
+
+# Click-Once directory
+publish/
+
+# Publish Web Output
+*.Publish.xml
+*.pubxml
+
+# NuGet Packages Directory
+## TODO: If you have NuGet Package Restore enabled, uncomment the next line
+#packages/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VSCode folders
+.vscode/
+node_modules/
+
+# SQLite database files
+*.sqlite
+
+# Printer file
+*.print
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# matplotlib
+._cache/
+
+# Sphinx documentation
+docs/_build/
+
+# PyInstaller
+dist/
+build/
+
+# celery beat schedule file
+celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/

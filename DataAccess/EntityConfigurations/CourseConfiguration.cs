@@ -22,6 +22,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(c => c.ImagePath).HasColumnName("ImagePath");
             builder.Property(c => c.Price).HasColumnName("Price");
             builder.Property(c => c.Duration).HasColumnName("Duration");
+            builder.Property(c => c.CourseType).HasColumnName("CourseType");
             builder.Property(c => c.Classroom).HasColumnName("Classroom");
 
             // Course ile Category arasındaki ilişki

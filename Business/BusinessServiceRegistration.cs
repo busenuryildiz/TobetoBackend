@@ -42,6 +42,10 @@ using FluentValidation;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using MediatR;
+using Business.DTOs.Response.Course;
+using static Business.DTOs.Response.Course.GetListCourseByDynamicQuery;
+
 
 namespace Business
 {
@@ -53,6 +57,8 @@ namespace Business
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
+
+            services.AddScoped<IRequestHandler<GetListCourseByDynamicQuery, CourseListModel>, GetListCourseByDynamicQueryHandler>();
             services.AddScoped<IStudentService, StudentManager>();
 
             services.AddScoped<IUserRoleService, UserRoleManager>();
@@ -179,7 +185,7 @@ namespace Business
             services.AddScoped<IValidator<CreateApplicationRequest>, CreateApplicationRequestValidator>();
             services.AddScoped<IValidator<CreateApplicationStudentRequest>, CreateApplicationStudentRequestValidator>();
             services.AddScoped<IValidator<CreateContactUsRequest>, CreateContactUsRequestValidator>();
-     
+
 
 
 

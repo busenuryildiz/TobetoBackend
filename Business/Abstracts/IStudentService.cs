@@ -17,6 +17,8 @@ namespace Business.Abstracts
         Task<UpdatedStudentResponse> Update(UpdateStudentRequest updateStudentRequest);
         Task<DeletedStudentResponse> Delete(DeleteStudentRequest deleteStudentRequest);
         Task<CreatedStudentResponse> GetById(Guid id);
+        Task<Student> GetStudentByUserIdAsync(Guid userId);
+
 
     }
 }

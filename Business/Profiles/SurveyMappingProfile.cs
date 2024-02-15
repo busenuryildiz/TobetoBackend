@@ -17,27 +17,43 @@ namespace Business.Profiles
     {
         public SurveyMappingProfile()
         {
+            // CreateSurveyRequest ile Survey arasında eşleme
             CreateMap<CreateSurveyRequest, Survey>().ReverseMap();
+
+            // DeleteSurveyRequest ile Survey arasında eşleme
+            CreateMap<DeleteSurveyRequest, Survey>().ReverseMap();
+
+            // UpdateSurveyRequest ile Survey arasında eşleme
+            CreateMap<UpdateSurveyRequest, Survey>().ReverseMap();
+
+            // Survey ile CreatedSurveyResponse arasında eşleme
             CreateMap<Survey, CreatedSurveyResponse>().ReverseMap();
 
-            CreateMap<DeleteSurveyRequest, Survey>().ReverseMap();
+            // Survey ile DeletedSurveyResponse arasında eşleme
             CreateMap<Survey, DeletedSurveyResponse>().ReverseMap();
 
-            CreateMap<UpdateSurveyRequest, Survey>().ReverseMap();
+            // Survey ile UpdatedSurveyResponse arasında eşleme
             CreateMap<Survey, UpdatedSurveyResponse>().ReverseMap();
 
+            // Survey ile GetListSurveyResponse arasında eşleme
             CreateMap<Survey, GetListSurveyResponse>().ReverseMap();
+
+            // Paginate<Survey> ile Paginate<GetListSurveyResponse> arasında eşleme
             CreateMap<Paginate<Survey>, Paginate<GetListSurveyResponse>>().ReverseMap();
 
+            // Survey ile GetByIdSurveyResponse arasında eşleme
             CreateMap<Survey, GetByIdSurveyResponse>()
-            .ForMember(dest => dest.SurveyQuestions, opt => opt.MapFrom(src => src.SurveyQuestions));
-    
+                .ForMember(dest => dest.SurveyQuestions, opt => opt.MapFrom(src => src.SurveyQuestions));
 
+            // SurveyQuestion ile GetSurveyQuestionResponse arasında eşleme
             CreateMap<SurveyQuestion, GetSurveyQuestionResponse>()
-                .ForMember(dest => dest.QuestionId, opt => opt.MapFrom(src => src.Id));
-            // Diğer özellikleri de belirtmek istiyorsanız burada tanımlayabilirsiniz.
+                .ForMember(dest => dest.QuestionId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.QuestionText, opt => opt.MapFrom(src => src.QuestionText))
+                .ForMember(dest => dest.QuestionType, opt => opt.MapFrom(src => src.QuestionType))
+                // Diğer özellikleri de belirtmek istiyorsanız burada tanımlayabilirsiniz.
+                .ReverseMap(); // Ters yönlü eşleme için
 
-
+            // SurveyAnswer ile diğer DTO'lar arasında eşlemeleri burada yapabilirsiniz
         }
     }
 

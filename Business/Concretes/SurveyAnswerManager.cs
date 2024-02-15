@@ -10,6 +10,7 @@ namespace Business.Concretes
     using global::Business.DTOs.Request.SurveyAnswer;
     using global::Business.DTOs.Response.SurveyAnswer;
     using Microsoft.EntityFrameworkCore;
+    using Serilog;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -103,6 +104,7 @@ namespace Business.Concretes
 
                 // Add the survey answer to the database
                 var createdSurveyAnswer = await _surveyAnswerDal.AddAsync(surveyAnswer);
+                Log.Information("veri ", surveyAnswer);
 
                 // Map the created survey answer to response DTO
                 var createdSurveyAnswerResponse = _mapper.Map<CreatedSurveyAnswerResponse>(createdSurveyAnswer);

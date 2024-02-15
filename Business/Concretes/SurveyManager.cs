@@ -78,7 +78,6 @@ public class SurveyManager : ISurveyService
             include: sa => sa.Include(sa => sa.SurveyQuestions.Where(sq => sq.SurveyID == id))
         );
 
-        Console.WriteLine("Gelen result: " + result);
 
         GetByIdSurveyResponse customResponse = _mapper.Map<GetByIdSurveyResponse>(result);
 

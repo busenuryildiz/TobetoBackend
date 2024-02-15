@@ -15,6 +15,7 @@ namespace Entities.Concretes.CoursesFolder
         public string? Name { get; set; }
         public string? ImagePath { get; set; }
         public double? Price { get; set; }
+        public string? CourseType { get; set; }
         public int? Duration { get; set; }
         public string? Classroom { get; set; }
         public Category? Category { get; set; }

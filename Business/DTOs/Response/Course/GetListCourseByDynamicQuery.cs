@@ -39,7 +39,18 @@ namespace Business.DTOs.Response.Course
                 }
 
                 IPaginate<Entities.Concretes.CoursesFolder.Course> courses = await _courseDal.GetListByDynamicAsync(
-                    request.Dynamic,
+                    request.Dynamic, 
+                    include: u => u
+                    .Include(u => u.Category)
+                    .Include(u => u.Assignments)
+                    .Include(u => u.Exams)
+                    .Include(u => u.CourseLevel)
+                    .Include(u => u.LessonCourses)
+                    .Include(u => u.SoftwareLanguage)
+                    .Include(c => c.InstructorCourses)
+                    .ThenInclude(ic => ic.Instructor)
+                    .ThenInclude(i => i.User),
+
                     index: request.PageRequest.PageIndex,
                     size: request.PageRequest.PageSize
                 );

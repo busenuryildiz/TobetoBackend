@@ -20,15 +20,16 @@ namespace WebAPI.Controllers
         [HttpPost("Add")]
         public async Task<IActionResult> Add([FromBody] CreateUserRequest createUserRequest)
         {
-            try { 
-            var result = await _userService.Add(createUserRequest);
-            return Ok(result);
+            try
+            {
+                var result = await _userService.Add(createUserRequest);
+                return Ok(result);
             }
             catch (Exception ex)
-    {              
-                    Console.WriteLine(ex.InnerException.Message);
-                    return StatusCode(500, $"An error occurred while processing your request: {ex.InnerException.Message}");
-                
+            {
+                Console.WriteLine(ex.InnerException.Message);
+                return StatusCode(500, $"An error occurred while processing your request: {ex.InnerException.Message}");
+
 
             }
         }

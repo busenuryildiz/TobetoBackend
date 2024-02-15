@@ -9,27 +9,58 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
+using DataAccess.Concretes;
+using Business.Abstracts;
+using Business.DTOs.Request.SurveyQuestion;
 
 
 
 public class SurveyManager : ISurveyService
 {
     private readonly ISurveyDal _surveyDal;
+    private readonly ISurveyQuestionService ?_surveyQuestionService;
     private readonly IMapper _mapper;
 
-    public SurveyManager(ISurveyDal surveyDal, IMapper mapper)
+    public SurveyManager(ISurveyDal surveyDal, IMapper mapper, ISurveyQuestionService  surveyQuestionService  )
     {
         _surveyDal = surveyDal;
         _mapper = mapper;
+        _surveyQuestionService = surveyQuestionService;   
     }
 
     public async Task<CreatedSurveyResponse> Add(CreateSurveyRequest createSurveyRequest)
     {
+        // Yeni bir anket oluştur
         Survey survey = _mapper.Map<Survey>(createSurveyRequest);
+
+        // SurveyDal üzerinden anketi ekleyin
         Survey createdSurvey = await _surveyDal.AddAsync(survey);
+
+        // Oluşturulan anketin gerçek ID'sini alın
+        int surveyId = createdSurvey.Id;
+
+        // Geçici bir ID kullanarak SurveyQuestion'ları oluştur ve ilişkilendir
+        foreach (var questionDto in createSurveyRequest.Questions)
+        {
+            // SurveyQuestion DTO'sunu AddSurveyQuestionRequest'e dönüştür
+            AddSurveyQuestionRequest addSurveyQuestionRequest = _mapper.Map<AddSurveyQuestionRequest>(questionDto);
+
+            // Gerçek anket ID'sini ayarla
+            addSurveyQuestionRequest.SurveyID = surveyId;
+
+            // Yeni oluşturulan anket sorusunu ekle
+            await _surveyQuestionService.Add(addSurveyQuestionRequest);
+        }
+
+
+        // Oluşturulan anketi uygun DTO'ya dönüştürün
         CreatedSurveyResponse createdSurveyResponse = _mapper.Map<CreatedSurveyResponse>(createdSurvey);
+
+        // Oluşturulan anketin yanıtları ve sorularıyla birlikte cevabı döndürün
         return createdSurveyResponse;
     }
+
+
 
     public async Task<DeletedSurveyResponse> Delete(DeleteSurveyRequest deleteSurveyRequest)
     {
@@ -47,7 +78,6 @@ public class SurveyManager : ISurveyService
             include: sa => sa.Include(sa => sa.SurveyQuestions.Where(sq => sq.SurveyID == id))
         );
 
-        Console.WriteLine("Gelen result: " + result);
 
         GetByIdSurveyResponse customResponse = _mapper.Map<GetByIdSurveyResponse>(result);
 

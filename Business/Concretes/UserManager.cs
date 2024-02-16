@@ -127,69 +127,169 @@ namespace Business.Concretes
         }
 
         public async Task<UpdatedUserAllInformationResponse> UpdateAllInformationAsync(UpdateUserAllInformationRequest request)
+
         {
-            var user = await _userDal.GetAsync(u => u.Id == request.UserId,
-                                                include: query => query
-                                                    .Include(u => u.Addresses)
-                                                        .ThenInclude(a => a.District)
-                                                            .ThenInclude(d => d.City)
-                                                                .ThenInclude(c => c.Country));
 
-            var userAddress = user.Addresses.FirstOrDefault(p => p.UserId == request.UserId);
+            try
 
-            if (userAddress == null)
             {
-                // Adres bilgisi yoksa, yeni bir adres oluştur
-                userAddress = new Address
+
+                var user = await _userDal.GetAsync(u => u.Id == request.UserId,
+
+                                  include: query => query
+
+                                    .Include(u => u.Addresses)
+
+                                      .ThenInclude(a => a.District)
+
+                                        .ThenInclude(d => d.City)
+
+                                          .ThenInclude(c => c.Country));
+
+
+
+                var userAddress = user.Addresses.FirstOrDefault(p => p.UserId == request.UserId);
+
+
+
+                if (userAddress == null)
+
                 {
-                    UserId = request.UserId,
-                    Name = request.AddressName,
-                    Description = request.Description,
-                    CreatedDate = DateTime.Now,
-                    District = new District
+
+                    // Adres bilgisi yoksa, yeni bir adres oluştur
+
+                    userAddress = new Address
+
                     {
-                        Name = request.DistrictName,
+
+                        UserId = request.UserId,
+
+                        Name = request.AddressName,
+
+                        Description = request.Description,
+
                         CreatedDate = DateTime.Now,
-                        City = new City
+
+                        District = new District
+
                         {
-                            Name = request.CityName,
+
+                            Name = request.DistrictName,
+
                             CreatedDate = DateTime.Now,
-                            Country = new Country
+
+                            City = new City
+
                             {
-                                Name = request.CountryName,
-                                CreatedDate = DateTime.Now
+
+                                Name = request.CityName,
+
+                                CreatedDate = DateTime.Now,
+
+                                Country = new Country
+
+                                {
+
+                                    Name = request.CountryName,
+
+                                    CreatedDate = DateTime.Now
+
+                                }
+
                             }
+
                         }
-                    }
-                };
 
-                // Yeni adresi kullanıcıya ekle
-                user.Addresses.Add(userAddress);
+                    };
+
+
+
+                    // Yeni adresi kullanıcıya ekle
+
+                    user.Addresses.Add(userAddress);
+
+                }
+
+                else
+
+                {
+
+                    // Adres bilgisi varsa, bilgileri güncelle
+
+                    userAddress.Name = request.AddressName;
+
+                    userAddress.UpdatedDate = DateTime.Now;
+
+                    userAddress.Description = request.Description;
+
+                    userAddress.District.Name = request.DistrictName;
+
+                    userAddress.District.UpdatedDate = DateTime.Now;
+
+                    userAddress.District.City.Name = request.CityName;
+
+                    userAddress.District.City.UpdatedDate = DateTime.Now;
+
+                    userAddress.District.City.Country.Name = request.CountryName;
+
+                    userAddress.District.City.Country.UpdatedDate = DateTime.Now;
+
+                }
+
+
+
+                // Kullanıcıyı güncelleme talebiyle gelen bilgilerle güncelle
+
+                _mapper.Map(request, user);
+
+
+
+                // Güncellenmiş kullanıcıyı veritabanına kaydet
+
+                await _userDal.UpdateAsync(user);
+
+
+
+                // Güncellenmiş kullanıcıyı uygun DTO'ya dönüştür
+
+                var updatedUserResponse = _mapper.Map<UpdatedUserAllInformationResponse>(user);
+
+
+
+                return updatedUserResponse;
+
             }
-            else
+
+            catch (Exception ex)
+
             {
-                // Adres bilgisi varsa, bilgileri güncelle
-                userAddress.Name = request.AddressName;
-                userAddress.UpdatedDate = DateTime.Now;
-                userAddress.Description = request.Description;
-                userAddress.District.Name = request.DistrictName;
-                userAddress.District.UpdatedDate = DateTime.Now;
-                userAddress.District.City.Name = request.CityName;
-                userAddress.District.City.UpdatedDate = DateTime.Now;
-                userAddress.District.City.Country.Name = request.CountryName;
-                userAddress.District.City.Country.UpdatedDate = DateTime.Now;
+
+                // Orijinal exception'u konsola yazdır
+
+                Console.WriteLine("Hata:");
+
+                Console.WriteLine(ex.Message);
+
+
+
+                // Inner exception'u da konsola yazdır
+
+                if (ex.InnerException != null)
+
+                {
+
+                    Console.WriteLine("Inner Exception:");
+
+                    Console.WriteLine(ex.InnerException.Message);
+
+                }
+
+
+
+                throw new Exception("Kullanıcı bilgileri güncellenirken bir hata oluştu.", ex);
+
             }
 
-            // Kullanıcıyı güncelleme talebiyle gelen bilgilerle güncelle
-            _mapper.Map(request, user);
-
-            // Güncellenmiş kullanıcıyı veritabanına kaydet
-            await _userDal.UpdateAsync(user);
-
-            // Güncellenmiş kullanıcıyı uygun DTO'ya dönüştür
-            var updatedUserResponse = _mapper.Map<UpdatedUserAllInformationResponse>(user);
-
-            return updatedUserResponse;
         }
 
         public async Task<UpdatedUserAllInformationResponse> GetAllUserInformationByIdAsync(Guid id)

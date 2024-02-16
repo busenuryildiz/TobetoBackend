@@ -1,13 +1,11 @@
-﻿using Entities.Concretes.Clients;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-
-
-
 
 namespace WebAPI.Controllers
 {
@@ -48,17 +46,14 @@ namespace WebAPI.Controllers
         }
 
 
-
-        // Cloudinary ayarlarınızı tanımlayın
         private readonly Cloudinary _cloudinary;
 
-        public ProfileController()
+        public FilesUploadController()
         {
-            // Cloudinary ayarlarınızı burada tanımlayın
             Account account = new Account(
-                "cloud_name",
-                "api_key",
-                "api_secret"
+                "duyrywg64",
+                "167425327462643",
+                "5tBlGAF7aivpDfETYuo32pwhmuA"
             );
 
             _cloudinary = new Cloudinary(account);
@@ -66,36 +61,37 @@ namespace WebAPI.Controllers
 
 
         [HttpPost]
-    [Route("UploadProfileImage")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> UploadProfileImage(IFormFile file, CancellationToken cancellationToken)
-    {
-            
+        [Route("UploadProfileImage")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UploadProfileImage(IFormFile file, CancellationToken cancellationToken)
+        {
             try
-        {
-            // Kullanıcı adı ve dosya adını birleştirerek Cloudinary'e yükle
-            var fileName = $"{userId}_profileimage";
-            var uploadParams = new ImageUploadParams()
             {
-                File = new FileDescription(fileName, file.OpenReadStream()),
-                Folder = "ProfileImages" // Cloudinary'de dosyanın yükleneceği klasör adı
-            };
+                // Dosya adını kullanıcı adı ile birleştirerek Cloudinary'e yükle
+                var username = "example_user"; // Kullanıcı adını burada alabilirsiniz
+                var fileName = $"{username}_profileimage";
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(fileName, file.OpenReadStream()),
+                    Folder = "ProfileImages" // Cloudinary'de dosyanın yükleneceği klasör adı
+                };
 
-            var uploadResult = await cloudinary.UploadAsync(uploadParams);
+                var uploadResult = await _cloudinary.UploadAsync(uploadParams);
 
-            // Cloudinary'den dönen URL'yi veritabanına kaydetme işlemi burada gerçekleştirilir...
+                // Cloudinary'den dönen URL'yi veritabanına kaydetme işlemi burada gerçekleştirilir...
 
-            return Ok(uploadResult.SecureUrl.AbsoluteUri);
+                return Ok(uploadResult.SecureUrl.AbsoluteUri);
+            }
+            catch (Exception ex)
+            {
+                // Hata yönetimi burada yapılabilir
+                return BadRequest("Error uploading profile image");
+            }
         }
-        catch (Exception ex)
-        {
-            // Handle the exception (log, return an error, etc.)
-            throw ex;
-        }
-    }
 
-    [HttpPost]
+
+        [HttpPost]
         [Route("UploadCertificate")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]

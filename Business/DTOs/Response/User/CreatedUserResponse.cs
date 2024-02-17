@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Response.User
 {
-    public class CreatedUserResponse : BasePageableModel
+    public class CreatedUserResponse 
     {
         public Guid Id { get; set; }
         public string? FirstName { get; set; }
@@ -16,5 +16,6 @@ namespace Business.DTOs.Response.User
         public string? NationalIdentity { get; set; }
         public DateTime? BirthDate { get; set; }
         public string? PhoneNumber { get; set; }
+        public string? ImagePath { get; set; }
     }
 }

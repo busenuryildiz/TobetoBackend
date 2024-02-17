@@ -1,127 +1,118 @@
-﻿using CloudinaryDotNet;
+﻿using Microsoft.AspNetCore.Mvc;
+using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
+using DataAccess.Context;
 
 namespace WebAPI.Controllers
 {
-
+    [Route("api/[controller]")]
     [ApiController]
     public class FilesUploadController : ControllerBase
     {
-        
-        private async Task<string> WriteFile(IFormFile file, string subfolder)
+        private readonly TobetoContext _context;
+        private Cloudinary _cloudinary;
+
+        public FilesUploadController(TobetoContext context, IConfiguration configuration)
         {
-            string filename = "";
-            try
-            {
-                var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
-                filename = DateTime.Now.Ticks.ToString() + extension;
-
-                var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", subfolder);
-
-                if (!Directory.Exists(uploadPath))
-                {
-                    Directory.CreateDirectory(uploadPath);
-                }
-
-                var filePath = Path.Combine(uploadPath, filename);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
-
-                return filename;
-            }
-            catch (Exception ex)
-            {
-                // Handle the exception (log, return an error, etc.)
-                return filename;
-            }
-        }
-
-
-        private readonly Cloudinary _cloudinary;
-
-        public FilesUploadController()
-        {
+            _context = context;
             Account account = new Account(
                 "duyrywg64",
-                "167425327462643",
-                "5tBlGAF7aivpDfETYuo32pwhmuA"
-            );
+                 "167425327462643",
+             "5tBlGAF7aivpDfETYuo32pwhmuA");
 
             _cloudinary = new Cloudinary(account);
         }
 
-
-        [HttpPost]
-        [Route("UploadProfileImage")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UploadProfileImage(IFormFile file, CancellationToken cancellationToken)
+        [HttpPost, DisableRequestSizeLimit]
+        [Route("ProfileImage")]
+        public IActionResult UploadProfileImage(Guid userId, IFormFile formFile)
         {
-            try
+            // Yüklenen dosyanın adını değiştir
+            string uploadedFileName = $"{userId}_profileImage";
+
+            // Cloudinary'ye dosyayı yükle
+            var uploadParams = new ImageUploadParams()
             {
-                // Dosya adını kullanıcı adı ile birleştirerek Cloudinary'e yükle
-                var username = "example_user"; // Kullanıcı adını burada alabilirsiniz
-                var fileName = $"{username}_profileimage";
-                var uploadParams = new ImageUploadParams()
-                {
-                    File = new FileDescription(fileName, file.OpenReadStream()),
-                    Folder = "ProfileImages" // Cloudinary'de dosyanın yükleneceği klasör adı
-                };
+                File = new FileDescription(uploadedFileName, formFile.OpenReadStream()),
+                PublicId = uploadedFileName,
+                Folder = "Profile Images", // Klasör adını belirtin
+            };
 
-                var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+            var uploadResult = _cloudinary.Upload(uploadParams);
 
-                // Cloudinary'den dönen URL'yi veritabanına kaydetme işlemi burada gerçekleştirilir...
+            // Cloudinary'den dönen güvenli URL'yi kullanarak kullanıcı profili güncelle
+            string imageUrl = uploadResult.SecureUri.AbsoluteUri;
 
-                return Ok(uploadResult.SecureUrl.AbsoluteUri);
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+            if (user != null)
+            {
+                user.ImagePath = imageUrl;
+                _context.SaveChanges();
+                return Ok(imageUrl); // Başarılı yanıt döndür
             }
-            catch (Exception ex)
+            else
             {
-                // Hata yönetimi burada yapılabilir
-                return BadRequest("Error uploading profile image");
+                return NotFound(); // Kullanıcı bulunamadı, 404 hatası döndür
             }
         }
 
-
-        [HttpPost]
-        [Route("UploadCertificate")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UploadCertificate(IFormFile file, CancellationToken cancellationToken)
+        [HttpPost, DisableRequestSizeLimit]
+        [Route("Certificate")]
+        public IActionResult UploadCertificate(Guid studentId, int courseId, IFormFile formFile)
         {
-            try
+            string uploadedFileName = $"{studentId}_{courseId}_certificate";
+
+            var uploadParams = new ImageUploadParams()
             {
-                var result = await WriteFile(file, "Certificates");
-                return Ok(result);
+                File = new FileDescription(uploadedFileName, formFile.OpenReadStream()),
+                PublicId = uploadedFileName,
+                Folder = "Certificates", // Klasör adını belirtin
+            };
+
+            var uploadResult = _cloudinary.Upload(uploadParams);
+
+            string imageUrl = uploadResult.SecureUri.AbsoluteUri;
+
+            var studentCourse = _context.StudentCourses.FirstOrDefault(sc => sc.StudentId == studentId && sc.CourseId == courseId);
+            if (studentCourse != null)
+            {
+                studentCourse.CertificatePath = imageUrl;
+                _context.SaveChanges();
+                return Ok(imageUrl); // Başarılı yanıt döndür
             }
-            catch (Exception ex)
+            else
             {
-                throw ex;
+                return NotFound(); // Öğrenci kurs ilişkisi bulunamadı, 404 hatası döndür
             }
         }
 
-        [HttpPost]
-        [Route("UploadCourseImage")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UploadCourseImage(IFormFile file, CancellationToken cancellationToken)
+        [HttpPost, DisableRequestSizeLimit]
+        [Route("CourseImage")]
+        public IActionResult UploadCourseImage(int courseId, IFormFile formFile)
         {
-            try
+            string uploadedFileName = $"{courseId}_courseImage";
+
+            var uploadParams = new ImageUploadParams()
             {
-                var result = await WriteFile(file, "CoursesImages");
-                return Ok(result);
+                File = new FileDescription(uploadedFileName, formFile.OpenReadStream()),
+                PublicId = uploadedFileName,
+                Folder = "Course Images", // Klasör adını belirtin
+            };
+
+            var uploadResult = _cloudinary.Upload(uploadParams);
+
+            string imageUrl = uploadResult.SecureUri.AbsoluteUri;
+
+            var course = _context.Courses.FirstOrDefault(u => u.Id == courseId);
+            if (course != null)
+            {
+                course.ImagePath = imageUrl;
+                _context.SaveChanges();
+                return Ok(imageUrl); 
             }
-            catch (Exception ex)
+            else
             {
-                throw ex;
+                return NotFound(); 
             }
         }
 

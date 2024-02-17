@@ -14,6 +14,7 @@ using DataAccess.Concretes;
 using Entities.Concretes.Clients;
 using Entities.Concretes.Profiles;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -52,7 +53,6 @@ namespace Business.Concretes
             CreatedUserResponse createdUserResponse = _mapper.Map<CreatedUserResponse>(createdUser);
             return createdUserResponse;
         }
-
         public async Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest)
         {
             var data = await _userDal.GetAsync(predicate: i => i.Id == deleteUserRequest.Id);
@@ -61,7 +61,6 @@ namespace Business.Concretes
             var result2 = _mapper.Map<DeletedUserResponse>(result);
             return result2;
         }
-
         public async Task<CreatedUserResponse> GetById(Guid id)
         {
             var result = await _userDal.GetAsync(c => c.Id == id);
@@ -69,8 +68,6 @@ namespace Business.Concretes
             CreatedUserResponse createdUserResponse = _mapper.Map<CreatedUserResponse>(mappedUser);
             return createdUserResponse;
         }
-
-
         public async Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest)
         {
             var data = await _userDal.GetListAsync(
@@ -91,8 +88,6 @@ namespace Business.Concretes
             var result = _mapper.Map<Paginate<GetListUserResponse>>(data);
             return result;
         }
-
-
         public async Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest)
         {
             var data = await _userDal.GetAsync(i => i.Id == updateUserRequest.Id);
@@ -101,14 +96,9 @@ namespace Business.Concretes
             var result = _mapper.Map<UpdatedUserResponse>(data);
             return result;
         }
-
-
-
         public async Task<UserLoginResponse> Login(string email, string password)
         {
-
             var user = _userDal.Get(predicate: u => u.Email == email && u.Password == password);
-
             if (user != null)
             {
                 return new UserLoginResponse
@@ -120,178 +110,78 @@ namespace Business.Concretes
                     BirthDate = user?.BirthDate,
                     PhoneNumber = user?.PhoneNumber,
                     ImagePath = user?.ImagePath,
-
                 };
             }
             return null;
         }
-
         public async Task<UpdatedUserAllInformationResponse> UpdateAllInformationAsync(UpdateUserAllInformationRequest request)
-
         {
-
             try
-
             {
-
                 var user = await _userDal.GetAsync(u => u.Id == request.UserId,
-
                                   include: query => query
-
                                     .Include(u => u.Addresses)
-
                                       .ThenInclude(a => a.District)
-
                                         .ThenInclude(d => d.City)
-
                                           .ThenInclude(c => c.Country));
-
-
-
                 var userAddress = user.Addresses.FirstOrDefault(p => p.UserId == request.UserId);
-
-
-
                 if (userAddress == null)
-
                 {
-
-                    // Adres bilgisi yoksa, yeni bir adres oluştur
-
                     userAddress = new Address
-
                     {
-
                         UserId = request.UserId,
-
                         Name = request.AddressName,
-
                         Description = request.Description,
-
                         CreatedDate = DateTime.Now,
-
                         District = new District
-
                         {
-
                             Name = request.DistrictName,
-
                             CreatedDate = DateTime.Now,
-
                             City = new City
-
                             {
-
                                 Name = request.CityName,
-
                                 CreatedDate = DateTime.Now,
-
                                 Country = new Country
-
                                 {
-
                                     Name = request.CountryName,
-
                                     CreatedDate = DateTime.Now
-
                                 }
-
                             }
-
                         }
-
                     };
-
-
-
-                    // Yeni adresi kullanıcıya ekle
-
                     user.Addresses.Add(userAddress);
-
                 }
-
                 else
 
                 {
-
-                    // Adres bilgisi varsa, bilgileri güncelle
-
                     userAddress.Name = request.AddressName;
-
                     userAddress.UpdatedDate = DateTime.Now;
-
                     userAddress.Description = request.Description;
-
                     userAddress.District.Name = request.DistrictName;
-
                     userAddress.District.UpdatedDate = DateTime.Now;
-
                     userAddress.District.City.Name = request.CityName;
-
                     userAddress.District.City.UpdatedDate = DateTime.Now;
-
                     userAddress.District.City.Country.Name = request.CountryName;
-
                     userAddress.District.City.Country.UpdatedDate = DateTime.Now;
 
                 }
-
-
-
-                // Kullanıcıyı güncelleme talebiyle gelen bilgilerle güncelle
-
                 _mapper.Map(request, user);
-
-
-
-                // Güncellenmiş kullanıcıyı veritabanına kaydet
-
                 await _userDal.UpdateAsync(user);
-
-
-
-                // Güncellenmiş kullanıcıyı uygun DTO'ya dönüştür
-
                 var updatedUserResponse = _mapper.Map<UpdatedUserAllInformationResponse>(user);
-
-
-
                 return updatedUserResponse;
-
             }
-
             catch (Exception ex)
-
             {
-
-                // Orijinal exception'u konsola yazdır
-
                 Console.WriteLine("Hata:");
-
                 Console.WriteLine(ex.Message);
-
-
-
-                // Inner exception'u da konsola yazdır
-
                 if (ex.InnerException != null)
-
                 {
-
                     Console.WriteLine("Inner Exception:");
-
                     Console.WriteLine(ex.InnerException.Message);
-
                 }
-
-
-
                 throw new Exception("Kullanıcı bilgileri güncellenirken bir hata oluştu.", ex);
-
             }
-
         }
-
         public async Task<UpdatedUserAllInformationResponse> GetAllUserInformationByIdAsync(Guid id)
         {
             var user = await _userDal.GetAsync(u => u.Id == id,
@@ -302,14 +192,8 @@ namespace Business.Concretes
                                                                 .ThenInclude(c => c.Country));
 
             var result = _mapper.Map<UpdatedUserAllInformationResponse>(user);
-
-
             return result;
         }
-
-
-
-
     }
 
 }

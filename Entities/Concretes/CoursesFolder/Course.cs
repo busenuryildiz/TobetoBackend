@@ -27,6 +27,8 @@ namespace Entities.Concretes.CoursesFolder
         public SoftwareLanguage? SoftwareLanguage { get; set; }
         public List<StudentCourse>? StudentCourses { get; set; } 
         public List<InstructorCourse> InstructorCourses { get; set; }
+        public List<CoursePart> CourseParts { get; set; }
+
 
     }
 }

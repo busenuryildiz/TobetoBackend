@@ -32,9 +32,10 @@ namespace DataAccess.EntityConfigurations
                .IsRequired()
                .HasColumnName("LessonTime");
 
-            builder.HasMany(l => l.LessonCourses)
-                .WithOne(lc => lc.Lesson)
-                .HasForeignKey(l => l.LessonId);
+            builder.HasOne(l => l.CoursePart)
+                   .WithMany(cp => cp.Lessons)
+                   .HasForeignKey(l => l.CoursePartId)
+                   .IsRequired();
 
             builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
 

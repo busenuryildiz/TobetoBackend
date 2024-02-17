@@ -69,6 +69,7 @@ namespace DataAccess
             services.AddScoped<IUniversityDal, EfUniversityDal>();
             services.AddScoped<ISurveyAnswerDal, EfSurveyAnswerDal>();
             services.AddScoped<ISurveyQuestionDal, EfSurveyQuestionDal>();
+            services.AddScoped<ICoursePartDal, EfCoursePartDal>();
 
 
             return services;

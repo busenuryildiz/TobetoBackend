@@ -16,7 +16,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(u => u.NationalIdentity);
             builder.Property(u => u.BirthDate).HasColumnType("date");
             builder.Property(u => u.PhoneNumber).HasMaxLength(20);
-            builder.Property(u => u.ImagePath).HasMaxLength(255); // İmge yolu için örnek sınırlama
+            builder.Property(u => u.ImagePath); // İmge yolu için örnek sınırlama
 
             builder.HasMany(u => u.EducationInformations)
                 .WithOne(ei => ei.User)
@@ -46,6 +46,8 @@ namespace DataAccess.EntityConfigurations
                 .WithOne(ul => ul.User)
                 .HasForeignKey(ul => ul.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(u => u.BadgeOfUsers);
 
             //builder.HasMany(u => u.Surveys)
             //    .WithOne(s => s.User)

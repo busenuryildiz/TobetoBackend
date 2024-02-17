@@ -19,6 +19,8 @@ namespace DataAccess.EntityConfigurations
             builder.Property(b => b.Description).HasColumnName("Description");
             builder.Property(b => b.ExamDuration).HasColumnName("ExamDuration");
             builder.Property(b => b.Point).HasColumnName("Point");
+            builder.Property(b => b.QuestionAmount).HasColumnName("QuestionAmount");
+            builder.Property(b => b.Date).HasColumnName("Date");
 
             builder.HasIndex(indexExpression: b => b.Title, name: "UK_Exams_Title").IsUnique();
             builder.HasMany(b => b.Questions);

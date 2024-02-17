@@ -538,6 +538,37 @@ namespace DataAccess.Migrations
                     b.ToTable("CourseLevels", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.CoursePart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CourseParts", (string)null);
+                });
+
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.CourseSubject", b =>
                 {
                     b.Property<int>("Id")
@@ -665,6 +696,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Content");
 
+                    b.Property<int>("CoursePartId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -690,6 +724,8 @@ namespace DataAccess.Migrations
                         .HasColumnName("VideoUrl");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CoursePartId");
 
                     b.ToTable("Lessons", (string)null);
                 });
@@ -1865,6 +1901,17 @@ namespace DataAccess.Migrations
                     b.Navigation("SoftwareLanguage");
                 });
 
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.CoursePart", b =>
+                {
+                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
+                        .WithMany("CourseParts")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.CourseSubject", b =>
                 {
                     b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
@@ -1910,6 +1957,17 @@ namespace DataAccess.Migrations
                     b.Navigation("Course");
 
                     b.Navigation("Instructor");
+                });
+
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Lesson", b =>
+                {
+                    b.HasOne("Entities.Concretes.CoursesFolder.CoursePart", "CoursePart")
+                        .WithMany("Lessons")
+                        .HasForeignKey("CoursePartId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CoursePart");
                 });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.LessonCourse", b =>
@@ -2289,6 +2347,8 @@ namespace DataAccess.Migrations
                 {
                     b.Navigation("Assignments");
 
+                    b.Navigation("CourseParts");
+
                     b.Navigation("CourseSubjects");
 
                     b.Navigation("Exams");
@@ -2303,6 +2363,11 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.CourseLevel", b =>
                 {
                     b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.CoursePart", b =>
+                {
+                    b.Navigation("Lessons");
                 });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Exam", b =>

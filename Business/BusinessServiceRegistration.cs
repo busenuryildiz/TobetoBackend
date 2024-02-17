@@ -130,6 +130,7 @@ namespace Business
             services.AddScoped<ISurveyAnswerService, SurveyAnswerManager>();
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<ISurveyQuestionService, SurveyQuestionManager>();
+            services.AddScoped<ICoursePartService, CoursePartManager>();
 
 
 

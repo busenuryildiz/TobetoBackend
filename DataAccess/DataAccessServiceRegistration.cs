@@ -70,8 +70,6 @@ namespace DataAccess
             services.AddScoped<ISurveyAnswerDal, EfSurveyAnswerDal>();
             services.AddScoped<ISurveyQuestionDal, EfSurveyQuestionDal>();
             services.AddScoped<ICoursePartDal, EfCoursePartDal>();
-            services.AddScoped<IBadgeDal, EfBadgeDal>();
-            services.AddScoped<IBadgeOfUserDal, EfBadgeOfUserDal>();
             services.AddScoped<IExamOfUserDal, EfExamOfUserDal>();
 
 

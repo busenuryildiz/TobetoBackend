@@ -24,6 +24,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(c => c.Duration).HasColumnName("Duration");
             builder.Property(c => c.CourseType).HasColumnName("CourseType");
             builder.Property(c => c.Classroom).HasColumnName("Classroom");
+            builder.Property(c => c.BadgePath).HasColumnName("BadgePath");
 
             // Course ile Category arasındaki ilişki
             builder.HasOne(c => c.Category)
@@ -39,8 +40,6 @@ namespace DataAccess.EntityConfigurations
             builder.HasOne(c => c.SoftwareLanguage)
                 .WithMany(sl=>sl.Courses)
                 .HasForeignKey(c => c.SoftwareLanguageId);
-
-            builder.HasOne(c => c.Badge);
 
             // Course ile StudentCourse arasındaki ilişki
             builder.HasMany(c => c.StudentCourses)

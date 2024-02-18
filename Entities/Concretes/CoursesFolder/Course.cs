@@ -19,6 +19,7 @@ namespace Entities.Concretes.CoursesFolder
         public string? CourseType { get; set; }
         public int? Duration { get; set; }
         public string? Classroom { get; set; }
+        public string? BadgePath { get; set; }
         public Category? Category { get; set; }
         public List<Assignment>? Assignments { get; set; }
         public List<Exam>? Exams { get; set; }
@@ -29,7 +30,5 @@ namespace Entities.Concretes.CoursesFolder
         public List<StudentCourse>? StudentCourses { get; set; } 
         public List<InstructorCourse> InstructorCourses { get; set; }
         public List<CoursePart> CourseParts { get; set; }
-        public Badge? Badge { get; set; }
-
     }
 }

@@ -2,11 +2,15 @@
 using Business.Abstracts;
 using Business.DTOs.Request.StudentCourse;
 using Business.DTOs.Response.StudentCourse;
+using Business.DTOs.Response.UserLanguage;
 using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using Entities.Concretes.CoursesFolder;
+using Entities.Concretes.Profiles;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using Serilog;
 
 namespace Business.Concretes
@@ -145,6 +149,21 @@ namespace Business.Concretes
             }
         }
 
+        public async Task<IPaginate<GetUserBadgesResponse>> GetBadgesForCompletedCourses(Guid studentId, int value)
+        {
 
+            var completedCourses = await _studentCourseDal.GetListAsync(
+                                                              predicate: sc => sc.StudentId == studentId && sc.Progress == 100,
+                                                              include: query => query
+                                                              .Include(sc => sc.Student)
+                                                              .Include(sc => sc.Course),
+                                                              size: value
+            );
+
+            var results = _mapper.Map<Paginate<GetUserBadgesResponse>>(completedCourses);
+
+            return results;
+
+        }
     }
 }

@@ -47,8 +47,6 @@ namespace DataAccess.EntityConfigurations
                 .HasForeignKey(ul => ul.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(u => u.BadgeOfUsers);
-
             builder.HasMany(e => e.ExamOfUsers);
 
 

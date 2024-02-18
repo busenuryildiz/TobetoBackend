@@ -452,6 +452,10 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("BadgePath")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("BadgePath");
+
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int")
                         .HasColumnName("CategoryId");
@@ -1140,79 +1144,6 @@ namespace DataAccess.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Addresses");
-                });
-
-            modelBuilder.Entity("Entities.Concretes.Profiles.Badge", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("BadgePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("BadgePath");
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int")
-                        .HasColumnName("CourseId");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Badge");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId")
-                        .IsUnique();
-
-                    b.ToTable("Badges", (string)null);
-                });
-
-            modelBuilder.Entity("Entities.Concretes.Profiles.BadgeOfUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BadgeId")
-                        .HasColumnType("int")
-                        .HasColumnName("BadgeId");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BadgeId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("BadgeOfUsers", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.Certificate", b =>
@@ -2214,36 +2145,6 @@ namespace DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.Profiles.Badge", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
-                        .WithOne("Badge")
-                        .HasForeignKey("Entities.Concretes.Profiles.Badge", "CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-                });
-
-            modelBuilder.Entity("Entities.Concretes.Profiles.BadgeOfUser", b =>
-                {
-                    b.HasOne("Entities.Concretes.Profiles.Badge", "Badge")
-                        .WithMany("BadgeOfUsers")
-                        .HasForeignKey("BadgeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithMany("BadgeOfUsers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Badge");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Entities.Concretes.Profiles.Certificate", b =>
                 {
                     b.HasOne("Entities.Concretes.Clients.User", "User")
@@ -2480,8 +2381,6 @@ namespace DataAccess.Migrations
 
                     b.Navigation("Applications");
 
-                    b.Navigation("BadgeOfUsers");
-
                     b.Navigation("Certificates");
 
                     b.Navigation("EducationInformations");
@@ -2515,8 +2414,6 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Course", b =>
                 {
                     b.Navigation("Assignments");
-
-                    b.Navigation("Badge");
 
                     b.Navigation("CourseParts");
 
@@ -2566,11 +2463,6 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentCourse", b =>
                 {
                     b.Navigation("Payments");
-                });
-
-            modelBuilder.Entity("Entities.Concretes.Profiles.Badge", b =>
-                {
-                    b.Navigation("BadgeOfUsers");
                 });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.City", b =>

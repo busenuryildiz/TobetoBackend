@@ -42,7 +42,21 @@ namespace Business.Concretes
 
         public async Task<CreatedCourseResponse> GetById(int id)
         {
-            var result = await _courseDal.GetAsync(c => c.Id == id);
+            var result = await _courseDal.GetAsync(
+              c => c.Id == id,
+             include: u => u
+            .Include(u => u.Category)
+            .Include(u => u.Assignments)
+            .Include(u => u.Exams)
+            .Include(u => u.CourseLevel)
+            .Include(u => u.CourseParts)
+              .ThenInclude(cp => cp.Lessons) 
+            .Include(u => u.LessonCourses)
+            .Include(u => u.SoftwareLanguage)
+            .Include(c => c.InstructorCourses)
+                .ThenInclude(ic => ic.Instructor)
+                .ThenInclude(i => i.User)
+    );
             Course mappedCourse = _mapper.Map<Course>(result);
             CreatedCourseResponse createdCourseResponse = _mapper.Map<CreatedCourseResponse>(mappedCourse);
             return createdCourseResponse;

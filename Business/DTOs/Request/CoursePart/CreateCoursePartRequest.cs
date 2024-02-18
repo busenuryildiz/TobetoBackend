@@ -9,6 +9,7 @@ namespace Business.DTOs.Request.CoursePart
     public class CreateCoursePartRequest
     {
         public string Title { get; set; }
-        // Diğer gerekli özellikler eklenebilir
+        public int CourseId { get; set; }
     }
+
 }

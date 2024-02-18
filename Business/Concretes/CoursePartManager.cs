@@ -6,6 +6,7 @@ using Core.Aspects.Autofac.Logging;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.CoursesFolder;
+using Microsoft.EntityFrameworkCore;
 
 public class CoursePartManager : ICoursePartService
 {
@@ -43,7 +44,7 @@ public class CoursePartManager : ICoursePartService
 
     public async Task<GetCoursePartByIdResponse> GetById(int id)
     {
-        var coursePart = await _repository.GetAsync(cp => cp.Id == id);
+        var coursePart = await _repository.GetAsync(cp => cp.Id == id, include : cp => cp.Include(cp => cp.Lessons));
         return _mapper.Map<GetCoursePartByIdResponse>(coursePart);
     }
 

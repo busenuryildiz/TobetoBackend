@@ -21,6 +21,9 @@ namespace Business.Profiles
             CreateMap<CreateCourseRequest, Course>().ReverseMap();
             CreateMap<Course, CreatedCourseResponse>().ReverseMap();
 
+            CreateMap<CoursePart, CoursePartResponse>().ReverseMap();
+            CreateMap<Lesson, LessonResponse>().ReverseMap();
+
             CreateMap<DeleteCourseRequest, Course>().ReverseMap();
             CreateMap<Course, DeletedCourseResponse>().ReverseMap();
 
@@ -29,19 +32,34 @@ namespace Business.Profiles
 
             CreateMap<Course, GetListCourseResponse>()
                 .ForMember(dest => dest.InstructorName, opt =>
-                    opt.MapFrom(src => $"{src.InstructorCourses.FirstOrDefault().Instructor.User.FirstName} {src.InstructorCourses.FirstOrDefault().Instructor.User.LastName}"))
+                    opt.MapFrom(src => GetInstructorName(src)))
                 .ForMember(dest => dest.CategoryName, opt =>
-                                       opt.MapFrom(src => src.Category.Name))
+                    opt.MapFrom(src => src.Category != null ? src.Category.Name : null))
                 .ForMember(dest => dest.CourseLevelName, opt =>
-                                                          opt.MapFrom(src => src.CourseLevel.Name))
+                    opt.MapFrom(src => src.CourseLevel != null ? src.CourseLevel.Name : null))
                 .ForMember(dest => dest.SoftwareLanguageName, opt =>
-                                                                             opt.MapFrom(src => src.SoftwareLanguage.Name))
-               
+                    opt.MapFrom(src => src.SoftwareLanguage != null ? src.SoftwareLanguage.Name : null))
                 .ForMember(dest => dest.CourseSubjectName, opt =>
-                                                                                                                      opt.MapFrom(src => src.CourseSubjects.FirstOrDefault().Subject.Name))
-
+                    opt.MapFrom(src => GetCourseSubjectName(src)))
                 .ReverseMap();
+
             CreateMap<Paginate<Course>, Paginate<GetListCourseResponse>>().ReverseMap();
+        }
+
+        private string GetInstructorName(Course course)
+        {
+            var instructorCourse = course.InstructorCourses.FirstOrDefault();
+            if (instructorCourse != null && instructorCourse.Instructor != null && instructorCourse.Instructor.User != null)
+                return $"{instructorCourse.Instructor.User.FirstName} {instructorCourse.Instructor.User.LastName}";
+            return null;
+        }
+
+        private string GetCourseSubjectName(Course course)
+        {
+            var courseSubject = course.CourseSubjects.FirstOrDefault();
+            if (courseSubject != null && courseSubject.Subject != null)
+                return courseSubject.Subject.Name;
+            return null;
         }
     }
 }

@@ -9,5 +9,6 @@ namespace Business.DTOs.Request.Lesson
     public class DeleteLessonRequest
     {
         public int Id { get; set; }
+
     }
 }

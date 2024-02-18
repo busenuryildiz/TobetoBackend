@@ -49,6 +49,9 @@ namespace DataAccess.EntityConfigurations
 
             builder.HasMany(u => u.BadgeOfUsers);
 
+            builder.HasMany(e => e.ExamOfUsers);
+
+
             //builder.HasMany(u => u.Surveys)
             //    .WithOne(s => s.User)
             //    .HasForeignKey(s => s.CreatorUserID)

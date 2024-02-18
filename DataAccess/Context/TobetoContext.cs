@@ -64,6 +64,7 @@ namespace DataAccess.Context
         public DbSet<CoursePart> CourseParts { get; set; }
         public DbSet<Badge> Badges { get; set; }
         public DbSet<BadgeOfUser> BadgeOfUsers { get; set; }
+        public DbSet<ExamOfUser> ExamOfUsers { get; set; }
 
 
 

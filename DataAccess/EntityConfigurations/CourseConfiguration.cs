@@ -40,6 +40,8 @@ namespace DataAccess.EntityConfigurations
                 .WithMany(sl=>sl.Courses)
                 .HasForeignKey(c => c.SoftwareLanguageId);
 
+            builder.HasOne(c => c.Badge);
+
             // Course ile StudentCourse arasındaki ilişki
             builder.HasMany(c => c.StudentCourses)
                 .WithOne(sc => sc.Course)

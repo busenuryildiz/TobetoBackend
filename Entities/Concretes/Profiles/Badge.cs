@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Entities.Concretes.CoursesFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace Entities.Concretes.Profiles
     {
         public string Name { get; set; }
         public string BadgePath { get; set; }
+        public int CourseId { get; set; }
         public List<BadgeOfUser> BadgeOfUsers { get; set; }
+        public Course Course { get; set; }
     }
 }

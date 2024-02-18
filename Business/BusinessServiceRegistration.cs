@@ -133,6 +133,7 @@ namespace Business
             services.AddScoped<ICoursePartService, CoursePartManager>();
             services.AddScoped<IBadgeService, BadgeManager>();
             services.AddScoped<IBadgeOfUserService, BadgeOfUserManager>();
+            services.AddScoped<IExamOfUserService, ExamOfUserManager>();
 
 
 

@@ -72,6 +72,7 @@ namespace DataAccess
             services.AddScoped<ICoursePartDal, EfCoursePartDal>();
             services.AddScoped<IBadgeDal, EfBadgeDal>();
             services.AddScoped<IBadgeOfUserDal, EfBadgeOfUserDal>();
+            services.AddScoped<IExamOfUserDal, EfExamOfUserDal>();
 
 
             return services;

@@ -16,11 +16,15 @@ namespace DataAccess.EntityConfigurations
         {
             builder.ToTable("Badges").HasKey(b => b.Id);
 
-            builder.Property(b => b.Name).HasColumnName("Bade");
+            builder.Property(b => b.Name).HasColumnName("Badge");
+
+            builder.Property(b => b.CourseId).HasColumnName("CourseId");
 
             builder.Property(b => b.BadgePath).HasColumnName("BadgePath");
             
             builder.HasMany(b => b.BadgeOfUsers);
+
+            builder.HasOne(b => b.Course);
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }

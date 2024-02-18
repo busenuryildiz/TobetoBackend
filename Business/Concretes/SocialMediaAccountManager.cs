@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.SocialMediaAccount;
+using Business.DTOs.Response.Certificate;
 using Business.DTOs.Response.SocialMediaAccount;
 using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using Entities.Concretes;
 
 namespace Business.Concretes
@@ -58,7 +60,6 @@ namespace Business.Concretes
             return result;
         }
 
-
         public async Task<UpdatedSocialMediaAccountResponse> Update(UpdateSocialMediaAccountRequest updateSocialMediaAccountRequest)
         {
             var data = await _socialMediaAccountDal.GetAsync(i => i.Id == updateSocialMediaAccountRequest.Id);
@@ -67,6 +68,16 @@ namespace Business.Concretes
             var result = _mapper.Map<UpdatedSocialMediaAccountResponse>(data);
             return result;
         }
+
+
+        public async Task<IPaginate<GetListSocialMediaAccountResponse>> GetUsersAllSocialMediaAccount(Guid userId, int value = int.MaxValue)
+        {
+            var userSocialMediaAccounts = await _socialMediaAccountDal.GetListAsync(c => c.UserId == userId, size: value);
+
+            var results = _mapper.Map<Paginate<GetListSocialMediaAccountResponse>>(userSocialMediaAccounts);
+
+            return results;
+        }     
     }
 }
 

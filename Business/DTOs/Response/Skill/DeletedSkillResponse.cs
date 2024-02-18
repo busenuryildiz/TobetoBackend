@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Response.Skill
 {
-    public class DeletedSkillResponse :BasePageableModel
+    public class DeletedSkillResponse
     {
         public int Id { get; set; }
-        public Guid UserId { get; set; }
         public string Name { get; set; }
-        public string ImagePath { get; set; }
     }
 }

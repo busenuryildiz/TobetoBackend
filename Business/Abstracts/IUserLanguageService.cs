@@ -16,5 +16,6 @@ namespace Business.Abstracts
         Task<UpdatedUserLanguageResponse> Update(UpdateUserLanguageRequest updateUserLanguageRequest);
         Task<DeletedUserLanguageResponse> Delete(DeleteUserLanguageRequest deleteUserLanguageRequest);
         Task<CreatedUserLanguageResponse> GetById(int id);
+        Task<IPaginate<GetUserLanguageAndLevelResponse>> GetUserLanguageAndLevelByUserId(Guid userId, int value);
     }
 }

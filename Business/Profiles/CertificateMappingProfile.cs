@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.DTOs.Request.Certificate;
 using Business.DTOs.Response.Certificate;
+using Business.DTOs.Response.UserLanguage;
 using Core.DataAccess.Paging;
 using Entities.Concretes;
 using Entities.Concretes.Profiles;
@@ -27,6 +28,8 @@ namespace Business.Profiles
 
             CreateMap<Certificate, GetListCertificateResponse>().ReverseMap();
             CreateMap<Paginate<Certificate>, Paginate<GetListCertificateResponse>>().ReverseMap();
+
+
         }
     }
 }

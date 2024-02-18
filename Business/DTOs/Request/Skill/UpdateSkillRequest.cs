@@ -9,8 +9,6 @@ namespace Business.DTOs.Request.Skill
     public class UpdateSkillRequest
     {
         public int Id { get; set; } 
-        public Guid UserId { get; set; }
         public string Name { get; set; }
-        public string ImagePath { get; set; }
     }
 }

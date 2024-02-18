@@ -47,8 +47,6 @@ namespace WebAPI.Controllers
             }
         }
 
-
-
         [HttpGet("GetById")]
         public async Task<IActionResult> GetStudentById(Guid id)
         {
@@ -75,13 +73,8 @@ namespace WebAPI.Controllers
         [HttpGet("GetList")]
         public async Task<IActionResult> GetStudentList([FromQuery] PageRequest pageRequest)
         {
-
-           
-
-
                 var result = await _studentService.GetListAsync(pageRequest);
                 return Ok(result);
-
         }
 
 
@@ -94,6 +87,15 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return NotFound($"Student with ID {updateStudentRequest.Id} not found.");
+        }
+
+        [HttpGet("GetStudentSkillsByUserIdAsync")]
+        public async Task<IActionResult> GetStudentSkillsByUserIdAsync([FromQuery] Guid userId)
+        {
+            var result = await _studentService.GetStudentSkillsByUserIdAsync(userId);
+           
+            return Ok(result);
+
         }
     }
 }

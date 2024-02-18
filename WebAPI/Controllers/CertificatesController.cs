@@ -50,5 +50,13 @@ namespace WebAPI.Controllers
             var result = await _certificateService.GetById(id);
             return Ok(result);
         }
+
+        [HttpGet("GetUsersAllCertificates")]
+        public async Task<IActionResult> GetUsersAllCertificates([FromQuery] Guid userId)
+        {
+            var result = await _certificateService.GetUsersAllCertificates(userId);
+
+            return Ok(result);
+        }
     }
 }

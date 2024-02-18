@@ -1,11 +1,18 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.UserLanguage;
+using Business.DTOs.Response.LessonCourse;
+using Business.DTOs.Response.Student;
 using Business.DTOs.Response.UserLanguage;
 using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using Entities.Concretes.Profiles;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Drawing;
+using System.Linq;
 
 namespace Business.Concretes
 {
@@ -66,5 +73,21 @@ namespace Business.Concretes
             var result = _mapper.Map<UpdatedUserLanguageResponse>(data);
             return result;
         }
+
+        public async Task<IPaginate<GetUserLanguageAndLevelResponse>> GetUserLanguageAndLevelByUserId(Guid userId, int value)
+        {
+            var userLanguages = await _userLanguageDal.GetListAsync(u => u.UserId == userId,
+                                                                include: query => query
+                                                                    .Include(u => u.User)
+                                                                    .Include(u => u.Language)
+                                                                    .Include(u => u.LanguageLevel),
+                                                                    size:value
+                                                                );
+
+            var results = _mapper.Map<Paginate<GetUserLanguageAndLevelResponse>>(userLanguages);  
+
+            return results;
+        }
+
     }
 }

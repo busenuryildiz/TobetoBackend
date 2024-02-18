@@ -4,6 +4,7 @@ using Business.DTOs.Request.User;
 using Business.DTOs.Response.Student;
 using Business.DTOs.Response.User;
 using Core.DataAccess.Paging;
+using Entities.Concretes;
 using Entities.Concretes.Clients;
 using System;
 using System.Collections.Generic;
@@ -78,6 +79,15 @@ namespace Business.Profiles
 
             CreateMap<Student, GetListStudentResponse>().ReverseMap();
             CreateMap<Paginate<Student>, Paginate<GetListStudentResponse>>().ReverseMap();
+
+
+            CreateMap<Student, GetStudentSkillsResponse>()
+               .ForMember(dest => dest.SkillName, opt => opt.MapFrom(src => src.StudentSkills.Select(skill => skill.Skill.Name).ToList()))
+               .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.Id))
+               .ForMember(dest => dest.StudentNumber, opt => opt.MapFrom(src => src.StudentNumber))
+               .ReverseMap();
+
+
         }
     }
 }

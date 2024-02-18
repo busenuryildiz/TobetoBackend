@@ -49,5 +49,13 @@ namespace WebAPI.Controllers
             var result = await _userLanguageService.GetById(id);
             return Ok(result);
         }
+
+        [HttpGet("GetUserLanguageAndLevelByUserId")]
+        public async Task<IActionResult> GetUserLanguageAndLevelByUserId([FromQuery] Guid userId)
+        {
+            var result = await _userLanguageService.GetUserLanguageAndLevelByUserId(userId, int.MaxValue);
+
+            return Ok(result);
+        }
     }
 }

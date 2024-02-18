@@ -8,9 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-
-
-
 namespace Entities.Concretes.Clients
 {
     public class Student : Entity<Guid>
@@ -24,6 +21,5 @@ namespace Entities.Concretes.Clients
         public List<ApplicationStudent>? ApplicationStudents { get; set; }
         public List<StudentAssignment>? StudentAssignments { get; set; }
         
-
     }
 }

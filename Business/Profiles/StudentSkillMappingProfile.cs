@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Entities.Concretes;
+using Business.DTOs.Response.Student;
 
 namespace Business.Profiles
 {
@@ -43,6 +44,10 @@ namespace Business.Profiles
 
             CreateMap<StudentSkill, GetListStudentSkillResponse>().ReverseMap();
             CreateMap<Paginate<StudentSkill>, Paginate<GetListStudentSkillResponse>>().ReverseMap();
+
+
+           
+                
         }
     }
 }

@@ -2,6 +2,7 @@
 using Business.Abstracts;
 using Business.DTOs.Request.Certificate;
 using Business.DTOs.Response.Certificate;
+using Business.DTOs.Response.UserLanguage;
 using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
@@ -66,6 +67,16 @@ namespace Business.Concretes
             await _certificateDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedCertificateResponse>(data);
             return result;
+        }
+
+        public async Task<IPaginate<GetListCertificateResponse>> GetUsersAllCertificates(Guid userId, int value=int.MaxValue)
+        {
+            var userCertificates = await _certificateDal.GetListAsync(c => c.UserId == userId, size:value);
+
+            var results = _mapper.Map<Paginate<GetListCertificateResponse>>(userCertificates);
+
+            return results;
+
         }
     }
 }

@@ -11,6 +11,7 @@ using Business.DTOs.Response.UserLanguage;
 using Entities.Concretes.Profiles;
 using Business.DTOs.Response.User;
 using Entities.Concretes.Clients;
+using Business.DTOs.Response.Student;
 
 namespace Business.Profiles
 {
@@ -29,7 +30,14 @@ namespace Business.Profiles
 
             CreateMap<UserLanguage, GetListUserLanguageResponse>().ReverseMap();
             CreateMap<Paginate<UserLanguage>, Paginate<GetListUserLanguageResponse>>().ReverseMap();
-  
+
+            CreateMap<UserLanguage, GetUserLanguageAndLevelResponse>()
+                 .ForMember(dest => dest.LanguageName, opt => opt.MapFrom(src => src.Language.Name))
+                 .ForMember(dest => dest.LanguageLevelName, opt => opt.MapFrom(src => src.LanguageLevel.Name));
+
+            CreateMap<Paginate<UserLanguage>, Paginate<GetUserLanguageAndLevelResponse>>()
+                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
+
         }
     }
 }

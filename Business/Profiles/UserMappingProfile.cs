@@ -35,7 +35,6 @@ namespace Business.Profiles
                 .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items)).ReverseMap();
 
 
-            //CreateMap<User, UpdatedUserAllInformationResponse>().ReverseMap();
 
             CreateMap<User, UpdatedUserAllInformationResponse>()
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))
@@ -54,6 +53,8 @@ namespace Business.Profiles
                 .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().District.City.Name))
                 .ForMember(dest => dest.CountryName, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().District.City.Country.Name))
             .ReverseMap();
+
+
 
         }
     }

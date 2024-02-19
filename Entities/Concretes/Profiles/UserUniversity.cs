@@ -10,10 +10,10 @@ namespace Entities.Concretes.Profiles
 {
     public class UserUniversity:Entity<int>
     {
-        public Guid UserId { get; set; }
-        public int UniversityId { get; set; }
-        public User User { get; set; }
-        public University University { get; set; }
+        public Guid? UserId { get; set; }
+        public int? UniversityId { get; set; }
+        public User? User { get; set; }
+        public University? University { get; set; }
         
     }
 }

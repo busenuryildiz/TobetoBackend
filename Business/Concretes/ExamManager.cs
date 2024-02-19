@@ -77,5 +77,7 @@ namespace Business.Concretes
             var result = await _examBusinessRules.GetRandomQuestionsByExamId(examId);
             return result;
         }
+
+
     }
 }

@@ -17,18 +17,16 @@ namespace DataAccess.EntityConfigurations
             builder.ToTable("UserUniversities");
 
             builder.HasKey(sa => sa.Id);
-            builder.Property(sa => sa.UserId).IsRequired();
-            builder.Property(sa => sa.UniversityId).IsRequired();
+            builder.Property(sa => sa.UserId);
+            builder.Property(sa => sa.UniversityId);
 
             builder.HasOne(ss => ss.User)
                 .WithMany(s => s.UserUniversities)
-                .HasForeignKey(ss => ss.UserId)
-                .IsRequired();
+                .HasForeignKey(ss => ss.UserId);
 
             builder.HasOne(ss => ss.University)
                 .WithMany(s => s.UserUniversities)
-                .HasForeignKey(ss => ss.UniversityId)
-                .IsRequired();
+                .HasForeignKey(ss => ss.UniversityId);
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }

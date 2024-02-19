@@ -16,36 +16,27 @@ namespace DataAccess.EntityConfigurations
             builder.ToTable("UserExperiences").HasKey(ue => ue.Id); 
 
             builder.Property(ue => ue.UserId)
-                .IsRequired()
                 .HasColumnName("UserId"); 
 
             builder.Property(ue => ue.EstablishmentName)
-                .IsRequired()
                 .HasMaxLength(255)
                 .HasColumnName("EstablishmentName"); 
 
             builder.Property(ue => ue.Position)
-                .IsRequired()
                 .HasMaxLength(255)
                 .HasColumnName("Position"); 
 
             builder.Property(ue => ue.Sector)
-                .IsRequired()
                 .HasMaxLength(255)
                 .HasColumnName("Sector"); 
 
             builder.Property(ue => ue.City)
-                .IsRequired()
                 .HasMaxLength(255)
                 .HasColumnName("City"); 
             builder.Property(ue => ue.WorkBeginDate)
-                .IsRequired()
-                .HasColumnType("datetime")
                 .HasColumnName("WorkBeginDate"); 
 
             builder.Property(ue => ue.WorkEndDate)
-                .IsRequired()
-                .HasColumnType("datetime")
                 .HasColumnName("WorkEndDate"); 
 
             builder.Property(ue => ue.Description)

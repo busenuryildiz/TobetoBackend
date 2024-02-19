@@ -22,7 +22,7 @@ namespace Business.Rules.BusinessRules
             _mapper = mapper;
         }
 
-        public async Task ValidateExamPoint(int examPoint)
+        public async Task ValidateExamPoint(float examPoint)
         {
             if (examPoint < 0 || examPoint > 100)
             {

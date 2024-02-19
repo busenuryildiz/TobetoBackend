@@ -20,7 +20,7 @@ namespace Entities.Concretes.Profiles
         public DateTime? WorkBeginDate { get; set; } // İşe Başlama yılı bitiş yılından büyük olamaz.
         public DateTime? WorkEndDate { get; set; }
         public string? Description { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
 
     }
 }

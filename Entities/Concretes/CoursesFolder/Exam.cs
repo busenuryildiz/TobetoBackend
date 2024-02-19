@@ -12,11 +12,12 @@ namespace Entities.Concretes.CoursesFolder
         public int? CourseId { get; set; }
         public string Title { get; set; }
         public string? Description { get; set; }
-        public int Point { get; set; }
+        public double Point { get; set; }
         public TimeSpan ExamDuration { get; set; }
         public DateTime Date { get; set; }
         public int QuestionAmount { get; set; }
         public List<Question>? Questions { get; set; }
         public Course? Course { get; set; }
+        public List<ExamOfUser>? ExamOfUsers { get; set; }
     }
 }

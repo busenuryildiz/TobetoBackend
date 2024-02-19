@@ -74,5 +74,15 @@ namespace WebAPI.Controllers
             var result = await _userService.GetAllUserInformationByIdAsync(id);
             return Ok(result);
         }
+
+
+
+        [HttpGet("GetUserExperienceAndEducationByUserId")]
+        public async Task<IActionResult> GetUserExperienceAndEducationByUserId([FromQuery] Guid userId)
+        {
+            var result = await _userService.GetUserExperienceAndEducationByUserId(userId, int.MaxValue);
+
+            return Ok(result);
+        }
     }
 }

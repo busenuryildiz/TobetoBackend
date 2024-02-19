@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Response.BadgeOfUser
+namespace Business.DTOs.Response.ExamOfUser
 {
-    public class CreatedBadgeOfUserResponse
+    public class UpdatedExamOfUserResponse
     {
         public int Id { get; set; }
-        public int BadgeId { get; set; }
-        public int UserId { get; set; }
+        public int ExamId { get; set; }
+        public Guid UserId { get; set; }
     }
 }

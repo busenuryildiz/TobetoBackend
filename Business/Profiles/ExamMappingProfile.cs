@@ -17,7 +17,6 @@ namespace Business.Profiles
             //--------------------Created---------------------------------------
 
             CreateMap<CreateExamRequest, Exam>().ReverseMap();
-            CreateMap<CreateExamRequest, CreateExamRequest>().ReverseMap();
             CreateMap<Exam, CreatedExamResponse>().ReverseMap();
             CreateMap<CreateExamRequest, CreatedExamResponse>().ReverseMap();
 
@@ -25,13 +24,11 @@ namespace Business.Profiles
             //-------------------Deleted----------------------------------------------
 
             CreateMap<DeleteExamRequest, Exam>().ReverseMap();
-            CreateMap<DeleteExamRequest, DeleteExamRequest>().ReverseMap();
             CreateMap<Exam, DeletedExamResponse>().ReverseMap();
             CreateMap<DeleteExamRequest, DeletedExamResponse>().ReverseMap();
 
             //-------------------Updated---------------------------------------------
             CreateMap<UpdateExamRequest, Exam>().ReverseMap();
-            CreateMap<UpdateExamRequest, UpdateExamRequest>().ReverseMap();
             CreateMap<Exam, UpdatedExamResponse>().ReverseMap();
             CreateMap<UpdateExamRequest, UpdatedExamResponse>().ReverseMap();
 

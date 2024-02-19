@@ -53,5 +53,14 @@ namespace WebAPI.Controllers
             var result = await _socialMediaAccountService.GetById(id);
             return Ok(result);
         }
+
+
+        [HttpGet("GetUsersAllSocialMediaAccount")]
+        public async Task<IActionResult> GetUsersAllSocialMediaAccount([FromQuery] Guid userId)
+        {
+            var result = await _socialMediaAccountService.GetUsersAllSocialMediaAccount(userId);
+
+            return Ok(result);
+        }
     }
 }

@@ -24,6 +24,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(c => c.Duration).HasColumnName("Duration");
             builder.Property(c => c.CourseType).HasColumnName("CourseType");
             builder.Property(c => c.Classroom).HasColumnName("Classroom");
+            builder.Property(c => c.BadgePath).HasColumnName("BadgePath");
 
             // Course ile Category arasındaki ilişki
             builder.HasOne(c => c.Category)

@@ -197,6 +197,18 @@ namespace Business.Concretes
             var result = _mapper.Map<UpdatedUserAllInformationResponse>(user);
             return result;
         }
+
+        public async Task<IPaginate<GetUsersExperienceAndEducationResponse>> GetUserExperienceAndEducationByUserId(Guid userId, int value)
+        {
+            var userExperiencesAndEducations = await _userDal.GetListAsync(u => u.Id == userId,
+                                                                    include: query => query
+                                                                    .Include(u => u.EducationInformations)
+                                                                    .Include(u => u.UserExperiences),
+                                                                    size: value);
+            var results = _mapper.Map<Paginate<GetUsersExperienceAndEducationResponse>>(userExperiencesAndEducations);
+
+            return results;
+        }
     }
 
 }

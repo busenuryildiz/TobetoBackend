@@ -2,7 +2,7 @@
 
 namespace Business.DTOs.Response.SocialMediaAccount;
 
-public class UpdatedSocialMediaAccountResponse : BasePageableModel
+public class UpdatedSocialMediaAccountResponse
 {
     public int Id { get; set; }
     public Guid UserId { get; set; }

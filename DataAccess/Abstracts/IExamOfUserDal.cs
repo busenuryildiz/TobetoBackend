@@ -1,6 +1,6 @@
 ﻿using Core.DataAccess.Repositories;
 using Entities.Concretes;
-using Entities.Concretes.Profiles;
+using Entities.Concretes.CoursesFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstracts
 {
-    public interface IBadgeDal : IRepository<Badge, int>, IAsyncRepository<Badge, int>
+    
+      public interface IExamOfUserDal : IRepository<ExamOfUser, int>, IAsyncRepository<ExamOfUser, int>
     {
     }
 }

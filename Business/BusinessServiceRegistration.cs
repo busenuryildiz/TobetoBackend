@@ -131,8 +131,7 @@ namespace Business
             services.AddScoped<ISurveyService, SurveyManager>();
             services.AddScoped<ISurveyQuestionService, SurveyQuestionManager>();
             services.AddScoped<ICoursePartService, CoursePartManager>();
-            services.AddScoped<IBadgeService, BadgeManager>();
-            services.AddScoped<IBadgeOfUserService, BadgeOfUserManager>();
+            services.AddScoped<IExamOfUserService, ExamOfUserManager>();
 
 
 

@@ -2,7 +2,7 @@
 using DataAccess.Abstracts;
 using DataAccess.Context;
 using Entities.Concretes;
-using Entities.Concretes.Profiles;
+using Entities.Concretes.CoursesFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +11,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concretes
 {
-    public class EfBadgeDal : EfRepositoryBase<Badge, int, TobetoContext>, IBadgeDal
+    
+   public class EfExamOfUserDal : EfRepositoryBase<ExamOfUser, int, TobetoContext>, IExamOfUserDal
     {
-        public EfBadgeDal(TobetoContext context) : base(context)
+        public EfExamOfUserDal(TobetoContext context) : base(context)
         {
         }
     }

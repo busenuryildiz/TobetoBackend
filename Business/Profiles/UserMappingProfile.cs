@@ -12,6 +12,8 @@ using Business.DTOs.Request.LessonCourse;
 using Business.DTOs.Response.LessonCourse;
 using Entities.Concretes.CoursesFolder;
 using System.Runtime.InteropServices;
+using Business.DTOs.Response.UserLanguage;
+using Entities.Concretes.Profiles;
 
 namespace Business.Profiles
 {
@@ -53,6 +55,17 @@ namespace Business.Profiles
                 .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().District.City.Name))
                 .ForMember(dest => dest.CountryName, opt => opt.MapFrom(src => src.Addresses.FirstOrDefault().District.City.Country.Name))
             .ReverseMap();
+
+            CreateMap<User, GetUsersExperienceAndEducationResponse>()
+               .ForMember(dest => dest.UserEducationInformationResponse, opt => opt.MapFrom(src => src.EducationInformations))
+               .ForMember(dest => dest.UserExperienceResponse, opt => opt.MapFrom(src => src.UserExperiences));
+
+            CreateMap<Paginate<User>, Paginate<GetUsersExperienceAndEducationResponse>>()
+                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
+
+            CreateMap<EducationInformation, UserEducationInformationResponse>();
+            CreateMap<UserExperience, UserExperienceResponse>();
+
 
 
 

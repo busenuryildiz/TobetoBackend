@@ -1292,6 +1292,10 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Faculty")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("GraduationYear")
                         .HasColumnType("datetime")
                         .HasColumnName("GraduationYear");
@@ -1300,6 +1304,10 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("bit")
                         .HasColumnName("IsContinue");
+
+                    b.Property<string>("School")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()

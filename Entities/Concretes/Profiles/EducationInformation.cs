@@ -10,12 +10,14 @@ namespace Entities.Concretes.Profiles
 {
     public class EducationInformation : Entity<int>
     {
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
         public string? Status { get; set; }
+        public string? School { get; set; }
+        public string? Faculty { get; set; }
         public DateTime? BeginningYear { get; set; } // okula başlama yılı graduation yeardan büyük olamaz.
         public DateTime? GraduationYear { get; set; }
         public bool? IsContinue { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
 
     }
 }

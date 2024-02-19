@@ -15,12 +15,11 @@ namespace DataAccess.EntityConfigurations
         {
             builder.ToTable("EducationInformations").HasKey(ei => ei.Id);
 
-            builder.Property(ei => ei.UserId).IsRequired().HasColumnName("UserId");
+            builder.Property(ei => ei.UserId).HasColumnName("UserId");
             
-            builder.Property(ei => ei.Status).IsRequired().HasMaxLength(255).HasColumnName("Status");
+            builder.Property(ei => ei.Status).HasMaxLength(255).HasColumnName("Status");
 
             builder.Property(ei => ei.BeginningYear)
-                    .IsRequired()
                     .HasColumnType("datetime")
                     .HasColumnName("BeginningYear");
 
@@ -29,8 +28,12 @@ namespace DataAccess.EntityConfigurations
                 .HasColumnName("GraduationYear");
 
             builder.Property(ei => ei.IsContinue)
-                .IsRequired()
                 .HasColumnName("IsContinue");
+
+            builder.Property(ei => ei.School);
+
+            builder.Property(ei => ei.Faculty);
+
 
             builder.HasOne(ei => ei.User)
                 .WithMany(u => u.EducationInformations)

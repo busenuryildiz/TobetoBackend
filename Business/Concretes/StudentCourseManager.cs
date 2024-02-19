@@ -148,7 +148,7 @@ namespace Business.Concretes
                 throw;
             }
         }
-
+        
         public async Task<IPaginate<GetUserBadgesResponse>> GetBadgesForCompletedCourses(Guid studentId, int value)
         {
 

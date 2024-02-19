@@ -207,5 +207,19 @@ public class SurveysController : ControllerBase
         return Ok(createdSurveyAnswers);
     }
 
+    [HttpGet("surveyansweraverages")]
+    public async Task<IActionResult> GetSurveyAnswerAverages()
+    {
+        try
+        {
+            var questionAverages = await _surveyAnswerService.CalculateQuestionAverages();
+            return Ok(questionAverages);
+        }
+        catch (Exception ex)
+        {
+            // Handle exceptions appropriately
+            return BadRequest($"An error occurred: {ex.Message}");
+        }
+    }
 
 }

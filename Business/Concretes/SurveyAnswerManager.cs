@@ -116,6 +116,30 @@ namespace Business.Concretes
             return createdSurveyAnswers;
         }
 
+        public async Task<Dictionary<int, double>> CalculateQuestionAverages()
+        {
+            try
+            {
+                var paginatedResult = await _surveyAnswerDal.GetListAsync( ); // Örnek olarak, ilk 100 öğeyi alıyoruz
+
+                var dataList = paginatedResult.Items.ToList(); // IPaginate<T> nesnesinden verilerin bir List<T> koleksiyonuna dönüştürülmesi
+                var groupedData = dataList.GroupBy(item => item.QuestionID); 
+
+                // Her bir soru için ortalama değeri hesapla
+                var questionAverages = groupedData
+                    .ToDictionary(
+                        group => group.Key,
+                        group => group.Average(item => Convert.ToDouble(item.AnswerValue))
+                    );
+
+                return questionAverages;
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda uygun bir şekilde işleyin.
+                throw new Exception($"An error occurred: {ex.Message}");
+            }
+        }
 
     }
 }

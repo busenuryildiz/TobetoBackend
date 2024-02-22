@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Business.DTOs.Request.StudentAssignment;
 using Business.DTOs.Response.StudentAssignment;
 using Business.Rules.BusinessRules;
+using Business.DTOs.Response.StudentCourse;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes
 {
@@ -19,12 +21,14 @@ namespace Business.Concretes
         IStudentAssignmentDal _studentAssignmentDal;
         IMapper _mapper;
         StudentAssignmentBusinessRules _businessRules;
+        IStudentService _studentService;
 
-        public StudentAssignmentManager(StudentAssignmentBusinessRules businessRules, IStudentAssignmentDal studentAssignmentDal, IMapper mapper)
+        public StudentAssignmentManager(StudentAssignmentBusinessRules businessRules, IStudentAssignmentDal studentAssignmentDal, IMapper mapper, IStudentService studentService)
         {
             _businessRules = businessRules;
             _studentAssignmentDal = studentAssignmentDal;
             _mapper = mapper;
+            _studentService = studentService;
         }
 
         public async Task<CreatedStudentAssignmentResponse> Add(CreateStudentAssignmentRequest createStudentAssignmentRequest)
@@ -72,6 +76,32 @@ namespace Business.Concretes
             var result = _mapper.Map<UpdatedStudentAssignmentResponse>(data);
             return result;
         }
+
+        public async Task<List<GetListStudentsAssigmentsAndDates>> GetStudentAssignmentAndDateByUserId (Guid userId)
+        {
+            try {
+            var student = _studentService.GetStudentByUserId(userId);
+
+            var studentsAssignments = await _studentAssignmentDal.GetListAsync(predicate:sa => sa.StudentId==student.Id);
+
+            var mappedStudentsAssignmentsAndDates = _mapper.Map<List<GetListStudentsAssigmentsAndDates>>(studentsAssignments);
+
+            return mappedStudentsAssignmentsAndDates;
+            }
+            catch (Exception ex)
+    {
+                // InnerException fırlatma
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine("Inner Exception: " + ex.InnerException.Message);
+                    throw ex.InnerException;
+                }
+                // Eğer InnerException yoksa, doğrudan exception'ı fırlat
+                Console.WriteLine("Exception: " + ex.Message);
+                throw ex;
+            }
+        }
+
     }
 }
 

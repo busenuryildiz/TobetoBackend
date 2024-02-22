@@ -151,6 +151,13 @@ namespace Business.Concretes
             return result;
            
         }
+
+        public Student GetStudentByUserId(Guid userId)
+        {
+            var student =  _studentDal.Get(s => s.UserId == userId);
+
+            return student;
+        }
     }
 
 }

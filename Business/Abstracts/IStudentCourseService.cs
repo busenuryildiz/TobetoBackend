@@ -19,7 +19,7 @@ namespace Business.Abstracts
         Task<CreatedStudentCourseResponse> GetCertificateByExamAndStudentCourseId(int examId, int studentCourseId);
         Task<IPaginate<GetListStudentCourseResponse>> GetListAsync(Guid studentId, PageRequest pageRequest);
 
-        Task<IPaginate<GetUserBadgesResponse>> GetBadgesForCompletedCourses(Guid studentId, int value);
+        Task<List<GetUserBadgesResponse>> GetBadgesForCompletedCourses(Guid studentId);
 
     }
 }

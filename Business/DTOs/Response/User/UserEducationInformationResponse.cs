@@ -8,7 +8,7 @@ namespace Business.DTOs.Response.User
 {
     public class UserEducationInformationResponse
     {
-        public string? School { get; set; }
+        public string? University { get; set; }
         public string? Faculty { get; set; }
         public DateTime? BeginningYear { get; set; }
         public DateTime? GraduationYear { get; set; }

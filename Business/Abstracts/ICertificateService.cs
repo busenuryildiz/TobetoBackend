@@ -16,6 +16,6 @@ namespace Business.Abstracts
         Task<UpdatedCertificateResponse> Update(UpdateCertificateRequest updateCertificateRequest);
         Task<DeletedCertificateResponse> Delete(DeleteCertificateRequest deleteCertificateRequest);
         Task<CreatedCertificateResponse> GetById(int id);
-        Task<IPaginate<GetListCertificateResponse>> GetUsersAllCertificates(Guid userId, int value=int.MaxValue);
+        Task<List<GetListCertificateResponse>> GetUsersAllCertificates(Guid userId);
     }
 }

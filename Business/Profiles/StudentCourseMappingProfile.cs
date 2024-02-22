@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Business.DTOs.Response.UserLanguage;
 using Entities.Concretes.Profiles;
+using Business.DTOs.Response.ExamOfUser;
 
 namespace Business.Profiles
 {
@@ -38,13 +39,17 @@ namespace Business.Profiles
 
 
             CreateMap<StudentCourse, GetUserBadgesResponse>()
-                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Student.User.Id))
+                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Student.UserId))
                  .ForMember(dest => dest.StudentCourseId, opt => opt.MapFrom(src => src.Id))
                  .ForMember(dest => dest.CourseId, opt => opt.MapFrom(src => src.Course.Id))
                  .ForMember(dest => dest.BadgePath, opt => opt.MapFrom(src => src.Course.BadgePath));
 
-            CreateMap<Paginate<StudentCourse>, Paginate<GetUserBadgesResponse>>()
-                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
+
+            CreateMap<IPaginate<StudentCourse>, List<GetUserBadgesResponse>>()
+                 .ConvertUsing((src, dest, context) =>
+                 {
+                     return context.Mapper.Map<List<GetUserBadgesResponse>>(src.Items);
+                 });
         }
     }
 }

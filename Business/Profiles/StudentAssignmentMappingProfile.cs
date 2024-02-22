@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Business.DTOs.Request.StudentAssignment;
 using Business.DTOs.Response.StudentAssignment;
+using Business.DTOs.Response.StudentCourse;
 using Core.DataAccess.Paging;
 using Entities.Concretes;
 using Entities.Concretes.CoursesFolder;
@@ -27,6 +28,19 @@ namespace Business.Profiles
 
             CreateMap<StudentAssignment, GetListStudentAssignmentResponse>().ReverseMap();
             CreateMap<Paginate<StudentAssignment>, Paginate<GetListStudentAssignmentResponse>>().ReverseMap();
+
+            CreateMap<StudentAssignment, GetListStudentsAssigmentsAndDates>()
+                 .ForMember(dest => dest.AssignmentId, opt => opt.MapFrom(src => src.AssignmentId))
+                 .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.StudentId))
+                 .ForMember(dest => dest.AssignmentAddDate, opt => opt.MapFrom(src => src.CreatedDate));
+            
+
+
+            CreateMap<IPaginate<StudentAssignment>, List<GetListStudentsAssigmentsAndDates>>()
+                 .ConvertUsing((src, dest, context) =>
+                 {
+                     return context.Mapper.Map<List<GetListStudentsAssigmentsAndDates>>(src.Items);
+                 });
         }
     }
 }

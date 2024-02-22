@@ -69,11 +69,11 @@ namespace Business.Concretes
             return result;
         }
 
-        public async Task<IPaginate<GetListCertificateResponse>> GetUsersAllCertificates(Guid userId, int value=int.MaxValue)
+        public async Task<List<GetListCertificateResponse>> GetUsersAllCertificates(Guid userId)
         {
-            var userCertificates = await _certificateDal.GetListAsync(c => c.UserId == userId, size:value);
+            var userCertificates = await _certificateDal.GetListAsync(c => c.UserId == userId);
 
-            var results = _mapper.Map<Paginate<GetListCertificateResponse>>(userCertificates);
+            var results = _mapper.Map<List<GetListCertificateResponse>>(userCertificates);
 
             return results;
 

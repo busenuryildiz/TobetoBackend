@@ -20,12 +20,14 @@ namespace Business.Concretes
         IStudentCourseDal _studentCourseDal;
         IMapper _mapper;
         StudentCourseBusinessRules _businessRules;
+        IStudentService _studentService;
 
-        public StudentCourseManager(IStudentCourseDal studentCourseDal, IMapper mapper, StudentCourseBusinessRules businessRules)
+        public StudentCourseManager(IStudentCourseDal studentCourseDal, IMapper mapper, StudentCourseBusinessRules businessRules, IStudentService studentService)
         {
             _studentCourseDal = studentCourseDal;
             _mapper = mapper;
             _businessRules = businessRules;
+            _studentService = studentService;
         }
 
         public async Task<CreatedStudentCourseResponse> Add(CreateStudentCourseRequest createStudentCourseRequest)
@@ -149,18 +151,17 @@ namespace Business.Concretes
             }
         }
 
-        public async Task<IPaginate<GetUserBadgesResponse>> GetBadgesForCompletedCourses(Guid studentId, int value)
+        public async Task<List<GetUserBadgesResponse>> GetBadgesForCompletedCourses(Guid userId)
         {
+            var student = _studentService.GetStudentByUserId(userId);
 
             var completedCourses = await _studentCourseDal.GetListAsync(
-                                                              predicate: sc => sc.StudentId == studentId && sc.Progress == 100,
+                                                              predicate: sc => sc.StudentId == student.Id && sc.Progress == 100,
                                                               include: query => query
                                                               .Include(sc => sc.Student)
-                                                              .Include(sc => sc.Course),
-                                                              size: value
-            );
+                                                              .Include(sc => sc.Course));
 
-            var results = _mapper.Map<Paginate<GetUserBadgesResponse>>(completedCourses);
+            var results = _mapper.Map<List<GetUserBadgesResponse>>(completedCourses);
 
             return results;
 

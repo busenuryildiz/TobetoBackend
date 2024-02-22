@@ -1,5 +1,6 @@
 ﻿using Business.DTOs.Request.StudentAssignment;
 using Business.DTOs.Response.StudentAssignment;
+using Business.DTOs.Response.StudentCourse;
 using Core.DataAccess.Paging;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,6 @@ namespace Business.Abstracts
         Task<UpdatedStudentAssignmentResponse> Update(UpdateStudentAssignmentRequest updateStudentAssignmentRequest);
         Task<DeletedStudentAssignmentResponse> Delete(DeleteStudentAssignmentRequest deleteStudentAssignmentRequest);
         Task<CreatedStudentAssignmentResponse> GetById(int id);
+        Task<List<GetListStudentsAssigmentsAndDates>> GetStudentAssignmentAndDateByUserId(Guid userId);
     }
 }

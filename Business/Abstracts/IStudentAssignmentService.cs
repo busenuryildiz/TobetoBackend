@@ -1,6 +1,5 @@
 ﻿using Business.DTOs.Request.StudentAssignment;
 using Business.DTOs.Response.StudentAssignment;
-using Business.DTOs.Response.StudentCourse;
 using Core.DataAccess.Paging;
 using System;
 using System.Collections.Generic;

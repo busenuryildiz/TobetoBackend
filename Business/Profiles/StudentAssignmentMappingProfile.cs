@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Business.DTOs.Request.StudentAssignment;
 using Business.DTOs.Response.StudentAssignment;
-using Business.DTOs.Response.StudentCourse;
 using Core.DataAccess.Paging;
 using Entities.Concretes;
 using Entities.Concretes.CoursesFolder;

@@ -10,6 +10,6 @@ namespace Business.DTOs.Response.Student
     {
         public Guid StudentId { get; set; }
         public string StudentNumber { get; set; }
-        public List<string> SkillName { get; set; }
+        public List<StudenSkillIdAndStudentSkillNameResponse> StudenSkillIdAndStudentSkillNameResponses { get; set; }
     }
 }

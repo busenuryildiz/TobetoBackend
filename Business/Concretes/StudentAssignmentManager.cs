@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using Business.DTOs.Request.StudentAssignment;
 using Business.DTOs.Response.StudentAssignment;
 using Business.Rules.BusinessRules;
-using Business.DTOs.Response.StudentCourse;
 using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes

@@ -102,9 +102,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("GetBadgesForCompletedCourses")]
-        public async Task<IActionResult> GetBadgesForCompletedCourses([FromQuery] Guid studentId)
+        public async Task<IActionResult> GetBadgesForCompletedCourses([FromQuery] Guid userId)
         {
-            var result = await _studentCourseService.GetBadgesForCompletedCourses(studentId, int.MaxValue);
+            var result = await _studentCourseService.GetBadgesForCompletedCourses(userId);
 
             return Ok(result);
         }

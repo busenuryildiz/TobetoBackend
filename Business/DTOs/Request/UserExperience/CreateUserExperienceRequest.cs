@@ -15,6 +15,6 @@ namespace Business.DTOs.Request.UserExperience
         public string City { get; set; }
         public DateTime WorkBeginDate { get; set; }
         public DateTime WorkEndDate { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }

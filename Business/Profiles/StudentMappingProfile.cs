@@ -82,10 +82,11 @@ namespace Business.Profiles
 
 
             CreateMap<Student, GetStudentSkillsResponse>()
-               .ForMember(dest => dest.SkillName, opt => opt.MapFrom(src => src.StudentSkills.Select(skill => skill.Skill.Name).ToList()))
-               .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.Id))
-               .ForMember(dest => dest.StudentNumber, opt => opt.MapFrom(src => src.StudentNumber))
-               .ReverseMap();
+    .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.Id))
+    .ForMember(dest => dest.StudentNumber, opt => opt.MapFrom(src => src.StudentNumber))
+    .ForMember(dest => dest.StudenSkillIdAndStudentSkillNameResponses, opt => opt.MapFrom(src => src.StudentSkills.Select(ss => new StudenSkillIdAndStudentSkillNameResponse { StudentSkillId = ss.Id, StudentSkillName = ss.Skill.Name })))
+    .ReverseMap();
+
 
 
         }

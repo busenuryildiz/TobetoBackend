@@ -76,14 +76,13 @@ namespace Business.Concretes
             return result;
         }
 
-        public async Task<IPaginate<GetUsersExamResultInfoResponse>> GetUsersExamResultInfo(Guid userId, int value)
+        public async Task<List<GetUsersExamResultInfoResponse>> GetUsersExamResultInfo(Guid userId)
         {
             var userExamInfo = await _examOfUserDal.GetListAsync(e => e.UserId == userId,
                                                                     include: query => query
-                                                                    .Include(u => u.Exam),
-                                                                    size: value);
+                                                                    .Include(u => u.Exam));
 
-            var result = _mapper.Map<Paginate<GetUsersExamResultInfoResponse>>(userExamInfo);
+            var result = _mapper.Map<List<GetUsersExamResultInfoResponse>>(userExamInfo);
 
             return result;
         }

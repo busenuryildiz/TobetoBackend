@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Response.Certificate
 {
-    public class UpdatedCertificateResponse : BasePageableModel
+    public class UpdatedCertificateResponse
     {
         public int Id { get; set; }
         public Guid UserId { get; set; }// Kullanıcıya ait sertifika

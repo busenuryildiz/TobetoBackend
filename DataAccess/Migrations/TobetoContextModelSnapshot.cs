@@ -423,10 +423,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("FilePath");
 
-                    b.Property<bool>("IsSend")
-                        .HasColumnType("bit")
-                        .HasColumnName("IsSend");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -968,6 +964,10 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool?>("IsSend")
+                        .HasColumnType("bit")
+                        .HasColumnName("IsSend");
+
                     b.Property<Guid>("StudentId")
                         .HasColumnType("uniqueidentifier");
 
@@ -1282,7 +1282,6 @@ namespace DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("BeginningYear")
-                        .IsRequired()
                         .HasColumnType("datetime")
                         .HasColumnName("BeginningYear");
 
@@ -1293,7 +1292,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Faculty")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("GraduationYear")
@@ -1301,24 +1299,21 @@ namespace DataAccess.Migrations
                         .HasColumnName("GraduationYear");
 
                     b.Property<bool?>("IsContinue")
-                        .IsRequired()
                         .HasColumnType("bit")
                         .HasColumnName("IsContinue");
 
-                    b.Property<string>("School")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("Status");
 
+                    b.Property<string>("University")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("UserId");
 
@@ -1460,7 +1455,6 @@ namespace DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("City");
@@ -1476,19 +1470,16 @@ namespace DataAccess.Migrations
                         .HasColumnName("Description");
 
                     b.Property<string>("EstablishmentName")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("EstablishmentName");
 
                     b.Property<string>("Position")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("Position");
 
                     b.Property<string>("Sector")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("Sector");
@@ -1497,18 +1488,15 @@ namespace DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("UserId")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("UserId");
 
                     b.Property<DateTime?>("WorkBeginDate")
-                        .IsRequired()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasColumnName("WorkBeginDate");
 
                     b.Property<DateTime?>("WorkEndDate")
-                        .IsRequired()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasColumnName("WorkEndDate");
 
                     b.HasKey("Id");
@@ -1572,13 +1560,13 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UniversityId")
+                    b.Property<int?>("UniversityId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -2191,8 +2179,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concretes.Clients.User", "User")
                         .WithMany("EducationInformations")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("User");
                 });
@@ -2202,8 +2189,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concretes.Clients.User", "User")
                         .WithMany("UserExperiences")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("User");
                 });
@@ -2239,15 +2225,11 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Entities.Concretes.Profiles.University", "University")
                         .WithMany("UserUniversities")
-                        .HasForeignKey("UniversityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UniversityId");
 
                     b.HasOne("Entities.Concretes.Clients.User", "User")
                         .WithMany("UserUniversities")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("University");
 

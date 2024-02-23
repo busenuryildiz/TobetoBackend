@@ -76,7 +76,7 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
         Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         int index = 0,
-        int size = 10,
+        int size = 1000,
         bool withDeleted = false,
         bool enableTracking = true,
         CancellationToken cancellationToken = default
@@ -119,7 +119,7 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
         Expression<Func<TEntity, bool>>? predicate = null,
         Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         int index = 0,
-        int size = 10,
+        int size = 1000,
         bool withDeleted = false,
         bool enableTracking = true,
         CancellationToken cancellationToken = default
@@ -224,7 +224,7 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
         Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         int index = 0,
-        int size = 10,
+        int size = 1000,
         bool withDeleted = false,
         bool enableTracking = true
     )
@@ -248,7 +248,7 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
         Expression<Func<TEntity, bool>>? predicate = null,
         Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         int index = 0,
-        int size = 10,
+        int size = 1000,
         bool withDeleted = false,
         bool enableTracking = true
     )

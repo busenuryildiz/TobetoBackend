@@ -16,7 +16,7 @@ namespace Business.Abstracts;
         Task<UpdatedExamOfUserResponse> Update(UpdateExamOfUserRequest updateExamOfUserRequest);
         Task<DeletedExamOfUserResponse> Delete(DeleteExamOfUserRequest deleteExamOfUserRequest);
         Task<CreatedExamOfUserResponse> GetById(int id);
-        Task<IPaginate<GetUsersExamResultInfoResponse>> GetUsersExamResultInfo(Guid userId, int value);
+        Task<List<GetUsersExamResultInfoResponse>> GetUsersExamResultInfo(Guid userId);
 
 
 }

@@ -8,8 +8,8 @@ namespace Business.DTOs.Response.User
 {
     public class GetUsersExperienceAndEducationResponse
     {
-        public List<UserExperienceResponse>? UserExperienceResponse { get; set; }
-        public List<UserEducationInformationResponse>? UserEducationInformationResponse { get; set; }
+        public List<UserExperienceResponse>? UserExperienceResponses { get; set; }
+        public List<UserEducationInformationResponse>? UserEducationInformationResponses { get; set; }
     }
 
 }

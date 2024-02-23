@@ -12,6 +12,7 @@ namespace Entities.Concretes.CoursesFolder
     {
         public int AssignmentId { get; set; }
         public Guid StudentId { get; set; }
+        public bool? IsSend { get; set; }
         public Student Student { get; set; }
         public Assignment Assignment { get; set; }
     }

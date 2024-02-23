@@ -45,7 +45,7 @@ namespace Business.DTOs.Response.Course
                     .Include(u => u.Assignments)
                     .Include(u => u.Exams)
                     .Include(u => u.CourseLevel)
-                    .Include(u => u.LessonCourses)
+                    .Include(u => u.Lessons)
                     .Include(u => u.SoftwareLanguage)
                     .Include(c => c.InstructorCourses)
                     .ThenInclude(ic => ic.Instructor)

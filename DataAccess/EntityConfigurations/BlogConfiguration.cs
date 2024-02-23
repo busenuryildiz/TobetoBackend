@@ -18,10 +18,7 @@ namespace DataAccess.EntityConfigurations
 
             builder.Property(b => b.Title).IsRequired().HasMaxLength(255).HasColumnName("Title");
 
-            builder.Property(b => b.Description).HasColumnName("Description");
-
             builder.Property(b => b.Content).HasColumnName("Content");
-
             builder.Property(b => b.ImagePath).HasColumnName("ImagePath");
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);

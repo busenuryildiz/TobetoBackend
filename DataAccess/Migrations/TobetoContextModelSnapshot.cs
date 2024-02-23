@@ -23,2507 +23,2511 @@ namespace DataAccess.Migrations
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Entities.Concretes.Announcement", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("AnnouncementId");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("AnnouncementId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Description");
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Description");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Name");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Announcements", (string)null);
-                });
+                b.ToTable("Announcements", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Application", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("Id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Description");
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Description");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit")
-                        .HasColumnName("IsActive");
+                b.Property<bool>("IsActive")
+                    .HasColumnType("bit")
+                    .HasColumnName("IsActive");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Name");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UserId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("Applications", (string)null);
-                });
+                b.ToTable("Applications", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.ApplicationStudent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicationId")
-                        .HasColumnType("int");
+                b.Property<int>("ApplicationId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("StudentId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("StudentId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("ApplicationId");
+                b.HasIndex("ApplicationId");
 
-                    b.HasIndex("StudentId");
+                b.HasIndex("StudentId");
 
-                    b.ToTable("ApplicationStudents", (string)null);
-                });
+                b.ToTable("ApplicationStudents", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Blog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Content");
+                b.Property<string>("Content")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Content");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Description");
+                b.Property<string>("ImagePath")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("ImagePath");
 
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ImagePath");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Title");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Title");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.HasKey("Id");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Blogs", (string)null);
-                });
+                b.ToTable("Blogs", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Name");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
-                });
+                b.ToTable("Categories", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Clients.Instructor", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("InstructorId");
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("InstructorId");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("HireDate")
-                        .IsRequired()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("HireDate");
+                b.Property<DateTime?>("HireDate")
+                    .IsRequired()
+                    .HasColumnType("datetime2")
+                    .HasColumnName("HireDate");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserId");
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("UserId");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                b.HasIndex("UserId")
+                    .IsUnique();
 
-                    b.ToTable("Instructors", (string)null);
-                });
+                b.ToTable("Instructors", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Clients.Manager", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("ManagerId");
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("ManagerId");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsActive")
+                    .HasColumnType("bit");
 
-                    b.Property<int>("ManagerCode")
-                        .HasColumnType("int")
-                        .HasColumnName("ManagerCode");
+                b.Property<int>("ManagerCode")
+                    .HasColumnType("int")
+                    .HasColumnName("ManagerCode");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserId");
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("UserId");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("Managers", (string)null);
-                });
+                b.ToTable("Managers", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Clients.Student", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("StudentId");
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("StudentId");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("StudentNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("StudentNumber")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserId");
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("UserId");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("StudentNumber")
-                        .IsUnique();
+                b.HasIndex("StudentNumber")
+                    .IsUnique();
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                b.HasIndex("UserId")
+                    .IsUnique();
 
-                    b.ToTable("Students", (string)null);
-                });
+                b.ToTable("Students", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Clients.User", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("date");
+                b.Property<DateTime?>("BirthDate")
+                    .HasColumnType("date");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Email")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("FirstName")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ImagePath")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("LastName")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("NationalIdentity")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("NationalIdentity")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Password")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                b.Property<string>("PhoneNumber")
+                    .HasMaxLength(20)
+                    .HasColumnType("nvarchar(20)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
-                });
+                b.ToTable("Users", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.ContactUs", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Email");
+                b.Property<string>("Email")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Email");
 
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("FullName");
+                b.Property<string>("FullName")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("FullName");
 
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Message");
+                b.Property<string>("Message")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Message");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("ContactUs", (string)null);
-                });
+                b.ToTable("ContactUs", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Assignment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int")
-                        .HasColumnName("CourseId");
+                b.Property<int>("CourseId")
+                    .HasColumnType("int")
+                    .HasColumnName("CourseId");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DeadLine")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("DeadLine");
+                b.Property<DateTime>("DeadLine")
+                    .HasColumnType("datetime2")
+                    .HasColumnName("DeadLine");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Description");
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Description");
 
-                    b.Property<string>("FilePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("FilePath");
+                b.Property<string>("FilePath")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("FilePath");
 
-                    b.Property<bool>("IsSend")
-                        .HasColumnType("bit")
-                        .HasColumnName("IsSend");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Name");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.HasKey("Id");
 
-                    b.HasKey("Id");
+                b.HasIndex("CourseId");
 
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("Assignments", (string)null);
-                });
+                b.ToTable("Assignments", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Course", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("Id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("BadgePath")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("BadgePath");
+                b.Property<string>("AreasOfInterest")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("AreasOfInterest");
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int")
-                        .HasColumnName("CategoryId");
+                b.Property<string>("BadgePath")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("BadgePath");
 
-                    b.Property<string>("Classroom")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Classroom");
+                b.Property<int?>("CategoryId")
+                    .HasColumnType("int")
+                    .HasColumnName("CategoryId");
 
-                    b.Property<int?>("CourseLevelId")
-                        .HasColumnType("int")
-                        .HasColumnName("CourseLevelId");
+                b.Property<string>("CategoryNames")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("CategoryNames");
 
-                    b.Property<string>("CourseType")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("CourseType");
+                b.Property<string>("Classroom")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Classroom");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<int?>("CourseLevelId")
+                    .HasColumnType("int")
+                    .HasColumnName("CourseLevelId");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<string>("CourseType")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("CourseType");
 
-                    b.Property<int?>("Duration")
-                        .HasColumnType("int")
-                        .HasColumnName("Duration");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ImagePath");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
+                b.Property<int?>("Duration")
+                    .HasColumnType("int")
+                    .HasColumnName("Duration");
 
-                    b.Property<double?>("Price")
-                        .HasColumnType("float")
-                        .HasColumnName("Price");
+                b.Property<string>("ImagePath")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("ImagePath");
 
-                    b.Property<int?>("SoftwareLanguageId")
-                        .HasColumnType("int")
-                        .HasColumnName("SoftwareLanguageId");
+                b.Property<string>("Name")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Name");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<double?>("Price")
+                    .HasColumnType("float")
+                    .HasColumnName("Price");
 
-                    b.HasKey("Id");
+                b.Property<string>("ProducerCompany")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("ProducerCompany");
 
-                    b.HasIndex("CategoryId");
+                b.Property<int?>("SoftwareLanguageId")
+                    .HasColumnType("int")
+                    .HasColumnName("SoftwareLanguageId");
 
-                    b.HasIndex("CourseLevelId");
+                b.Property<string>("TargetGroup")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("TargetGroup");
 
-                    b.HasIndex("SoftwareLanguageId");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.ToTable("Courses", (string)null);
-                });
+                b.HasKey("Id");
+
+                b.HasIndex("CategoryId");
+
+                b.HasIndex("CourseLevelId");
+
+                b.HasIndex("SoftwareLanguageId");
+
+                b.ToTable("Courses", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.CourseLevel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Name");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("CourseLevels", (string)null);
-                });
+                b.ToTable("CourseLevels", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.CoursePart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
+                b.Property<int>("CourseId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CourseId");
+                b.HasIndex("CourseId");
 
-                    b.ToTable("CourseParts", (string)null);
-                });
+                b.ToTable("CourseParts", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.CourseSubject", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
+                b.Property<int>("CourseId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int>("SubjectId")
-                        .HasColumnType("int");
+                b.Property<int>("SubjectId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CourseId");
+                b.HasIndex("CourseId");
 
-                    b.HasIndex("SubjectId");
+                b.HasIndex("SubjectId");
 
-                    b.ToTable("CourseSubjects");
-                });
+                b.ToTable("CourseSubjects");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Exam", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ExamId");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("ExamId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CourseId")
-                        .HasColumnType("int");
+                b.Property<int?>("CourseId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("Date");
+                b.Property<DateTime>("Date")
+                    .HasColumnType("datetime2")
+                    .HasColumnName("Date");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Description");
+                b.Property<string>("Description")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Description");
 
-                    b.Property<TimeSpan>("ExamDuration")
-                        .HasColumnType("time")
-                        .HasColumnName("ExamDuration");
+                b.Property<TimeSpan>("ExamDuration")
+                    .HasColumnType("time")
+                    .HasColumnName("ExamDuration");
 
-                    b.Property<double>("Point")
-                        .HasColumnType("float")
-                        .HasColumnName("Point");
+                b.Property<double>("Point")
+                    .HasColumnType("float")
+                    .HasColumnName("Point");
 
-                    b.Property<int>("QuestionAmount")
-                        .HasColumnType("int")
-                        .HasColumnName("QuestionAmount");
+                b.Property<int>("QuestionAmount")
+                    .HasColumnType("int")
+                    .HasColumnName("QuestionAmount");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnName("Title");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(450)")
+                    .HasColumnName("Title");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CourseId");
+                b.HasIndex("CourseId");
 
-                    b.HasIndex(new[] { "Title" }, "UK_Exams_Title")
-                        .IsUnique();
+                b.HasIndex(new[] { "Title" }, "UK_Exams_Title")
+                    .IsUnique();
 
-                    b.ToTable("Exams", (string)null);
-                });
+                b.ToTable("Exams", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.ExamOfUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int?>("ExamId")
-                        .HasColumnType("int")
-                        .HasColumnName("ExamId");
+                b.Property<int?>("ExamId")
+                    .HasColumnType("int")
+                    .HasColumnName("ExamId");
 
-                    b.Property<double>("ExamResult")
-                        .HasColumnType("float")
-                        .HasColumnName("ExamResult");
+                b.Property<double>("ExamResult")
+                    .HasColumnType("float")
+                    .HasColumnName("ExamResult");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserId");
+                b.Property<Guid?>("UserId")
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("UserId");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("ExamId");
+                b.HasIndex("ExamId");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("ExamOfUsers", (string)null);
-                });
+                b.ToTable("ExamOfUsers", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.InstructorCourse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int")
-                        .HasColumnName("CourseId");
+                b.Property<int>("CourseId")
+                    .HasColumnType("int")
+                    .HasColumnName("CourseId");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("InstructorId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("InstructorId");
+                b.Property<Guid>("InstructorId")
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("InstructorId");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CourseId");
+                b.HasIndex("CourseId");
 
-                    b.HasIndex("InstructorId");
+                b.HasIndex("InstructorId");
 
-                    b.ToTable("InstructorCourses", (string)null);
-                });
+                b.ToTable("InstructorCourses", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Lesson", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Content");
+                b.Property<string>("AboutSpeaker")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("AboutSpeaker");
 
-                    b.Property<int>("CoursePartId")
-                        .HasColumnType("int");
+                b.Property<string>("Content")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Content");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<int?>("CourseId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<int?>("CoursePartId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("LessonTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("LessonTime");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("LessonDuration")
+                    .HasColumnType("datetime2")
+                    .HasColumnName("LessonTime");
 
-                    b.Property<string>("VideoUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("VideoUrl");
+                b.Property<string>("Name")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Name");
 
-                    b.HasKey("Id");
+                b.Property<string>("Speaker")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Speaker");
 
-                    b.HasIndex("CoursePartId");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.ToTable("Lessons", (string)null);
-                });
+                b.Property<string>("VideoUrl")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("VideoUrl");
 
-            modelBuilder.Entity("Entities.Concretes.CoursesFolder.LessonCourse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                b.HasKey("Id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                b.HasIndex("CourseId");
 
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
+                b.HasIndex("CoursePartId");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LessonId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("LessonId");
-
-                    b.ToTable("LessonCourses", (string)null);
-                });
+                b.ToTable("Lessons", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Option", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Answer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Answer");
+                b.Property<string>("Answer")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Answer");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsCorrect")
-                        .HasColumnType("bit")
-                        .HasColumnName("IsCorrect");
+                b.Property<bool>("IsCorrect")
+                    .HasColumnType("bit")
+                    .HasColumnName("IsCorrect");
 
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int")
-                        .HasColumnName("QuestionId");
+                b.Property<int>("QuestionId")
+                    .HasColumnType("int")
+                    .HasColumnName("QuestionId");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("QuestionId");
+                b.HasIndex("QuestionId");
 
-                    b.ToTable("Options", (string)null);
-                });
+                b.ToTable("Options", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Payment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<decimal?>("Amount")
-                        .IsRequired()
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("Amount");
+                b.Property<decimal?>("Amount")
+                    .IsRequired()
+                    .HasColumnType("decimal(18,2)")
+                    .HasColumnName("Amount");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("PaymentDate")
-                        .IsRequired()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("PaymentDate");
+                b.Property<DateTime?>("PaymentDate")
+                    .IsRequired()
+                    .HasColumnType("datetime2")
+                    .HasColumnName("PaymentDate");
 
-                    b.Property<bool?>("Status")
-                        .HasColumnType("bit")
-                        .HasColumnName("Status");
+                b.Property<bool?>("Status")
+                    .HasColumnType("bit")
+                    .HasColumnName("Status");
 
-                    b.Property<int?>("StudentCourseId")
-                        .IsRequired()
-                        .HasColumnType("int")
-                        .HasColumnName("StudentCourseId");
+                b.Property<int?>("StudentCourseId")
+                    .IsRequired()
+                    .HasColumnType("int")
+                    .HasColumnName("StudentCourseId");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("StudentCourseId");
+                b.HasIndex("StudentCourseId");
 
-                    b.ToTable("Payments", (string)null);
-                });
+                b.ToTable("Payments", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Question", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int>("ExamId")
-                        .HasColumnType("int")
-                        .HasColumnName("ExamId");
+                b.Property<int>("ExamId")
+                    .HasColumnType("int")
+                    .HasColumnName("ExamId");
 
-                    b.Property<string>("Problem")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Problem");
+                b.Property<string>("Problem")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Problem");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("ExamId");
+                b.HasIndex("ExamId");
 
-                    b.ToTable("Questions", (string)null);
-                });
+                b.ToTable("Questions", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.SoftwareLanguage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Name");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("SoftwareLanguages", (string)null);
-                });
+                b.ToTable("SoftwareLanguages", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentAssignment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AssignmentId")
-                        .HasColumnType("int");
+                b.Property<int>("AssignmentId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("StudentId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<bool?>("IsSend")
+                    .HasColumnType("bit")
+                    .HasColumnName("IsSend");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<Guid>("StudentId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasIndex("AssignmentId");
+                b.HasKey("Id");
 
-                    b.HasIndex("StudentId");
+                b.HasIndex("AssignmentId");
 
-                    b.ToTable("StudentAssignments", (string)null);
-                });
+                b.HasIndex("StudentId");
+
+                b.ToTable("StudentAssignments", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentCourse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CertificatePath")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("CertificatePath");
+                b.Property<string>("CertificatePath")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("CertificatePath");
 
-                    b.Property<int?>("CourseId")
-                        .IsRequired()
-                        .HasColumnType("int")
-                        .HasColumnName("CourseId");
+                b.Property<int?>("CourseId")
+                    .IsRequired()
+                    .HasColumnType("int")
+                    .HasColumnName("CourseId");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan?>("EstimatedTime")
-                        .HasColumnType("time")
-                        .HasColumnName("EstimatedTime");
+                b.Property<TimeSpan?>("EstimatedTime")
+                    .HasColumnType("time")
+                    .HasColumnName("EstimatedTime");
 
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit")
-                        .HasColumnName("IsCompleted");
+                b.Property<bool>("IsCompleted")
+                    .HasColumnType("bit")
+                    .HasColumnName("IsCompleted");
 
-                    b.Property<bool?>("IsPaid")
-                        .HasColumnType("bit")
-                        .HasColumnName("IsPaid");
+                b.Property<bool?>("IsPaid")
+                    .HasColumnType("bit")
+                    .HasColumnName("IsPaid");
 
-                    b.Property<int?>("Liked")
-                        .IsRequired()
-                        .HasColumnType("int")
-                        .HasColumnName("Liked");
+                b.Property<int?>("Liked")
+                    .IsRequired()
+                    .HasColumnType("int")
+                    .HasColumnName("Liked");
 
-                    b.Property<float?>("Point")
-                        .IsRequired()
-                        .HasColumnType("real")
-                        .HasColumnName("Point");
+                b.Property<float?>("Point")
+                    .IsRequired()
+                    .HasColumnType("real")
+                    .HasColumnName("Point");
 
-                    b.Property<int?>("Progress")
-                        .IsRequired()
-                        .HasColumnType("int")
-                        .HasColumnName("Progress");
+                b.Property<int?>("Progress")
+                    .IsRequired()
+                    .HasColumnType("int")
+                    .HasColumnName("Progress");
 
-                    b.Property<int?>("Saved")
-                        .IsRequired()
-                        .HasColumnType("int")
-                        .HasColumnName("Saved");
+                b.Property<int?>("Saved")
+                    .IsRequired()
+                    .HasColumnType("int")
+                    .HasColumnName("Saved");
 
-                    b.Property<TimeSpan?>("SpentTime")
-                        .HasColumnType("time")
-                        .HasColumnName("SpentTime");
+                b.Property<TimeSpan?>("SpentTime")
+                    .HasColumnType("time")
+                    .HasColumnName("SpentTime");
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("StartDate");
+                b.Property<DateTime>("StartDate")
+                    .HasColumnType("datetime2")
+                    .HasColumnName("StartDate");
 
-                    b.Property<Guid?>("StudentId")
-                        .IsRequired()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("StudentId");
+                b.Property<Guid?>("StudentId")
+                    .IsRequired()
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("StudentId");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CourseId");
+                b.HasIndex("CourseId");
 
-                    b.HasIndex("StudentId");
+                b.HasIndex("StudentId");
 
-                    b.ToTable("StudentCourses", (string)null);
-                });
+                b.ToTable("StudentCourses", (string)null);
+            });
+
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentLesson", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
+
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
+
+                b.Property<bool>("IsLiked")
+                    .HasColumnType("bit")
+                    .HasColumnName("IsLiked");
+
+                b.Property<int>("LessonId")
+                    .HasColumnType("int")
+                    .HasColumnName("LessonId");
+
+                b.Property<int>("Progress")
+                    .HasColumnType("int")
+                    .HasColumnName("Progress");
+
+                b.Property<Guid>("StudentId")
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("StudentId");
+
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
+
+                b.HasKey("Id");
+
+                b.HasIndex("LessonId");
+
+                b.HasIndex("StudentId");
+
+                b.ToTable("StudentLessons", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.MediaPost", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("MediaPostId");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("MediaPostId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Content");
+                b.Property<string>("Content")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Content");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("Date");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<string>("ImagePath")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("ImagePath");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Description");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Title");
 
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ImagePath");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Title");
+                b.HasKey("Id");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MediaPosts", (string)null);
-                });
+                b.ToTable("MediaPosts", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.Address", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Description")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DistrictId")
-                        .HasColumnType("int");
+                b.Property<int>("DistrictId")
+                    .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Name")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("DistrictId");
+                b.HasIndex("DistrictId");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("Addresses");
-                });
+                b.ToTable("Addresses");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.Certificate", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ImagePath");
+                b.Property<string>("ImagePath")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("ImagePath");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Name");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserId");
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("UserId");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("Certificates", (string)null);
-                });
+                b.ToTable("Certificates", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.City", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
+                b.Property<int>("CountryId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Name")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CountryId");
+                b.HasIndex("CountryId");
 
-                    b.ToTable("Cities");
-                });
+                b.ToTable("Cities");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.Country", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("CountryName");
+                b.Property<string>("Name")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("CountryName");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Countries", (string)null);
-                });
+                b.ToTable("Countries", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.District", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CityId")
-                        .HasColumnType("int");
+                b.Property<int>("CityId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Name")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CityId");
+                b.HasIndex("CityId");
 
-                    b.ToTable("Districts");
-                });
+                b.ToTable("Districts");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.EducationInformation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("BeginningYear")
-                        .IsRequired()
-                        .HasColumnType("datetime")
-                        .HasColumnName("BeginningYear");
+                b.Property<DateTime?>("BeginningYear")
+                    .HasColumnType("datetime")
+                    .HasColumnName("BeginningYear");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Faculty")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Faculty")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("GraduationYear")
-                        .HasColumnType("datetime")
-                        .HasColumnName("GraduationYear");
+                b.Property<DateTime?>("GraduationYear")
+                    .HasColumnType("datetime")
+                    .HasColumnName("GraduationYear");
 
-                    b.Property<bool?>("IsContinue")
-                        .IsRequired()
-                        .HasColumnType("bit")
-                        .HasColumnName("IsContinue");
+                b.Property<bool?>("IsContinue")
+                    .HasColumnType("bit")
+                    .HasColumnName("IsContinue");
 
-                    b.Property<string>("School")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Status")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Status");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Status");
+                b.Property<string>("University")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserId");
+                b.Property<Guid?>("UserId")
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("UserId");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("EducationInformations", (string)null);
-                });
+                b.ToTable("EducationInformations", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.Language", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("LanguageId");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("LanguageId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("LanguageName");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("LanguageName");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Languages", (string)null);
-                });
+                b.ToTable("Languages", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.LanguageLevel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("LanguageLevelId");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("LanguageLevelId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("LanguageName");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("LanguageName");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("LanguageLevels", (string)null);
-                });
+                b.ToTable("LanguageLevels", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.Skill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Name");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Skills", (string)null);
-                });
+                b.ToTable("Skills", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.University", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Address")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Department")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Department")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Website")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Website")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Universities");
-                });
+                b.ToTable("Universities");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.UserExperience", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("City");
+                b.Property<string>("City")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("City");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Description");
+                b.Property<string>("Description")
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("Description");
 
-                    b.Property<string>("EstablishmentName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("EstablishmentName");
+                b.Property<string>("EstablishmentName")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("EstablishmentName");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Position");
+                b.Property<string>("Position")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Position");
 
-                    b.Property<string>("Sector")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Sector");
+                b.Property<string>("Sector")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Sector");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("UserId")
-                        .IsRequired()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserId");
+                b.Property<Guid?>("UserId")
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("UserId");
 
-                    b.Property<DateTime?>("WorkBeginDate")
-                        .IsRequired()
-                        .HasColumnType("datetime")
-                        .HasColumnName("WorkBeginDate");
+                b.Property<DateTime?>("WorkBeginDate")
+                    .HasColumnType("datetime2")
+                    .HasColumnName("WorkBeginDate");
 
-                    b.Property<DateTime?>("WorkEndDate")
-                        .IsRequired()
-                        .HasColumnType("datetime")
-                        .HasColumnName("WorkEndDate");
+                b.Property<DateTime?>("WorkEndDate")
+                    .HasColumnType("datetime2")
+                    .HasColumnName("WorkEndDate");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("UserExperiences", (string)null);
-                });
+                b.ToTable("UserExperiences", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.UserLanguage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int")
-                        .HasColumnName("LanguageId");
+                b.Property<int>("LanguageId")
+                    .HasColumnType("int")
+                    .HasColumnName("LanguageId");
 
-                    b.Property<int>("LanguageLevelId")
-                        .HasColumnType("int")
-                        .HasColumnName("LanguageLevelId");
+                b.Property<int>("LanguageLevelId")
+                    .HasColumnType("int")
+                    .HasColumnName("LanguageLevelId");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserId");
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("UserId");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("LanguageId");
+                b.HasIndex("LanguageId");
 
-                    b.HasIndex("LanguageLevelId");
+                b.HasIndex("LanguageLevelId");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("UserLanguages", (string)null);
-                });
+                b.ToTable("UserLanguages", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.UserUniversity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int>("UniversityId")
-                        .HasColumnType("int");
+                b.Property<int?>("UniversityId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UserId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UniversityId");
+                b.HasIndex("UniversityId");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("UserUniversities", (string)null);
-                });
+                b.ToTable("UserUniversities", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Name");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Roles", (string)null);
-                });
+                b.ToTable("Roles", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.SocialMediaAccount", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("SocialMedia")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("SocialMedia");
+                b.Property<string>("SocialMedia")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("SocialMedia");
 
-                    b.Property<string>("SocialMediaUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("SocialMediaUrl");
+                b.Property<string>("SocialMediaUrl")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasColumnName("SocialMediaUrl");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserId");
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("UserId");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("SocialMediaAccounts", (string)null);
-                });
+                b.ToTable("SocialMediaAccounts", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.StudentSkill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int>("SkillId")
-                        .HasColumnType("int")
-                        .HasColumnName("SkillId");
+                b.Property<int>("SkillId")
+                    .HasColumnType("int")
+                    .HasColumnName("SkillId");
 
-                    b.Property<Guid>("StudentId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("StudentId");
+                b.Property<Guid>("StudentId")
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("StudentId");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("SkillId");
+                b.HasIndex("SkillId");
 
-                    b.HasIndex("StudentId");
+                b.HasIndex("StudentId");
 
-                    b.ToTable("StudentSkills", (string)null);
-                });
+                b.ToTable("StudentSkills", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Subject", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasColumnName("Name");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Subjects", (string)null);
-                });
+                b.ToTable("Subjects", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Surveys.Survey", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("CreatorUserID")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorUserID")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasMaxLength(1000)
+                    .HasColumnType("nvarchar(1000)");
 
-                    b.Property<Guid?>("StudentId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("StudentId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CreatorUserID");
+                b.HasIndex("CreatorUserID");
 
-                    b.HasIndex("StudentId");
+                b.HasIndex("StudentId");
 
-                    b.ToTable("Surveys", (string)null);
-                });
+                b.ToTable("Surveys", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Surveys.SurveyAnswer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AnswerValue")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("AnswerValue")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int>("QuestionID")
-                        .HasColumnType("int");
+                b.Property<int>("QuestionID")
+                    .HasColumnType("int");
 
-                    b.Property<int>("SurveyID")
-                        .HasColumnType("int");
+                b.Property<int>("SurveyID")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserID")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("UserID")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("QuestionID");
+                b.HasIndex("QuestionID");
 
-                    b.HasIndex("SurveyID");
+                b.HasIndex("SurveyID");
 
-                    b.HasIndex("UserID");
+                b.HasIndex("UserID");
 
-                    b.ToTable("SurveyAnswers", (string)null);
-                });
+                b.ToTable("SurveyAnswers", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Surveys.SurveyQuestion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("QuestionText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("QuestionText")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("QuestionType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("QuestionType")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SurveyID")
-                        .HasColumnType("int");
+                b.Property<int>("SurveyID")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("SurveyID");
+                b.HasIndex("SurveyID");
 
-                    b.ToTable("SurveyQuestions", (string)null);
-                });
+                b.ToTable("SurveyQuestions", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.UserRole", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                b.Property<int>("RoleId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("UpdatedDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
+                b.HasIndex("RoleId");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("UserRoles", (string)null);
-                });
+                b.ToTable("UserRoles", (string)null);
+            });
 
             modelBuilder.Entity("Entities.Concretes.Application", b =>
-                {
-                    b.HasOne("Entities.Concretes.Clients.User", null)
-                        .WithMany("Applications")
-                        .HasForeignKey("UserId");
-                });
+            {
+                b.HasOne("Entities.Concretes.Clients.User", null)
+                    .WithMany("Applications")
+                    .HasForeignKey("UserId");
+            });
 
             modelBuilder.Entity("Entities.Concretes.ApplicationStudent", b =>
-                {
-                    b.HasOne("Entities.Concretes.Application", "Application")
-                        .WithMany("ApplicationStudents")
-                        .HasForeignKey("ApplicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Application", "Application")
+                    .WithMany("ApplicationStudents")
+                    .HasForeignKey("ApplicationId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Clients.Student", "Student")
-                        .WithMany("ApplicationStudents")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("Entities.Concretes.Clients.Student", "Student")
+                    .WithMany("ApplicationStudents")
+                    .HasForeignKey("StudentId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Application");
+                b.Navigation("Application");
 
-                    b.Navigation("Student");
-                });
+                b.Navigation("Student");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Clients.Instructor", b =>
-                {
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithOne("Instructor")
-                        .HasForeignKey("Entities.Concretes.Clients.Instructor", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithOne("Instructor")
+                    .HasForeignKey("Entities.Concretes.Clients.Instructor", "UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Clients.Manager", b =>
-                {
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Clients.Student", b =>
-                {
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithOne("Student")
-                        .HasForeignKey("Entities.Concretes.Clients.Student", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithOne("Student")
+                    .HasForeignKey("Entities.Concretes.Clients.Student", "UserId")
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .IsRequired();
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Assignment", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
-                        .WithMany("Assignments")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
+                    .WithMany("Assignments")
+                    .HasForeignKey("CourseId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Course");
-                });
+                b.Navigation("Course");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Course", b =>
-                {
-                    b.HasOne("Entities.Concretes.Category", "Category")
-                        .WithMany("Courses")
-                        .HasForeignKey("CategoryId");
+            {
+                b.HasOne("Entities.Concretes.Category", "Category")
+                    .WithMany("Courses")
+                    .HasForeignKey("CategoryId");
 
-                    b.HasOne("Entities.Concretes.CoursesFolder.CourseLevel", "CourseLevel")
-                        .WithMany("Courses")
-                        .HasForeignKey("CourseLevelId");
+                b.HasOne("Entities.Concretes.CoursesFolder.CourseLevel", "CourseLevel")
+                    .WithMany("Courses")
+                    .HasForeignKey("CourseLevelId");
 
-                    b.HasOne("Entities.Concretes.CoursesFolder.SoftwareLanguage", "SoftwareLanguage")
-                        .WithMany("Courses")
-                        .HasForeignKey("SoftwareLanguageId");
+                b.HasOne("Entities.Concretes.CoursesFolder.SoftwareLanguage", "SoftwareLanguage")
+                    .WithMany("Courses")
+                    .HasForeignKey("SoftwareLanguageId");
 
-                    b.Navigation("Category");
+                b.Navigation("Category");
 
-                    b.Navigation("CourseLevel");
+                b.Navigation("CourseLevel");
 
-                    b.Navigation("SoftwareLanguage");
-                });
+                b.Navigation("SoftwareLanguage");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.CoursePart", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
-                        .WithMany("CourseParts")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
+                    .WithMany("CourseParts")
+                    .HasForeignKey("CourseId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Course");
-                });
+                b.Navigation("Course");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.CourseSubject", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
-                        .WithMany("CourseSubjects")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
+                    .WithMany("CourseSubjects")
+                    .HasForeignKey("CourseId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Subject", "Subject")
-                        .WithMany("CourseSubjects")
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("Entities.Concretes.Subject", "Subject")
+                    .WithMany("CourseSubjects")
+                    .HasForeignKey("SubjectId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Course");
+                b.Navigation("Course");
 
-                    b.Navigation("Subject");
-                });
+                b.Navigation("Subject");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Exam", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
-                        .WithMany("Exams")
-                        .HasForeignKey("CourseId");
+            {
+                b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
+                    .WithMany("Exams")
+                    .HasForeignKey("CourseId");
 
-                    b.Navigation("Course");
-                });
+                b.Navigation("Course");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.ExamOfUser", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.Exam", "Exam")
-                        .WithMany("ExamOfUsers")
-                        .HasForeignKey("ExamId");
+            {
+                b.HasOne("Entities.Concretes.CoursesFolder.Exam", "Exam")
+                    .WithMany("ExamOfUsers")
+                    .HasForeignKey("ExamId");
 
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithMany("ExamOfUsers")
-                        .HasForeignKey("UserId");
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithMany("ExamOfUsers")
+                    .HasForeignKey("UserId");
 
-                    b.Navigation("Exam");
+                b.Navigation("Exam");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.InstructorCourse", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
-                        .WithMany("InstructorCourses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
+                    .WithMany("InstructorCourses")
+                    .HasForeignKey("CourseId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Clients.Instructor", "Instructor")
-                        .WithMany("InstructorCourses")
-                        .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("Entities.Concretes.Clients.Instructor", "Instructor")
+                    .WithMany("InstructorCourses")
+                    .HasForeignKey("InstructorId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Course");
+                b.Navigation("Course");
 
-                    b.Navigation("Instructor");
-                });
+                b.Navigation("Instructor");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Lesson", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.CoursePart", "CoursePart")
-                        .WithMany("Lessons")
-                        .HasForeignKey("CoursePartId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
+                    .WithMany("Lessons")
+                    .HasForeignKey("CourseId");
 
-                    b.Navigation("CoursePart");
-                });
+                b.HasOne("Entities.Concretes.CoursesFolder.CoursePart", "CoursePart")
+                    .WithMany("Lessons")
+                    .HasForeignKey("CoursePartId")
+                    .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity("Entities.Concretes.CoursesFolder.LessonCourse", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
-                        .WithMany("LessonCourses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.Navigation("Course");
 
-                    b.HasOne("Entities.Concretes.CoursesFolder.Lesson", "Lesson")
-                        .WithMany("LessonCourses")
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("Lesson");
-                });
+                b.Navigation("CoursePart");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Option", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.Question", "Question")
-                        .WithMany("Options")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.CoursesFolder.Question", "Question")
+                    .WithMany("Options")
+                    .HasForeignKey("QuestionId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Question");
-                });
+                b.Navigation("Question");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Payment", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.StudentCourse", "StudentCourse")
-                        .WithMany("Payments")
-                        .HasForeignKey("StudentCourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.CoursesFolder.StudentCourse", "StudentCourse")
+                    .WithMany("Payments")
+                    .HasForeignKey("StudentCourseId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("StudentCourse");
-                });
+                b.Navigation("StudentCourse");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Question", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.Exam", "Exam")
-                        .WithMany("Questions")
-                        .HasForeignKey("ExamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.CoursesFolder.Exam", "Exam")
+                    .WithMany("Questions")
+                    .HasForeignKey("ExamId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Exam");
-                });
+                b.Navigation("Exam");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentAssignment", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.Assignment", "Assignment")
-                        .WithMany("StudentAssignments")
-                        .HasForeignKey("AssignmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.CoursesFolder.Assignment", "Assignment")
+                    .WithMany("StudentAssignments")
+                    .HasForeignKey("AssignmentId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Clients.Student", "Student")
-                        .WithMany("StudentAssignments")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("Entities.Concretes.Clients.Student", "Student")
+                    .WithMany("StudentAssignments")
+                    .HasForeignKey("StudentId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Assignment");
+                b.Navigation("Assignment");
 
-                    b.Navigation("Student");
-                });
+                b.Navigation("Student");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentCourse", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
-                        .WithMany("StudentCourses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
+                    .WithMany("StudentCourses")
+                    .HasForeignKey("CourseId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Clients.Student", "Student")
-                        .WithMany("StudentCourses")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("Entities.Concretes.Clients.Student", "Student")
+                    .WithMany("StudentCourses")
+                    .HasForeignKey("StudentId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Course");
+                b.Navigation("Course");
 
-                    b.Navigation("Student");
-                });
+                b.Navigation("Student");
+            });
+
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentLesson", b =>
+            {
+                b.HasOne("Entities.Concretes.CoursesFolder.Lesson", "Lesson")
+                    .WithMany()
+                    .HasForeignKey("LessonId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.HasOne("Entities.Concretes.Clients.Student", "Student")
+                    .WithMany()
+                    .HasForeignKey("StudentId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.Navigation("Lesson");
+
+                b.Navigation("Student");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.Address", b =>
-                {
-                    b.HasOne("Entities.Concretes.Profiles.District", "District")
-                        .WithMany("Addresses")
-                        .HasForeignKey("DistrictId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Profiles.District", "District")
+                    .WithMany("Addresses")
+                    .HasForeignKey("DistrictId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithMany("Addresses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithMany("Addresses")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("District");
+                b.Navigation("District");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.Certificate", b =>
-                {
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithMany("Certificates")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithMany("Certificates")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.City", b =>
-                {
-                    b.HasOne("Entities.Concretes.Profiles.Country", "Country")
-                        .WithMany("Cities")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Profiles.Country", "Country")
+                    .WithMany("Cities")
+                    .HasForeignKey("CountryId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Country");
-                });
+                b.Navigation("Country");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.District", b =>
-                {
-                    b.HasOne("Entities.Concretes.Profiles.City", "City")
-                        .WithMany("Districts")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Profiles.City", "City")
+                    .WithMany("Districts")
+                    .HasForeignKey("CityId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("City");
-                });
+                b.Navigation("City");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.EducationInformation", b =>
-                {
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithMany("EducationInformations")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithMany("EducationInformations")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.UserExperience", b =>
-                {
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithMany("UserExperiences")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithMany("UserExperiences")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.UserLanguage", b =>
-                {
-                    b.HasOne("Entities.Concretes.Profiles.Language", "Language")
-                        .WithMany("UserLanguages")
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Profiles.Language", "Language")
+                    .WithMany("UserLanguages")
+                    .HasForeignKey("LanguageId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Profiles.LanguageLevel", "LanguageLevel")
-                        .WithMany("UserLanguages")
-                        .HasForeignKey("LanguageLevelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("Entities.Concretes.Profiles.LanguageLevel", "LanguageLevel")
+                    .WithMany("UserLanguages")
+                    .HasForeignKey("LanguageLevelId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithMany("UserLanguages")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithMany("UserLanguages")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Language");
+                b.Navigation("Language");
 
-                    b.Navigation("LanguageLevel");
+                b.Navigation("LanguageLevel");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.UserUniversity", b =>
-                {
-                    b.HasOne("Entities.Concretes.Profiles.University", "University")
-                        .WithMany("UserUniversities")
-                        .HasForeignKey("UniversityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Profiles.University", "University")
+                    .WithMany("UserUniversities")
+                    .HasForeignKey("UniversityId");
 
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithMany("UserUniversities")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithMany("UserUniversities")
+                    .HasForeignKey("UserId");
 
-                    b.Navigation("University");
+                b.Navigation("University");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.SocialMediaAccount", b =>
-                {
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithMany("SocialMediaAccounts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithMany("SocialMediaAccounts")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.StudentSkill", b =>
-                {
-                    b.HasOne("Entities.Concretes.Profiles.Skill", "Skill")
-                        .WithMany("StudentSkills")
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Profiles.Skill", "Skill")
+                    .WithMany("StudentSkills")
+                    .HasForeignKey("SkillId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Clients.Student", "Student")
-                        .WithMany("StudentSkills")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("Entities.Concretes.Clients.Student", "Student")
+                    .WithMany("StudentSkills")
+                    .HasForeignKey("StudentId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Skill");
+                b.Navigation("Skill");
 
-                    b.Navigation("Student");
-                });
+                b.Navigation("Student");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Surveys.Survey", b =>
-                {
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithMany("Surveys")
-                        .HasForeignKey("CreatorUserID")
-                        .OnDelete(DeleteBehavior.SetNull);
+            {
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithMany("Surveys")
+                    .HasForeignKey("CreatorUserID")
+                    .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("Entities.Concretes.Clients.Student", null)
-                        .WithMany("AssignedSurveys")
-                        .HasForeignKey("StudentId");
+                b.HasOne("Entities.Concretes.Clients.Student", null)
+                    .WithMany("AssignedSurveys")
+                    .HasForeignKey("StudentId");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Surveys.SurveyAnswer", b =>
-                {
-                    b.HasOne("Entities.Concretes.Surveys.SurveyQuestion", "SurveyQuestion")
-                        .WithMany("SurveyAnswers")
-                        .HasForeignKey("QuestionID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Surveys.SurveyQuestion", "SurveyQuestion")
+                    .WithMany("SurveyAnswers")
+                    .HasForeignKey("QuestionID")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Surveys.Survey", "Survey")
-                        .WithMany("SurveyAnswers")
-                        .HasForeignKey("SurveyID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("Entities.Concretes.Surveys.Survey", "Survey")
+                    .WithMany("SurveyAnswers")
+                    .HasForeignKey("SurveyID")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithMany("SurveyAnswers")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithMany("SurveyAnswers")
+                    .HasForeignKey("UserID")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Survey");
+                b.Navigation("Survey");
 
-                    b.Navigation("SurveyQuestion");
+                b.Navigation("SurveyQuestion");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Surveys.SurveyQuestion", b =>
-                {
-                    b.HasOne("Entities.Concretes.Surveys.Survey", "Survey")
-                        .WithMany("SurveyQuestions")
-                        .HasForeignKey("SurveyID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Surveys.Survey", "Survey")
+                    .WithMany("SurveyQuestions")
+                    .HasForeignKey("SurveyID")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Survey");
-                });
+                b.Navigation("Survey");
+            });
 
             modelBuilder.Entity("Entities.Concretes.UserRole", b =>
-                {
-                    b.HasOne("Entities.Concretes.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+            {
+                b.HasOne("Entities.Concretes.Role", "Role")
+                    .WithMany()
+                    .HasForeignKey("RoleId")
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .IsRequired();
 
-                    b.HasOne("Entities.Concretes.Clients.User", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                b.HasOne("Entities.Concretes.Clients.User", "User")
+                    .WithMany("UserRoles")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .IsRequired();
 
-                    b.Navigation("Role");
+                b.Navigation("Role");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Application", b =>
-                {
-                    b.Navigation("ApplicationStudents");
-                });
+            {
+                b.Navigation("ApplicationStudents");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Category", b =>
-                {
-                    b.Navigation("Courses");
-                });
+            {
+                b.Navigation("Courses");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Clients.Instructor", b =>
-                {
-                    b.Navigation("InstructorCourses");
-                });
+            {
+                b.Navigation("InstructorCourses");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Clients.Student", b =>
-                {
-                    b.Navigation("ApplicationStudents");
+            {
+                b.Navigation("ApplicationStudents");
 
-                    b.Navigation("AssignedSurveys");
+                b.Navigation("AssignedSurveys");
 
-                    b.Navigation("StudentAssignments");
+                b.Navigation("StudentAssignments");
 
-                    b.Navigation("StudentCourses");
+                b.Navigation("StudentCourses");
 
-                    b.Navigation("StudentSkills");
-                });
+                b.Navigation("StudentSkills");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Clients.User", b =>
-                {
-                    b.Navigation("Addresses");
+            {
+                b.Navigation("Addresses");
 
-                    b.Navigation("Applications");
+                b.Navigation("Applications");
 
-                    b.Navigation("Certificates");
+                b.Navigation("Certificates");
 
-                    b.Navigation("EducationInformations");
+                b.Navigation("EducationInformations");
 
-                    b.Navigation("ExamOfUsers");
+                b.Navigation("ExamOfUsers");
 
-                    b.Navigation("Instructor");
+                b.Navigation("Instructor");
 
-                    b.Navigation("SocialMediaAccounts");
+                b.Navigation("SocialMediaAccounts");
 
-                    b.Navigation("Student");
+                b.Navigation("Student");
 
-                    b.Navigation("SurveyAnswers");
+                b.Navigation("SurveyAnswers");
 
-                    b.Navigation("Surveys");
+                b.Navigation("Surveys");
 
-                    b.Navigation("UserExperiences");
+                b.Navigation("UserExperiences");
 
-                    b.Navigation("UserLanguages");
+                b.Navigation("UserLanguages");
 
-                    b.Navigation("UserRoles");
+                b.Navigation("UserRoles");
 
-                    b.Navigation("UserUniversities");
-                });
+                b.Navigation("UserUniversities");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Assignment", b =>
-                {
-                    b.Navigation("StudentAssignments");
-                });
+            {
+                b.Navigation("StudentAssignments");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Course", b =>
-                {
-                    b.Navigation("Assignments");
+            {
+                b.Navigation("Assignments");
 
-                    b.Navigation("CourseParts");
+                b.Navigation("CourseParts");
 
-                    b.Navigation("CourseSubjects");
+                b.Navigation("CourseSubjects");
 
-                    b.Navigation("Exams");
+                b.Navigation("Exams");
 
-                    b.Navigation("InstructorCourses");
+                b.Navigation("InstructorCourses");
 
-                    b.Navigation("LessonCourses");
+                b.Navigation("Lessons");
 
-                    b.Navigation("StudentCourses");
-                });
+                b.Navigation("StudentCourses");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.CourseLevel", b =>
-                {
-                    b.Navigation("Courses");
-                });
+            {
+                b.Navigation("Courses");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.CoursePart", b =>
-                {
-                    b.Navigation("Lessons");
-                });
+            {
+                b.Navigation("Lessons");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Exam", b =>
-                {
-                    b.Navigation("ExamOfUsers");
+            {
+                b.Navigation("ExamOfUsers");
 
-                    b.Navigation("Questions");
-                });
-
-            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Lesson", b =>
-                {
-                    b.Navigation("LessonCourses");
-                });
+                b.Navigation("Questions");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Question", b =>
-                {
-                    b.Navigation("Options");
-                });
+            {
+                b.Navigation("Options");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.SoftwareLanguage", b =>
-                {
-                    b.Navigation("Courses");
-                });
+            {
+                b.Navigation("Courses");
+            });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentCourse", b =>
-                {
-                    b.Navigation("Payments");
-                });
+            {
+                b.Navigation("Payments");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.City", b =>
-                {
-                    b.Navigation("Districts");
-                });
+            {
+                b.Navigation("Districts");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.Country", b =>
-                {
-                    b.Navigation("Cities");
-                });
+            {
+                b.Navigation("Cities");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.District", b =>
-                {
-                    b.Navigation("Addresses");
-                });
+            {
+                b.Navigation("Addresses");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.Language", b =>
-                {
-                    b.Navigation("UserLanguages");
-                });
+            {
+                b.Navigation("UserLanguages");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.LanguageLevel", b =>
-                {
-                    b.Navigation("UserLanguages");
-                });
+            {
+                b.Navigation("UserLanguages");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.Skill", b =>
-                {
-                    b.Navigation("StudentSkills");
-                });
+            {
+                b.Navigation("StudentSkills");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Profiles.University", b =>
-                {
-                    b.Navigation("UserUniversities");
-                });
+            {
+                b.Navigation("UserUniversities");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Subject", b =>
-                {
-                    b.Navigation("CourseSubjects");
-                });
+            {
+                b.Navigation("CourseSubjects");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Surveys.Survey", b =>
-                {
-                    b.Navigation("SurveyAnswers");
+            {
+                b.Navigation("SurveyAnswers");
 
-                    b.Navigation("SurveyQuestions");
-                });
+                b.Navigation("SurveyQuestions");
+            });
 
             modelBuilder.Entity("Entities.Concretes.Surveys.SurveyQuestion", b =>
-                {
-                    b.Navigation("SurveyAnswers");
-                });
+            {
+                b.Navigation("SurveyAnswers");
+            });
 #pragma warning restore 612, 618
         }
     }

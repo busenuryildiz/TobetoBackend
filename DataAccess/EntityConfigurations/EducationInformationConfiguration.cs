@@ -30,7 +30,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(ei => ei.IsContinue)
                 .HasColumnName("IsContinue");
 
-            builder.Property(ei => ei.School);
+            builder.Property(ei => ei.University);
 
             builder.Property(ei => ei.Faculty);
 

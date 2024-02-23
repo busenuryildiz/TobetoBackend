@@ -25,6 +25,7 @@ namespace Business.Profiles
             CreateMap<CreateStudentSkillRequest, CreateUserRequest>().ReverseMap();
             CreateMap<StudentSkill, CreatedStudentSkillResponse>().ReverseMap();
             CreateMap<CreateUserRequest, CreatedUserResponse>().ReverseMap();
+            CreateMap<CreateStudentSkillByUserIdRequest, StudentSkill>().ReverseMap();
 
 
             //-------------------Deleted----------------------------------------------
@@ -44,6 +45,7 @@ namespace Business.Profiles
 
             CreateMap<StudentSkill, GetListStudentSkillResponse>().ReverseMap();
             CreateMap<Paginate<StudentSkill>, Paginate<GetListStudentSkillResponse>>().ReverseMap();
+
 
 
            

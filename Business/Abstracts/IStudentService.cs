@@ -19,5 +19,6 @@ namespace Business.Abstracts
         Task<CreatedStudentResponse> GetById(Guid id);
         Task<GetStudentSkillsResponse> GetStudentSkillsByUserIdAsync(Guid userId);
         Student GetStudentByUserId (Guid userId);
+
     }
 }

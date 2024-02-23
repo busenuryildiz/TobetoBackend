@@ -16,5 +16,6 @@ namespace Business.Abstracts
         Task<UpdatedStudentSkillResponse> Update(UpdateStudentSkillRequest updateStudentSkillRequest);
         Task<DeletedStudentSkillResponse> Delete(DeleteStudentSkillRequest deleteStudentSkillRequest);
         Task<CreatedStudentSkillResponse> GetById(int id);
+        Task<CreatedStudentSkillResponse> AddStudentSkillByUserId(CreateStudentSkillByUserIdRequest createStudentSkillByUserIdRequest);
     }
 }

@@ -1302,13 +1302,13 @@ namespace DataAccess.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("IsContinue");
 
-                    b.Property<string>("School")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Status")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("Status");
+
+                    b.Property<string>("University")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");

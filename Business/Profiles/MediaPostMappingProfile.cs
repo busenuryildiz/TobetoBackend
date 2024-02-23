@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Entities.Concretes;
+using Business.DTOs.Response.Blog;
 
 namespace Business.Profiles
 {
@@ -27,6 +28,12 @@ namespace Business.Profiles
 
             CreateMap<MediaPost, GetListMediaPostResponse>().ReverseMap();
             CreateMap<Paginate<MediaPost>, Paginate<GetListMediaPostResponse>>().ReverseMap();
+
+            CreateMap<IPaginate<MediaPost>, List<GetListMediaPostResponse>>()
+             .ConvertUsing((src, dest, context) =>
+             {
+                 return context.Mapper.Map<List<GetListMediaPostResponse>>(src.Items);
+             });
         }
     }
 }

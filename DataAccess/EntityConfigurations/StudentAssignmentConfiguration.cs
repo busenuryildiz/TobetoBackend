@@ -30,6 +30,8 @@ namespace DataAccess.EntityConfigurations
                 .HasForeignKey(sa => sa.StudentId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.Property(a => a.IsSend).HasColumnName("IsSend");
+
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }

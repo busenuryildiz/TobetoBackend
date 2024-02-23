@@ -89,13 +89,5 @@ namespace WebAPI.Controllers
             return NotFound($"Student with ID {updateStudentRequest.Id} not found.");
         }
 
-        [HttpGet("GetStudentSkillsByUserIdAsync")]
-        public async Task<IActionResult> GetStudentSkillsByUserIdAsync([FromQuery] Guid userId)
-        {
-            var result = await _studentService.GetStudentSkillsByUserIdAsync(userId);
-           
-            return Ok(result);
-
-        }
     }
 }

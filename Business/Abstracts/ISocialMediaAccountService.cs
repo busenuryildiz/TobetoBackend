@@ -17,7 +17,7 @@ namespace Business.Abstracts
         Task<UpdatedSocialMediaAccountResponse> Update(UpdateSocialMediaAccountRequest updateSocialMediaAccountRequest);
         Task<DeletedSocialMediaAccountResponse> Delete(DeleteSocialMediaAccountRequest deleteSocialMediaAccountRequest);
         Task<CreatedSocialMediaAccountResponse> GetById(int id);
-        Task<IPaginate<GetListSocialMediaAccountResponse>> GetUsersAllSocialMediaAccount(Guid userId, int value = int.MaxValue);
+        Task<List<GetListSocialMediaAccountResponse>> GetUsersAllSocialMediaAccount(Guid userId);
 
     }
 }

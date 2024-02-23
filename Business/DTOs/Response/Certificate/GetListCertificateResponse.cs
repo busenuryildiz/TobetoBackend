@@ -12,6 +12,6 @@ namespace Business.DTOs.Response.Certificate
         public int Id { get; set; }
         public Guid UserId { get; set; }// Kullanıcıya ait sertifika
         public string Name { get; set; }
-        public string ImagePath { get; set; }
+        public string FilePath { get; set; }
     }
 }

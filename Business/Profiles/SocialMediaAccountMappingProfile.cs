@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Entities.Concretes;
+using Business.DTOs.Response.Certificate;
+using Entities.Concretes.Profiles;
 
 namespace Business.Profiles
 {
@@ -27,6 +29,13 @@ namespace Business.Profiles
 
             CreateMap<SocialMediaAccount, GetListSocialMediaAccountResponse>().ReverseMap();
             CreateMap<Paginate<SocialMediaAccount>, Paginate<GetListSocialMediaAccountResponse>>().ReverseMap();
+
+            CreateMap<IPaginate<SocialMediaAccount>, List<GetListSocialMediaAccountResponse>>()
+           .ConvertUsing((src, dest, context) =>
+           {
+               return context.Mapper.Map<List<GetListSocialMediaAccountResponse>>(src.Items);
+           });
         }
+
     }
 }

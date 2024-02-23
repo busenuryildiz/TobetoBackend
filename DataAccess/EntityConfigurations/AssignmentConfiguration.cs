@@ -26,7 +26,6 @@ namespace DataAccess.EntityConfigurations
 
             builder.Property(a => a.DeadLine).IsRequired().HasColumnName("DeadLine");
 
-            builder.Property(a => a.IsSend).IsRequired().HasColumnName("IsSend");
 
             builder.HasOne(a => a.Course)
                 .WithMany(c => c.Assignments)

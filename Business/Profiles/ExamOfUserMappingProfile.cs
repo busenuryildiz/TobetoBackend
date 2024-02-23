@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Business.Profiles
 {
-     public class ExamOfUserMappingProfile : Profile
+    public class ExamOfUserMappingProfile : Profile
     {
         public ExamOfUserMappingProfile()
         {
@@ -35,10 +35,11 @@ namespace Business.Profiles
                 .ForMember(dest => dest.ExamResult, opt => opt.MapFrom(src => src.ExamResult))
                 .ReverseMap();
 
-            CreateMap<Paginate<ExamOfUser>, Paginate<GetUsersExamResultInfoResponse>>()
-                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
-
-
-        }
+            CreateMap<IPaginate<ExamOfUser>, List<GetUsersExamResultInfoResponse>>()
+                .ConvertUsing((src, dest, context) =>
+                {
+                    return context.Mapper.Map<List<GetUsersExamResultInfoResponse>>(src.Items);
+                });
+    }
     }
 }

@@ -54,7 +54,7 @@ namespace WebAPI.Controllers
         [HttpGet("GetUsersExamResultInfo")]
         public async Task<IActionResult> GetUsersExamResultInfo([FromQuery] Guid userId)
         {
-            var result = await _examOfUserService.GetUsersExamResultInfo(userId, int.MaxValue);
+            var result = await _examOfUserService.GetUsersExamResultInfo(userId);
             return Ok(result);
         }
     }

@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.StudentSkill;
+using Business.DTOs.Response.Student;
 using Business.DTOs.Response.StudentSkill;
 using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using Entities.Concretes;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes
 {
@@ -85,6 +88,20 @@ namespace Business.Concretes
             await _studentSkillDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedStudentSkillResponse>(data);
             return result;
+        }
+
+        public async Task<List<StudenSkillIdAndStudentSkillNameResponse>> GetStudentSkillsByUserIdAsync(Guid userId)
+        {
+            var student =  _studentService.GetStudentByUserId(userId);
+
+            var studentSkills = await _studentSkillDal.GetListAsync(ss=>ss.StudentId==student.Id,
+                                                                             include:query=>query
+                                                                               .Include(ss=>ss.Skill));
+            
+            var result = _mapper.Map<List<StudenSkillIdAndStudentSkillNameResponse>>(studentSkills);
+
+            return result;
+
         }
     }
 }

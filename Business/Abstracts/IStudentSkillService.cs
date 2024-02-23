@@ -1,4 +1,5 @@
 ﻿using Business.DTOs.Request.StudentSkill;
+using Business.DTOs.Response.Student;
 using Business.DTOs.Response.StudentSkill;
 using Core.DataAccess.Paging;
 using System;
@@ -16,6 +17,8 @@ namespace Business.Abstracts
         Task<UpdatedStudentSkillResponse> Update(UpdateStudentSkillRequest updateStudentSkillRequest);
         Task<DeletedStudentSkillResponse> Delete(DeleteStudentSkillRequest deleteStudentSkillRequest);
         Task<CreatedStudentSkillResponse> GetById(int id);
+        Task<List<StudenSkillIdAndStudentSkillNameResponse>> GetStudentSkillsByUserIdAsync(Guid userId);
+
         Task<CreatedStudentSkillResponse> AddStudentSkillByUserId(CreateStudentSkillByUserIdRequest createStudentSkillByUserIdRequest);
     }
 }

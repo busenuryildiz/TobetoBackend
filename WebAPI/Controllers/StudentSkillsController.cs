@@ -58,5 +58,15 @@ namespace WebAPI.Controllers
             var result = await _studentSkillService.GetById(id);
             return Ok(result);
         }
+
+
+        [HttpGet("GetStudentSkillsByUserIdAsync")]
+        public async Task<IActionResult> GetStudentSkillsByUserIdAsync([FromQuery] Guid userId)
+        {
+            var result = await _studentSkillService.GetStudentSkillsByUserIdAsync(userId);
+
+            return Ok(result);
+
+        }
     }
 }

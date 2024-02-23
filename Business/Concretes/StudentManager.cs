@@ -15,6 +15,7 @@ using Business.Rules.BusinessRules;
 using Serilog;
 using Business.DTOs.Response.User;
 using System.Drawing;
+using Entities.Concretes;
 
 namespace Business.Concretes
 {
@@ -139,18 +140,7 @@ namespace Business.Concretes
             } while (true);
         }
 
-        public async Task<GetStudentSkillsResponse> GetStudentSkillsByUserIdAsync(Guid userId)
-        {
-            var student = await _studentDal.GetAsync(student => student.UserId == userId,
-                                                        include: query=>query
-                                                        .Include(s=>s.StudentSkills)
-                                                            .ThenInclude(s=>s.Skill));
-
-            var result = _mapper.Map<GetStudentSkillsResponse>(student);
-
-            return result;
-           
-        }
+     
 
         public Student GetStudentByUserId(Guid userId)
         {

@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Entities.Concretes;
 using Business.DTOs.Response.Student;
+using Business.DTOs.Response.StudentCourse;
+using Entities.Concretes.CoursesFolder;
 
 namespace Business.Profiles
 {
@@ -47,9 +49,16 @@ namespace Business.Profiles
             CreateMap<Paginate<StudentSkill>, Paginate<GetListStudentSkillResponse>>().ReverseMap();
 
 
+            CreateMap<StudentSkill, StudenSkillIdAndStudentSkillNameResponse>()
+            .ForMember(dest => dest.StudentSkillId, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.StudentSkillName, opt => opt.MapFrom(src => src.Skill.Name))
+            .ReverseMap();
 
-           
-                
+            CreateMap<IPaginate<StudentSkill>, List<StudenSkillIdAndStudentSkillNameResponse>>()
+               .ConvertUsing((src, dest, context) =>
+               {
+                   return context.Mapper.Map<List<StudenSkillIdAndStudentSkillNameResponse>>(src.Items);
+               });
         }
     }
 }

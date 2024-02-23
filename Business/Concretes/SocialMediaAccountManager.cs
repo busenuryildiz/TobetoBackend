@@ -70,11 +70,11 @@ namespace Business.Concretes
         }
 
 
-        public async Task<IPaginate<GetListSocialMediaAccountResponse>> GetUsersAllSocialMediaAccount(Guid userId, int value = int.MaxValue)
+        public async Task<List<GetListSocialMediaAccountResponse>> GetUsersAllSocialMediaAccount(Guid userId)
         {
-            var userSocialMediaAccounts = await _socialMediaAccountDal.GetListAsync(c => c.UserId == userId, size: value);
+            var userSocialMediaAccounts = await _socialMediaAccountDal.GetListAsync(c => c.UserId == userId);
 
-            var results = _mapper.Map<Paginate<GetListSocialMediaAccountResponse>>(userSocialMediaAccounts);
+            var results = _mapper.Map<List<GetListSocialMediaAccountResponse>>(userSocialMediaAccounts);
 
             return results;
         }     

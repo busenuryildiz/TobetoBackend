@@ -41,9 +41,7 @@ namespace Business.Rules.ValidationRules
                 .Must((experience, workEndDate) => workEndDate >= experience.WorkBeginDate)
                 .WithMessage("İşten ayrılma tarihi, işe başlama tarihinden büyük veya eşit olmalıdır.");
 
-            RuleFor(experience => experience.Description)
-                .NotEmpty().WithMessage("Açıklama boş olamaz.")
-                .MaximumLength(1000).WithMessage("Açıklama 1000 karakteri geçemez.");
+            
         }
     }
 }

@@ -64,7 +64,6 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<QuestionManager>().As<IQuestionService>();
             builder.RegisterType<OptionManager>().As<IOptionService>();
             builder.RegisterType<InstructorCourseManager>().As<IInstructorCourseService>();
-            builder.RegisterType<LessonCourseManager>().As<ILessonCourseService>();
             builder.RegisterType<PaymentManager>().As<IPaymentService>();
             builder.RegisterType<StudentCourseManager>().As<IStudentCourseService>();
             builder.RegisterType<CertificateManager>().As<ICertificateService>();
@@ -104,7 +103,6 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<CourseSubjectBusinessRules>().AsSelf();
             builder.RegisterType<ExamBusinessRules>().AsSelf();
             builder.RegisterType<InstructorCourseBusinessRules>().AsSelf();
-            builder.RegisterType<LessonCourseBusinessRules>().AsSelf();
             builder.RegisterType<PaymentBusinessRules>().AsSelf();
             builder.RegisterType<CertificateBusinessRules>().AsSelf();
             builder.RegisterType<EducationInformationBusinessRules>().AsSelf();
@@ -142,7 +140,6 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfExamDal>().As<IExamDal>().InstancePerLifetimeScope();
             builder.RegisterType<EfInstructorCourseDal>().As<IInstructorCourseDal>().InstancePerLifetimeScope();
             builder.RegisterType<EfLessonDal>().As<ILessonDal>().InstancePerLifetimeScope();
-            builder.RegisterType<EfLessonCourseDal>().As<ILessonCourseDal>().InstancePerLifetimeScope();
             builder.RegisterType<EfOptionDal>().As<IOptionDal>().InstancePerLifetimeScope();
             builder.RegisterType<EfPaymentDal>().As<IPaymentDal>().InstancePerLifetimeScope();
             builder.RegisterType<EfQuestionDal>().As<IQuestionDal>().InstancePerLifetimeScope();

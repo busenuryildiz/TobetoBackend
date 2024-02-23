@@ -57,8 +57,8 @@ namespace Business.Profiles
             .ReverseMap();
 
             CreateMap<User, GetUsersExperienceAndEducationResponse>()
-               .ForMember(dest => dest.UserEducationInformationResponse, opt => opt.MapFrom(src => src.EducationInformations))
-               .ForMember(dest => dest.UserExperienceResponse, opt => opt.MapFrom(src => src.UserExperiences));
+               .ForMember(dest => dest.UserEducationInformationResponses, opt => opt.MapFrom(src => src.EducationInformations))
+               .ForMember(dest => dest.UserExperienceResponses, opt => opt.MapFrom(src => src.UserExperiences));
 
             CreateMap<Paginate<User>, Paginate<GetUsersExperienceAndEducationResponse>>()
                 .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));

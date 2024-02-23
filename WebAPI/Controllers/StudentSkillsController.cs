@@ -26,6 +26,13 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpPost("AddStudentSkillByUserId")]
+        public async Task<IActionResult> AddStudentSkillByUserId([FromBody] CreateStudentSkillByUserIdRequest createStudentSkillByUserIdRequest)
+        {
+            var result = await _studentSkillService.AddStudentSkillByUserId(createStudentSkillByUserIdRequest);
+            return Ok(result);
+        }
+
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete([FromQuery] DeleteStudentSkillRequest deleteStudentSkillRequest)
         {
@@ -50,6 +57,16 @@ namespace WebAPI.Controllers
         {
             var result = await _studentSkillService.GetById(id);
             return Ok(result);
+        }
+
+
+        [HttpGet("GetStudentSkillsByUserIdAsync")]
+        public async Task<IActionResult> GetStudentSkillsByUserIdAsync([FromQuery] Guid userId)
+        {
+            var result = await _studentSkillService.GetStudentSkillsByUserIdAsync(userId);
+
+            return Ok(result);
+
         }
     }
 }

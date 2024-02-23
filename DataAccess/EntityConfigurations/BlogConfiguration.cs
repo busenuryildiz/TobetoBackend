@@ -21,6 +21,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(b => b.Description).HasColumnName("Description");
 
             builder.Property(b => b.Content).HasColumnName("Content");
+            builder.Property(b => b.ImagePath).HasColumnName("ImagePath");
 
             builder.Property(b => b.ImagePath).HasColumnName("ImagePath");
 

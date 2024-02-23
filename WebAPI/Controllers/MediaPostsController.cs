@@ -53,5 +53,12 @@ namespace WebAPI.Controllers
             var result = await _mediapostService.GetById(id);
             return Ok(result);
         }
+
+        [HttpGet("GetAllMediaPosts")]
+        public async Task<IActionResult> GetAllMediaPosts()
+        {
+            var result = await _mediapostService.GetAllMediaPosts();
+            return Ok(result);
+        }
     }
 }

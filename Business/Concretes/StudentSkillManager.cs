@@ -19,16 +19,32 @@ namespace Business.Concretes
         IStudentSkillDal _studentSkillDal;
         IMapper _mapper;
         StudentSkillBusinessRules _businessRules;
+        IStudentService _studentService;
 
-        public StudentSkillManager(StudentSkillBusinessRules businessRules, IStudentSkillDal studentSkillDal, IMapper mapper)
+        public StudentSkillManager(StudentSkillBusinessRules businessRules, IStudentSkillDal studentSkillDal, IMapper mapper, IStudentService studentService)
         {
             _businessRules = businessRules;
             _studentSkillDal = studentSkillDal;
             _mapper = mapper;
+            _studentService = studentService;
         }
 
         public async Task<CreatedStudentSkillResponse> Add(CreateStudentSkillRequest createStudentSkillRequest)
         {
+            StudentSkill studentSkill = _mapper.Map<StudentSkill>(createStudentSkillRequest);
+            StudentSkill createdStudentSkill = await _studentSkillDal.AddAsync(studentSkill);
+            CreatedStudentSkillResponse createdStudentSkillResponse = _mapper.Map<CreatedStudentSkillResponse>(createdStudentSkill);
+            return createdStudentSkillResponse;
+        }
+
+        public async Task<CreatedStudentSkillResponse> AddStudentSkillByUserId(CreateStudentSkillByUserIdRequest createStudentSkillByUserIdRequest)
+        {
+            var student = _studentService.GetStudentByUserId(createStudentSkillByUserIdRequest.UserId);
+            CreateStudentSkillRequest createStudentSkillRequest = new CreateStudentSkillRequest
+            {
+                StudentId = student.Id,
+                SkillId = createStudentSkillByUserIdRequest.SkillId
+            };
             StudentSkill studentSkill = _mapper.Map<StudentSkill>(createStudentSkillRequest);
             StudentSkill createdStudentSkill = await _studentSkillDal.AddAsync(studentSkill);
             CreatedStudentSkillResponse createdStudentSkillResponse = _mapper.Map<CreatedStudentSkillResponse>(createdStudentSkill);

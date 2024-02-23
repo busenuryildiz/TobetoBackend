@@ -15,14 +15,9 @@ namespace DataAccess.EntityConfigurations
         {
             builder.ToTable("Blogs").HasKey(b => b.Id);
 
-
-            builder.Property(b => b.Title).IsRequired().HasMaxLength(255).HasColumnName("Title");
-
-            builder.Property(b => b.Description).HasColumnName("Description");
+            builder.Property(b => b.Title).HasColumnName("Title");
 
             builder.Property(b => b.Content).HasColumnName("Content");
-
-            builder.Property(b => b.ImagePath).HasColumnName("ImagePath");
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }

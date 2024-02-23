@@ -37,7 +37,6 @@ public class SurveysController : ControllerBase
         var survey = await _surveyService.GetById(id);
         if (survey == null)
             return NotFound();
-
         return Ok(survey);
     }
 
@@ -52,10 +51,9 @@ public class SurveysController : ControllerBase
     public async Task<IActionResult> UpdateSurvey(int id, [FromBody] UpdateSurveyRequest updateSurveyRequest)
     {
         updateSurveyRequest.Id = id;
-        var updatedSurvey = await _surveyService.Update(updateSurveyRequest);               
+        var updatedSurvey = await _surveyService.Update(updateSurveyRequest);
         if (updatedSurvey == null)
             return NotFound();
-
         return Ok(updatedSurvey);
     }
 
@@ -66,7 +64,6 @@ public class SurveysController : ControllerBase
         var deletedSurvey = await _surveyService.Delete(deleteSurveyRequest);
         if (deletedSurvey == null)
             return NotFound();
-
         return Ok(deletedSurvey);
     }
 
@@ -83,7 +80,6 @@ public class SurveysController : ControllerBase
         var surveyQuestion = await _surveyQuestionService.GetById(id);
         if (surveyQuestion == null)
             return NotFound();
-
         return Ok(surveyQuestion);
     }
 
@@ -101,7 +97,6 @@ public class SurveysController : ControllerBase
         var updatedSurveyQuestion = await _surveyQuestionService.Update(updateSurveyQuestionRequest);
         if (updatedSurveyQuestion == null)
             return NotFound();
-
         return Ok(updatedSurveyQuestion);
     }
 
@@ -112,7 +107,6 @@ public class SurveysController : ControllerBase
         var deletedSurveyQuestion = await _surveyQuestionService.Delete(deleteSurveyQuestionRequest);
         if (deletedSurveyQuestion == null)
             return NotFound();
-
         return Ok(deletedSurveyQuestion);
     }
 
@@ -129,7 +123,6 @@ public class SurveysController : ControllerBase
         var surveyAnswer = await _surveyAnswerService.GetById(id);
         if (surveyAnswer == null)
             return NotFound();
-
         return Ok(surveyAnswer);
     }
 
@@ -158,54 +151,34 @@ public class SurveysController : ControllerBase
         var deletedSurveyAnswer = await _surveyAnswerService.Delete(deleteSurveyAnswerRequest);
         if (deletedSurveyAnswer == null)
             return NotFound();
-
         return Ok(deletedSurveyAnswer);
     }
     [HttpGet("user/{userId}/survey/{surveyId}")]
     public async Task<ActionResult<ICollection<GetSurveyAnswerResponse>>> GetUserSurveyAnswers(Guid userId, int surveyId)
     {
-        try
-        {
-            var surveyAnswers = await _surveyAnswerService.GetUserSurveyAnswers(userId, surveyId);
-            return Ok(surveyAnswers);
-        }
-        catch (Exception ex)
-        {
-            // Handle exceptions appropriately
-            return BadRequest($"An error occurred: {ex.Message}");
-        }
+        var surveyAnswers = await _surveyAnswerService.GetUserSurveyAnswers(userId, surveyId);
+        return Ok(surveyAnswers);
     }
 
-    [HttpGet("GetUnsentSurveys/{userId}")] // İsteği ele alacak route'u belirtin
+    [HttpGet("GetUnsentSurveys/{userId}")]
     public async Task<IActionResult> GetUnsentSurveys(Guid userId)
     {
-        try
-        {
-            var unsentSurveys = await _surveyService.GetUnsentSurveysAsync(userId);
-
-            // Burada unsentSurveys listesini kullanabilirsiniz.
-
-            return Ok(unsentSurveys); // İstenirse listeyi JSON olarak döndürür.
-        }
-        catch (Exception ex)
-        {
-            // Hata durumunda uygun bir şekilde işleyin.
-            return StatusCode(500, "Internal Server Error");
-        }
+        var unsentSurveys = await _surveyService.GetUnsentSurveysAsync(userId);
+        return Ok(unsentSurveys);
     }
-
 
     [HttpPost("SubmitAnswers")]
     public async Task<IActionResult> SubmitAnswers([FromBody] List<AddSurveyAnswerRequest> addSurveyAnswerRequests)
     {
-        // TODO: Validations and error handling
-
         var createdSurveyAnswers = await _surveyAnswerService.SubmitAnswers(addSurveyAnswerRequests);
-
-        // TODO: Additional logic after submitting answers
-
         return Ok(createdSurveyAnswers);
     }
 
+    [HttpGet("surveyansweraverages")]
+    public async Task<IActionResult> GetSurveyAnswerAverages()
+    {
+        var questionAverages = await _surveyAnswerService.CalculateQuestionAverages();
+        return Ok(questionAverages);
+    }
 
 }

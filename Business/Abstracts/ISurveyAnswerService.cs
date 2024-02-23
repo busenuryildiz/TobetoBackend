@@ -12,8 +12,8 @@ namespace Business.Abstracts
         Task<DeletedSurveyAnswerResponse> Delete(DeleteSurveyAnswerRequest deleteSurveyAnswerRequest);
         Task<GetSurveyAnswerResponse> GetById(int id);
         Task<IPaginate<GetSurveyAnswerResponse>> GetUserSurveyAnswers(Guid userId, int surveyId);
-        Task<List<CreatedSurveyAnswerResponse>> SubmitAnswers(List<AddSurveyAnswerRequest> addSurveyAnswerRequests);    
-
+        Task<List<CreatedSurveyAnswerResponse>> SubmitAnswers(List<AddSurveyAnswerRequest> addSurveyAnswerRequests);
+        Task<Dictionary<int, double>> CalculateQuestionAverages();
     }
 
 }

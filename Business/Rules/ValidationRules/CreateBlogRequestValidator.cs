@@ -17,9 +17,6 @@ namespace Business.Rules.ValidationRules
         {
             RuleFor(x => x.Title).NotEmpty();
 
-
-            RuleFor(x => x.Description).MinimumLength(10);
-
         }
     }
 }

@@ -18,6 +18,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(b => b.Title).HasColumnName("Title");
 
             builder.Property(b => b.Content).HasColumnName("Content");
+            builder.Property(b => b.ImagePath).HasColumnName("ImagePath");
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }

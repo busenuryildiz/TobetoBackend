@@ -25,9 +25,7 @@ namespace Business.Profiles
             CreateMap<StudentCourse, DeletedStudentCourseResponse>().ReverseMap();
 
             CreateMap<StudentCourse, GetListStudentCourseResponse>()
-                .ForMember(dest => dest.course, opt => opt.MapFrom(src => src.Course))
-                .MaxDepth(5); // veya uygun bir değer
-
+                .ForMember(dest => dest.course, opt => opt.MapFrom(src => src.Course));
 
 
             CreateMap<UpdateStudentCourseRequest, StudentCourse>().ReverseMap();
@@ -50,6 +48,23 @@ namespace Business.Profiles
                  {
                      return context.Mapper.Map<List<GetUserBadgesResponse>>(src.Items);
                  });
+
+
+            CreateMap<StudentCourse, GeneralStudentCourseList>()
+                .ForMember(dest => dest.StudentCourseId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.StudentCourseName, opt => opt.MapFrom(src => src.Course.Name))
+                .ForMember(dest => dest.StudentCourseDate, opt => opt.MapFrom(src => src.Course.CreatedDate))
+                .ForMember(dest => dest.StudentCourseImagePath, opt => opt.MapFrom(src => src.Course.ImagePath))
+                .ForMember(dest => dest.StudentCourseProgress, opt => opt.MapFrom(src => src.Progress));
+
+
+            CreateMap<IPaginate<StudentCourse>, List<GeneralStudentCourseList>>()
+                .ConvertUsing((src, dest, context) =>
+                {
+                    return context.Mapper.Map<List<GeneralStudentCourseList>>(src.Items);
+                });
+
+
         }
     }
 }

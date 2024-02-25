@@ -7,6 +7,7 @@ using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes.CoursesFolder;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes
 {
@@ -32,12 +33,18 @@ namespace Business.Concretes
 
         public async Task<CreatedExamResponse> Add(CreateExamRequest createExamRequest)
         {
-            //await _examBusinessRules.ValidateExamPoint(createExamRequest.Point);
-            var examDal = _mapper.Map<Exam>(createExamRequest);
-            var createdExam = await _examDal.AddAsync(examDal);
-            var result = _mapper.Map<CreatedExamResponse>(createdExam);
+            // AutoMapper kullanarak DTO'dan Entity'e dönüşüm yapılıyor.
+            var exam = _mapper.Map<Exam>(createExamRequest);
+
+            // EF Core, Exam nesnesini ve ona bağlı tüm Question ve Option nesnelerini otomatik olarak ekler.
+            await _examDal.AddAsync(exam);
+
+            // Sonuç olarak oluşturulan Exam nesnesini DTO'ya dönüştürüyoruz.
+            var result = _mapper.Map<CreatedExamResponse>(exam);
+
             return result;
         }
+
 
         public async Task<UpdatedExamResponse> Update(UpdateExamRequest updateExamRequest)
         {
@@ -74,10 +81,69 @@ namespace Business.Concretes
 
         public async Task<List<GetListQuestionResponse>> GetRandomQuestionsByExamId(int examId)
         {
-            var result = await _examBusinessRules.GetRandomQuestionsByExamId(examId);
+            var exam = await _examDal.GetAsync(e => e.Id == examId, include: q => q.Include(e => e.Questions).ThenInclude(q => q.Options));
+            var questions = exam.Questions;
+
+            // Soruları GetListQuestionResponse listesine dönüştür
+            var result = _mapper.Map<List<GetListQuestionResponse>>(questions);
+
             return result;
         }
+        public async Task<StudentExamResultDto> SubmitExamResults(SubmitExamResultDto submitExamResultDto)
+        {
+            // Sınav sorularını al
+            var exam = await _examDal.GetAsync(e => e.Id == submitExamResultDto.ExamId, include: q => q.Include(e => e.Questions).ThenInclude(q => q.Options));
+            var questions = exam.Questions;
 
+            // Sınav sonuçlarını hesapla
+            var examResult = CalculateExamResult(submitExamResultDto.Answers, questions);
+
+            // StudentExamResult entity'sini oluştur
+            var studentExamResult = new StudentExamResult
+            {
+                StudentId = submitExamResultDto.StudentId,
+                ExamId = submitExamResultDto.ExamId,
+                CorrectAnswers = examResult.CorrectAnswers,
+                WrongAnswers = examResult.WrongAnswers,
+                Unanswered = examResult.Unanswered
+            };
+
+            // Sonuçları veritabanına kaydet
+            //await _studentExamResultDal.AddAsync(studentExamResult);
+
+            // Kaydedilen sonuçları DTO olarak dön
+            var result = _mapper.Map<StudentExamResultDto>(studentExamResult);
+            return result;
+        }
+        public ExamResultDto CalculateExamResult(List<UserAnswerDto> userAnswers, List<Question> questions)
+        {
+            var result = new ExamResultDto();
+
+            foreach (var question in questions)
+            {
+                var userAnswer = userAnswers.FirstOrDefault(ua => ua.QuestionId == question.Id);
+
+                // Kullanıcı bu soruya cevap vermemişse
+                if (userAnswer == null || userAnswer.SelectedOptionId == null)
+                {
+                    result.Unanswered++;
+                    continue;
+                }
+
+                // Kullanıcının verdiği cevap doğru mu?
+                var correctOption = question.Options.FirstOrDefault(o => o.IsCorrect);
+                if (correctOption != null && userAnswer.SelectedOptionId == correctOption.Id)
+                {
+                    result.CorrectAnswers++;
+                }
+                else
+                {
+                    result.WrongAnswers++;
+                }
+            }
+
+            return result;
+        }
 
     }
 }

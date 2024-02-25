@@ -17,7 +17,10 @@ namespace DataAccess.EntityConfigurations
 
             builder.Property(q => q.ExamId)
                 .IsRequired()
-                .HasColumnName("ExamId"); 
+                .HasColumnName("ExamId");
+            builder.Property(q => q.Id).ValueGeneratedOnAdd();
+  
+
 
             builder.Property(q => q.Problem)
                 .HasColumnName("Problem"); 

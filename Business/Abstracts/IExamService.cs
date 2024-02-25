@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Business.DTOs.Request.Exam;
 using Business.DTOs.Response.Exam;
 using Business.DTOs.Response.Question;
+using Entities.Concretes.CoursesFolder;
 
 namespace Business.Abstracts
 {
@@ -19,5 +20,6 @@ namespace Business.Abstracts
         Task<CreatedExamResponse> GetById(int id);
         Task<List<GetListExamResponse>> GetExamsByCourseId(int courseId);
         Task<List<GetListQuestionResponse>> GetRandomQuestionsByExamId(int examId);
+        Task<StudentExamResultDto> SubmitExamResults(SubmitExamResultDto submitExamResultDto);
     }
 }

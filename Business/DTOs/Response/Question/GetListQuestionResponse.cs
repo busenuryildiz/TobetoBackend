@@ -10,8 +10,15 @@ namespace Business.DTOs.Response.Question
     public class GetListQuestionResponse
     {
         public int Id { get; set; }
-        public int ExamId { get; set; }
         public string Problem { get; set; }
-        public List<GetListOptionResponse> Options { get; set; }
+        public List<GetOptionResponse> Options { get; set; }
     }
+
+    public class GetOptionResponse
+    {
+        public int Id { get; set; }
+        public string Answer { get; set; }
+        public bool IsCorrect { get; set; } // Gerçek bir uygulamada, bu alanın sınav esnasında gizli tutulması gerekebilir.
+    }
+
 }

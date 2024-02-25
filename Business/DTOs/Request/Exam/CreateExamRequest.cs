@@ -14,6 +14,20 @@ namespace Business.DTOs.Request.Exam
         public string? Description { get; set; }
         public double Point { get; set; }
         public TimeSpan? ExamDuration { get; set; }
+        public List<CreateQuestionDto> Questions { get; set; }
+
+    }
+
+    public class CreateQuestionDto
+    {
+        public string Problem { get; set; }
+        public List<CreateOptionDto> Options { get; set; }
+    }
+
+    public class CreateOptionDto
+    {
+        public string Answer { get; set; }
+        public bool IsCorrect { get; set; }
     }
 
 }

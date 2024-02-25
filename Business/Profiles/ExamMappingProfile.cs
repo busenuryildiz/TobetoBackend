@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.DTOs.Request.Exam;
 using Business.DTOs.Response.Exam;
+using Business.DTOs.Response.Question;
 using Core.DataAccess.Paging;
 using Entities.Concretes.CoursesFolder;
 using System;
@@ -36,6 +37,25 @@ namespace Business.Profiles
 
             CreateMap<Exam, GetListExamResponse>().ReverseMap();
             CreateMap<Paginate<Exam>, Paginate<GetListExamResponse>>().ReverseMap();
+
+
+            CreateMap<CreateExamRequest, Exam>()
+             .ForMember(dest => dest.Questions, opt => opt.MapFrom(src => src.Questions));
+
+            CreateMap<CreateQuestionDto, Question>()
+                .ForMember(dest => dest.Options, opt => opt.MapFrom(src => src.Options));
+
+            CreateMap<Question, GetListQuestionResponse>();
+
+            CreateMap<Option, GetOptionResponse>();
+
+            CreateMap<StudentExamResult, StudentExamResultDto>()
+         .ForMember(dest => dest.CorrectAnswers, opt => opt.MapFrom(src => src.CorrectAnswers))
+         .ForMember(dest => dest.WrongAnswers, opt => opt.MapFrom(src => src.WrongAnswers))
+         .ForMember(dest => dest.Unanswered, opt => opt.MapFrom(src => src.Unanswered));
+
+            CreateMap<CreateOptionDto, Option>();
+
         }
     }
 }

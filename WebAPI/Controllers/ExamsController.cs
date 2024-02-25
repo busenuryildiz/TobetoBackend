@@ -2,6 +2,7 @@
 using Business.DTOs.Request.Exam;
 using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
+using Entities.Concretes.CoursesFolder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -69,5 +70,25 @@ namespace WebAPI.Controllers
             var questions = await _examService.GetRandomQuestionsByExamId(examId);
             return Ok(questions);
         }
+        [HttpGet("random-questions/{examId}")]
+        public async Task<IActionResult> GetRandomQuestions(int examId)
+        {
+         
+                var questions = await _examService.GetRandomQuestionsByExamId(examId);
+                if (questions == null || questions.Count == 0)
+                {
+                    return NotFound("Sorular bulunamadı.");
+                }
+                return Ok(questions);
+           
+           
+        }
+        [HttpPost("submitExam")]
+        public async Task<IActionResult> CalculateExamResult([FromBody] SubmitExamResultDto submitExamResultDto)
+        {
+            var result = await _examService.SubmitExamResults(submitExamResultDto);
+            return Ok(result); // veya isteğe bağlı olarak farklı bir HTTP durumu döndürebilirsiniz.
+        }
+
     }
 }

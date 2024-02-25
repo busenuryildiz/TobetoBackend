@@ -16,5 +16,7 @@ namespace Business.Abstracts
         Task<UpdatedBlogResponse> Update(UpdateBlogRequest updateBlogRequest);
         Task<DeletedBlogResponse> Delete(DeleteBlogRequest deleteBlogRequest);
         Task<CreatedBlogResponse> GetById(int id);
+        Task<List<GetListBlogResponse>> GetAllBlogs();
+
     }
 }

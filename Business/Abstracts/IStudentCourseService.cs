@@ -21,5 +21,10 @@ namespace Business.Abstracts
 
         Task<List<GetUserBadgesResponse>> GetBadgesForCompletedCourses(Guid studentId);
 
+        Task<List<GeneralStudentCourseList>> GetStudentsAllCoursesByUserId(Guid userId);
+        Task<List<GeneralStudentCourseList>> GetStudentsOngoingCoursesByUserId(Guid userId);
+        Task<List<GeneralStudentCourseList>> GetStudentsCompletedCoursesByUserId(Guid userId);
+
+
     }
 }

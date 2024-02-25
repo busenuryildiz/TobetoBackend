@@ -166,5 +166,47 @@ namespace Business.Concretes
             return results;
 
         }
+
+        public async Task<List<GeneralStudentCourseList>> GetStudentsAllCoursesByUserId(Guid userId)
+        {
+            var student = _studentService.GetStudentByUserId(userId);
+
+            var allCourses = await _studentCourseDal.GetListAsync(predicate: sc=>sc.StudentId==student.Id,
+                                                                    include:query=>query
+                                                                    .Include(sc => sc.Student)
+                                                                    .Include(sc=>sc.Course));
+
+            var result = _mapper.Map<List<GeneralStudentCourseList>>(allCourses);
+            return result;
+        }
+
+        public async Task<List<GeneralStudentCourseList>> GetStudentsOngoingCoursesByUserId(Guid userId)
+        {
+            var student = _studentService.GetStudentByUserId(userId);
+
+            var ongoingCourses = await _studentCourseDal.GetListAsync(
+                                                              predicate: sc => sc.StudentId == student.Id && sc.Progress < 100,
+                                                              include: query => query
+                                                              .Include(sc => sc.Student)
+                                                              .Include(sc => sc.Course));
+
+            var results = _mapper.Map<List<GeneralStudentCourseList>>(ongoingCourses);
+
+            return results;
+        }
+        public async Task<List<GeneralStudentCourseList>> GetStudentsCompletedCoursesByUserId(Guid userId)
+        {
+            var student = _studentService.GetStudentByUserId(userId);
+
+            var completedCourses = await _studentCourseDal.GetListAsync(
+                                                              predicate: sc => sc.StudentId == student.Id && sc.Progress == 100,
+                                                              include: query => query
+                                                              .Include(sc => sc.Student)
+                                                              .Include(sc => sc.Course));
+
+            var results = _mapper.Map<List<GeneralStudentCourseList>>(completedCourses);
+
+            return results;
+        }
     }
 }

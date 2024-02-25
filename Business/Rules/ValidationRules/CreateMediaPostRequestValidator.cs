@@ -9,7 +9,5 @@ public class CreateMediaPostRequestValidator : AbstractValidator<CreateMediaPost
     {
         RuleFor(x => x.Title).NotEmpty();
 
-        RuleFor(x => x.Description).MaximumLength(400);
-
     }
 }

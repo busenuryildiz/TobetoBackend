@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.Course;
+using Business.DTOs.Response.Blog;
 using Business.DTOs.Response.Course;
 using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
+using DataAccess.Concretes;
+using Entities.Concretes;
 using Entities.Concretes.CoursesFolder;
 using Microsoft.EntityFrameworkCore;
 
@@ -42,21 +45,7 @@ namespace Business.Concretes
 
         public async Task<CreatedCourseResponse> GetById(int id)
         {
-            var result = await _courseDal.GetAsync(
-              c => c.Id == id,
-             include: u => u
-            .Include(u => u.Category)
-            .Include(u => u.Assignments)
-            .Include(u => u.Exams)
-            .Include(u => u.CourseLevel)
-            .Include(u => u.CourseParts)
-              .ThenInclude(cp => cp.Lessons) 
-            .Include(u => u.LessonCourses)
-            .Include(u => u.SoftwareLanguage)
-            .Include(c => c.InstructorCourses)
-                .ThenInclude(ic => ic.Instructor)
-                .ThenInclude(i => i.User)
-    );
+            var result = await _courseDal.GetAsync(c => c.Id == id);
             Course mappedCourse = _mapper.Map<Course>(result);
             CreatedCourseResponse createdCourseResponse = _mapper.Map<CreatedCourseResponse>(mappedCourse);
             return createdCourseResponse;
@@ -70,7 +59,7 @@ namespace Business.Concretes
                     .Include(u => u.Assignments)
                     .Include(u => u.Exams)
                     .Include(u => u.CourseLevel)
-                    .Include(u => u.LessonCourses)
+                    //.Include(u => u.LessonCourses)
                     .Include(u => u.SoftwareLanguage)
                     .Include(c => c.InstructorCourses)
                     .ThenInclude(ic => ic.Instructor)

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.DTOs.Request.MediaPost;
 using Business.DTOs.Response.MediaPost;
+using Business.DTOs.Response.Blog;
 
 namespace Business.Abstracts
 {
@@ -16,5 +17,7 @@ namespace Business.Abstracts
         Task<UpdatedMediaPostResponse> Update(UpdateMediaPostRequest updateMediaPostRequest);
         Task<DeletedMediaPostResponse> Delete(DeleteMediaPostRequest deleteMediaPostRequest);
         Task<CreatedMediaPostResponse> GetById(int id);
+        Task<List<GetListMediaPostResponse>> GetAllMediaPosts();
+
     }
 }

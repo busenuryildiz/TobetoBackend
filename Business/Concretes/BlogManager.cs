@@ -39,6 +39,15 @@ namespace Business.Concretes
             return result2;
         }
 
+        public async Task<List<GetListBlogResponse>> GetAllBlogs()
+        {
+            var blogs = await _blogDal.GetListAsync();
+
+            var mappedBlogs = _mapper.Map<List<GetListBlogResponse>>(blogs);
+
+            return mappedBlogs;
+        }
+
         public async Task<CreatedBlogResponse> GetById(int id)
         {
             var result = await _blogDal.GetAsync(c => c.Id == id);

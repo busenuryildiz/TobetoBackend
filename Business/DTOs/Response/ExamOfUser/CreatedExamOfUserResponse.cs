@@ -10,6 +10,7 @@ namespace Business.DTOs.Response.ExamOfUser
     {
         public int Id { get; set; }
         public int ExamId { get; set; }
+        public double ExamResult { get; set; }
         public Guid UserId { get; set; }
     }
 }

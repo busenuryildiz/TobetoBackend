@@ -14,7 +14,6 @@ namespace Business.Rules.ValidationRules
         {
             RuleFor(x => x.Title).NotEmpty();
             RuleFor(x => x.Description).MinimumLength(10);
-            RuleFor(x => x.Point).InclusiveBetween(1, 100);
 
         }
     }

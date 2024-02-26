@@ -22,13 +22,6 @@ namespace Business.Rules.BusinessRules
             _mapper = mapper;
         }
 
-        public async Task ValidateExamPoint(float examPoint)
-        {
-            if (examPoint < 0 || examPoint > 100)
-            {
-                throw new BusinessException(BusinessMessages.ValidateExamPoint);
-            }
-        }
 
         public async Task<List<GetListQuestionResponse>> GetRandomQuestionsByExamId(int examId)
         {

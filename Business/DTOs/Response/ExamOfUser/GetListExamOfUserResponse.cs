@@ -9,6 +9,7 @@ namespace Business.DTOs.Response.ExamOfUser
     public class GetListExamOfUserResponse
     {
         public int Id { get; set; }
+        public double ExamResult { get; set; }
         public int ExamId { get; set; }
         public Guid UserId { get; set; }
     }

@@ -15,10 +15,12 @@ namespace Entities.Concretes.CoursesFolder
         public string? VideoUrl { get; set; }
         public int? CoursePartId { get; set; } 
         public DateTime? LessonDuration { get; set; }
+        public DateTime? LessonDateAndHour { get; set; }
         public string? Speaker { get; set; }
         public string? AboutSpeaker { get; set; }
         public Course? Course { get; set; }
-        public CoursePart? CoursePart { get; set; }     
+        public CoursePart? CoursePart { get; set; }
+        public List<StudentLesson>? StudentLessons { get; set; }
 
     }
 

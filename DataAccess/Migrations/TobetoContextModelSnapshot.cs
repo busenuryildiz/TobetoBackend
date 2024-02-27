@@ -489,6 +489,10 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("Name");
 
+                    b.Property<float?>("Point")
+                        .HasColumnType("real")
+                        .HasColumnName("Point");
+
                     b.Property<double?>("Price")
                         .HasColumnType("float")
                         .HasColumnName("Price");
@@ -712,7 +716,7 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CourseId")
+                    b.Property<int?>("CourseId")
                         .HasColumnType("int")
                         .HasColumnName("CourseId");
 
@@ -722,7 +726,7 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("InstructorId")
+                    b.Property<Guid?>("InstructorId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("InstructorId");
 
@@ -766,9 +770,13 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("LessonDateAndHour")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LessonDateAndHour");
+
                     b.Property<DateTime?>("LessonDuration")
                         .HasColumnType("datetime2")
-                        .HasColumnName("LessonTime");
+                        .HasColumnName("LessonDuration");
 
                     b.Property<string>("Name")
                         .HasMaxLength(255)
@@ -984,7 +992,6 @@ namespace DataAccess.Migrations
                         .HasColumnName("CertificatePath");
 
                     b.Property<int?>("CourseId")
-                        .IsRequired()
                         .HasColumnType("int")
                         .HasColumnName("CourseId");
 
@@ -998,7 +1005,7 @@ namespace DataAccess.Migrations
                         .HasColumnType("time")
                         .HasColumnName("EstimatedTime");
 
-                    b.Property<bool>("IsCompleted")
+                    b.Property<bool?>("IsCompleted")
                         .HasColumnType("bit")
                         .HasColumnName("IsCompleted");
 
@@ -1007,22 +1014,14 @@ namespace DataAccess.Migrations
                         .HasColumnName("IsPaid");
 
                     b.Property<int?>("Liked")
-                        .IsRequired()
                         .HasColumnType("int")
                         .HasColumnName("Liked");
 
-                    b.Property<float?>("Point")
-                        .IsRequired()
-                        .HasColumnType("real")
-                        .HasColumnName("Point");
-
                     b.Property<int?>("Progress")
-                        .IsRequired()
                         .HasColumnType("int")
                         .HasColumnName("Progress");
 
                     b.Property<int?>("Saved")
-                        .IsRequired()
                         .HasColumnType("int")
                         .HasColumnName("Saved");
 
@@ -1030,12 +1029,11 @@ namespace DataAccess.Migrations
                         .HasColumnType("time")
                         .HasColumnName("SpentTime");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("StartDate");
 
                     b.Property<Guid?>("StudentId")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("StudentId");
 
@@ -1065,19 +1063,19 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsLiked")
+                    b.Property<bool?>("IsLiked")
                         .HasColumnType("bit")
                         .HasColumnName("IsLiked");
 
-                    b.Property<int>("LessonId")
+                    b.Property<int?>("LessonId")
                         .HasColumnType("int")
                         .HasColumnName("LessonId");
 
-                    b.Property<int>("Progress")
+                    b.Property<int?>("Progress")
                         .HasColumnType("int")
                         .HasColumnName("Progress");
 
-                    b.Property<Guid>("StudentId")
+                    b.Property<Guid?>("StudentId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("StudentId");
 
@@ -2028,15 +2026,11 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
                         .WithMany("InstructorCourses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CourseId");
 
                     b.HasOne("Entities.Concretes.Clients.Instructor", "Instructor")
                         .WithMany("InstructorCourses")
-                        .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InstructorId");
 
                     b.Navigation("Course");
 
@@ -2115,15 +2109,11 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Entities.Concretes.CoursesFolder.Course", "Course")
                         .WithMany("StudentCourses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CourseId");
 
                     b.HasOne("Entities.Concretes.Clients.Student", "Student")
                         .WithMany("StudentCourses")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StudentId");
 
                     b.Navigation("Course");
 
@@ -2133,16 +2123,12 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.StudentLesson", b =>
                 {
                     b.HasOne("Entities.Concretes.CoursesFolder.Lesson", "Lesson")
-                        .WithMany()
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("StudentLessons")
+                        .HasForeignKey("LessonId");
 
                     b.HasOne("Entities.Concretes.Clients.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("StudentLessons")
+                        .HasForeignKey("StudentId");
 
                     b.Navigation("Lesson");
 
@@ -2389,6 +2375,8 @@ namespace DataAccess.Migrations
 
                     b.Navigation("StudentCourses");
 
+                    b.Navigation("StudentLessons");
+
                     b.Navigation("StudentSkills");
                 });
 
@@ -2460,6 +2448,11 @@ namespace DataAccess.Migrations
                     b.Navigation("ExamOfUsers");
 
                     b.Navigation("Questions");
+                });
+
+            modelBuilder.Entity("Entities.Concretes.CoursesFolder.Lesson", b =>
+                {
+                    b.Navigation("StudentLessons");
                 });
 
             modelBuilder.Entity("Entities.Concretes.CoursesFolder.Question", b =>

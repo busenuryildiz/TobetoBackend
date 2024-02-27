@@ -2,6 +2,7 @@
 using Business.Abstracts;
 using Business.DTOs.Request.StudentCourse;
 using Business.DTOs.Response.StudentCourse;
+using Business.DTOs.Response.StudentLesson;
 using Business.DTOs.Response.UserLanguage;
 using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
@@ -11,6 +12,7 @@ using Entities.Concretes.CoursesFolder;
 using Entities.Concretes.Profiles;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
+using NRedisStack.Graph;
 using Serilog;
 
 namespace Business.Concretes
@@ -207,6 +209,29 @@ namespace Business.Concretes
             var results = _mapper.Map<List<GeneralStudentCourseList>>(completedCourses);
 
             return results;
+        }
+
+        public async Task<CoursesAllLessonInfoResponse> GetStudentsCourseAllInfo(int studentCourseId)
+        {
+            try
+            {
+                var studentsCourse = await _studentCourseDal.GetAsync(predicate: sc => sc.Id == studentCourseId,
+                                                                            include: query => query
+                                                                            .Include(sc => sc.Student)
+                                                                            .ThenInclude(sc => sc.StudentLessons)
+                                                                            .Include(sc => sc.Course)
+                                                                            .ThenInclude(course => course.Lessons));
+
+                var results = _mapper.Map<CoursesAllLessonInfoResponse>(studentsCourse);
+                return results;
+            }
+
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
         }
     }
 }

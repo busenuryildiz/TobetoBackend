@@ -25,18 +25,24 @@ namespace DataAccess.EntityConfigurations
             builder.Property(l => l.VideoUrl)
                 .HasColumnName("VideoUrl");
 
-            builder.Property(l => l.LessonDuration)
-               .HasColumnName("LessonTime");
+            builder.Property(l => l.LessonDuration).HasColumnName("LessonDuration");
+
+            builder.Property(c => c.LessonDateAndHour).HasColumnName("LessonDateAndHour");
 
             builder.Property(c => c.Speaker).HasColumnName("Speaker");
 
             builder.Property(c => c.AboutSpeaker).HasColumnName("AboutSpeaker");
 
+            builder.HasMany(l => l.StudentLessons);
+
+
             builder.HasOne(l => l.CoursePart)
                    .WithMany(cp => cp.Lessons)
                    .HasForeignKey(l => l.CoursePartId);
 
-            builder.HasOne(l => l.Course);
+            builder.HasOne(l => l.Course)
+                .WithMany(l=>l.Lessons)
+                .HasForeignKey(l=>l.CourseId);
 
             builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
     }

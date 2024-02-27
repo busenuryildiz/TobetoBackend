@@ -68,5 +68,7 @@ namespace WebAPI.Controllers
             CourseListModel result = await _mediator.Send(getListCourseByDynamicQuery);
             return Ok(result);
         }
+
+       
     }
 }

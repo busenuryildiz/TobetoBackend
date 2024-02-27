@@ -29,6 +29,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(c => c.TargetGroup).HasColumnName("TargetGroup");
             builder.Property(c => c.AreasOfInterest).HasColumnName("AreasOfInterest");
             builder.Property(c => c.CategoryNames).HasColumnName("CategoryNames");
+            builder.Property(sc => sc.Point).HasColumnName("Point");
 
             // Course ile Category arasındaki ilişki
             builder.HasOne(c => c.Category)

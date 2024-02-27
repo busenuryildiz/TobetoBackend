@@ -6,7 +6,6 @@ using Business.DTOs.Request.City;
 using Business.DTOs.Request.Country;
 using Business.DTOs.Request.District;
 using Business.DTOs.Request.User;
-using Business.DTOs.Response.LessonCourse;
 using Business.DTOs.Response.User;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;

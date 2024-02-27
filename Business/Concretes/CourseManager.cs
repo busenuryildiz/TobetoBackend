@@ -80,5 +80,7 @@ namespace Business.Concretes
             var result = _mapper.Map<UpdatedCourseResponse>(data);
             return result;
         }
+
+        
     }
 }

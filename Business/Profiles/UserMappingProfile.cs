@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.DTOs.Request.User;
 using Business.DTOs.Response.User;
-using Business.DTOs.Request.LessonCourse;
-using Business.DTOs.Response.LessonCourse;
 using Entities.Concretes.CoursesFolder;
 using System.Runtime.InteropServices;
 using Business.DTOs.Response.UserLanguage;

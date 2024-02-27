@@ -25,6 +25,8 @@ namespace Business.Abstracts
         Task<List<GeneralStudentCourseList>> GetStudentsOngoingCoursesByUserId(Guid userId);
         Task<List<GeneralStudentCourseList>> GetStudentsCompletedCoursesByUserId(Guid userId);
 
+        Task<CoursesAllLessonInfoResponse> GetStudentsCourseAllInfo(int studentCourseId);
+
 
     }
 }

@@ -134,5 +134,13 @@ namespace WebAPI.Controllers
 
             return Ok(result);
         }
+        
+        [HttpGet("GetStudentsCourseAllInfo")]
+        public async Task<IActionResult> GetStudentsCourseAllInfo([FromQuery] int studentCourseId)
+        {
+            var result = await _studentCourseService.GetStudentsCourseAllInfo(studentCourseId);
+
+            return Ok(result);
+        }
     }
 }

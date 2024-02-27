@@ -16,11 +16,9 @@ namespace DataAccess.EntityConfigurations
             builder.ToTable("InstructorCourses").HasKey(ic => ic.Id);
 
             builder.Property(ic => ic.InstructorId)
-                .IsRequired()
                 .HasColumnName("InstructorId");
 
             builder.Property(ic => ic.CourseId)
-                .IsRequired()
                 .HasColumnName("CourseId");
 
             builder.HasOne(ic => ic.Instructor)

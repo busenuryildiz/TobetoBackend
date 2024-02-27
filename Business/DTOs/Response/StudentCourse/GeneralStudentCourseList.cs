@@ -8,11 +8,12 @@ namespace Business.DTOs.Response.StudentCourse
 {
     public class GeneralStudentCourseList
     {
-        public int StudentCourseId { get; set; }
-        public string StudentCourseName { get; set; }
-        public DateTime StudentCourseDate { get; set; }
-        public string StudentCourseImagePath { get; set; }
-        public int StudentCourseProgress { get; set; }
+        public int? CourseId { get; set; }
+        public int? StudentCourseId { get; set; }
+        public string? CourseName { get; set; }
+        public DateTime? CourseDate { get; set; }
+        public string? CourseImagePath { get; set; }
+        public int? StudentCourseProgress { get; set; }
     }
 
 }

@@ -644,10 +644,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("time")
                         .HasColumnName("ExamDuration");
 
-                    b.Property<double>("Point")
-                        .HasColumnType("float")
-                        .HasColumnName("Point");
-
                     b.Property<int>("QuestionAmount")
                         .HasColumnType("int")
                         .HasColumnName("QuestionAmount");
@@ -656,6 +652,11 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("Title");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Type");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");

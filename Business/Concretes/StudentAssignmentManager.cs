@@ -86,7 +86,6 @@ namespace Business.Concretes
 
             return mappedStudentsAssignmentsAndDates;
             
-          
         }
 
     }

@@ -67,6 +67,13 @@ namespace Business.Profiles
             CreateMap<UserExperience, UserExperienceResponse>();
 
 
+            
+            CreateMap<User, UpdateChangePasswordResponse>()
+                .ForMember(dest=> dest.UserId, opt=> opt.MapFrom(src=>src.Id))
+                .ForMember(dest => dest.ChangePassword, opt => opt.MapFrom(src => src.Password))
+                .ReverseMap();
+
+
 
 
         }

@@ -9,8 +9,6 @@ namespace Business.DTOs.Request.Certificate
     public class DeleteCertificateRequest
     {
         public int Id { get; set; }
-        public Guid UserId { get; set; }// Kullanıcıya ait sertifika
-        public string Name { get; set; }
-        public string ImagePath { get; set; }
+
     }
 }

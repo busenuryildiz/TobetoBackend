@@ -65,22 +65,6 @@ builder.Services.AddScoped<IRequestHandler<GetListCourseByDynamicQuery, CourseLi
 
 
 builder.Services.AddScoped<LogActionAttribute>();
-// Uncomment the Autofac-related code
-//builder.Host
-//    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-//    .ConfigureContainer<ContainerBuilder>(builder =>
-//    {
-//        builder.RegisterInstance(config).As<Microsoft.Extensions.Configuration.IConfiguration>();
-//        builder.Register<DbContextOptions<TobetoContext>>(c =>
-//        {
-//            var dbContextOptionsBuilder = new DbContextOptionsBuilder<TobetoContext>();
-//            dbContextOptionsBuilder.UseSqlServer(c.Resolve<Microsoft.Extensions.Configuration.IConfiguration>().GetConnectionString("Tobeto"));
-//            return dbContextOptionsBuilder.Options;
-//        }).InstancePerLifetimeScope();
-
-//        builder.RegisterModule(new AutofacDataAccessModule(config));
-//        builder.RegisterModule(new AutofacBusinessModule(config));
-//    });
 
 var app = builder.Build();
 

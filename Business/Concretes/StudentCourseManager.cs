@@ -225,11 +225,19 @@ namespace Business.Concretes
                 var results = _mapper.Map<CoursesAllLessonInfoResponse>(studentsCourse);
                 return results;
             }
-
+            catch (AutoMapperMappingException mapEx)
+            {
+                Console.WriteLine("AutoMapper Mapping Exception: " + mapEx.Message);
+                return null;
+            }
 
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine("Inner Exception Message: " + ex.InnerException.Message);
+                }
                 return null;
             }
         }

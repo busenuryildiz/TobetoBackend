@@ -205,6 +205,16 @@ namespace Business.Concretes
 
             return results;
         }
+
+        public async Task<UpdateChangePasswordResponse> UpdateChangePassword(UpdateChangePasswordRequest updateChangePasswordRequest)
+        {
+            var user = await _userDal.GetAsync(i => i.Id == updateChangePasswordRequest.UserId);
+            user.Password = updateChangePasswordRequest.ChangePassword;
+            user.UpdatedDate = DateTime.UtcNow;
+            await _userDal.UpdateAsync(user);
+            var mappedUser = _mapper.Map<UpdateChangePasswordResponse>(user);
+            return mappedUser;
+        }
     }
 
 }

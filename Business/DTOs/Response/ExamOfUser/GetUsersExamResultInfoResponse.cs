@@ -8,6 +8,7 @@ namespace Business.DTOs.Response.ExamOfUser
 {
     public class GetUsersExamResultInfoResponse
     {
+        public int ExamId { get; set; }
         public string ExamTitle { get; set; }
         public string ExamDescription { get; set;}
         public double ExamResult { get; set;}

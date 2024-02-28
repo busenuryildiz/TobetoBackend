@@ -10,9 +10,9 @@ namespace Entities.Concretes.CoursesFolder
 {
     public class InstructorCourse : Entity<int>
     {
-        public Guid InstructorId { get; set; }
-        public int CourseId { get; set; }
-        public Course Course { get; set; }
-        public Instructor Instructor { get; set; }
+        public Guid? InstructorId { get; set; }
+        public int? CourseId { get; set; }
+        public Course? Course { get; set; }
+        public Instructor? Instructor { get; set; }
     }
 }

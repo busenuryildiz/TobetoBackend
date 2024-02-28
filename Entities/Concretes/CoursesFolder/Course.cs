@@ -16,19 +16,24 @@ namespace Entities.Concretes.CoursesFolder
         public string? Name { get; set; }
         public string? ImagePath { get; set; }
         public double? Price { get; set; }
+        public float? Point { get; set; }
         public string? CourseType { get; set; }
+        public string? CategoryNames { get; set; }
         public int? Duration { get; set; }
         public string? Classroom { get; set; }
         public string? BadgePath { get; set; }
+        public string? ProducerCompany { get; set; }
+        public string? TargetGroup { get; set; }
+        public string? AreasOfInterest { get; set; }
         public Category? Category { get; set; }
         public List<Assignment>? Assignments { get; set; }
         public List<Exam>? Exams { get; set; }
         public CourseLevel? CourseLevel { get; set; }
-        public List<LessonCourse> LessonCourses { get; set; }
+        public List<Lesson>? Lessons { get; set; }
         public List<CourseSubject>? CourseSubjects { get; set; }
         public SoftwareLanguage? SoftwareLanguage { get; set; }
         public List<StudentCourse>? StudentCourses { get; set; } 
-        public List<InstructorCourse> InstructorCourses { get; set; }
-        public List<CoursePart> CourseParts { get; set; }
+        public List<InstructorCourse>? InstructorCourses { get; set; }
+        public List<CoursePart>? CourseParts { get; set; }
     }
 }

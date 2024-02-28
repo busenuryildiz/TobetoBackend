@@ -13,6 +13,6 @@ namespace Business.DTOs.Response.Blog
         public string Title { get; set; }
         public string Content { get; set; }
         public string ImagePath { get; set; }
-
+        public DateTime CreatedDate { get; set; }
     }
 }

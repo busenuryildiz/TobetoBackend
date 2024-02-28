@@ -2,6 +2,7 @@
 using Business.Abstracts;
 using Business.DTOs.Request.StudentCourse;
 using Business.DTOs.Response.StudentCourse;
+using Business.DTOs.Response.StudentLesson;
 using Business.DTOs.Response.UserLanguage;
 using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
@@ -11,6 +12,7 @@ using Entities.Concretes.CoursesFolder;
 using Entities.Concretes.Profiles;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
+using NRedisStack.Graph;
 using Serilog;
 
 namespace Business.Concretes
@@ -165,6 +167,79 @@ namespace Business.Concretes
 
             return results;
 
+        }
+
+        public async Task<List<GeneralStudentCourseList>> GetStudentsAllCoursesByUserId(Guid userId)
+        {
+            var student = _studentService.GetStudentByUserId(userId);
+
+            var allCourses = await _studentCourseDal.GetListAsync(predicate: sc=>sc.StudentId==student.Id,
+                                                                    include:query=>query
+                                                                    .Include(sc => sc.Student)
+                                                                    .Include(sc=>sc.Course));
+
+            var result = _mapper.Map<List<GeneralStudentCourseList>>(allCourses);
+            return result;
+        }
+
+        public async Task<List<GeneralStudentCourseList>> GetStudentsOngoingCoursesByUserId(Guid userId)
+        {
+            var student = _studentService.GetStudentByUserId(userId);
+
+            var ongoingCourses = await _studentCourseDal.GetListAsync(
+                                                              predicate: sc => sc.StudentId == student.Id && sc.Progress < 100,
+                                                              include: query => query
+                                                              .Include(sc => sc.Student)
+                                                              .Include(sc => sc.Course));
+
+            var results = _mapper.Map<List<GeneralStudentCourseList>>(ongoingCourses);
+
+            return results;
+        }
+        public async Task<List<GeneralStudentCourseList>> GetStudentsCompletedCoursesByUserId(Guid userId)
+        {
+            var student = _studentService.GetStudentByUserId(userId);
+
+            var completedCourses = await _studentCourseDal.GetListAsync(
+                                                              predicate: sc => sc.StudentId == student.Id && sc.Progress == 100,
+                                                              include: query => query
+                                                              .Include(sc => sc.Student)
+                                                              .Include(sc => sc.Course));
+
+            var results = _mapper.Map<List<GeneralStudentCourseList>>(completedCourses);
+
+            return results;
+        }
+
+        public async Task<CoursesAllLessonInfoResponse> GetStudentsCourseAllInfo(int studentCourseId)
+        {
+            try
+            {
+                var studentsCourse = await _studentCourseDal.GetAsync(predicate: sc => sc.Id == studentCourseId,
+                                                                            include: query => query
+                                                                            .Include(sc => sc.Student)
+                                                                            .ThenInclude(sc => sc.StudentLessons)
+                                                                            .Include(sc => sc.Course)
+                                                                            .ThenInclude(course => course.Lessons));
+
+                var results = _mapper.Map<CoursesAllLessonInfoResponse>(studentsCourse);
+                return results;
+            }
+            catch (AutoMapperMappingException mapEx)
+            {
+                Console.WriteLine("AutoMapper Mapping Exception: " + mapEx.Message);
+                return null;
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine("Inner Exception Message: " + ex.InnerException.Message);
+                }
+                return null;
+            }
         }
     }
 }

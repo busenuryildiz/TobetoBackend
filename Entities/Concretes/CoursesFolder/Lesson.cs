@@ -7,17 +7,20 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes.CoursesFolder
 {
-    // Lesson sınıfına ekleyin
     public class Lesson : Entity<int>
     {
-        public string Name { get; set; }
-        public string Content { get; set; }
-        public string VideoUrl { get; set; }
-        public int CoursePartId { get; set; } // CoursePartId özelliği eklendi
-
-        public DateTime LessonTime { get; set; }
-        public List<LessonCourse> LessonCourses { get; set; }
-        public CoursePart CoursePart { get; set; } // CoursePart özelliği eklendi
+        public int? CourseId { get; set; }
+        public string? Name { get; set; }
+        public string? Content { get; set; }
+        public string? VideoUrl { get; set; }
+        public int? CoursePartId { get; set; } 
+        public DateTime? LessonDuration { get; set; }
+        public DateTime? LessonDateAndHour { get; set; }
+        public string? Speaker { get; set; }
+        public string? AboutSpeaker { get; set; }
+        public Course? Course { get; set; }
+        public CoursePart? CoursePart { get; set; }
+        public List<StudentLesson>? StudentLessons { get; set; }
 
     }
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.DTOs.Request.Blog;
 using Business.DTOs.Response.Blog;
+using Business.DTOs.Response.Student;
 using Core.DataAccess.Paging;
 using Entities.Concretes;
 using Entities.Concretes.Clients;
@@ -27,6 +28,12 @@ namespace Business.Profiles
 
             CreateMap<Blog, GetListBlogResponse>().ReverseMap();
             CreateMap<Paginate<Blog>, Paginate<GetListBlogResponse>>().ReverseMap();
+
+            CreateMap<IPaginate<Blog>, List<GetListBlogResponse>>()
+               .ConvertUsing((src, dest, context) =>
+               {
+                   return context.Mapper.Map<List<GetListBlogResponse>>(src.Items);
+               });
         }
     }
 }

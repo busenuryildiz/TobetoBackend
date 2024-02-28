@@ -5,7 +5,9 @@ using Business.DTOs.Response.Lesson;
 using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using Entities.Concretes.CoursesFolder;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes
 {
@@ -86,6 +88,18 @@ namespace Business.Concretes
             await _lessonDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedLessonResponse>(data);
             return result;
+        }
+
+        public async Task<List<GetListCourseAndLessonInfoResponse>> GetAllCourseAndLessonInfo()
+        {
+            var data = await _lessonDal.GetListAsync(include: l => l
+                                                        .Include(c => c.Course)
+                                                        .ThenInclude(c => c.InstructorCourses)
+                                                        .ThenInclude(c => c.Instructor)
+                                                        .ThenInclude(c => c.User));
+            var results = _mapper.Map<List<GetListCourseAndLessonInfoResponse>>(data);
+
+            return results;
         }
     }
 }

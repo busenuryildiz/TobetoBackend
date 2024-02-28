@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Request.LessonCourse
+namespace Business.DTOs.Request.StudentLesson
 {
-    public class DeleteLessonCourseRequest
+    public class DeleteStudentLessonRequest
     {
         public int Id { get; set; }
-     
     }
+
 }

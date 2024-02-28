@@ -49,5 +49,13 @@ namespace WebAPI.Controllers
             var result = await _lessonService.GetById(id);
             return Ok(result);
         }
+
+        [HttpGet("GetAllCourseAndLessonInfo")]
+        public async Task<IActionResult> GetAllCourseAndLessonInfo()
+        {
+            var result = await _lessonService.GetAllCourseAndLessonInfo();
+
+            return Ok(result);
+        }
     }
 }

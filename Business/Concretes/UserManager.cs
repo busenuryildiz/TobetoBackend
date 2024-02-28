@@ -6,7 +6,6 @@ using Business.DTOs.Request.City;
 using Business.DTOs.Request.Country;
 using Business.DTOs.Request.District;
 using Business.DTOs.Request.User;
-using Business.DTOs.Response.LessonCourse;
 using Business.DTOs.Response.User;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
@@ -98,7 +97,7 @@ namespace Business.Concretes
         }
         public async Task<UserLoginResponse> Login(string email, string password)
         {
-            var user = _userDal.Get(predicate: u => u.Email == email && u.Password == password/*, include:  p => p.Include(p => p.Student)*/);
+            var user = _userDal.Get(predicate: u => u.Email == email && u.Password == password);
             if (user != null)
             {
                 return new UserLoginResponse
@@ -109,10 +108,7 @@ namespace Business.Concretes
                     Email = user?.Email,
                     BirthDate = user?.BirthDate,
                     PhoneNumber = user?.PhoneNumber,
-                    ImagePath = user?.ImagePath,
-                    //StudentId = user.Student.Id,
-                    //StudentNumber = user.Student.StudentNumber,
-                    
+                    ImagePath = user?.ImagePath,     
                 };
             }
             return null;

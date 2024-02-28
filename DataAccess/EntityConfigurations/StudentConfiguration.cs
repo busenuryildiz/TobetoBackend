@@ -26,6 +26,9 @@
                        .HasForeignKey<Student>(b => b.UserId)
                        .OnDelete(DeleteBehavior.Restrict);
 
+            builder.HasMany(u => u.StudentAssignments);
+
+
                 builder.HasMany(u => u.StudentAssignments)
                     .WithOne(ei => ei.Student)
                     .HasForeignKey(ei => ei.StudentId)

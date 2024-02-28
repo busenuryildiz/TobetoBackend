@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Entities.Concretes.CoursesFolder;
 using Business.DTOs.Request.Course;
 using Business.DTOs.Response.Course;
+using Business.DTOs.Response.Lesson;
 
 namespace Business.Abstracts
 {

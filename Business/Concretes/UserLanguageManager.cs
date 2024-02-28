@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.UserLanguage;
-using Business.DTOs.Response.LessonCourse;
 using Business.DTOs.Response.Student;
 using Business.DTOs.Response.UserLanguage;
 using Business.Rules.BusinessRules;

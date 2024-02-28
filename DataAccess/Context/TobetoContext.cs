@@ -63,6 +63,7 @@ namespace DataAccess.Context
         public DbSet<Country> Countries { get; set; }
         public DbSet<CoursePart> CourseParts { get; set; }
         public DbSet<ExamOfUser> ExamOfUsers { get; set; }
+        public DbSet<StudentLesson> StudentLessons { get; set; }
 
 
 

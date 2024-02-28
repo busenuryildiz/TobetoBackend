@@ -78,7 +78,6 @@ namespace Business.Concretes
 
         public async Task<List<GetListStudentsAssigmentsAndDates>> GetStudentAssignmentAndDateByUserId (Guid userId)
         {
-            try {
             var student = _studentService.GetStudentByUserId(userId);
 
             var studentsAssignments = await _studentAssignmentDal.GetListAsync(predicate:sa => sa.StudentId==student.Id);
@@ -86,19 +85,8 @@ namespace Business.Concretes
             var mappedStudentsAssignmentsAndDates = _mapper.Map<List<GetListStudentsAssigmentsAndDates>>(studentsAssignments);
 
             return mappedStudentsAssignmentsAndDates;
-            }
-            catch (Exception ex)
-    {
-                // InnerException fırlatma
-                if (ex.InnerException != null)
-                {
-                    Console.WriteLine("Inner Exception: " + ex.InnerException.Message);
-                    throw ex.InnerException;
-                }
-                // Eğer InnerException yoksa, doğrudan exception'ı fırlat
-                Console.WriteLine("Exception: " + ex.Message);
-                throw ex;
-            }
+            
+          
         }
 
     }

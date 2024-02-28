@@ -8,6 +8,7 @@ namespace Business.DTOs.Response.UserLanguage
 {
     public class GetUserLanguageAndLevelResponse
     {
+        public int Id { get; set; }
         public string LanguageName { get; set; }
         public string LanguageLevelName { get; set; }
     }

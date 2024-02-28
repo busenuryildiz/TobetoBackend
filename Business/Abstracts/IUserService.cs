@@ -22,6 +22,7 @@ namespace Business.Abstracts
         Task<UpdatedUserAllInformationResponse> UpdateAllInformationAsync(UpdateUserAllInformationRequest request);
         Task<UpdatedUserAllInformationResponse> GetAllUserInformationByIdAsync(Guid id);
         Task<IPaginate<GetUsersExperienceAndEducationResponse>> GetUserExperienceAndEducationByUserId(Guid userId, int value);
+        Task<UpdateChangePasswordResponse> UpdateChangePassword(UpdateChangePasswordRequest updateChangePasswordRequest);
 
     }
 }

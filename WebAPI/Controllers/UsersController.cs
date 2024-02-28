@@ -46,6 +46,20 @@ namespace WebAPI.Controllers
             var result = await _userService.Update(updateUserRequest);
             return Ok(result);
         }
+        [HttpPut("UpdateChangePassword")]
+        public async Task<IActionResult> UpdateChangePassword([FromBody] UpdateChangePasswordRequest updateChangePasswordRequest)
+        {
+            try
+            {
+                var result = await _userService.UpdateChangePassword(updateChangePasswordRequest);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda loglama veya uygun işlemleri yapabilirsiniz.
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
 
         [HttpGet("GetList")]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)

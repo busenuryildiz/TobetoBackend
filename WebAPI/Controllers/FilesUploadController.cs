@@ -2,6 +2,7 @@
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using DataAccess.Context;
+using Entities.Concretes.Profiles;
 
 namespace WebAPI.Controllers
 {
@@ -55,6 +56,9 @@ namespace WebAPI.Controllers
                 return NotFound(); // Kullanıcı bulunamadı, 404 hatası döndür
             }
         }
+      
+
+
 
         [HttpPost, DisableRequestSizeLimit]
         [Route("Certificate")]
@@ -85,6 +89,77 @@ namespace WebAPI.Controllers
                 return NotFound(); // Öğrenci kurs ilişkisi bulunamadı, 404 hatası döndür
             }
         }
+
+        [HttpPost, DisableRequestSizeLimit]
+        [Route("UserCertificate")]
+        public IActionResult UploadUserCertificate(Guid userId, IFormFile formFile)
+        {
+            try
+            {
+                // Dosya adını belirleme
+                string originalFileName = Path.GetFileNameWithoutExtension(formFile.FileName); // Uzantısız dosya adı
+                string uploadedFileName = $"{userId}_certificate_{originalFileName}";
+
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(uploadedFileName, formFile.OpenReadStream()),
+                    PublicId = uploadedFileName,
+                    Folder = "UserCertificates", // Klasör adını belirtin
+                };
+
+                var uploadResult = _cloudinary.Upload(uploadParams);
+
+                string imageUrl = uploadResult.SecureUri.AbsoluteUri;
+
+                // Kullanıcının sertifikasını al
+                var userCertificate = _context.Certificates.FirstOrDefault(c => c.UserId == userId);
+
+                if (userCertificate != null)
+                {
+                    // Dosya isminin farklı olup olmadığını kontrol et
+                    if (userCertificate.ImagePath != imageUrl)
+                    {
+                        // Farklıysa, resim yolunu güncelle
+                        userCertificate.ImagePath = imageUrl;
+                        userCertificate.Name = originalFileName; // Certificate tablosundaki Name alanını güncelle
+                        _context.SaveChanges();
+                    }
+
+                    return Ok(imageUrl); // Başarılı yanıt döndür
+                }
+                else
+                {
+                    // Eğer kullanıcının sertifikası yoksa, yeni bir sertifika oluşturabilirsiniz
+                    var newCertificate = new Certificate
+                    {
+                        UserId = userId,
+                        ImagePath = imageUrl,
+                        Name = originalFileName // Yeni sertifika oluşturulduğunda Name'i belirle
+                                                // Diğer özellikleri de isteğe bağlı olarak ayarlayabilirsiniz
+                    };
+
+                    _context.Certificates.Add(newCertificate);
+                    _context.SaveChanges();
+
+                    return Ok(imageUrl);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hataları yönet
+                while (ex != null)
+                {
+                    Console.WriteLine(ex.GetType().FullName);
+                    Console.WriteLine(ex.Message);
+                    ex = ex.InnerException;
+                }
+
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
+
+
+
 
         [HttpPost, DisableRequestSizeLimit]
         [Route("CourseImage")]

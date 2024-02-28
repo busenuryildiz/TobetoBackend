@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Business.Abstracts;
+using Business.Concretes;
 using Business.DTOs.Request.Survey;
 using Business.DTOs.Request.SurveyAnswer;
 using Business.DTOs.Request.SurveyQuestion;
@@ -175,10 +176,17 @@ public class SurveysController : ControllerBase
     }
 
     [HttpGet("surveyansweraverages")]
-    public async Task<IActionResult> GetSurveyAnswerAverages()
+    public async Task<IActionResult> GetSurveyAnswerAverages(Guid userId, int surveyId)
     {
-        var questionAverages = await _surveyAnswerService.CalculateQuestionAverages();
-        return Ok(questionAverages);
+        try
+        {
+            var categoryAverages = await _surveyAnswerService.GetSurveyAnswerAverages(userId, surveyId);
+            return Ok(categoryAverages);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occurred: {ex.Message}");
+        }
     }
 
 }

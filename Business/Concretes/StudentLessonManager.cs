@@ -71,6 +71,20 @@ namespace Business.Concretes
             var result = _mapper.Map<UpdatedStudentLessonResponse>(data);
             return result;
         }
+        public async Task<int> GetIsLikedCountByLessonIdAsync(int lessonId)
+        {
+            var studentLessons = await _studentLessonDal.GetListAsync(
+                l => l.LessonId == lessonId && l.IsLiked == true
+            );
+
+            var listStudentLessons = studentLessons.Items;
+
+            var likecount = listStudentLessons.Count();
+
+            return likecount;
+
+        }
+
     }
 
 }

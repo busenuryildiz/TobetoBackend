@@ -13,7 +13,7 @@ namespace Business.Abstracts
         Task<GetSurveyAnswerResponse> GetById(int id);
         Task<IPaginate<GetSurveyAnswerResponse>> GetUserSurveyAnswers(Guid userId, int surveyId);
         Task<List<CreatedSurveyAnswerResponse>> SubmitAnswers(List<AddSurveyAnswerRequest> addSurveyAnswerRequests);
-        Task<Dictionary<int, double>> CalculateQuestionAverages();
+        Task<Dictionary<string, double>> GetSurveyAnswerAverages(Guid userId, int surveyId);
     }
 
 }

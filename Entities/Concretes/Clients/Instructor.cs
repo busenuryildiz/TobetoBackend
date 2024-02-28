@@ -13,6 +13,6 @@ namespace Entities.Concretes.Clients
         public Guid UserId { get; set; }
         public DateTime? HireDate { get; set; }
         public User User { get; set; }
-        public List<InstructorCourse> InstructorCourses {  get; set; } 
+        public List<InstructorCourse>? InstructorCourses {  get; set; } 
     }
 }

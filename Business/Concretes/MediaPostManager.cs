@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.MediaPost;
+using Business.DTOs.Response.Blog;
 using Business.DTOs.Response.MediaPost;
 using Business.Rules.BusinessRules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using Entities.Concretes;
 
 namespace Business.Concretes
@@ -64,6 +66,15 @@ namespace Business.Concretes
             await _mediaPostDal.UpdateAsync(data);
             var result = _mapper.Map<UpdatedMediaPostResponse>(data);
             return result;
+        }
+
+        public async Task<List<GetListMediaPostResponse>> GetAllMediaPosts()
+        {
+            var mediaPosts = await _mediaPostDal.GetListAsync();
+
+            var mappedMediaPosts = _mapper.Map<List<GetListMediaPostResponse>>(mediaPosts);
+
+            return mappedMediaPosts;
         }
     }
 }

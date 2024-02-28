@@ -44,6 +44,14 @@ namespace WebAPI.Controllers
             var result = await _blogService.GetListAsync(pageRequest);
             return Ok(result);
         }
+
+        [HttpGet("GetAllBlogs")]
+        public async Task<IActionResult> GetAllBlogs()
+        {
+            var result = await _blogService.GetAllBlogs();
+            return Ok(result);
+        }
+
         [HttpGet("GetById")]
         public async Task<IActionResult> GetById([FromQuery] int id)
         {

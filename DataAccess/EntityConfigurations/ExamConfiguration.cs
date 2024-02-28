@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccess.EntityConfigurations
 {
-    public class ExamConfiguration: IEntityTypeConfiguration<Exam>
+    public class ExamConfiguration : IEntityTypeConfiguration<Exam>
     {
         public void Configure(EntityTypeBuilder<Exam> builder)
         {
@@ -18,10 +18,9 @@ namespace DataAccess.EntityConfigurations
             builder.Property(b => b.Title).HasColumnName("Title").IsRequired();
             builder.Property(b => b.Description).HasColumnName("Description");
             builder.Property(b => b.ExamDuration).HasColumnName("ExamDuration");
-            builder.Property(b => b.Point).HasColumnName("Point");
             builder.Property(b => b.QuestionAmount).HasColumnName("QuestionAmount");
             builder.Property(b => b.Date).HasColumnName("Date");
-
+            builder.Property(b => b.Type).HasColumnName("Type");
             builder.HasMany(e => e.ExamOfUsers);
 
 

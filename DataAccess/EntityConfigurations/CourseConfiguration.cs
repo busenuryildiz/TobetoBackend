@@ -21,10 +21,15 @@ namespace DataAccess.EntityConfigurations
             builder.Property(c => c.Name).HasColumnName("Name").HasMaxLength(255);
             builder.Property(c => c.ImagePath).HasColumnName("ImagePath");
             builder.Property(c => c.Price).HasColumnName("Price");
-            builder.Property(c => c.Duration).HasColumnName("Duration");
             builder.Property(c => c.CourseType).HasColumnName("CourseType");
+            builder.Property(c => c.Duration).HasColumnName("Duration");
             builder.Property(c => c.Classroom).HasColumnName("Classroom");
             builder.Property(c => c.BadgePath).HasColumnName("BadgePath");
+            builder.Property(c => c.ProducerCompany).HasColumnName("ProducerCompany");
+            builder.Property(c => c.TargetGroup).HasColumnName("TargetGroup");
+            builder.Property(c => c.AreasOfInterest).HasColumnName("AreasOfInterest");
+            builder.Property(c => c.CategoryNames).HasColumnName("CategoryNames");
+            builder.Property(sc => sc.Point).HasColumnName("Point");
 
             // Course ile Category arasındaki ilişki
             builder.HasOne(c => c.Category)
@@ -55,6 +60,11 @@ namespace DataAccess.EntityConfigurations
                 .HasForeignKey(sc => sc.CourseId);
 
             builder.HasMany(c => c.CourseSubjects);
+            builder.HasMany(c => c.Exams);
+            builder.HasMany(c => c.CourseParts);
+
+            builder.HasMany(c => c.Lessons);
+
 
             // Course tablosu üzerinde silinmiş kayıtları filtreleme
             builder.HasQueryFilter(c => !c.DeletedDate.HasValue);

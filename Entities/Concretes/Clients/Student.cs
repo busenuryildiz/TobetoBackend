@@ -15,7 +15,8 @@ namespace Entities.Concretes.Clients
         public Guid UserId { get; set; }
         public string StudentNumber { get; set; }
         public User? User { get; set; }
-        public virtual ICollection<Survey> AssignedSurveys { get; set; } = new List<Survey>();  // Öğrenciye atanmış anketler
+        public virtual ICollection<Survey>? AssignedSurveys { get; set; } = new List<Survey>();
+        public List<StudentLesson>? StudentLessons { get; set; }
         public List<StudentCourse>? StudentCourses { get; set; } // Eklenen alan
         public List<StudentSkill>? StudentSkills { get; set; }
         public List<ApplicationStudent>? ApplicationStudents { get; set; }

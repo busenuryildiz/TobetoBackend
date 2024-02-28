@@ -2,8 +2,10 @@
 using Business.DTOs.Request.Course;
 using Business.DTOs.Request.User;
 using Business.DTOs.Response.Course;
+using Business.DTOs.Response.Student;
 using Business.DTOs.Response.User;
 using Core.DataAccess.Paging;
+using Entities.Concretes;
 using Entities.Concretes.Clients;
 using Entities.Concretes.CoursesFolder;
 using System;
@@ -43,7 +45,8 @@ namespace Business.Profiles
                     opt.MapFrom(src => GetCourseSubjectName(src)))
                 .ReverseMap();
 
-            CreateMap<Paginate<Course>, Paginate<GetListCourseResponse>>().ReverseMap();
+           
+
         }
 
         private string GetInstructorName(Course course)
@@ -61,5 +64,7 @@ namespace Business.Profiles
                 return courseSubject.Subject.Name;
             return null;
         }
+
+
     }
 }

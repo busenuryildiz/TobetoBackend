@@ -100,7 +100,6 @@ namespace Business
             services.AddScoped<IQuestionService, QuestionManager>();
             services.AddScoped<IOptionService, OptionManager>();
             services.AddScoped<IInstructorCourseService, InstructorCourseManager>();
-            services.AddScoped<ILessonCourseService, LessonCourseManager>();
             services.AddScoped<IPaymentService, PaymentManager>();
             services.AddScoped<IStudentCourseService, StudentCourseManager>();
             services.AddScoped<ICertificateService, CertificateManager>();
@@ -132,6 +131,7 @@ namespace Business
             services.AddScoped<ISurveyQuestionService, SurveyQuestionManager>();
             services.AddScoped<ICoursePartService, CoursePartManager>();
             services.AddScoped<IExamOfUserService, ExamOfUserManager>();
+            services.AddScoped<IStudentLessonService, StudentLessonManager>();
 
 
 
@@ -149,7 +149,6 @@ namespace Business
             services.AddScoped<CourseSubjectBusinessRules>();
             services.AddScoped<ExamBusinessRules>();
             services.AddScoped<InstructorCourseBusinessRules>();
-            services.AddScoped<LessonCourseBusinessRules>();
             services.AddScoped<PaymentBusinessRules>();
             services.AddScoped<CertificateBusinessRules>();
             services.AddScoped<EducationInformationBusinessRules>();

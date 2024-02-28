@@ -16,30 +16,36 @@ namespace DataAccess.EntityConfigurations
             builder.ToTable("Lessons").HasKey(l => l.Id); 
 
             builder.Property(l => l.Name)
-                .IsRequired()
                 .HasMaxLength(255)
                 .HasColumnName("Name"); 
 
             builder.Property(l => l.Content)
-                .IsRequired()
                 .HasColumnName("Content"); 
 
             builder.Property(l => l.VideoUrl)
-                .IsRequired()
                 .HasColumnName("VideoUrl");
 
-            builder.Property(l => l.LessonTime)
-               .IsRequired()
-               .HasColumnName("LessonTime");
+            builder.Property(l => l.LessonDuration).HasColumnName("LessonDuration");
+
+            builder.Property(c => c.LessonDateAndHour).HasColumnName("LessonDateAndHour");
+
+            builder.Property(c => c.Speaker).HasColumnName("Speaker");
+
+            builder.Property(c => c.AboutSpeaker).HasColumnName("AboutSpeaker");
+
+            builder.HasMany(l => l.StudentLessons);
+
 
             builder.HasOne(l => l.CoursePart)
                    .WithMany(cp => cp.Lessons)
-                   .HasForeignKey(l => l.CoursePartId)
-                   .IsRequired();
+                   .HasForeignKey(l => l.CoursePartId);
+
+            builder.HasOne(l => l.Course)
+                .WithMany(l=>l.Lessons)
+                .HasForeignKey(l=>l.CourseId);
 
             builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
-
-        }
+    }
     }
 
 }

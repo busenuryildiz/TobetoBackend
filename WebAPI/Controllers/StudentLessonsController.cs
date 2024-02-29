@@ -50,5 +50,13 @@ namespace WebAPI.Controllers
             var result = await _studentLessonService.GetById(id);
             return Ok(result);
         }
+
+
+        [HttpGet("GetIsLikedCountByLessonIdAsync")]
+        public async Task<IActionResult> GetIsLikedCountByLessonIdAsync([FromQuery] int lessonId)
+        {
+            var result = await _studentLessonService.GetIsLikedCountByLessonIdAsync(lessonId);
+            return Ok(result);
+        }
     }
 }

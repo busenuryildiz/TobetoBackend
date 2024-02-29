@@ -27,6 +27,7 @@ namespace Business.Abstracts
 
         Task<CoursesAllLessonInfoResponse> GetStudentsCourseAllInfo(int studentCourseId);
 
+        public Task<int> GetIsLikedCountByCourseIdAsync(int courseId);
 
     }
 }

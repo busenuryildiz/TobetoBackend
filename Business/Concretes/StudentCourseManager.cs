@@ -91,8 +91,6 @@ namespace Business.Concretes
 
         public async Task<IPaginate<GetListStudentCourseResponse>> GetListAsync(PageRequest pageRequest)
         {
-
-
             try
             {
                 var data = await _studentCourseDal.GetListAsync(
@@ -213,8 +211,6 @@ namespace Business.Concretes
 
         public async Task<CoursesAllLessonInfoResponse> GetStudentsCourseAllInfo(int studentCourseId)
         {
-            try
-            {
                 var studentsCourse = await _studentCourseDal.GetAsync(predicate: sc => sc.Id == studentCourseId,
                                                                             include: query => query
                                                                             .Include(sc => sc.Student)
@@ -223,23 +219,21 @@ namespace Business.Concretes
                                                                             .ThenInclude(course => course.Lessons));
 
                 var results = _mapper.Map<CoursesAllLessonInfoResponse>(studentsCourse);
-                return results;
-            }
-            catch (AutoMapperMappingException mapEx)
-            {
-                Console.WriteLine("AutoMapper Mapping Exception: " + mapEx.Message);
-                return null;
-            }
+                return results;      
+        }
 
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                if (ex.InnerException != null)
-                {
-                    Console.WriteLine("Inner Exception Message: " + ex.InnerException.Message);
-                }
-                return null;
-            }
+        public async Task<int> GetIsLikedCountByCourseIdAsync(int courseId)
+        {
+            var studentCourses = await _studentCourseDal.GetListAsync(
+                l => l.CourseId == courseId && l.Liked == 1
+            );
+
+            var listStudentCourses = studentCourses.Items;
+
+            var likecount = listStudentCourses.Count();
+
+            return likecount;
+
         }
     }
 }

@@ -142,5 +142,12 @@ namespace WebAPI.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("GetIsLikedCountByCourseIdAsync")]
+        public async Task<IActionResult> GetIsLikedCountByCourseIdAsync([FromQuery] int courseId)
+        {
+            var result = await _studentCourseService.GetIsLikedCountByCourseIdAsync(courseId);
+            return Ok(result);
+        }
     }
 }

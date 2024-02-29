@@ -115,71 +115,58 @@ namespace Business.Concretes
         }
         public async Task<UpdatedUserAllInformationResponse> UpdateAllInformationAsync(UpdateUserAllInformationRequest request)
         {
-            try
+
+            var user = await _userDal.GetAsync(u => u.Id == request.UserId,
+                              include: query => query
+                                .Include(u => u.Addresses)
+                                  .ThenInclude(a => a.District)
+                                    .ThenInclude(d => d.City)
+                                      .ThenInclude(c => c.Country));
+            var userAddress = user.Addresses.FirstOrDefault(p => p.UserId == request.UserId);
+            if (userAddress == null)
             {
-                var user = await _userDal.GetAsync(u => u.Id == request.UserId,
-                                  include: query => query
-                                    .Include(u => u.Addresses)
-                                      .ThenInclude(a => a.District)
-                                        .ThenInclude(d => d.City)
-                                          .ThenInclude(c => c.Country));
-                var userAddress = user.Addresses.FirstOrDefault(p => p.UserId == request.UserId);
-                if (userAddress == null)
+                userAddress = new Address
                 {
-                    userAddress = new Address
+                    UserId = request.UserId,
+                    Name = request.AddressName,
+                    Description = request.Description,
+                    CreatedDate = DateTime.Now,
+                    District = new District
                     {
-                        UserId = request.UserId,
-                        Name = request.AddressName,
-                        Description = request.Description,
+                        Name = request.DistrictName,
                         CreatedDate = DateTime.Now,
-                        District = new District
+                        City = new City
                         {
-                            Name = request.DistrictName,
+                            Name = request.CityName,
                             CreatedDate = DateTime.Now,
-                            City = new City
+                            Country = new Country
                             {
-                                Name = request.CityName,
-                                CreatedDate = DateTime.Now,
-                                Country = new Country
-                                {
-                                    Name = request.CountryName,
-                                    CreatedDate = DateTime.Now
-                                }
+                                Name = request.CountryName,
+                                CreatedDate = DateTime.Now
                             }
                         }
-                    };
-                    user.Addresses.Add(userAddress);
-                }
-                else
-
-                {
-                    userAddress.Name = request.AddressName;
-                    userAddress.UpdatedDate = DateTime.Now;
-                    userAddress.Description = request.Description;
-                    userAddress.District.Name = request.DistrictName;
-                    userAddress.District.UpdatedDate = DateTime.Now;
-                    userAddress.District.City.Name = request.CityName;
-                    userAddress.District.City.UpdatedDate = DateTime.Now;
-                    userAddress.District.City.Country.Name = request.CountryName;
-                    userAddress.District.City.Country.UpdatedDate = DateTime.Now;
-
-                }
-                _mapper.Map(request, user);
-                await _userDal.UpdateAsync(user);
-                var updatedUserResponse = _mapper.Map<UpdatedUserAllInformationResponse>(user);
-                return updatedUserResponse;
+                    }
+                };
+                user.Addresses.Add(userAddress);
             }
-            catch (Exception ex)
+            else
+
             {
-                Console.WriteLine("Hata:");
-                Console.WriteLine(ex.Message);
-                if (ex.InnerException != null)
-                {
-                    Console.WriteLine("Inner Exception:");
-                    Console.WriteLine(ex.InnerException.Message);
-                }
-                throw new Exception("Kullanıcı bilgileri güncellenirken bir hata oluştu.", ex);
+                userAddress.Name = request.AddressName;
+                userAddress.UpdatedDate = DateTime.Now;
+                userAddress.Description = request.Description;
+                userAddress.District.Name = request.DistrictName;
+                userAddress.District.UpdatedDate = DateTime.Now;
+                userAddress.District.City.Name = request.CityName;
+                userAddress.District.City.UpdatedDate = DateTime.Now;
+                userAddress.District.City.Country.Name = request.CountryName;
+                userAddress.District.City.Country.UpdatedDate = DateTime.Now;
+
             }
+            _mapper.Map(request, user);
+            await _userDal.UpdateAsync(user);
+            var updatedUserResponse = _mapper.Map<UpdatedUserAllInformationResponse>(user);
+            return updatedUserResponse;
         }
         public async Task<UpdatedUserAllInformationResponse> GetAllUserInformationByIdAsync(Guid id)
         {

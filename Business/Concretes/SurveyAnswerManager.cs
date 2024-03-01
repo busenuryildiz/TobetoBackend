@@ -13,6 +13,7 @@ namespace Business.Concretes
     using Serilog;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using static System.Runtime.InteropServices.JavaScript.JSType;
 
     public class SurveyAnswerManager : ISurveyAnswerService
     {
@@ -99,44 +100,53 @@ namespace Business.Concretes
 
             foreach (var addSurveyAnswerRequestOne in addSurveyAnswerRequests)
             {
-                // Map AddSurveyAnswerRequest to SurveyAnswer entity
                 SurveyAnswer surveyAnswer = _mapper.Map<SurveyAnswer>(addSurveyAnswerRequestOne);
-
-                // Add the survey answer to the database
                 var createdSurveyAnswer = await _surveyAnswerDal.AddAsync(surveyAnswer);
                 Log.Information("veri ", surveyAnswer);
-
-                // Map the created survey answer to response DTO
                 var createdSurveyAnswerResponse = _mapper.Map<CreatedSurveyAnswerResponse>(createdSurveyAnswer);
-
-                // Add the response to the list
                 createdSurveyAnswers.Add(createdSurveyAnswerResponse);
             }
 
             return createdSurveyAnswers;
         }
 
-        public async Task<Dictionary<int, double>> CalculateQuestionAverages()
+        public async Task<Dictionary<string, double>> GetSurveyAnswerAverages(Guid userId, int surveyId)
         {
             try
             {
-                var paginatedResult = await _surveyAnswerDal.GetListAsync( ); // Örnek olarak, ilk 100 öğeyi alıyoruz
+                var paginatedResult = _surveyAnswerDal.GetList(
+     predicate: answer => answer.UserID == userId && answer.SurveyID == surveyId,
+     include: query => query.Include(answer => answer.SurveyQuestion)
+ );
+                var dataList = paginatedResult.Items.ToList();
 
-                var dataList = paginatedResult.Items.ToList(); // IPaginate<T> nesnesinden verilerin bir List<T> koleksiyonuna dönüştürülmesi
-                var groupedData = dataList.GroupBy(item => item.QuestionID); 
+                if (!dataList.Any())
+                {
+                    return new Dictionary<string, double>(); // Boş bir sözlük döndür
+                }
 
-                // Her bir soru için ortalama değeri hesapla
-                var questionAverages = groupedData
-                    .ToDictionary(
-                        group => group.Key,
-                        group => group.Average(item => Convert.ToDouble(item.AnswerValue))
-                    );
+                var groupedData = dataList.GroupBy(item => item.SurveyQuestion != null ? item.SurveyQuestion.QuestionType : "Unknown");
 
-                return questionAverages;
+                var categoryAverages = new Dictionary<string, double>();
+
+                foreach (var group in groupedData)
+                {
+                    var answers = new List<int>();
+
+                    foreach (var answer in group)
+                    {
+                        answers.Add(Convert.ToInt32(answer.AnswerValue));
+                    }
+
+                    var average = answers.Any() ? answers.Average() : 0;
+                    categoryAverages[group.Key] = average;
+                }
+
+                return categoryAverages;
             }
             catch (Exception ex)
             {
-                // Hata durumunda uygun bir şekilde işleyin.
+                // Hata durumunda uygun bir şekilde işleyin veya loglayın.
                 throw new Exception($"An error occurred: {ex.Message}");
             }
         }

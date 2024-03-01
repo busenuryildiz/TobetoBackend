@@ -16,7 +16,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(u => u.NationalIdentity);
             builder.Property(u => u.BirthDate).HasColumnType("date");
             builder.Property(u => u.PhoneNumber).HasMaxLength(20);
-            builder.Property(u => u.ImagePath); // İmge yolu için örnek sınırlama
+            builder.Property(u => u.ImagePath); 
 
             builder.HasMany(u => u.EducationInformations)
                 .WithOne(ei => ei.User)

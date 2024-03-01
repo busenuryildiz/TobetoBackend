@@ -19,7 +19,7 @@ namespace DataAccess
         public static IServiceCollection AddDataAccessServices(this IServiceCollection services, IConfiguration configuration)
         {
 
-            services.AddDbContext<TobetoContext>(options => options.UseSqlServer(configuration.GetConnectionString("Tobeto")));
+            services.AddDbContext<TobetoContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoCanli")));
             services.AddScoped<IUserDal, EfUserDal>();  
             services.AddScoped<IInstructorDal, EfInstructorDal>();
             services.AddScoped<IManagerDal, EfManagerDal>();

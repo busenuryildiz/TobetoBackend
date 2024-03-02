@@ -130,19 +130,15 @@ namespace Business.Concretes
                     UserId = request.UserId,
                     Name = request.AddressName,
                     Description = request.Description,
-                    CreatedDate = DateTime.Now,
                     District = new District
                     {
                         Name = request.DistrictName,
-                        CreatedDate = DateTime.Now,
                         City = new City
                         {
                             Name = request.CityName,
-                            CreatedDate = DateTime.Now,
                             Country = new Country
                             {
                                 Name = request.CountryName,
-                                CreatedDate = DateTime.Now
                             }
                         }
                     }
@@ -153,14 +149,10 @@ namespace Business.Concretes
 
             {
                 userAddress.Name = request.AddressName;
-                userAddress.UpdatedDate = DateTime.Now;
                 userAddress.Description = request.Description;
                 userAddress.District.Name = request.DistrictName;
-                userAddress.District.UpdatedDate = DateTime.Now;
                 userAddress.District.City.Name = request.CityName;
-                userAddress.District.City.UpdatedDate = DateTime.Now;
                 userAddress.District.City.Country.Name = request.CountryName;
-                userAddress.District.City.Country.UpdatedDate = DateTime.Now;
 
             }
             _mapper.Map(request, user);
@@ -197,7 +189,6 @@ namespace Business.Concretes
         {
             var user = await _userDal.GetAsync(i => i.Id == updateChangePasswordRequest.UserId);
             user.Password = updateChangePasswordRequest.ChangePassword;
-            user.UpdatedDate = DateTime.UtcNow;
             await _userDal.UpdateAsync(user);
             var mappedUser = _mapper.Map<UpdateChangePasswordResponse>(user);
             return mappedUser;

@@ -101,6 +101,17 @@ namespace Business.Concretes
 
             return results;
         }
+
+        public async Task<List<GetListLessonResponse>> GetListCoursesAllLessonsAsync(int courseId)
+        {
+            var data = await _lessonDal.GetListAsync(predicate: l => l.CourseId == courseId);
+
+            var lessonList = _mapper.Map<List<GetListLessonResponse>>(data.Items);
+
+            return lessonList;
+                                                                            
+        }
+
     }
 }
 

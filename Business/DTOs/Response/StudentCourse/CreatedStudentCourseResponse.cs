@@ -17,9 +17,9 @@ namespace Business.DTOs.Response.StudentCourse
         public int? Liked { get; set; }
         public int? Saved { get; set; }
         public bool? IsPaid { get; set; }
-        public TimeSpan? SpentTime { get; set; }
-        public TimeSpan? EstimatedTime { get; set; }
-        public DateTime StartDate { get; set; }
-        public bool IsCompleted { get; set; }
+        public int? SpentTime { get; set; }
+        public int? EstimatedTime { get; set; }
+        public DateTime? StartDate { get; set; }
+        public bool? IsCompleted { get; set; }
     }
 }

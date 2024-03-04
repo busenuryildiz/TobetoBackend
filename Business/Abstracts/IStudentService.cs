@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Business.DTOs.Request.Student;
 using Business.DTOs.Response.Student;
 using Entities.Concretes.Clients;
+using Business.DTOs.Response.Course;
 
 namespace Business.Abstracts
 {
@@ -18,6 +19,7 @@ namespace Business.Abstracts
         Task<DeletedStudentResponse> Delete(DeleteStudentRequest deleteStudentRequest);
         Task<CreatedStudentResponse> GetById(Guid id);
         Student GetStudentByUserId (Guid userId);
+        Task<List<StudentsAllInfoResponse>> GetAllStudents();
 
     }
 }

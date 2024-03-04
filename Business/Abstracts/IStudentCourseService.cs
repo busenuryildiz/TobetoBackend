@@ -1,4 +1,5 @@
 ﻿using Business.DTOs.Request.StudentCourse;
+using Business.DTOs.Response.Course;
 using Business.DTOs.Response.StudentCourse;
 using Core.DataAccess.Paging;
 using System;
@@ -18,16 +19,13 @@ namespace Business.Abstracts
         Task<IPaginate<GetListStudentCourseResponse>> GetListAsync(PageRequest pageRequest);
         Task<CreatedStudentCourseResponse> GetCertificateByExamAndStudentCourseId(int examId, int studentCourseId);
         Task<IPaginate<GetListStudentCourseResponse>> GetListAsync(Guid studentId, PageRequest pageRequest);
-
         Task<List<GetUserBadgesResponse>> GetBadgesForCompletedCourses(Guid studentId);
-
         Task<List<GeneralStudentCourseList>> GetStudentsAllCoursesByUserId(Guid userId);
         Task<List<GeneralStudentCourseList>> GetStudentsOngoingCoursesByUserId(Guid userId);
         Task<List<GeneralStudentCourseList>> GetStudentsCompletedCoursesByUserId(Guid userId);
-
         Task<CoursesAllLessonInfoResponse> GetStudentsCourseAllInfo(int studentCourseId);
-
         public Task<int> GetIsLikedCountByCourseIdAsync(int courseId);
+        Task<List<GeneralStudentCourseList>> GetListStudentsNotRegisteredCourses(Guid studentId);
 
     }
 }

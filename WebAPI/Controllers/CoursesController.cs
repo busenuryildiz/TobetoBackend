@@ -69,6 +69,11 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-       
+        [HttpGet("GetListAllCoursesAsync")]
+        public async Task<IActionResult> GetListAllCoursesAsync()
+        {
+            var result = await _courseService.GetListAllCoursesAsync();
+            return Ok(result);
+        }
     }
 }

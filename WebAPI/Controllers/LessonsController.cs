@@ -1,7 +1,9 @@
 ﻿using Business.Abstracts;
 using Business.DTOs.Request.Lesson;
+using Business.DTOs.Response.Lesson;
 using Business.Rules.ValidationRules;
 using Core.DataAccess.Paging;
+using Entities.Concretes.CoursesFolder;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -54,6 +56,13 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetAllCourseAndLessonInfo()
         {
             var result = await _lessonService.GetAllCourseAndLessonInfo();
+
+            return Ok(result);
+        }
+        [HttpGet("GetListCoursesAllLessonsAsync")]
+        public async Task<IActionResult> GetListCoursesAllLessonsAsync([FromQuery] int courseId)
+        {
+            var result = await _lessonService.GetListCoursesAllLessonsAsync(courseId);
 
             return Ok(result);
         }

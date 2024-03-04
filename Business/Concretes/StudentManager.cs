@@ -16,6 +16,8 @@ using Serilog;
 using Business.DTOs.Response.User;
 using System.Drawing;
 using Entities.Concretes;
+using DataAccess.Concretes;
+using Business.DTOs.Response.Course;
 
 namespace Business.Concretes
 {
@@ -148,6 +150,18 @@ namespace Business.Concretes
 
             return student;
         }
+
+        public async Task<List<StudentsAllInfoResponse>> GetAllStudents()
+        {
+            var students = await _studentDal.GetListAsync(include: query => query
+                                                                            .Include(sc => sc.User));
+
+            var listStudents = _mapper.Map<List<StudentsAllInfoResponse>>(students.Items);
+
+            return listStudents;
+
+        }
+       
     }
 
 }

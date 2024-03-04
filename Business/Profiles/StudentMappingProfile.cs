@@ -45,6 +45,13 @@ namespace Business.Profiles
             CreateMap<Paginate<Student>, Paginate<GetListStudentResponse>>().ReverseMap();
 
 
+            CreateMap<Student, StudentsAllInfoResponse>()
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.User.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.User.LastName))
+                .ForMember(dest => dest.ImagePath, opt => opt.MapFrom(src => src.User.ImagePath))
+                .ReverseMap();
 
 
 

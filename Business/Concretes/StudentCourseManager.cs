@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
 using Business.DTOs.Request.StudentCourse;
+using Business.DTOs.Request.StudentLesson;
+using Business.DTOs.Response.Course;
 using Business.DTOs.Response.StudentCourse;
 using Business.DTOs.Response.StudentLesson;
 using Business.DTOs.Response.UserLanguage;
@@ -23,41 +25,49 @@ namespace Business.Concretes
         IMapper _mapper;
         StudentCourseBusinessRules _businessRules;
         IStudentService _studentService;
-
-        public StudentCourseManager(IStudentCourseDal studentCourseDal, IMapper mapper, StudentCourseBusinessRules businessRules, IStudentService studentService)
+        IStudentLessonService _studentLessonService;
+        ILessonService _lessonService;
+        ICourseService _courseService;
+        public StudentCourseManager(IStudentCourseDal studentCourseDal, IMapper mapper, StudentCourseBusinessRules businessRules, IStudentService studentService, IStudentLessonService studentLessonService, ILessonService lessonService, ICourseService courseService)
         {
             _studentCourseDal = studentCourseDal;
             _mapper = mapper;
             _businessRules = businessRules;
             _studentService = studentService;
+            _studentLessonService = studentLessonService;
+            _lessonService = lessonService;
+            _courseService = courseService;
         }
 
         public async Task<CreatedStudentCourseResponse> Add(CreateStudentCourseRequest createStudentCourseRequest)
         {
             try
             {
-                // Validate createStudentCourseRequest if necessary
-
-                // DTO to Entity mapping
                 StudentCourse studentCourse = _mapper.Map<StudentCourse>(createStudentCourseRequest);
-
-                // Add the StudentCourse to the database
                 StudentCourse createdStudentCourse = await _studentCourseDal.AddAsync(studentCourse);
 
-                // Entity to DTO mapping for the response
-                CreatedStudentCourseResponse createdStudentCourseResponse = _mapper.Map<CreatedStudentCourseResponse>(createdStudentCourse);
+                var lessonsOfCourses = await _lessonService.GetListCoursesAllLessonsAsync(createStudentCourseRequest.CourseId);
 
-                // Log success or any additional information
+                foreach (var lesson in lessonsOfCourses)
+                {
+                    CreateStudentLessonRequest studentLessonRequest = new CreateStudentLessonRequest
+                    {
+                        LessonId = lesson.Id,
+                        StudentId = createStudentCourseRequest.StudentId,
+                        Progress = 0,
+                        IsLiked = false
+                    };
+                    await _studentLessonService.Add(studentLessonRequest);
+                }
+
+                CreatedStudentCourseResponse createdStudentCourseResponse = _mapper.Map<CreatedStudentCourseResponse>(createdStudentCourse);
                 Log.Information("StudentCourse added successfully. ID: {StudentCourseId}", createdStudentCourse.Id);
-                // Return the response
+
                 return createdStudentCourseResponse;
             }
             catch (Exception ex)
             {
-                // Log the error
                 Log.Error(ex.Message, "An error occurred while adding a StudentCourse");
-
-                // Rethrow the exception or handle it based on your requirements
                 throw;
             }
         }
@@ -156,7 +166,7 @@ namespace Business.Concretes
             var student = _studentService.GetStudentByUserId(userId);
 
             var completedCourses = await _studentCourseDal.GetListAsync(
-                                                              predicate: sc => sc.StudentId == student.Id && sc.Progress == 100,
+                                                    predicate: sc => sc.StudentId == student.Id && sc.Progress == 100,
                                                               include: query => query
                                                               .Include(sc => sc.Student)
                                                               .Include(sc => sc.Course));
@@ -235,5 +245,23 @@ namespace Business.Concretes
             return likecount;
 
         }
+        public async Task<List<GeneralStudentCourseList>> GetListStudentsNotRegisteredCourses(Guid studentId)
+        {
+            var allCourses = await _courseService.GetListAllCoursesAsync();
+
+            var data = await _studentCourseDal.GetListAsync(predicate: sc => sc.StudentId == studentId,
+                                                        include: query => query
+                                                        .Include(s => s.Course));
+            var registeredCourses = data.Items;
+
+            var mappedAllCourses = _mapper.Map<List<GeneralStudentCourseList>>(allCourses);
+
+            var mappedRegisteredCourses = _mapper.Map<List<GeneralStudentCourseList>>(registeredCourses);
+
+            var notRegisteredCourses = mappedAllCourses.Where(course => !mappedRegisteredCourses.Any(rc => rc.CourseId == course.CourseId)).ToList();
+
+            return notRegisteredCourses;
+        }
+
     }
 }

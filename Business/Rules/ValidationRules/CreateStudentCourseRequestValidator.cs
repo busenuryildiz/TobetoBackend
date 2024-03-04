@@ -12,10 +12,6 @@ namespace Business.Rules.ValidationRules
     {
         public CreateStudentCourseRequestValidator()
         {
-            RuleFor(x => x.Progress).NotEmpty();
-
-
-            RuleFor(x => x.Point).InclusiveBetween(1, 100);
 
         }
     }

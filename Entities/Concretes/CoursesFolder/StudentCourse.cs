@@ -19,11 +19,11 @@ namespace Entities.Concretes.CoursesFolder
         public bool? IsPaid { get; set; }
         public DateTime? StartDate { get; set; }
         public bool? IsCompleted { get; set; }
-        public TimeSpan? SpentTime { get; set; }
-        public TimeSpan? EstimatedTime { get; set; }
-        public Student? Student { get; set; } // Eklenen alan
-        public Course? Course { get; set; } // Eklenen alan
-        public List<Payment>? Payments { get; set; } // Eklenen alan
+        public int? SpentTime { get; set; }
+        public int? EstimatedTime { get; set; }
+        public Student? Student { get; set; } 
+        public Course? Course { get; set; } 
+        public List<Payment>? Payments { get; set; } 
 
 
     }

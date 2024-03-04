@@ -13,6 +13,7 @@ using Entities.Concretes.Profiles;
 using Business.DTOs.Response.ExamOfUser;
 using Business.DTOs.Response.Lesson;
 using Business.DTOs.Response.StudentLesson;
+using Business.DTOs.Response.Course;
 
 namespace Business.Profiles
 {
@@ -59,6 +60,12 @@ namespace Business.Profiles
                 .ForMember(dest => dest.CourseDate, opt => opt.MapFrom(src => src.Course.CreatedDate))
                 .ForMember(dest => dest.CourseImagePath, opt => opt.MapFrom(src => src.Course.ImagePath))
                 .ForMember(dest => dest.StudentCourseProgress, opt => opt.MapFrom(src => src.Progress));
+
+            CreateMap<CreatedCourseResponse, GeneralStudentCourseList>()
+                 .ForMember(dest => dest.CourseId, opt => opt.MapFrom(src => src.Id))
+                 .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src => src.Name));
+
+
 
 
             CreateMap<IPaginate<StudentCourse>, List<GeneralStudentCourseList>>()

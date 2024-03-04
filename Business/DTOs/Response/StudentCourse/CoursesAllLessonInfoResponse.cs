@@ -23,8 +23,8 @@ namespace Business.DTOs.Response.StudentCourse
         public string? CourseProducerCompany { get; set; }
         public string? CourseCategoryNames { get; set; }
         public DateTime? StudentCourseStartDate { get; set; }
-        public TimeSpan? StudentCourseSpentTime { get; set; }
-        public TimeSpan? StudentCourseEstimatedTime { get; set; }
+        public int? StudentCourseSpentTime { get; set; }
+        public int? StudentCourseEstimatedTime { get; set; }
         public List<GetListLessonResponse>? GetListLessonResponses { get; set; }
         public List<GetListStudentLessonResponse>? GetListStudentLessonResponses { get; set; }
     }

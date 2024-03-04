@@ -28,7 +28,6 @@ namespace DataAccess.EntityConfigurations
             builder.Property(sc => sc.CertificatePath)
                 .HasColumnName("CertificatePath");
 
-
             builder.Property(sc => sc.Liked)
                 .HasColumnName("Liked"); 
 
@@ -38,19 +37,19 @@ namespace DataAccess.EntityConfigurations
             builder.Property(sc => sc.IsPaid)
                 .HasColumnName("IsPaid");
 
-            builder.Property(sc => sc.SpentTime)
-                .HasColumnName("SpentTime"); 
-
-            builder.Property(sc => sc.EstimatedTime)
-                .HasColumnName("EstimatedTime");
-
             builder.Property(sc => sc.StartDate)
                 .HasColumnName("StartDate"); 
 
             builder.Property(sc => sc.IsCompleted)
                 .HasColumnName("IsCompleted");
 
-        builder.HasOne(sc => sc.Student)
+            builder.Property(sc => sc.EstimatedTime)
+               .HasColumnName("EstimatedTime");
+
+            builder.Property(sc => sc.SpentTime)
+                .HasColumnName("SpentTime");
+
+            builder.HasOne(sc => sc.Student)
                 .WithMany(s => s.StudentCourses)
                 .HasForeignKey(sc => sc.StudentId); 
 

@@ -1003,8 +1003,8 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan?>("EstimatedTime")
-                        .HasColumnType("time")
+                    b.Property<int?>("EstimatedTime")
+                        .HasColumnType("int")
                         .HasColumnName("EstimatedTime");
 
                     b.Property<bool?>("IsCompleted")
@@ -1027,8 +1027,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Saved");
 
-                    b.Property<TimeSpan?>("SpentTime")
-                        .HasColumnType("time")
+                    b.Property<int?>("SpentTime")
+                        .HasColumnType("int")
                         .HasColumnName("SpentTime");
 
                     b.Property<DateTime?>("StartDate")

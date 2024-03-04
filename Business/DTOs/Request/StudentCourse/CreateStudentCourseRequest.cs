@@ -16,8 +16,7 @@ namespace Business.DTOs.Request.StudentCourse
         public int? Liked { get; set; }
         public int? Saved { get; set; }
         public bool? IsPaid { get; set; }
-        public TimeSpan? SpentTime { get; set; }
-        public TimeSpan? EstimatedTime { get; set; }
-        // Diğer özellikleri buraya ekleyebilirsiniz
+        public int? SpentTime { get; set; }
+        public int? EstimatedTime { get; set; } 
     }
 }

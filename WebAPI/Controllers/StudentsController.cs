@@ -89,5 +89,12 @@ namespace WebAPI.Controllers
             return NotFound($"Student with ID {updateStudentRequest.Id} not found.");
         }
 
+        [HttpGet("GetAllStudents")]
+        public async Task<IActionResult> GetAllStudents()
+        {
+            var result = await _studentService.GetAllStudents();
+            return Ok(result);
+        }
+
     }
 }
